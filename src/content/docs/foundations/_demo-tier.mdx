@@ -3,10 +3,12 @@ title: Tier 系统演示
 description: 演示三档阅读系统
 tiers: [intro, engineer, research]
 status: draft
+papers: [vaswani2017-attention, brown2020-gpt3]
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
 import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
 
 <TierSwitcher />
 
@@ -14,19 +16,23 @@ import TierBlock from '../../../components/TierBlock.astro';
 ## 直觉派视角
 
 这里是写给非技术背景读者的内容。用类比、比喻和生活中的例子来解释概念。
-不需要数学公式，只需要理解为什么这样做。
+不需要数学公式，只需要理解"为什么这样做"。
+
+相关论文：[[ref:vaswani2017-attention]]
 </TierBlock>
 
 <TierBlock tier="engineer">
 ## 工程派视角
 
 这里是写给工程师的内容。包含实际代码、API 用法、工程权衡和最佳实践。
-读者了解编程，想知道怎么做和用什么工具。
+读者了解编程，想知道"怎么做"和"用什么工具"。
 </TierBlock>
 
 <TierBlock tier="research">
 ## 研究派视角
 
 这里是写给研究者的内容。包含数学推导、原始论文引用、实验细节和前沿进展。
-读者有深厚的技术背景，想了解背后的原理和目前的局限。
+读者有深厚的技术背景，想了解"背后的原理"和"目前的局限"。
 </TierBlock>
+
+<PaperList ids={frontmatter.papers} />
