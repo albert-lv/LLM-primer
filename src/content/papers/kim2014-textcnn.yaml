@@ -1,0 +1,12 @@
+id: kim2014-textcnn
+arxiv_id: "1408.5882"
+tldr_zh: |
+  用 CNN + 预训练词向量做文本分类，证明"预训练 embedding + 简单架构"能打过手工特征工程，是预训练范式渗入 NLP 的早期标志。
+tldr_en: |
+  Uses CNN with pre-trained word vectors for text classification, proving "pre-trained embedding + simple architecture" beats hand-crafted features. An early sign of pre-training paradigm entering NLP.
+tags:
+  - cnn
+  - text-classification
+  - embeddings
+modules:
+  - foundations

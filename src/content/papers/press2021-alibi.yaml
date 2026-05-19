@@ -1,0 +1,12 @@
+id: press2021-alibi
+arxiv_id: "2108.12409"
+tldr_zh: |
+  把位置信息变成 attention 上的线性偏置，零参数即可外推到训练长度数倍以上。是早期长上下文方案的代表，与 RoPE 形成两条路线之争。
+tldr_en: |
+  Converts position information into linear bias on attention, enabling extrapolation to several times training length with zero parameters. Representative early long-context solution, competing with RoPE as two alternative approaches.
+tags:
+  - positional-encoding
+  - long-context
+  - alibi
+modules:
+  - inference

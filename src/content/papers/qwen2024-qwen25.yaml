@@ -1,0 +1,13 @@
+id: qwen2024-qwen25
+arxiv_id: "2412.15115"
+tldr_zh: |
+  18T token 预训练，0.5B–72B 全家桶 + 专业 Coder/Math 子家族；是 2024-2025 最稳定的开源中英 LLM 之一。Hugging Face 下载/微调量长期 Top。
+tldr_en: |
+  18T token pre-training, 0.5B-72B full suite + specialized Coder/Math sub-families; one of most stable open-source Chinese-English LLMs of 2024-2025. Long-term top in Hugging Face downloads/fine-tuning.
+tags:
+  - qwen-2.5
+  - open-source
+  - bilingual
+modules:
+  - foundations
+  - training

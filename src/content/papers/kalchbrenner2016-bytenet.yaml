@@ -1,0 +1,12 @@
+id: kalchbrenner2016-bytenet
+arxiv_id: "1610.10099"
+tldr_zh: |
+  用扩张卷积做 seq2seq，把序列建模从"必须 RNN 顺序计算"中解放出来；和同期 ConvS2S 一起是 Transformer 之前"并行序列建模"的最强尝试。
+tldr_en: |
+  Uses dilated convolutions for seq2seq, liberating sequence modeling from "must use RNN sequential computation". Together with ConvS2S, represents the strongest attempt at parallel sequence modeling before Transformer.
+tags:
+  - convolution
+  - seq2seq
+  - parallelization
+modules:
+  - foundations

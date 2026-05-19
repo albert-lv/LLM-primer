@@ -1,0 +1,12 @@
+id: du2021-glam
+arxiv_id: "2112.06905"
+tldr_zh: |
+  1.2T 参数 MoE 在 1/3 训练算力下达到 GPT-3 同等质量，是 MoE 路线"性价比胜出"的早期代表。Mixtral / DeepSeek-V2/V3 都是它的精神后裔。
+tldr_en: |
+  1.2T parameter MoE achieves GPT-3 quality with 1/3 training compute, early representative of MoE "cost-effectiveness wins". Mixtral/DeepSeek-V2/V3 are its spiritual descendants.
+tags:
+  - moe
+  - scaling
+  - efficiency
+modules:
+  - training

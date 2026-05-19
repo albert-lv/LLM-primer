@@ -1,0 +1,12 @@
+id: snell2024-test-time-compute
+arxiv_id: "2408.03314"
+tldr_zh: |
+  系统性给出"推理时多花 compute"的 scaling law：在固定预算下，对小模型加推理时搜索往往比训练更大模型更划算。是 o1/R1 时代理论支撑。
+tldr_en: |
+  Systematically presents scaling laws for "spending more compute at inference time": with fixed budget, adding inference-time search to small models often more cost-effective than training larger models. Theoretical foundation for o1/R1 era.
+tags:
+  - test-time-compute
+  - scaling-law
+  - reasoning
+modules:
+  - applications

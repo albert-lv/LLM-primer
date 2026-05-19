@@ -1,0 +1,12 @@
+id: mikolov2013-skipgram-negsampling
+arxiv_id: "1310.4546"
+tldr_zh: |
+  word2vec 的 NeurIPS 版正篇，引入 Negative Sampling、Hierarchical Softmax 与 phrase-level 向量。之后 GloVe / fastText / 大模型 embedding 层的训练目标都受其影响。
+tldr_en: |
+  The NeurIPS version of word2vec, introducing Negative Sampling, Hierarchical Softmax, and phrase-level vectors. Influenced all subsequent embedding training objectives including GloVe, fastText, and modern LLM embedding layers.
+tags:
+  - word2vec
+  - embeddings
+  - negative-sampling
+modules:
+  - foundations

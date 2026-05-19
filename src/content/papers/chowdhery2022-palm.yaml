@@ -1,0 +1,13 @@
+id: chowdhery2022-palm
+arxiv_id: "2204.02311"
+tldr_zh: |
+  Google 540B 模型，展示更大规模带来的"涌现"行为（多步推理、解释笑话），并首次大规模使用 Pathways 系统。是 GPT-3 之后另一条独立的工程路线。
+tldr_en: |
+  Google's 540B model demonstrating "emergent" behaviors from larger scale (multi-step reasoning, joke explanation), first large-scale use of Pathways system. An independent engineering path after GPT-3.
+tags:
+  - palm
+  - emergence
+  - scaling
+modules:
+  - foundations
+  - training

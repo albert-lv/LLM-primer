@@ -1,0 +1,12 @@
+id: shinn2023-reflexion
+arxiv_id: "2303.11366"
+tldr_zh: |
+  让 agent 在失败后用自然语言做"复盘"，下一轮把反思塞进 prompt。"无梯度的自我改进"思路被广泛复用于 coding agent、SWE-agent。
+tldr_en: |
+  Makes agent do natural language "post-mortem" after failure, injecting reflection into next round's prompt. "Gradient-free self-improvement" approach widely reused in coding agents, SWE-agent.
+tags:
+  - reflexion
+  - agent
+  - self-improvement
+modules:
+  - applications

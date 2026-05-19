@@ -1,0 +1,13 @@
+id: touvron2023-llama
+arxiv_id: "2302.13971"
+tldr_zh: |
+  Meta 把"小而精 + 大规模 token"的 Chinchilla 配方实操出来，并开放权重。LLaMA 1 直接催生了开源 LLM 大爆炸（Alpaca / Vicuna / Mistral / Qwen 全部受益）。
+tldr_en: |
+  Meta implements "small but precise + massive tokens" Chinchilla recipe and opens weights. LLaMA 1 directly catalyzed open-source LLM explosion (Alpaca/Vicuna/Mistral/Qwen all benefited).
+tags:
+  - llama
+  - open-source
+  - chinchilla-scaling
+modules:
+  - foundations
+  - training
