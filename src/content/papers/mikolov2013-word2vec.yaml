@@ -1,0 +1,24 @@
+id: mikolov2013-word2vec
+arxiv_id: "1301.3781"
+title: "Efficient Estimation of Word Representations in Vector Space"
+year: 2013
+authors:
+  - Tomas Mikolov
+  - Kai Chen
+  - Greg Corrado
+  - Jeffrey Dean
+tldr_zh: |
+  Word2Vec 提出了词向量（词嵌入）的概念：通过在大规模文本上训练神经网络，让语义相近的词
+  在向量空间中距离相近。"king - man + woman ≈ queen"的类比关系让世人看到了词嵌入的威力，
+  为后来所有语言模型的嵌入层奠定了基础。
+tldr_en: |
+  Word2Vec introduced the concept of word embeddings: training neural networks on large text
+  corpora so semantically similar words cluster in vector space. The famous "king - man + woman
+  ≈ queen" analogy demonstrated its power, laying the foundation for embedding layers in all
+  subsequent language models.
+tags:
+  - word-embeddings
+  - word2vec
+  - nlp
+modules:
+  - foundations

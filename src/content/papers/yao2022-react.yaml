@@ -1,0 +1,27 @@
+id: yao2022-react
+arxiv_id: "2210.03629"
+title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+year: 2022
+authors:
+  - Shunyu Yao
+  - Jeffrey Zhao
+  - Dian Yu
+  - Nan Du
+  - Izhak Shafran
+  - Karthik Narasimhan
+  - Yuan Cao
+tldr_zh: |
+  ReAct 框架将推理（Reasoning）和行动（Acting）交织在一起：LLM 先思考（Thought），
+  再执行工具调用（Action），观察结果（Observation），如此循环。这是现代 AI Agent
+  框架的原型，直接影响了 LangChain、AutoGPT 等 agent 框架的设计。
+tldr_en: |
+  ReAct interleaves reasoning and acting: LLM thinks (Thought), executes a tool call (Action),
+  observes the result (Observation), and cycles. This is the prototype for modern AI agent
+  frameworks, directly influencing LangChain, AutoGPT, and similar agent frameworks.
+tags:
+  - agent
+  - reasoning
+  - tool-use
+  - react
+modules:
+  - applications

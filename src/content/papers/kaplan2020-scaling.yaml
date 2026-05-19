@@ -1,0 +1,30 @@
+id: kaplan2020-scaling
+arxiv_id: "2001.08361"
+title: "Scaling Laws for Neural Language Models"
+year: 2020
+authors:
+  - Jared Kaplan
+  - Sam McCandlish
+  - Tom Henighan
+  - Tom B. Brown
+  - Benjamin Chess
+  - Rewon Child
+  - Scott Gray
+  - Alec Radford
+  - Jeffrey Wu
+  - Dario Amodei
+tldr_zh: |
+  OpenAI 的规模定律论文，发现语言模型的性能（cross-entropy loss）与模型参数量、数据集大小
+  和计算量之间存在幂律关系。这使得在小规模实验中就可以预测大规模训练的结果，是 LLM 军备竞赛的
+  理论依据，也直接导致了 GPT-3 的诞生。
+tldr_en: |
+  OpenAI's scaling laws paper finds that language model performance (cross-entropy loss) follows
+  power laws with model parameters, dataset size, and compute. This enables predicting
+  large-scale training results from small experiments and provided the theoretical basis for
+  the LLM scale-up race, directly leading to GPT-3.
+tags:
+  - scaling-laws
+  - compute
+  - power-law
+modules:
+  - training

@@ -1,0 +1,33 @@
+id: lewis2020-rag
+arxiv_id: "2005.11401"
+title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+year: 2020
+authors:
+  - Patrick Lewis
+  - Ethan Perez
+  - Aleksandra Piktus
+  - Fabio Petroni
+  - Vladimir Karpukhin
+  - Naman Goyal
+  - Heinrich Küttler
+  - Mike Lewis
+  - Wen-tau Yih
+  - Tim Rocktäschel
+  - Sebastian Riedel
+  - Douwe Kiela
+tldr_zh: |
+  RAG（检索增强生成）将预训练语言模型与信息检索系统结合：对于每个查询，先从知识库
+  检索相关文档，再将文档拼接进上下文后生成答案。这解决了语言模型知识过期和
+  幻觉问题的一大途径，是今天企业 AI 应用的核心架构之一。
+tldr_en: |
+  RAG (Retrieval-Augmented Generation) combines pretrained LMs with information retrieval:
+  for each query, retrieve relevant documents from a knowledge base, then generate answers
+  with the documents in context. This addresses LLM knowledge staleness and hallucination,
+  and is now a core architecture in enterprise AI applications.
+tags:
+  - rag
+  - retrieval
+  - knowledge
+  - generation
+modules:
+  - applications

@@ -1,0 +1,24 @@
+id: sutskever2014-seq2seq
+arxiv_id: "1409.3215"
+title: "Sequence to Sequence Learning with Neural Networks"
+year: 2014
+authors:
+  - Ilya Sutskever
+  - Oriol Vinyals
+  - Quoc V. Le
+tldr_zh: |
+  Seq2Seq 架构（编码器-解码器）的奠基之作。通过两个 LSTM 的"压缩-生成"结构，首次让神经网络
+  能够进行变长序列到变长序列的转换，在机器翻译上取得突破性进展，也直接启发了后来 Transformer
+  的编解码器设计。
+tldr_en: |
+  The foundational seq2seq (encoder-decoder) architecture paper. Using two LSTMs in a
+  compress-then-generate structure, it enabled neural networks to perform variable-length
+  sequence-to-sequence transformations for the first time, achieving breakthroughs in machine
+  translation and directly inspiring the Transformer's encoder-decoder design.
+tags:
+  - seq2seq
+  - lstm
+  - encoder-decoder
+  - machine-translation
+modules:
+  - foundations

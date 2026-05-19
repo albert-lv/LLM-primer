@@ -1,0 +1,24 @@
+id: pennington2014-glove
+source_url: "https://nlp.stanford.edu/projects/glove/"
+title: "GloVe: Global Vectors for Word Representation"
+year: 2014
+authors:
+  - Jeffrey Pennington
+  - Richard Socher
+  - Christopher D. Manning
+tldr_zh: |
+  GloVe 通过分解词共现矩阵来学习词向量，结合了基于计数的方法（LSA）和基于预测的方法
+  （Word2Vec）的优点。在词类比和词相似度任务上达到了当时最先进的性能，
+  是学术界广泛使用的基线词向量。
+tldr_en: |
+  GloVe learns word vectors by factorizing word co-occurrence matrices, combining the
+  advantages of count-based methods (LSA) and prediction-based methods (Word2Vec).
+  It achieved state-of-the-art on word analogy and similarity tasks and remains a widely
+  used baseline word vector in academia.
+tags:
+  - word-embeddings
+  - glove
+  - nlp
+modules:
+  - foundations
+inbox: true

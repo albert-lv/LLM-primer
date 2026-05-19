@@ -1,0 +1,23 @@
+id: deepseek2025-r1
+arxiv_id: "2501.12948"
+title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning"
+year: 2025
+authors:
+  - DeepSeek-AI
+tldr_zh: |
+  DeepSeek-R1 展示了纯粹通过强化学习（无监督微调启动）就能涌现出类 o1 的链式推理能力，
+  且主要使用 GRPO（组相对策略优化）而非 PPO。完全开源（权重 + 训练细节），
+  在多项推理基准上与 OpenAI o1 持平，是 2025 年最重要的开源 LLM 成果之一。
+tldr_en: |
+  DeepSeek-R1 shows that o1-like chain-of-thought reasoning can emerge purely from
+  reinforcement learning (without supervised fine-tuning warmup), using GRPO instead of PPO.
+  Fully open-source (weights + training details), it matches OpenAI o1 on multiple reasoning
+  benchmarks and is one of the most significant open-source LLM results of 2025.
+tags:
+  - reasoning
+  - rl
+  - open-source
+  - chain-of-thought
+modules:
+  - training
+  - inference

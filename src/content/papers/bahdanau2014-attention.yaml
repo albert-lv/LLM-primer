@@ -1,0 +1,23 @@
+id: bahdanau2014-attention
+arxiv_id: "1409.0473"
+title: "Neural Machine Translation by Jointly Learning to Align and Translate"
+year: 2014
+authors:
+  - Dzmitry Bahdanau
+  - Kyunghyun Cho
+  - Yoshua Bengio
+tldr_zh: |
+  注意力机制的开山之作（在 Transformer 之前）。作者发现 Seq2Seq 的固定长度瓶颈向量限制了翻译
+  质量，提出让解码器在生成每个词时都能"回顾"编码器的所有隐状态，动态分配注意力权重。
+  这个思想直接演化为 Transformer 的自注意力。
+tldr_en: |
+  The seminal attention mechanism paper (pre-Transformer). The authors found that seq2seq's
+  fixed-length bottleneck vector limited translation quality, and proposed letting the decoder
+  dynamically attend to all encoder hidden states when generating each word. This idea directly
+  evolved into Transformer self-attention.
+tags:
+  - attention
+  - seq2seq
+  - machine-translation
+modules:
+  - foundations

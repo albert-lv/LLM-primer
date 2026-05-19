@@ -1,0 +1,28 @@
+id: radford2019-gpt2
+source_url: "https://openai.com/research/language-models-are-unsupervised-multitask-learners"
+title: "Language Models are Unsupervised Multitask Learners"
+year: 2019
+authors:
+  - Alec Radford
+  - Jeffrey Wu
+  - Rewon Child
+  - David Luan
+  - Dario Amodei
+  - Ilya Sutskever
+tldr_zh: |
+  GPT-2 展示了一个仅在未标注网络文本上训练的 15 亿参数语言模型，能在无任何微调的情况下
+  以零样本方式完成多种语言任务。这挑战了"NLP 任务必须任务专属训练"的传统观念，
+  也因担心被滥用而成为第一个"延迟发布"的 AI 模型。
+tldr_en: |
+  GPT-2 shows that a 1.5B parameter language model trained only on unlabeled web text can
+  perform various language tasks zero-shot without fine-tuning. This challenged the convention
+  that NLP tasks require task-specific training and famously became the first AI model
+  "staged released" due to misuse concerns.
+tags:
+  - gpt
+  - zero-shot
+  - language-model
+  - pretraining
+modules:
+  - foundations
+  - training
