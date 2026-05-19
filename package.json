@@ -16,9 +16,9 @@
     "new:article": "node scripts/new-article.mjs"
   },
   "dependencies": {
-    "@astrojs/react": "3.6.3",
-    "@astrojs/starlight": "^0.28.6",
-    "astro": "^4.16.19",
+    "@astrojs/react": "4.3.0",
+    "@astrojs/starlight": "^0.36.0",
+    "astro": "^5.15.8",
     "js-tiktoken": "1.0.21",
     "react": "18.3.1",
     "react-dom": "18.3.1"
