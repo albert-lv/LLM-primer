@@ -1,0 +1,28 @@
+id: vaswani2017-attention
+arxiv_id: "1706.03762"
+title: Attention Is All You Need
+year: 2017
+authors:
+  - Ashish Vaswani
+  - Noam Shazeer
+  - Niki Parmar
+  - Jakob Uszkoreit
+  - Llion Jones
+  - Aidan N. Gomez
+  - Łukasz Kaiser
+  - Illia Polosukhin
+tldr_zh: |
+  Transformer 架构的奠基之作。作者完全用注意力机制替代了 RNN/CNN，提出多头自注意力与位置编码，
+  在机器翻译任务上大幅超越此前所有模型。今天所有主流 LLM 的底层架构都源于此论文。
+tldr_en: |
+  The foundational paper that introduced the Transformer architecture. The authors replaced
+  RNNs and CNNs entirely with attention mechanisms, proposing multi-head self-attention and
+  positional encoding. It dramatically outperformed prior models on machine translation.
+  Every major LLM today is built on this architecture.
+tags:
+  - transformer
+  - attention
+  - architecture
+  - nlp
+modules:
+  - foundations

@@ -1,0 +1,41 @@
+id: ouyang2022-instructgpt
+arxiv_id: "2203.02155"
+title: "Training language models to follow instructions with human feedback"
+year: 2022
+authors:
+  - Long Ouyang
+  - Jeffrey Wu
+  - Xu Jiang
+  - Diogo Almeida
+  - Carroll Wainwright
+  - Pamela Mishkin
+  - Chong Zhang
+  - Sandhini Agarwal
+  - Katarina Slama
+  - Alex Ray
+  - John Schulman
+  - Jacob Hilton
+  - Fraser Kelton
+  - Luke Miller
+  - Maddie Simens
+  - Amanda Askell
+  - Peter Welinder
+  - Paul Christiano
+  - Jan Leike
+  - Ryan Lowe
+tldr_zh: |
+  InstructGPT 论文，提出了 RLHF 三阶段训练方法（SFT → 奖励模型 → PPO 强化学习），
+  让语言模型从"预测下一个词"转变为"按人类意图回答问题"。这是 ChatGPT 的直接前身，
+  开创了对齐技术的主流路线。
+tldr_en: |
+  InstructGPT introduces the three-stage RLHF pipeline (SFT → reward model → PPO) that
+  transforms language models from "predict next token" to "follow human intent." This is
+  the direct blueprint for ChatGPT and established the dominant approach to LLM alignment.
+tags:
+  - rlhf
+  - alignment
+  - instruction-tuning
+  - sft
+modules:
+  - training
+  - applications
