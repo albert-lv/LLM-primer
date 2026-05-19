@@ -1,0 +1,27 @@
+id: su2021-rope
+arxiv_id: "2104.09864"
+title: "RoFormer: Enhanced Transformer with Rotary Position Embedding"
+year: 2021
+authors:
+  - Jianlin Su
+  - Yu Lu
+  - Shengfeng Pan
+  - Ahmed Murtadha
+  - Bo Wen
+  - Yunfeng Liu
+tldr_zh: |
+  RoPE（旋转位置编码）是目前主流 LLM（LLaMA、Mistral、Qwen 等）采用的位置编码方案。
+  通过将位置信息以旋转矩阵的形式融入注意力计算，它能优雅地处理相对位置关系，
+  且在上下文长度外推时表现比绝对位置编码好得多。
+tldr_en: |
+  RoPE (Rotary Position Embedding) is the position encoding scheme used in most major LLMs
+  today (LLaMA, Mistral, Qwen, etc.). By incorporating position information as rotation matrices
+  in attention computation, it elegantly handles relative positions and generalizes much better
+  than absolute position encoding when extrapolating to longer context lengths.
+tags:
+  - positional-encoding
+  - rope
+  - attention
+  - architecture
+modules:
+  - foundations

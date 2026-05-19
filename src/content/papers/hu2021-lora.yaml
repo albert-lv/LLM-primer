@@ -1,0 +1,29 @@
+id: hu2021-lora
+arxiv_id: "2106.09685"
+title: "LoRA: Low-Rank Adaptation of Large Language Models"
+year: 2021
+authors:
+  - Edward J. Hu
+  - Yelong Shen
+  - Phillip Wallis
+  - Zeyuan Allen-Zhu
+  - Yuanzhi Li
+  - Shean Wang
+  - Lu Wang
+  - Weizhu Chen
+tldr_zh: |
+  LoRA 通过冻结预训练模型权重，只训练两个低秩矩阵的乘积（秩 r 远小于原始维度），
+  把微调的可训练参数量降低了 10000 倍。这使得在消费级 GPU 上微调大模型成为可能，
+  几乎成为当今最主流的参数高效微调（PEFT）方法。
+tldr_en: |
+  LoRA freezes pretrained weights and only trains the product of two low-rank matrices
+  (rank r much smaller than original dimensions), reducing trainable parameters by up to
+  10,000x. This makes fine-tuning large models on consumer GPUs feasible and has become
+  the dominant parameter-efficient fine-tuning (PEFT) method.
+tags:
+  - lora
+  - fine-tuning
+  - peft
+  - efficiency
+modules:
+  - training

@@ -1,0 +1,23 @@
+id: openai2024-o1-systemcard
+source_url: "https://openai.com/index/openai-o1-system-card/"
+title: "OpenAI o1 System Card"
+year: 2024
+authors:
+  - OpenAI
+tldr_zh: |
+  OpenAI o1 的系统卡，展示了通过大规模强化学习训练"慢思考"模型的路线：
+  模型在回答前进行长时间的内部推理链，在数学竞赛和代码题上大幅超越 GPT-4。
+  这标志着 LLM 从"快思考"到"慢思考"的范式转变，也是 DeepSeek-R1 等模型的直接先驱。
+tldr_en: |
+  OpenAI o1's system card reveals the approach of training "slow thinking" models via
+  large-scale reinforcement learning: the model performs extended internal reasoning chains
+  before answering, dramatically outperforming GPT-4 on math competitions and coding.
+  This marks a paradigm shift from "fast thinking" to "slow thinking" LLMs.
+tags:
+  - reasoning
+  - slow-thinking
+  - rl
+  - o1
+modules:
+  - inference
+  - training

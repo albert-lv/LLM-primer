@@ -1,0 +1,22 @@
+id: dubey2024-llama3
+arxiv_id: "2407.21783"
+title: "The Llama 3 Herd of Models"
+year: 2024
+authors:
+  - Meta AI
+tldr_zh: |
+  Meta 的 LLaMA 3 系列技术报告，覆盖从 8B 到 405B 参数的多个模型。详细介绍了数据处理
+  （15T tokens，多语言）、架构改进（GQA、RoPE 扩展）、训练流程（SFT + RLHF + DPO）
+  以及与多模态扩展的整合。LLaMA 3 405B 是性能最强的开源大模型之一。
+tldr_en: |
+  Meta's LLaMA 3 technical report covering models from 8B to 405B parameters. Details data
+  processing (15T tokens, multilingual), architecture improvements (GQA, extended RoPE),
+  training pipeline (SFT + RLHF + DPO), and multimodal extension integration. LLaMA 3 405B
+  is one of the most capable open-source LLMs available.
+tags:
+  - llama
+  - open-source
+  - scaling
+  - multimodal
+modules:
+  - training

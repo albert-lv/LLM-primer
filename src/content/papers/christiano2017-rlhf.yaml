@@ -1,0 +1,27 @@
+id: christiano2017-rlhf
+arxiv_id: "1706.03741"
+title: "Deep Reinforcement Learning from Human Preferences"
+year: 2017
+authors:
+  - Paul Christiano
+  - Jan Leike
+  - Tom B. Brown
+  - Miljan Martic
+  - Shane Legg
+  - Dario Amodei
+tldr_zh: |
+  RLHF（人类反馈强化学习）的奠基论文。作者展示了通过人类对比偏好来训练奖励模型，
+  再用该奖励模型指导强化学习，可以让 agent 学会难以用奖励函数显式描述的复杂行为。
+  这个框架后来被 InstructGPT/ChatGPT 直接采用。
+tldr_en: |
+  The foundational RLHF paper. The authors show that training a reward model from human
+  pairwise preferences, then using it to guide reinforcement learning, enables agents to
+  learn complex behaviors that are difficult to specify with explicit reward functions.
+  This framework was directly adopted by InstructGPT/ChatGPT.
+tags:
+  - rlhf
+  - reinforcement-learning
+  - alignment
+  - human-feedback
+modules:
+  - training

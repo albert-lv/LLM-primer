@@ -1,0 +1,30 @@
+id: raffel2020-t5
+arxiv_id: "1910.10683"
+title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+year: 2020
+authors:
+  - Colin Raffel
+  - Noam Shazeer
+  - Adam Roberts
+  - Katherine Lee
+  - Sharan Narang
+  - Michael Matena
+  - Yanqi Zhou
+  - Wei Li
+  - Peter J. Liu
+tldr_zh: |
+  T5 将所有 NLP 任务统一为"文本到文本"格式（例如分类任务也输出标签文字而非类别 ID），
+  系统性地探索了数据集、架构、预训练目标、规模等因素对迁移学习的影响。这种统一范式
+  后来成为指令微调和指令跟随模型的重要思想来源。
+tldr_en: |
+  T5 unifies all NLP tasks into a "text-to-text" format (e.g., classification also outputs
+  label text rather than class IDs) and systematically explores how dataset, architecture,
+  pretraining objectives, and scale affect transfer learning. This unified paradigm became
+  a key inspiration for instruction tuning and instruction-following models.
+tags:
+  - t5
+  - text-to-text
+  - transfer-learning
+  - pretraining
+modules:
+  - training

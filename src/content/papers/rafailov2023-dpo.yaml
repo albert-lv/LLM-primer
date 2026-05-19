@@ -1,0 +1,27 @@
+id: rafailov2023-dpo
+arxiv_id: "2305.18290"
+title: "Direct Preference Optimization: Your Language Model is Secretly a Reward Model"
+year: 2023
+authors:
+  - Rafael Rafailov
+  - Archit Sharma
+  - Eric Mitchell
+  - Stefano Ermon
+  - Christopher D. Manning
+  - Chelsea Finn
+tldr_zh: |
+  DPO（直接偏好优化）证明了 RLHF 中的奖励模型 + RL 两步可以合并为一步有监督学习：
+  直接在偏好数据上优化语言模型参数，数学上等价于最优 RLHF 策略。
+  DPO 因其简洁高效成为对齐研究和开源社区的主流替代方案。
+tldr_en: |
+  DPO (Direct Preference Optimization) shows that the reward model + RL two-step in RLHF
+  can be collapsed into a single supervised learning step: directly optimizing language model
+  parameters on preference data, mathematically equivalent to the optimal RLHF policy.
+  DPO has become the dominant RLHF alternative in alignment research and open-source community.
+tags:
+  - dpo
+  - alignment
+  - preference-optimization
+  - rlhf
+modules:
+  - training

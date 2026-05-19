@@ -1,0 +1,30 @@
+id: wang2022-self-consistency
+arxiv_id: "2203.11171"
+title: "Self-Consistency Improves Chain of Thought Reasoning in Language Models"
+year: 2022
+authors:
+  - Xuezhi Wang
+  - Jason Wei
+  - Dale Schuurmans
+  - Quoc Le
+  - Ed Chi
+  - Sharan Narang
+  - Aakanksha Chowdhery
+  - Denny Zhou
+tldr_zh: |
+  自洽性（Self-Consistency）是对 CoT 的重要改进：不再贪心解码单条推理链，
+  而是采样多条不同的推理路径，然后取答案出现最多的那个（多数投票）。
+  这简单的技巧在多个推理基准上将准确率提升了 10-20 个百分点。
+tldr_en: |
+  Self-Consistency is a key improvement to CoT: instead of greedy decoding a single reasoning
+  chain, sample multiple diverse reasoning paths and take the most frequent answer (majority
+  vote). This simple trick improves accuracy by 10-20 percentage points on multiple reasoning
+  benchmarks.
+tags:
+  - chain-of-thought
+  - reasoning
+  - self-consistency
+  - prompting
+modules:
+  - inference
+  - applications

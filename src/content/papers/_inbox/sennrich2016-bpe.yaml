@@ -1,0 +1,24 @@
+id: sennrich2016-bpe
+arxiv_id: "1508.07909"
+title: "Neural Machine Translation of Rare Words with Subword Units"
+year: 2016
+authors:
+  - Rico Sennrich
+  - Barry Haddow
+  - Alexandra Birch
+tldr_zh: |
+  提出将 BPE（字节对编码）应用于神经机器翻译的分词。通过迭代地合并出现频率最高的字符对，
+  BPE 在词汇表大小和对罕见词的处理能力之间取得平衡。这是 GPT 系列等大多数现代 LLM
+  分词器的直接原型。
+tldr_en: |
+  Proposes applying BPE (Byte Pair Encoding) to tokenization for neural machine translation.
+  By iteratively merging the most frequent character pairs, BPE balances vocabulary size and
+  ability to handle rare words. This is the direct prototype for tokenizers in GPT and most
+  modern LLMs.
+tags:
+  - tokenization
+  - bpe
+  - subword
+modules:
+  - foundations
+inbox: true

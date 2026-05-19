@@ -1,0 +1,28 @@
+id: peters2018-elmo
+arxiv_id: "1802.05365"
+title: "Deep contextualized word representations"
+year: 2018
+authors:
+  - Matthew E. Peters
+  - Mark Neumann
+  - Mohit Iyyer
+  - Matt Gardner
+  - Christopher Clark
+  - Kenton Lee
+  - Luke Zettlemoyer
+tldr_zh: |
+  ELMo 提出了"语境化词嵌入"的概念：同一个词在不同语境中有不同的向量表示（例如 bank 在金融
+  和河岸两种语境中向量不同）。ELMo 用双向 LSTM 实现语境化，在多个 NLP 任务上刷新了 SOTA，
+  为 BERT 和后续预训练模型奠定了思想基础。
+tldr_en: |
+  ELMo introduced contextualized word embeddings: the same word has different vector
+  representations in different contexts (e.g., "bank" in financial vs. riverbank contexts).
+  Using bidirectional LSTMs, ELMo set new SOTA on multiple NLP tasks and laid the conceptual
+  foundation for BERT and subsequent pretrained models.
+tags:
+  - embeddings
+  - contextualized
+  - elmo
+  - lstm
+modules:
+  - foundations

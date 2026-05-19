@@ -1,0 +1,29 @@
+id: yao2023-tot
+arxiv_id: "2305.10601"
+title: "Tree of Thoughts: Deliberate Problem Solving with Large Language Models"
+year: 2023
+authors:
+  - Shunyu Yao
+  - Dian Yu
+  - Jeffrey Zhao
+  - Izhak Shafran
+  - Thomas L. Griffiths
+  - Yuan Cao
+  - Karthik Narasimhan
+tldr_zh: |
+  Tree of Thoughts（ToT）将问题求解建模为树搜索：LLM 生成多个"思维步骤"作为树节点，
+  用评估函数打分并进行 BFS/DFS 搜索。在需要复杂规划的任务（如 24 点游戏）上，
+  ToT 比普通 CoT 提升巨大，是 o1 风格慢思考的先驱工作。
+tldr_en: |
+  Tree of Thoughts (ToT) models problem solving as tree search: LLMs generate multiple
+  "thought steps" as tree nodes, score them with an evaluator, and search with BFS/DFS.
+  On tasks requiring complex planning (e.g., Game of 24), ToT massively outperforms CoT
+  and is a precursor to o1-style slow thinking.
+tags:
+  - chain-of-thought
+  - tree-of-thoughts
+  - reasoning
+  - search
+modules:
+  - inference
+  - applications
