@@ -1,0 +1,40 @@
+---
+title: "Glossary"
+description: "Quick definitions for common LLM Primer terms."
+status: published
+tiers: [intro, engineer]
+updated: 2026-05-19
+---
+
+# Glossary
+
+- **Token**: The smallest numbered text unit consumed by a model; see [Tokenization](/en/foundations/tokenization/).
+- **Tokenizer**: The component that maps text to token IDs.
+- **Vocabulary**: The fixed mapping between tokens and IDs.
+- **Embedding**: A continuous vector for a discrete symbol; see [Embeddings](/foundations/embeddings/).
+- **Context window**: The maximum number of tokens a model can read at once.
+- **Attention**: A mechanism for dynamically selecting relevant context; see [Attention](/en/foundations/attention/).
+- **Self-attention**: Attention among tokens in the same sequence.
+- **Q/K/V**: Query, Key, and Value projections in attention.
+- **Transformer block**: A layer made of attention, MLP, residuals, and normalization.
+- **MLP**: The feed-forward network applied to each token representation.
+- **Residual connection**: Adding a layer input back to its output for stable deep training.
+- **LayerNorm**: Normalization that stabilizes activation statistics.
+- **Positional encoding**: Information that tells a model token order and distance.
+- **RoPE**: Rotary positional embeddings for relative position information.
+- **Logit**: An unnormalized score before softmax.
+- **Softmax**: A function that converts logits into probabilities.
+- **Temperature**: A decoding parameter controlling distribution sharpness.
+- **Top-k**: Sampling only from the k highest-probability candidates.
+- **Top-p**: Sampling from the smallest set whose cumulative probability reaches p.
+- **Decoding**: The strategy for turning probabilities into generated text.
+- **Prompt**: The instruction, context, and examples sent to a model.
+- **Few-shot**: Guiding a task by including a small number of examples.
+- **Chain-of-thought**: Prompting the model to write intermediate reasoning steps.
+- **Pretraining**: Learning general language patterns from large-scale data.
+- **Fine-tuning**: Continuing training on task-specific data.
+- **RLHF**: Optimizing outputs with rewards learned from human preferences.
+- **RAG**: Retrieving external evidence and inserting it into context.
+- **KV cache**: Cached Keys and Values used to speed autoregressive inference.
+- **Quantization**: Lower-precision weights or activations to reduce cost.
+- **Hallucination**: A plausible but unreliable model-generated claim.

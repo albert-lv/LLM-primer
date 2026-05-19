@@ -1,0 +1,49 @@
+---
+title: "为什么 LLM 会涌现能力"
+description: "解释规模、数据、计算与涌现现象的谨慎理解。"
+module: foundations
+order: 7
+status: published
+tiers: [intro, engineer, research]
+papers: [kaplan2020-scaling, brown2020-gpt3, hoffmann2022-chinchilla, wei2022-cot]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：更多练习带来新组合能力
+
+LLM 的许多能力来自一个简单目标：在海量文本上预测下一个 token。当模型足够大、数据足够多、训练足够久时，它会学到语法、事实、格式、推理模板和工具使用痕迹。所谓“涌现”，常指某些能力在规模增加后突然变得可观察。
+
+但涌现不等于魔法。很多现象受评测指标、提示方式和阈值影响：连续变好的能力如果用“答对/答错”衡量，看起来也可能像突然出现。正确态度是既承认规模带来的质变，也警惕过度拟人化。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：Scaling law 与 compute-optimal
+
+Scaling law 研究模型大小、数据量、计算量和损失之间的经验规律。早期结果推动了“大模型更好”的路线；Chinchilla 进一步指出，在固定计算预算下，许多模型训练 token 不足，数据量和参数量需要更平衡。
+
+工程上，能力不是单靠参数量决定。数据质量、去重、混合比例、上下文长度、训练稳定性、对齐和推理策略都会改变表现。Chain-of-thought 等提示方法说明，模型已有能力可能需要合适接口才能被释放。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：把涌现当作可检验假设
+
+研究涌现应报告连续指标、校准曲线、任务难度和提示敏感性，并区分预训练中学到的统计模式、上下文学习、工具外部化和后训练对齐带来的行为变化。更好的问题不是“模型是否真的理解”，而是“在哪些分布、约束和干预下稳定表现出哪些可预测能力”。
+
+</TierBlock>
+
+
+<PaperList ids={['kaplan2020-scaling', 'brown2020-gpt3', 'hoffmann2022-chinchilla', 'wei2022-cot']} />

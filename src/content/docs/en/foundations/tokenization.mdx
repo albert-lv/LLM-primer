@@ -1,0 +1,45 @@
+---
+title: "Tokenization: How Models See Text"
+description: "Tokens, vocabularies, BPE intuition, and engineering trade-offs."
+module: foundations
+order: 1
+status: published
+tiers: [intro, engineer]
+papers: [mikolov2013-word2vec]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+import TokenizerDemo from '../../../../components/islands/TokenizerDemo';
+
+<TierBlock tier="intro">
+
+## Intuition: text becomes building blocks
+
+LLMs do not read raw characters in the way humans do. A tokenizer first maps text into tokens: words, subwords, punctuation, spaces, Chinese characters, emoji fragments, or code pieces. The model then predicts the next token from the previous token sequence.
+
+BPE-style tokenization repeatedly merges frequent fragments, balancing character-level coverage with word-level efficiency. A good vocabulary keeps common text compact while still representing rare words and new strings.
+
+<TokenizerDemo client:visible />
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: the tokenizer is an interface contract
+
+The tokenizer determines context length, cost, truncation, cache keys, and data compatibility. Changing it changes token IDs, so old prompts, fine-tuning data, embeddings, and KV-cache assumptions may break. Production systems should pin tokenizer versions and estimate budgets in tokens rather than characters.
+
+Multilingual and code-heavy workloads need extra care: the same semantic content can require very different token counts across languages. RAG pipelines should reserve token budget for instructions, retrieved evidence, and the model answer.
+
+</TierBlock>
+
+
+<PaperList ids={['mikolov2013-word2vec']} />

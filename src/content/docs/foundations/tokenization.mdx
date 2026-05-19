@@ -1,0 +1,45 @@
+---
+title: "Tokenization：模型如何看见文字"
+description: "解释 token、词表、BPE 思路与工程取舍。"
+module: foundations
+order: 1
+status: published
+tiers: [intro, engineer]
+papers: [mikolov2013-word2vec]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+import TokenizerDemo from '../../../components/islands/TokenizerDemo';
+
+<TierBlock tier="intro">
+
+## 直觉版：文字先被切成积木
+
+LLM 不是直接“读汉字”或“读英文单词”，而是先把输入文本切成 token。token 可以是一个汉字、一个英文子词、一个标点，甚至是空格加单词的一部分。模型的任务可以理解为：看见前面的 token 序列，预测下一个 token 的概率分布。
+
+这种切分很重要：同一句话如果被切得太碎，序列会变长，注意力计算更贵；如果词表太大，嵌入矩阵和输出层会变大，低频词还容易学不好。BPE 一类子词算法的直觉是反复合并常见片段，在“字符级通用性”和“词级效率”之间折中。
+
+<TokenizerDemo client:visible />
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：tokenizer 是模型接口契约
+
+工程上，tokenizer 决定了上下文窗口、计费、截断和缓存命中。常见流程包括规范化文本、按规则预切分、把片段映射到词表 ID，再把 ID 输入嵌入表。生产系统要固定 tokenizer 版本：换一个词表会改变所有 token ID，旧 prompt、微调数据和缓存都可能失效。
+
+多语言场景尤其要关注公平性。英文常见词往往由少量 token 表示，中文、代码、emoji 或冷门语言可能更碎，导致同样语义占用更多上下文。做 RAG 或长文摘要时，应按 token 而不是字符估算长度，并给系统提示、引用片段和回答预留预算。
+
+</TierBlock>
+
+
+<PaperList ids={['mikolov2013-word2vec']} />
