@@ -1,0 +1,25 @@
+name: New article
+about: Propose a new LLM Primer article
+labels: [content]
+body:
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: kebab-case article slug
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options: [foundations, training, inference, applications]
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: Proposed outline
+      description: Include intro, engineer, and research notes if relevant.
+    validations:
+      required: true

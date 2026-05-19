@@ -1,0 +1,14 @@
+id: inbox-activation-steering-basics
+title: "Candidate paper on activation steering basics"
+authors:
+  - TODO
+tldr_zh: |
+  TODO：候选论文占位。认领后请核对真实元数据，补充研究问题、方法、实验设置、主要结论、局限性，以及它适合引用到哪个 LLM Primer 章节。
+tldr_en: |
+  TODO: Candidate paper placeholder. After adoption, verify metadata and summarize the research question, method, evidence, limitations, and the LLM Primer chapter it should support.
+tags:
+  - inbox
+  - candidate
+modules:
+  - foundations
+inbox: true

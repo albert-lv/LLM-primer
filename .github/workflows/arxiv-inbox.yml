@@ -1,0 +1,31 @@
+name: arXiv inbox
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/arxiv-inbox.mjs
+      - uses: peter-evans/create-pull-request@v6.0.0
+        with:
+          commit-message: chore: update arxiv inbox
+          title: chore: update arxiv inbox
+          body: Automated arXiv inbox refresh.
+          branch: automation/arxiv-inbox
