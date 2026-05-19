@@ -7,20 +7,29 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "test": "vitest run",
     "check": "astro check",
     "enrich": "node scripts/enrich-papers.mjs",
-    "lint:content": "node scripts/check-content.mjs"
+    "lint:content": "node scripts/check-content.mjs",
+    "new:article": "node scripts/new-article.mjs"
   },
   "dependencies": {
+    "@astrojs/react": "3.6.3",
     "@astrojs/starlight": "^0.28.6",
-    "astro": "^4.16.19"
+    "astro": "^4.16.19",
+    "js-tiktoken": "1.0.21",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.9",
     "@types/node": "^25.9.0",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
     "happy-dom": "^20.9.0",
+    "pagefind": "1.5.2",
     "typescript": "^5",
     "vitest": "^2.1.9",
     "yaml": "^2.9.0"
