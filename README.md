@@ -1,13 +1,20 @@
 # LLM Primer
 
-双语、多 tier、社区 PR 驱动的 LLM 原理与论文知识库。
+A bilingual, multi-tier, community-driven knowledge base for LLM principles and papers.
 
-> A bilingual, multi-tier, community-PR-driven knowledge base for LLM principles and papers.
+> [**中文文档**](./README.zh-CN.md) | [**English Documentation**](https://llm-primer.pages.dev/en/)
 
-- 设计文档 / Design Docs: [`docs/plans/`](./docs/plans/)
-- 论文调研 / Paper Research: [`docs/research/`](./docs/research/)
+## Overview
 
-## 本地开发 / Local Dev
+Learn large language models from intuition to research through interactive demos, engineering insights, and curated papers.
+
+- **Design Docs**: [`docs/plans/`](./docs/plans/)
+- **Paper Research**: [`docs/research/`](./docs/research/)
+- **Live Site**: [https://llm-primer.pages.dev](https://llm-primer.pages.dev)
+
+## Local Development
+
+Requirements: Node 20 and pnpm 9.
 
 ```bash
 pnpm install
@@ -16,6 +23,6 @@ pnpm build      # build to dist/
 pnpm test       # run tests
 ```
 
-## 部署 / Deploy
+## Deployment
 
-Cloudflare Pages — see [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
+Deployed to Cloudflare Pages. See [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) for CI/CD configuration.
