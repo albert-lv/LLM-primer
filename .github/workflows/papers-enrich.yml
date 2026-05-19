@@ -1,8 +1,6 @@
 name: papers enrich
 
 on:
-  schedule:
-    - cron: '29 4 * * 1'
   workflow_dispatch:
 
 permissions:
