@@ -1,0 +1,41 @@
+---
+title: "Transformer Architecture: The Skeleton of Modern LLMs"
+description: "The Transformer block, decoder-only LLMs, and major design trade-offs."
+module: foundations
+order: 3
+status: published
+tiers: [intro, engineer]
+papers: [vaswani2017-attention, devlin2018-bert, radford2019-gpt2]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: repeated layers of communication and transformation
+
+A Transformer stacks similar blocks. Attention lets tokens exchange information; the feed-forward network transforms each token representation; residual connections and normalization keep optimization stable. With enough layers, the model combines local syntax, long-range dependencies, and abstract patterns.
+
+BERT popularized bidirectional encoders for understanding tasks, while GPT-2 showed that decoder-only next-token prediction can learn broad generative abilities.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: the critical path inside a decoder block
+
+A modern decoder block usually contains normalization, causal self-attention, an MLP, and residual connections. The causal mask prevents a position from seeing future tokens, matching autoregressive generation. MLPs often dominate parameter count, while attention dominates long-context interaction cost.
+
+Architecture choices such as RoPE, grouped-query attention, activation functions, MoE layers, and normalization placement affect both training stability and inference throughput. Compare systems by memory, KV-cache size, latency, and quality—not only parameter count.
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'devlin2018-bert', 'radford2019-gpt2']} />

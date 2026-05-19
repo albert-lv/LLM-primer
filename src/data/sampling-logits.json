@@ -1,0 +1,162 @@
+[
+  {
+    "token": "的",
+    "logit": 5.25
+  },
+  {
+    "token": "是",
+    "logit": 5.07
+  },
+  {
+    "token": "在",
+    "logit": 4.94
+  },
+  {
+    "token": "模型",
+    "logit": 4.86
+  },
+  {
+    "token": "可以",
+    "logit": 4.68
+  },
+  {
+    "token": "答案",
+    "logit": 4.55
+  },
+  {
+    "token": "因为",
+    "logit": 4.47
+  },
+  {
+    "token": "用户",
+    "logit": 4.29
+  },
+  {
+    "token": "上下文",
+    "logit": 4.16
+  },
+  {
+    "token": "生成",
+    "logit": 4.08
+  },
+  {
+    "token": "注意力",
+    "logit": 3.9
+  },
+  {
+    "token": "token",
+    "logit": 3.77
+  },
+  {
+    "token": "训练",
+    "logit": 3.69
+  },
+  {
+    "token": "概率",
+    "logit": 3.51
+  },
+  {
+    "token": "数据",
+    "logit": 3.38
+  },
+  {
+    "token": "一个",
+    "logit": 3.3
+  },
+  {
+    "token": "如果",
+    "logit": 3.12
+  },
+  {
+    "token": "然后",
+    "logit": 2.99
+  },
+  {
+    "token": "因此",
+    "logit": 2.91
+  },
+  {
+    "token": "需要",
+    "logit": 2.73
+  },
+  {
+    "token": "表示",
+    "logit": 2.6
+  },
+  {
+    "token": "函数",
+    "logit": 2.52
+  },
+  {
+    "token": "参数",
+    "logit": 2.34
+  },
+  {
+    "token": "分布",
+    "logit": 2.21
+  },
+  {
+    "token": "文本",
+    "logit": 2.13
+  },
+  {
+    "token": "问题",
+    "logit": 1.95
+  },
+  {
+    "token": "推理",
+    "logit": 1.82
+  },
+  {
+    "token": "检索",
+    "logit": 1.74
+  },
+  {
+    "token": "对齐",
+    "logit": 1.56
+  },
+  {
+    "token": "结构",
+    "logit": 1.43
+  },
+  {
+    "token": "性能",
+    "logit": 1.35
+  },
+  {
+    "token": "样本",
+    "logit": 1.17
+  },
+  {
+    "token": "温度",
+    "logit": 1.04
+  },
+  {
+    "token": "过滤",
+    "logit": 0.96
+  },
+  {
+    "token": "输出",
+    "logit": 0.78
+  },
+  {
+    "token": "语言",
+    "logit": 0.65
+  },
+  {
+    "token": "语义",
+    "logit": 0.57
+  },
+  {
+    "token": "位置",
+    "logit": 0.39
+  },
+  {
+    "token": "矩阵",
+    "logit": 0.26
+  },
+  {
+    "token": "学习",
+    "logit": 0.18
+  }
+]

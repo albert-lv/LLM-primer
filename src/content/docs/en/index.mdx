@@ -1,10 +1,34 @@
 ---
-title: LLM Primer
-description: A bilingual, multi-tier, community-PR-driven knowledge base for LLM principles and papers
+title: "LLM Primer"
+description: "A bilingual, multi-tier, community-driven knowledge base for LLM principles and papers"
 ---
 
-# Welcome to LLM Primer
+import RecentArticles from '../../../components/RecentArticles.astro';
 
-> 🚧 Work in progress, content continuously updated…
+# LLM Primer
 
-LLM Primer is a bilingual, multi-tier knowledge base for LLM principles and papers, targeting readers from different backgrounds.
+Learn large language models through intuition, engineering practice, research papers, and interactive demos.
+
+<div class="reader-cards">
+  <a href="/en/foundations/tokenization/#tier=intro"><strong>Intuitive</strong><span>Start with mental models and visual explanations.</span></a>
+  <a href="/en/foundations/attention/#tier=engineer"><strong>Engineering</strong><span>Focus on implementation, cost, evaluation, and operations.</span></a>
+  <a href="/en/foundations/transformer-architecture/#tier=research"><strong>Research</strong><span>Follow papers, evidence, assumptions, and open questions.</span></a>
+</div>
+
+## Recently updated
+
+<RecentArticles />
+
+## Five must-read papers
+
+- [Attention Is All You Need](/en/papers/vaswani2017-attention/)
+- [BERT](/en/papers/devlin2018-bert/)
+- [GPT-3](/en/papers/brown2020-gpt3/)
+- [Chinchilla](/en/papers/hoffmann2022-chinchilla/)
+- [Chain-of-Thought Prompting](/en/papers/wei2022-cot/)
+
+<style>{`
+.reader-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+.reader-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
+.reader-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; }
+`}</style>

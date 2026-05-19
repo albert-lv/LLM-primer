@@ -1,0 +1,43 @@
+---
+title: "Attention: Choosing the Relevant Context"
+description: "Attention weights, Q/K/V, multi-head self-attention, and compute costs."
+module: foundations
+order: 2
+status: published
+tiers: [intro, engineer]
+papers: [vaswani2017-attention, bahdanau2014-attention]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+import AttentionHeatmap from '../../../../components/islands/AttentionHeatmap';
+
+<TierBlock tier="intro">
+
+## Intuition: focus changes with the token
+
+Attention lets each position decide which previous or neighboring tokens matter most. When translating a pronoun, the model may attend to a noun; when answering a question, it may attend to supporting evidence. The weights are dynamic: they depend on the actual input, not on a fixed rule.
+
+<AttentionHeatmap client:visible />
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: Q, K, V and the quadratic bottleneck
+
+Each token is projected into Query, Key, and Value vectors. Query-Key similarities become a softmax distribution; the output is a weighted sum of Values. Multi-head attention repeats this operation so different heads can learn different relations.
+
+Full self-attention scales roughly with sequence length squared. Inference systems therefore use KV cache, efficient kernels, grouped-query attention, sliding windows, or sparse patterns to keep latency and memory manageable.
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'bahdanau2014-attention']} />

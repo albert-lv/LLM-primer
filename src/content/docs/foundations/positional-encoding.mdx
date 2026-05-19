@@ -1,0 +1,41 @@
+---
+title: "Positional Encoding：顺序从哪里来"
+description: "解释绝对位置、相对位置与 RoPE。"
+module: foundations
+order: 6
+status: published
+tiers: [intro, engineer]
+papers: [vaswani2017-attention, su2021-rope]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：注意力本身不知道第几个词
+
+自注意力把一组 token 同时拿来比较，如果不加入位置信息，“我爱你”和“你爱我”会很难区分。位置编码就是告诉模型每个 token 在序列里的位置，让它理解顺序、距离和局部结构。
+
+原始 Transformer 使用正弦/余弦绝对位置编码；后续模型更多使用相对位置思想。RoPE 把位置信息融入 Query/Key 的旋转中，使注意力分数自然包含相对距离，对长上下文扩展更友好。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：位置方案影响外推
+
+绝对位置嵌入实现简单，但训练长度之外的外推通常较差。相对位置偏置、ALiBi、RoPE 等方案试图让模型更稳定地处理未见过的长度。实际长上下文系统还会配合插值、缩放、继续训练和检索增强。
+
+位置编码不是孤立模块：它与 tokenizer、训练长度、注意力 kernel、KV cache 和评测集共同决定效果。调大 context window 前，应测试“needle-in-a-haystack”、长文问答、代码定位和多跳依赖，而不仅看模型能否接受更长输入。
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'su2021-rope']} />

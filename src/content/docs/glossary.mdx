@@ -1,0 +1,40 @@
+---
+title: "术语表"
+description: "LLM Primer 常用术语速查。"
+status: published
+tiers: [intro, engineer]
+updated: 2026-05-19
+---
+
+# 术语表
+
+- **Token**：模型处理文本的最小编号单元；参见 [Tokenization](/foundations/tokenization/)。
+- **Tokenizer**：把文本映射到 token ID 的组件。
+- **Vocabulary**：token 到 ID 的固定表。
+- **Embedding**：把离散符号映射到连续向量；参见 [Embeddings](/foundations/embeddings/)。
+- **Context window**：模型一次能读取的最大 token 数。
+- **Attention**：动态选择相关上下文的机制；参见 [Attention](/foundations/attention/)。
+- **Self-attention**：同一序列内部 token 彼此关注。
+- **Q/K/V**：注意力中的 Query、Key、Value 投影。
+- **Transformer block**：注意力、MLP、残差和归一化组成的层。
+- **MLP**：逐 token 的前馈网络，提供非线性变换。
+- **Residual connection**：把输入加回输出，帮助深层训练。
+- **LayerNorm**：稳定激活分布的归一化方法。
+- **Positional encoding**：向模型注入顺序信息；参见 [位置编码](/foundations/positional-encoding/)。
+- **RoPE**：用旋转方式编码相对位置的方案。
+- **Logit**：softmax 前的未归一化分数。
+- **Softmax**：把 logits 转成概率分布的函数。
+- **Temperature**：控制采样分布尖锐程度的参数。
+- **Top-k**：只在概率最高的 k 个候选中采样。
+- **Top-p**：保留累计概率达到 p 的候选集合。
+- **Decoding**：从概率分布生成文本的策略。
+- **Prompt**：给模型的输入指令、上下文和示例。
+- **Few-shot**：在 prompt 中给少量示例来引导任务。
+- **Chain-of-thought**：诱导模型写出中间推理步骤的方法。
+- **Pretraining**：在大规模数据上学习通用语言模式。
+- **Fine-tuning**：用特定数据继续训练以适配任务。
+- **RLHF**：用人类偏好训练奖励模型并优化输出。
+- **RAG**：检索外部资料并放入上下文来回答。
+- **KV cache**：推理时缓存历史 Key/Value 以加速生成。
+- **Quantization**：用更低精度表示权重或激活以降低成本。
+- **Hallucination**：模型生成看似合理但不可靠的信息。

@@ -1,0 +1,41 @@
+---
+title: "Embeddings：把离散符号放进连续空间"
+description: "解释词向量、上下文表示与语义检索基础。"
+module: foundations
+order: 4
+status: published
+tiers: [intro, engineer]
+papers: [mikolov2013-word2vec, peters2018-elmo]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：相似含义靠得更近
+
+Embedding 是把 token、句子或文档变成一串数字向量。理想情况下，语义相近的内容在向量空间里距离更近：“猫”和“狗”会比“猫”和“火箭”更接近。这样模型就能用连续数学处理离散语言，也让搜索、聚类、推荐和 RAG 成为可能。
+
+早期词向量展示了“向量差”能编码关系；后来的上下文表示说明，同一个词在不同句子里应该有不同含义。例如“苹果发布手机”和“我吃了苹果”中的“苹果”不应完全相同。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：向量质量取决于目标函数
+
+训练 embedding 的方法很多：预测邻近词、语言建模、对比学习、监督微调。不同目标会产生不同几何结构。检索系统关心召回和排序，通常要评估向量维度、归一化、距离函数、分块策略和负样本质量。
+
+在 LLM 中，输入嵌入层把 token ID 映射为向量；输出层常与嵌入层共享或相关。RAG 中的 embedding 模型则是外部索引的入口。不要把 embedding 当成“理解”的全部：它擅长相似度，但对数字、否定、时间和组合逻辑仍需额外评估。
+
+</TierBlock>
+
+
+<PaperList ids={['mikolov2013-word2vec', 'peters2018-elmo']} />

@@ -1,0 +1,45 @@
+---
+title: "Attention：让每个位置选择上下文"
+description: "解释注意力权重、多头注意力与自注意力。"
+module: foundations
+order: 2
+status: published
+tiers: [intro, engineer]
+papers: [vaswani2017-attention, bahdanau2014-attention]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+import AttentionHeatmap from '../../../components/islands/AttentionHeatmap';
+
+<TierBlock tier="intro">
+
+## 直觉版：一边生成，一边“看重点”
+
+注意力机制解决的问题是：当模型处理一个 token 时，应该重点参考哪些上下文？翻译“it”时可能要看前面的名词，回答问题时要看相关证据。注意力权重就是一组会随输入变化的分数，表示当前 token 对其他 token 的依赖强弱。
+
+<AttentionHeatmap client:visible />
+
+Bahdanau 注意力先在序列到序列模型中证明了“动态查找上下文”的价值；Transformer 进一步把自注意力变成核心计算单元，让所有位置可以并行建立依赖关系。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：Q、K、V 与复杂度
+
+实现上，每个 token 会投影成 Query、Key、Value。Query 和 Key 点积得到相似度，经过 softmax 变成权重，再对 Value 加权求和。多头注意力把这个过程复制多份，让不同头学习语法、指代、位置或任务相关模式。
+
+自注意力的主要代价是序列长度平方级：长度翻倍，注意力矩阵大约变为四倍。因此推理系统会使用 KV cache 复用历史 Key/Value；长上下文模型会结合稀疏注意力、分块、滑窗或更高效 kernel。理解这个瓶颈有助于解释为什么上下文窗口很贵。
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'bahdanau2014-attention']} />

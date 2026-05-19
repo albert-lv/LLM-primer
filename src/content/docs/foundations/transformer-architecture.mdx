@@ -1,0 +1,41 @@
+---
+title: "Transformer Architecture：现代 LLM 的骨架"
+description: "解释 Transformer block、预训练范式与编码器/解码器差异。"
+module: foundations
+order: 5
+status: published
+tiers: [intro, engineer]
+papers: [vaswani2017-attention, devlin2018-bert, radford2019-gpt2]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：重复堆叠的语言处理层
+
+Transformer 可以看作很多相似积木层的堆叠。每层先让 token 通过注意力交换信息，再通过前馈网络做非线性变换，并用残差连接和归一化保持训练稳定。层数越多，模型越能组合局部线索、长程依赖和抽象概念。
+
+BERT 展示了双向编码器在理解任务上的力量；GPT-2 展示了只看左侧上下文的解码器也能通过下一个 token 预测学到广泛能力。今天的生成式 LLM 大多沿用解码器式 Transformer。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：block 内部的关键路径
+
+一个典型 decoder block 包含 RMSNorm/LayerNorm、因果自注意力、MLP、残差连接。因果 mask 保证第 t 个位置只能看见过去 token，从而匹配自回归生成。MLP 往往占据大量参数和计算，注意力则决定上下文交互成本。
+
+架构变体会调整归一化位置、激活函数、注意力头数、KV 头共享、RoPE、MoE 或上下文扩展方法。选型时要同时看训练稳定性、推理吞吐、显存、KV cache 大小和生态支持，而不是只比较参数量。
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'devlin2018-bert', 'radford2019-gpt2']} />
