@@ -1,0 +1,12 @@
+---
+const { tier } = Astro.props as { tier: 'intro' | 'engineer' | 'research' };
+---
+
+<div class="tier-block" data-tier={tier}><slot /></div>
+
+<style is:global>
+  html:not([data-tier]) .tier-block:not([data-tier="intro"]) { display: none }
+  html[data-tier="intro"] .tier-block:not([data-tier="intro"]) { display: none }
+  html[data-tier="engineer"] .tier-block:not([data-tier="engineer"]) { display: none }
+  html[data-tier="research"] .tier-block:not([data-tier="research"]) { display: none }
+</style>
