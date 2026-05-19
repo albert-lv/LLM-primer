@@ -1,0 +1,15 @@
+id: taori2023-alpaca
+source_url: "https://crfm.stanford.edu/2023/03/13/alpaca.html"
+title: "Alpaca: A Strong, Replicable Instruction-Following Model"
+year: 2023
+authors: ["Rohan Taori", "Ishaan Gulrajani", "Tianyi Zhang", "Yann Dubois", "Xuechen Li", "Carlos Guestrin", "Percy Liang", "Tatsunori B. Hashimoto"]
+tldr_zh: |
+  用 52K 条 self-instruct 数据 + LLaMA 7B，5 美元复刻 GPT-3.5 风格回答。开启开源指令微调浪潮，是 2023 年那场"羊驼大战"的起点。
+tldr_en: |
+  Uses 52K self-instruct data + LLaMA 7B to replicate GPT-3.5 style responses for $5. Launched open-source instruction tuning wave, starting point of 2023's "llama wars".
+tags:
+  - alpaca
+  - instruction-tuning
+  - llama
+modules:
+  - training

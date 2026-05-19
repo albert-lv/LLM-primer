@@ -1,0 +1,12 @@
+id: wei2023-jailbroken
+arxiv_id: "2307.02483"
+tldr_zh: |
+  系统化分类越狱手段（在分布外、目标冲突），并解释为什么 RLHF 难以根治。是越狱研究"taxonomy"参考资料。
+tldr_en: |
+  Systematically classifies jailbreak methods (out-of-distribution, goal conflict) and explains why RLHF struggles to eradicate them. Reference material for jailbreak research "taxonomy".
+tags:
+  - jailbreak
+  - safety
+  - rlhf
+modules:
+  - applications

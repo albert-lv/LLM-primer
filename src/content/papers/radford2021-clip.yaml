@@ -1,0 +1,12 @@
+id: radford2021-clip
+arxiv_id: "2103.00020"
+tldr_zh: |
+  用 4 亿对图文做对比学习，得到通用视觉 encoder。CLIP embedding 至今是几乎所有多模态系统（DALL·E、Stable Diffusion、LLaVA）的视觉前端。
+tldr_en: |
+  Uses 400M image-text pairs for contrastive learning to obtain universal vision encoder. CLIP embeddings remain the vision frontend for almost all multimodal systems (DALL·E, Stable Diffusion, LLaVA) today.
+tags:
+  - clip
+  - vision-language
+  - contrastive-learning
+modules:
+  - applications

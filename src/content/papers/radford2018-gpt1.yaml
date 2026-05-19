@@ -1,0 +1,16 @@
+id: radford2018-gpt1
+source_url: "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"
+title: "Improving Language Understanding by Generative Pre-Training (GPT-1)"
+year: 2018
+authors: ["Alec Radford", "Karthik Narasimhan", "Tim Salimans", "Ilya Sutskever"]
+tldr_zh: |
+  OpenAI 首次提出 decoder-only + 自回归预训练 + 任务微调；为后来 GPT-2/3/4 系列奠定路线。当时不如 BERT 火，几年后被证明是真正的赢家方向。
+tldr_en: |
+  OpenAI's first proposal of decoder-only + autoregressive pre-training + task fine-tuning, establishing the foundation for GPT-2/3/4 series. Less popular than BERT initially, but proven to be the winning direction years later.
+tags:
+  - gpt
+  - decoder-only
+  - pre-training
+modules:
+  - foundations
+  - training
