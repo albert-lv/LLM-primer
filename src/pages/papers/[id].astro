@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { buildCitedByIndex } from '../../lib/cited-by';
+
+export async function getStaticPaths() {
+  const papers = await getCollection('papers');
+  const docs = await getCollection('docs');
+
+  const articleRefs = docs.map((doc) => ({
+    slug: doc.slug,
+    papers: doc.data.papers ?? [],
+  }));
+  const citedBy = buildCitedByIndex(articleRefs);
+
+  return papers
+    .filter((p) => !p.data.inbox)
+    .map((paper) => ({
+      params: { id: paper.data.id },
+      props: {
+        paper: paper.data,
+        citedByArticles: citedBy.get(paper.data.id) ?? [],
+      },
+    }));
+}
+
+const { paper, citedByArticles } = Astro.props;
+const docs = await getCollection('docs');
+---
+
+<StarlightPage
+  frontmatter={{
+    title: paper.title ?? paper.id,
+    description: paper.tldr_zh,
+  }}
+>
+  <div class="paper-detail">
+    {paper.authors && paper.authors.length > 0 && (
+      <p class="authors">
+        <strong>作者：</strong>
+        {paper.authors.join(', ')}
+        {paper.year && ` (${paper.year})`}
+      </p>
+    )}
+
+    {paper.arxiv_id && (
+      <p>
+        <strong>arXiv：</strong>
+        <a href={`https://arxiv.org/abs/${paper.arxiv_id}`} target="_blank" rel="noopener">
+          {paper.arxiv_id}
+        </a>
+      </p>
+    )}
+
+    {paper.doi && (
+      <p>
+        <strong>DOI：</strong>
+        <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener">
+          {paper.doi}
+        </a>
+      </p>
+    )}
+
+    <section class="tldr-section">
+      <h2>TLDR（中文）</h2>
+      <p>{paper.tldr_zh}</p>
+    </section>
+
+    <section class="tldr-section">
+      <h2>TLDR (English)</h2>
+      <p>{paper.tldr_en}</p>
+    </section>
+
+    {citedByArticles.length > 0 && (
+      <section>
+        <h2>出现在这些文章里</h2>
+        <ul>
+          {citedByArticles.map((slug) => {
+            const doc = docs.find((d) => d.slug === slug);
+            const title = doc?.data.title ?? slug;
+            return (
+              <li>
+                <a href={`/${slug}/`}>{title}</a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    )}
+  </div>
+</StarlightPage>
+
+<style>
+  .paper-detail p {
+    margin: 0.5rem 0;
+  }
+  .authors {
+    color: var(--sl-color-gray-2);
+  }
+  .tldr-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--sl-color-gray-6, #f9f9f9);
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--sl-color-accent, #0070f3);
+  }
+  .tldr-section h2 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+</style>

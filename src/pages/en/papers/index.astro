@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+const papers = await getCollection('papers');
+const published = papers
+  .filter((p) => !p.data.inbox)
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<StarlightPage frontmatter={{ title: 'Paper Library', description: 'Curated LLM papers index' }}>
+  <p>{published.length} carefully selected LLM papers, each with a bilingual TLDR.</p>
+
+  <ul class="paper-list">
+    {published.map((paper) => (
+      <li class="paper-item">
+        <a href={`/en/papers/${paper.data.id}/`} class="paper-title">
+          {paper.data.title ?? paper.data.id}
+        </a>
+        {paper.data.authors && paper.data.authors.length > 0 && (
+          <span class="paper-meta">
+            — {paper.data.authors[0]}{paper.data.authors.length > 1 ? ' et al.' : ''}
+            {paper.data.year ? ` (${paper.data.year})` : ''}
+          </span>
+        )}
+        <p class="paper-tldr">{paper.data.tldr_en}</p>
+      </li>
+    ))}
+  </ul>
+</StarlightPage>
+
+<style>
+  .paper-list {
+    list-style: none;
+    padding: 0;
+  }
+  .paper-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--sl-color-gray-5, #eee);
+  }
+  .paper-title {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .paper-meta {
+    color: var(--sl-color-gray-3, #666);
+    font-size: 0.875rem;
+  }
+  .paper-tldr {
+    margin-top: 0.25rem;
+    color: var(--sl-color-gray-2, #444);
+    font-size: 0.875rem;
+  }
+</style>
