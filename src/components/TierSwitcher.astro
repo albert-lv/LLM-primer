@@ -1,0 +1,75 @@
+---
+const isEn = Astro.currentLocale === 'en';
+const tiers = isEn
+  ? [
+      { id: 'intro', label: 'Intuitive' },
+      { id: 'engineer', label: 'Engineering' },
+      { id: 'research', label: 'Research' },
+    ]
+  : [
+      { id: 'intro', label: '直觉派' },
+      { id: 'engineer', label: '工程派' },
+      { id: 'research', label: '研究派' },
+    ];
+---
+
+<div class="tier-switcher" role="group" aria-label={isEn ? 'Reading level' : '阅读档位'}>
+  {tiers.map((t) => (
+    <button class="tier-btn" data-tier-id={t.id} aria-selected="false">
+      {t.label}
+    </button>
+  ))}
+</div>
+
+<style>
+  .tier-switcher {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+  }
+  .tier-btn {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--sl-color-gray-4, #ccc);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .tier-btn[aria-selected="true"] {
+    background: var(--sl-color-accent, #0070f3);
+    color: white;
+    border-color: var(--sl-color-accent, #0070f3);
+  }
+</style>
+
+<script>
+  import { getActiveTier, setActiveTier } from '../lib/tier';
+
+  function initSwitcher(switcher: Element) {
+    const buttons = switcher.querySelectorAll<HTMLButtonElement>('.tier-btn');
+
+    function updateButtons(tier: string) {
+      buttons.forEach((btn) => {
+        btn.setAttribute('aria-selected', btn.dataset.tierId === tier ? 'true' : 'false');
+      });
+    }
+
+    updateButtons(getActiveTier());
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.tierId as 'intro' | 'engineer' | 'research';
+        setActiveTier(id);
+        updateButtons(id);
+      });
+    });
+
+    window.addEventListener('llm-primer:tier-change', (e) => {
+      updateButtons((e as CustomEvent).detail.tier);
+    });
+  }
+
+  document.querySelectorAll('.tier-switcher').forEach(initSwitcher);
+</script>
