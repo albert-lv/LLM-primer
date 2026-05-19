@@ -1,0 +1,13 @@
+{
+  "name": "llm-primer",
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run",
+    "check": "astro check"
+  }
+}
