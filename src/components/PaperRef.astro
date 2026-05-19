@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+
+const { id } = Astro.props as { id: string };
+const lang = Astro.currentLocale ?? 'zh-CN';
+const isEn = lang === 'en';
+
+const papers = await getCollection('papers');
+const paper = papers.find((p) => p.data.id === id);
+
+if (!paper) {
+  throw new Error(`PaperRef: paper "${id}" not found in collection`);
+}
+
+const tldr = isEn ? paper.data.tldr_en : paper.data.tldr_zh;
+const href = isEn ? `/en/papers/${id}/` : `/papers/${id}/`;
+---
+
+<a href={href} title={tldr} class="paper-ref">[{id}]</a>
+
+<style>
+  .paper-ref {
+    font-size: 0.75em;
+    vertical-align: super;
+    color: var(--sl-color-accent, #0070f3);
+    text-decoration: none;
+  }
+  .paper-ref:hover {
+    text-decoration: underline;
+  }
+</style>
