@@ -1,0 +1,17 @@
+name: Paper adoption
+about: Claim or propose a paper summary
+labels: [papers]
+body:
+  - type: input
+    id: paper
+    attributes:
+      label: Paper ID or URL
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+      description: Which module/article should cite this paper?
+    validations:
+      required: true

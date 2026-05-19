@@ -1,0 +1,17 @@
+name: Interactive demo proposal
+about: Propose an island or visualization
+labels: [interactive]
+body:
+  - type: input
+    id: article
+    attributes:
+      label: Target article
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Demo behavior
+      description: Inputs, outputs, accessibility, and mobile behavior.
+    validations:
+      required: true
