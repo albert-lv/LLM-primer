@@ -91,6 +91,16 @@ import RecentArticles from '../../components/RecentArticles.astro';
 
 <RecentArticles />
 
+---
+
+<div class="rss-links">
+  <a href="/rss.xml" class="rss-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+    订阅 RSS
+  </a>
+  <span class="rss-desc">订阅博客更新，第一时间获取新文章</span>
+</div>
+
 <style>{`
 .tier-cards {
   display: grid;
@@ -200,6 +210,35 @@ import RecentArticles from '../../components/RecentArticles.astro';
 }
 .entry-card span {
   display: block;
+  font-size: 0.85rem;
+  color: var(--sl-color-gray-2);
+}
+
+.rss-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--sl-color-bg-sidebar);
+  border-radius: 0.5rem;
+}
+.rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--sl-color-text-accent);
+  color: white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.rss-link:hover {
+  opacity: 0.9;
+}
+.rss-desc {
   font-size: 0.85rem;
   color: var(--sl-color-gray-2);
 }
