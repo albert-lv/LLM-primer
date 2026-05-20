@@ -111,7 +111,7 @@ export default function ScalingLawCurve() {
         viewBox={`0 0 ${width} ${height}`}
         style={{
           marginTop: '1.5rem',
-          background: 'white',
+          background: 'var(--sl-color-bg)',
           borderRadius: '0.5rem',
         }}
       >
