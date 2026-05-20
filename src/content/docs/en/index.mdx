@@ -7,53 +7,200 @@ import RecentArticles from '../../../components/RecentArticles.astro';
 
 # LLM Primer
 
-Learn large language models through intuition, engineering practice, research papers, and interactive demos.
+**Systematic Learning of Large Language Models: From Theory to Practice**
 
-<div class="reader-cards">
-  <a href="/en/foundations/tokenization/#tier=intro"><strong>Intuitive</strong><span>Start with mental models and visual explanations.</span></a>
-  <a href="/en/foundations/attention/#tier=engineer"><strong>Engineering</strong><span>Focus on implementation, cost, evaluation, and operations.</span></a>
-  <a href="/en/foundations/transformer-architecture/#tier=research"><strong>Research</strong><span>Follow papers, evidence, assumptions, and open questions.</span></a>
+A bilingual, multi-tiered, community-driven LLM learning knowledge base covering foundational concepts, engineering practices, cutting-edge papers, and interactive demos.
+
+## What / Who / How Long
+
+- **30 minutes**: Build mental models through intuitive explanations, understand core LLM concepts
+- **3 hours**: Complete engineering tier, master practical implementation and performance optimization
+- **On-demand deep dive**: Track paper lineage, open questions, and frontier developments in research tier
+
+## Three-Tier Learning Mode
+
+<div class="tier-cards">
+  <div class="tier-card intro">
+    <span class="tier-icon">💡</span>
+    <strong>Intro Tier</strong>
+    <p>Build intuitive understanding through analogies, visualizations, and interactive demos. Quickly establish mental models.</p>
+  </div>
+  <div class="tier-card engineer">
+    <span class="tier-icon">⚙️</span>
+    <strong>Engineer Tier</strong>
+    <p>Focus on implementation details, performance optimization, cost trade-offs, and engineering best practices.</p>
+  </div>
+  <div class="tier-card research">
+    <span class="tier-icon">🔬</span>
+    <strong>Research Tier</strong>
+    <p>Deep dive into paper details, theoretical assumptions, experimental evidence, and open questions. Connect to academic frontiers.</p>
+  </div>
 </div>
 
-## Learning Paths
+## Four Modules & Learning Paths
 
 <div class="module-cards">
-  <a href="/en/foundations/tokenization/">
+  <a href="/en/foundations/" class="module-card">
+    <span class="module-icon">🧠</span>
     <strong>Foundations</strong>
-    <span>Tokenization, Attention, Transformer, Sampling & Decoding, Positional Encoding, Embeddings, Emergent Abilities</span>
+    <p>Tokenization, Attention, Transformer, Sampling & Decoding, Positional Encoding, Embeddings, Emergent Abilities</p>
+    <span class="module-meta">7 articles · ~56 minutes</span>
   </a>
-  <a href="/en/training/pretraining-and-scaling/">
+  <a href="/en/training/" class="module-card">
+    <span class="module-icon">⚡</span>
     <strong>Training</strong>
-    <span>Pretraining & Scaling Laws, Fine-Tuning & Alignment (SFT, RLHF, DPO)</span>
+    <p>Pretraining & Scaling Laws, Fine-Tuning & Alignment (SFT, RLHF, DPO)</p>
+    <span class="module-meta">4 articles · ~32 minutes</span>
   </a>
-  <a href="/en/inference/kv-cache-and-quantization/">
+  <a href="/en/inference/" class="module-card">
+    <span class="module-icon">🚀</span>
     <strong>Inference</strong>
-    <span>KV Cache & Quantization, FlashAttention & Efficient Attention</span>
+    <p>KV Cache & Quantization, FlashAttention & Efficient Attention, Long Context</p>
+    <span class="module-meta">3 articles · ~24 minutes</span>
   </a>
-  <a href="/en/applications/rag-and-retrieval/">
+  <a href="/en/applications/" class="module-card">
+    <span class="module-icon">🎯</span>
     <strong>Applications</strong>
-    <span>RAG & Retrieval Augmentation, Agents & Tool Use</span>
+    <p>RAG & Retrieval Augmentation, Agents & Tool Use, Prompt Engineering</p>
+    <span class="module-meta">2 articles · ~16 minutes</span>
   </a>
 </div>
 
-## Recently updated
+## Start Here
+
+<div class="entry-cards">
+  <a href="/en/foundations/" class="entry-card">
+    <strong>🌱 I'm a Beginner</strong>
+    <span>Start with foundations module overview, follow recommended order</span>
+  </a>
+  <a href="/en/inference/" class="entry-card">
+    <strong>⚙️ I'm an Engineer</strong>
+    <span>Jump to inference & optimization module for practical solutions</span>
+  </a>
+  <a href="/en/papers/" class="entry-card">
+    <strong>🔬 I'm a Researcher</strong>
+    <span>Browse paper library, explore classifications and citations</span>
+  </a>
+  <a href="/en/map/" class="entry-card">
+    <strong>🗺️ I Want the Map</strong>
+    <span>Visualize learning paths, get a bird's-eye view</span>
+  </a>
+</div>
+
+## Recently Updated
 
 <RecentArticles />
 
-## Five must-read papers
-
-- [Attention Is All You Need](/en/papers/vaswani2017-attention/)
-- [BERT](/en/papers/devlin2018-bert/)
-- [GPT-3](/en/papers/brown2020-gpt3/)
-- [Chinchilla](/en/papers/hoffmann2022-chinchilla/)
-- [Chain-of-Thought Prompting](/en/papers/wei2022-cot/)
-
 <style>{`
-.reader-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
-.reader-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
-.reader-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; }
-.module-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
-.module-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
-.module-cards strong { display: block; font-size: 1.05rem; }
-.module-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; font-size: 0.9rem; }
+.tier-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.tier-card {
+  padding: 1.25rem;
+  border-radius: 0.85rem;
+  border: 2px solid;
+}
+.tier-card.intro {
+  background: #f0f9ff;
+  border-color: #0ea5e9;
+}
+.tier-card.engineer {
+  background: #f0fdf4;
+  border-color: #22c55e;
+}
+.tier-card.research {
+  background: #fefce8;
+  border-color: #eab308;
+}
+.tier-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.tier-card strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+.tier-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--sl-color-gray-1);
+}
+
+.module-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.module-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.module-card:hover {
+  border-color: var(--sl-color-text-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.module-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.module-card strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.module-card p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--sl-color-gray-2);
+  flex: 1;
+}
+.module-meta {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--sl-color-gray-3);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--sl-color-gray-6);
+}
+
+.entry-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.entry-card {
+  padding: 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.entry-card:hover {
+  border-color: var(--sl-color-text-accent);
+  background: var(--sl-color-bg-sidebar);
+}
+.entry-card strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+.entry-card span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--sl-color-gray-2);
+}
 `}</style>
