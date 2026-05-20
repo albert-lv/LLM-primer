@@ -32,6 +32,17 @@ for (const p of published) {
     domainCounts[d] = (domainCounts[d] || 0) + 1;
   }
 }
+
+// Year statistics
+const yearCounts: Record<number, number> = {};
+for (const p of published) {
+  const year = p.data.year ?? 0;
+  if (year > 0) {
+    yearCounts[year] = (yearCounts[year] || 0) + 1;
+  }
+}
+const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+const maxYearCount = Math.max(...Object.values(yearCounts));
 ---
 
 <StarlightPage frontmatter={{ title: 'Paper Library', description: 'Curated LLM papers index' }}>
@@ -43,6 +54,37 @@ for (const p of published) {
           📥 View Inbox Papers ({inboxCount})
         </a>
       )}
+    </div>
+  </div>
+
+  <div class="paper-stats">
+    <div class="stat-section">
+      <h3>📊 By Year</h3>
+      <div class="year-chart">
+        {years.map((year) => (
+          <div class="year-bar" title={`${year}: ${yearCounts[year]} papers`}>
+            <div class="bar-fill" style={`height: ${(yearCounts[year] / maxYearCount) * 100}%`}></div>
+            <span class="year-label">{year}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="stat-section">
+      <h3>🏷️ By Domain (Top 5)</h3>
+      <div class="domain-stats">
+        {Object.entries(domainCounts)
+          .sort(([, a], [, b]) => b - a)
+          .slice(0, 5)
+          .map(([domain, count]) => (
+            <div class="domain-stat">
+              <span class="domain-name">{domainLabels[domain] ?? domain}</span>
+              <div class="domain-bar">
+                <div class="domain-fill" style={`width: ${(count / published.length) * 100}%`}></div>
+                <span class="domain-count">{count}</span>
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   </div>
 
@@ -210,6 +252,87 @@ for (const p of published) {
   .inbox-link:hover {
     border-color: var(--sl-color-text-accent);
     transform: translateX(2px);
+  }
+  .paper-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 0.75rem;
+  }
+  .stat-section h3 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+  }
+  .year-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 120px;
+    padding: 0.5rem 0;
+  }
+  .year-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    position: relative;
+  }
+  .bar-fill {
+    width: 100%;
+    background: var(--sl-color-text-accent);
+    border-radius: 0.25rem 0.25rem 0 0;
+    min-height: 2px;
+    transition: opacity 0.2s;
+  }
+  .year-bar:hover .bar-fill {
+    opacity: 0.8;
+  }
+  .year-label {
+    position: absolute;
+    bottom: -1.5rem;
+    font-size: 0.7rem;
+    color: var(--sl-color-gray-3);
+  }
+  .domain-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .domain-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .domain-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .domain-bar {
+    position: relative;
+    height: 1.5rem;
+    background: var(--sl-color-gray-6);
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  .domain-fill {
+    position: absolute;
+    height: 100%;
+    background: var(--sl-color-text-accent);
+    transition: width 0.3s;
+  }
+  .domain-count {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--sl-color-gray-1);
   }
 </style>
 
