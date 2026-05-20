@@ -7,32 +7,83 @@ import RecentArticles from '../../components/RecentArticles.astro';
 
 # LLM Primer
 
-从直觉、工程到研究，系统学习大语言模型的基础概念、关键论文与可交互实验。
+**系统学习大语言模型：从原理到实践**
 
-<div class="reader-cards">
-  <a href="/foundations/tokenization/#tier=intro"><strong>直觉派</strong><span>用类比和可视化先建立心智模型。</span></a>
-  <a href="/foundations/attention/#tier=engineer"><strong>工程派</strong><span>关注实现、成本、评估与线上取舍。</span></a>
-  <a href="/foundations/why-llm-emerges/#tier=research"><strong>研究派</strong><span>追踪论文、假设、证据和开放问题。</span></a>
+一个双语、分层次、社区驱动的 LLM 学习知识库，涵盖基础概念、工程实践、前沿论文与可交互演示。
+
+## 这是什么 / 给谁 / 要多久
+
+- **30 分钟**：通过直觉版建立心智模型，理解 LLM 核心概念
+- **3 小时**：完成工程档，掌握落地实践与性能优化
+- **按需深入**：在研究档追踪论文脉络、开放问题与前沿进展
+
+## 三档学习模式（Tier）
+
+<div class="tier-cards">
+  <div class="tier-card intro">
+    <span class="tier-icon">💡</span>
+    <strong>直觉档 Intro</strong>
+    <p>用类比、可视化和交互演示建立直觉理解，快速建立心智模型。</p>
+  </div>
+  <div class="tier-card engineer">
+    <span class="tier-icon">⚙️</span>
+    <strong>工程档 Engineer</strong>
+    <p>关注实现细节、性能优化、成本权衡与工程最佳实践。</p>
+  </div>
+  <div class="tier-card research">
+    <span class="tier-icon">🔬</span>
+    <strong>研究档 Research</strong>
+    <p>深挖论文细节、理论假设、实验证据与开放问题，连接学术前沿。</p>
+  </div>
 </div>
 
-## 学习路径
+## 四大模块与学习路径
 
 <div class="module-cards">
-  <a href="/foundations/tokenization/">
-    <strong>基础 / Foundations</strong>
-    <span>Tokenization、Attention、Transformer、采样与解码、位置编码、Embedding、涌现能力</span>
+  <a href="/foundations/" class="module-card">
+    <span class="module-icon">🧠</span>
+    <strong>基础 Foundations</strong>
+    <p>Tokenization、Attention、Transformer、采样与解码、位置编码、Embeddings、涌现能力</p>
+    <span class="module-meta">7 篇文章 · ~56 分钟</span>
   </a>
-  <a href="/training/pretraining-and-scaling/">
-    <strong>训练 / Training</strong>
-    <span>预训练与 Scaling Law、微调与对齐（SFT、RLHF、DPO）</span>
+  <a href="/training/" class="module-card">
+    <span class="module-icon">⚡</span>
+    <strong>训练 Training</strong>
+    <p>预训练与 Scaling Law、微调与对齐（SFT、RLHF、DPO）</p>
+    <span class="module-meta">4 篇文章 · ~32 分钟</span>
   </a>
-  <a href="/inference/kv-cache-and-quantization/">
-    <strong>推理 / Inference</strong>
-    <span>KV Cache 与量化、FlashAttention 与高效注意力</span>
+  <a href="/inference/" class="module-card">
+    <span class="module-icon">🚀</span>
+    <strong>推理 Inference</strong>
+    <p>KV Cache 与量化、FlashAttention 与高效注意力、长上下文</p>
+    <span class="module-meta">3 篇文章 · ~24 分钟</span>
   </a>
-  <a href="/applications/rag-and-retrieval/">
-    <strong>应用 / Applications</strong>
-    <span>RAG 与检索增强、Agent 与工具使用</span>
+  <a href="/applications/" class="module-card">
+    <span class="module-icon">🎯</span>
+    <strong>应用 Applications</strong>
+    <p>RAG 与检索增强、Agent 与工具使用、Prompt Engineering</p>
+    <span class="module-meta">2 篇文章 · ~16 分钟</span>
+  </a>
+</div>
+
+## 从这里开始
+
+<div class="entry-cards">
+  <a href="/foundations/" class="entry-card">
+    <strong>🌱 我是新手</strong>
+    <span>从基础模块总览开始，按推荐顺序阅读</span>
+  </a>
+  <a href="/inference/" class="entry-card">
+    <strong>⚙️ 我是工程师</strong>
+    <span>直达推理与优化模块，解决实际工程问题</span>
+  </a>
+  <a href="/papers/" class="entry-card">
+    <strong>🔬 我是研究者</strong>
+    <span>浏览论文库，查看分类与引用关系</span>
+  </a>
+  <a href="/map/" class="entry-card">
+    <strong>🗺️ 我想看地图</strong>
+    <span>可视化学习路径，鸟瞰全站结构</span>
   </a>
 </div>
 
@@ -40,20 +91,116 @@ import RecentArticles from '../../components/RecentArticles.astro';
 
 <RecentArticles />
 
-## 必读五篇论文
-
-- [Attention Is All You Need](/papers/vaswani2017-attention/)
-- [BERT](/papers/devlin2018-bert/)
-- [GPT-3](/papers/brown2020-gpt3/)
-- [Chinchilla](/papers/hoffmann2022-chinchilla/)
-- [Chain-of-Thought Prompting](/papers/wei2022-cot/)
-
 <style>{`
-.reader-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
-.reader-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
-.reader-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; }
-.module-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
-.module-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
-.module-cards strong { display: block; font-size: 1.05rem; }
-.module-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; font-size: 0.9rem; }
+.tier-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.tier-card {
+  padding: 1.25rem;
+  border-radius: 0.85rem;
+  border: 2px solid;
+}
+.tier-card.intro {
+  background: #f0f9ff;
+  border-color: #0ea5e9;
+}
+.tier-card.engineer {
+  background: #f0fdf4;
+  border-color: #22c55e;
+}
+.tier-card.research {
+  background: #fefce8;
+  border-color: #eab308;
+}
+.tier-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.tier-card strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+.tier-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--sl-color-gray-1);
+}
+
+.module-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.module-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.module-card:hover {
+  border-color: var(--sl-color-text-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.module-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.module-card strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.module-card p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--sl-color-gray-2);
+  flex: 1;
+}
+.module-meta {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--sl-color-gray-3);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--sl-color-gray-6);
+}
+
+.entry-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.entry-card {
+  padding: 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.entry-card:hover {
+  border-color: var(--sl-color-text-accent);
+  background: var(--sl-color-bg-sidebar);
+}
+.entry-card strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+.entry-card span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--sl-color-gray-2);
+}
 `}</style>
