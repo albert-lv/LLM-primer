@@ -134,6 +134,22 @@ const maxYearCount = Math.max(...Object.values(yearCounts));
             <span class="domain-tag">{domainLabels[d] ?? d}</span>
           ))}
         </div>
+        {paper.data.prerequisites && paper.data.prerequisites.length > 0 && (
+          <div class="paper-prerequisites">
+            <span class="prereq-label">Prerequisites:</span>
+            {paper.data.prerequisites.map((prereqId, i) => {
+              const prereqPaper = published.find((p) => p.data.id === prereqId);
+              return prereqPaper ? (
+                <>
+                  <a href={`/en/papers/${prereqId}/`} class="prereq-link">
+                    {prereqPaper.data.title ?? prereqId}
+                  </a>
+                  {i < paper.data.prerequisites.length - 1 && <span>, </span>}
+                </>
+              ) : null;
+            })}
+          </div>
+        )}
         <p class="paper-tldr">{paper.data.tldr_en}</p>
       </li>
     ))}
@@ -234,6 +250,22 @@ const maxYearCount = Math.max(...Object.values(yearCounts));
     margin-top: 0.25rem;
     color: var(--sl-color-gray-2, #444);
     font-size: 0.875rem;
+  }
+  .paper-prerequisites {
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+    color: var(--sl-color-gray-2);
+  }
+  .prereq-label {
+    font-weight: 500;
+    margin-right: 0.25rem;
+  }
+  .prereq-link {
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+  }
+  .prereq-link:hover {
+    text-decoration: underline;
   }
   .page-header {
     margin-bottom: 1.5rem;

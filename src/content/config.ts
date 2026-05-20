@@ -49,6 +49,7 @@ const papers = defineCollection({
     tags: z.array(z.string()).default([]),
     modules: z.array(ModuleEnum).default([]),
     domains: z.array(DomainEnum).default([]),
+    prerequisites: z.array(z.string()).default([]),
     inbox: z.boolean().default(false),
   }),
 });
