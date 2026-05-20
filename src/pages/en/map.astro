@@ -1,0 +1,215 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+---
+
+<StarlightPage frontmatter={{ title: 'Learning Path Map', description: 'LLM Primer knowledge structure visualization' }}>
+  <div class="map-intro">
+    <p>This map visualizes the core knowledge structure and recommended learning paths in LLM Primer.</p>
+    <p>Click on nodes to jump directly to corresponding articles. Follow arrows for progressive learning.</p>
+  </div>
+
+  <svg viewBox="0 0 800 600" class="learning-map" xmlns="http://www.w3.org/2000/svg">
+    <!-- Foundations Module -->
+    <g id="foundations">
+      <circle cx="150" cy="150" r="60" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+      <text x="150" y="145" text-anchor="middle" font-size="16" font-weight="bold">Foundations</text>
+      <text x="150" y="165" text-anchor="middle" font-size="12">基础</text>
+
+      <a href="/en/foundations/tokenization/">
+        <circle cx="100" cy="80" r="25" fill="#bfdbfe" stroke="#0369a1" stroke-width="2"/>
+        <text x="100" y="85" text-anchor="middle" font-size="10">Tokenization</text>
+      </a>
+
+      <a href="/en/foundations/attention/">
+        <circle cx="200" cy="80" r="25" fill="#bfdbfe" stroke="#0369a1" stroke-width="2"/>
+        <text x="200" y="85" text-anchor="middle" font-size="10">Attention</text>
+      </a>
+
+      <a href="/en/foundations/transformer-architecture/">
+        <circle cx="150" cy="240" r="25" fill="#bfdbfe" stroke="#0369a1" stroke-width="2"/>
+        <text x="150" y="245" text-anchor="middle" font-size="10">Transformer</text>
+      </a>
+    </g>
+
+    <!-- Training Module -->
+    <g id="training">
+      <circle cx="400" cy="150" r="60" fill="#f0fdf4" stroke="#22c55e" stroke-width="3"/>
+      <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold">Training</text>
+      <text x="400" y="165" text-anchor="middle" font-size="12">训练</text>
+
+      <a href="/en/training/pretraining-and-scaling/">
+        <circle cx="350" cy="80" r="25" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+        <text x="350" y="85" text-anchor="middle" font-size="10">Pretraining</text>
+      </a>
+
+      <a href="/en/training/fine-tuning-and-alignment/">
+        <circle cx="450" cy="80" r="25" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+        <text x="450" y="85" text-anchor="middle" font-size="10">Alignment</text>
+      </a>
+    </g>
+
+    <!-- Inference Module -->
+    <g id="inference">
+      <circle cx="650" cy="150" r="60" fill="#fef3c7" stroke="#eab308" stroke-width="3"/>
+      <text x="650" y="145" text-anchor="middle" font-size="16" font-weight="bold">Inference</text>
+      <text x="650" y="165" text-anchor="middle" font-size="12">推理</text>
+
+      <a href="/en/inference/kv-cache-and-quantization/">
+        <circle cx="600" cy="80" r="25" fill="#fef08a" stroke="#a16207" stroke-width="2"/>
+        <text x="600" y="85" text-anchor="middle" font-size="10">KV Cache</text>
+      </a>
+
+      <a href="/en/inference/efficient-attention/">
+        <circle cx="700" cy="80" r="25" fill="#fef08a" stroke="#a16207" stroke-width="2"/>
+        <text x="700" y="85" text-anchor="middle" font-size="10">Efficient</text>
+      </a>
+    </g>
+
+    <!-- Applications Module -->
+    <g id="applications">
+      <circle cx="400" cy="450" r="60" fill="#fce7f3" stroke="#ec4899" stroke-width="3"/>
+      <text x="400" y="445" text-anchor="middle" font-size="16" font-weight="bold">Applications</text>
+      <text x="400" y="465" text-anchor="middle" font-size="12">应用</text>
+
+      <a href="/en/applications/rag-and-retrieval/">
+        <circle cx="300" cy="450" r="25" fill="#fbcfe8" stroke="#be185d" stroke-width="2"/>
+        <text x="300" y="455" text-anchor="middle" font-size="10">RAG</text>
+      </a>
+
+      <a href="/en/applications/agents-and-tools/">
+        <circle cx="400" cy="520" r="25" fill="#fbcfe8" stroke="#be185d" stroke-width="2"/>
+        <text x="400" y="525" text-anchor="middle" font-size="10">Agents</text>
+      </a>
+
+      <a href="/en/applications/prompt-engineering/">
+        <circle cx="500" cy="450" r="25" fill="#fbcfe8" stroke="#be185d" stroke-width="2"/>
+        <text x="500" y="455" text-anchor="middle" font-size="10">Prompting</text>
+      </a>
+    </g>
+
+    <!-- Connection arrows -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
+      </marker>
+    </defs>
+
+    <line x1="210" y1="150" x2="340" y2="150" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="460" y1="150" x2="590" y2="150" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="150" y1="210" x2="200" y2="400" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+    <line x1="650" y1="210" x2="500" y2="400" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+  </svg>
+
+  <div class="map-legend">
+    <h3>Legend</h3>
+    <ul>
+      <li><span class="legend-item solid-line"></span> Recommended learning path</li>
+      <li><span class="legend-item dashed-line"></span> Optional cross-module connection</li>
+      <li><span class="legend-circle foundations"></span> Foundations module</li>
+      <li><span class="legend-circle training"></span> Training module</li>
+      <li><span class="legend-circle inference"></span> Inference module</li>
+      <li><span class="legend-circle applications"></span> Applications module</li>
+    </ul>
+  </div>
+</StarlightPage>
+
+<style>
+  .map-intro {
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 0.75rem;
+  }
+
+  .map-intro p {
+    margin: 0.5rem 0;
+  }
+
+  .learning-map {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 2rem auto;
+    display: block;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .learning-map a {
+    cursor: pointer;
+  }
+
+  .learning-map a:hover circle {
+    filter: brightness(0.9);
+  }
+
+  .map-legend {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 0.75rem;
+  }
+
+  .map-legend h3 {
+    margin: 0 0 1rem;
+  }
+
+  .map-legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .map-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .legend-item {
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: #6b7280;
+  }
+
+  .legend-item.dashed-line {
+    background: repeating-linear-gradient(
+      to right,
+      #6b7280 0,
+      #6b7280 5px,
+      transparent 5px,
+      transparent 10px
+    );
+  }
+
+  .legend-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid;
+  }
+
+  .legend-circle.foundations {
+    background: #bfdbfe;
+    border-color: #0369a1;
+  }
+
+  .legend-circle.training {
+    background: #bbf7d0;
+    border-color: #15803d;
+  }
+
+  .legend-circle.inference {
+    background: #fef08a;
+    border-color: #a16207;
+  }
+
+  .legend-circle.applications {
+    background: #fbcfe8;
+    border-color: #be185d;
+  }
+</style>
