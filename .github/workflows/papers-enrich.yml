@@ -19,7 +19,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm enrich
-      - uses: peter-evans/create-pull-request@v6.0.0
+      - uses: peter-evans/create-pull-request@v6
         with:
           commit-message: chore: enrich paper metadata
           title: chore: enrich paper metadata
