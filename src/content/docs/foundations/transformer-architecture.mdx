@@ -14,6 +14,7 @@ import TierSwitcher from '../../../components/TierSwitcher.astro';
 import TierBlock from '../../../components/TierBlock.astro';
 import PaperList from '../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../components/OpenQuestions.astro';
 import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 
@@ -47,6 +48,22 @@ BERT 展示了双向编码器在理解任务上的力量；GPT-2 展示了只看
 研究上， decoder-only 架构的主导地位并非预先注定，而是经验选择的结果。T5 等 encoder-decoder 模型在翻译和摘要任务上仍有优势，而纯解码器的优势在于生成任务的简洁性和 scaling 的便利性。
 
 Mixture of Experts（MoE）是当前架构研究的热点：通过稀疏激活，模型可以在不增加推理计算的情况下扩大参数量。但 MoE 引入了路由稳定性、负载均衡、通信开销和微调难度等新挑战。未来的架构可能是模块化、可组合、根据任务动态选择子网络的系统，而非今天的"一个巨大模型做所有事"。
+
+<OpenQuestions questions={[
+  {
+    "q": "Transformer 架构的哪些组件是本质必需的？是否可以进一步简化或替换？",
+    "papers": [
+      "vaswani2017-attention"
+    ]
+  },
+  {
+    "q": "Pre-LN vs Post-LN：不同归一化位置对训练稳定性和模型性能的影响机制是什么？"
+  },
+  {
+    "q": "FFN 的作用是否可以用更高效的结构替代？MoE 是否是唯一可行的稀疏化方向？"
+  }
+]} />
+
 
 </TierBlock>
 

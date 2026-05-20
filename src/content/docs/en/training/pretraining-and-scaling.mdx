@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 
@@ -49,6 +50,22 @@ Chinchilla showed that many models are under-trained on tokens for their size un
 Scaling laws provide empirical predictive tools, but their theoretical explanations are still developing. Key questions include: why does loss follow a power law with compute? Is this universal across architectures, data distributions, and optimizers? Are there "phase transitions" beyond pure scale?
 
 Current research directions also include: can curriculum learning accelerate convergence? How does continual pretraining learn new domains while preserving old knowledge? And what is the causal link between knowledge learned during pretraining and downstream task performance?
+
+<OpenQuestions questions={[
+  {
+    "q": "When do Scaling Laws break down? Are there theoretical limits like \"data walls\" or \"parameter walls\"?",
+    "papers": [
+      "hoffmann2022-chinchilla"
+    ]
+  },
+  {
+    "q": "How to optimize compute budget allocation under resource constraints? Can small models approach large model performance with more data?"
+  },
+  {
+    "q": "Do multimodal, long-context, and sparse models follow the same Scaling Laws?"
+  }
+]} />
+
 
 </TierBlock>
 

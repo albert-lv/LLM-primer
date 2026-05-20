@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 
@@ -49,6 +50,25 @@ Full self-attention scales roughly with sequence length squared. Inference syste
 Can attention weights themselves explain model decisions? Early work assumed attention provides transparent signals of "where the model is looking," but subsequent research shows that attention distributions do not straightforwardly correspond to feature importance—models can maintain outputs despite high attention weights, and vice versa.
 
 Deeper research directions include: specialization of different heads in multi-head attention (syntax heads, position heads, rare-token heads); dynamic evolution of attention patterns across layers (shallow vs. deep); and the relationship between attention and gradient-based attribution methods. Understanding these helps design sparser, more efficient, and more interpretable attention variants.
+
+<OpenQuestions questions={[
+  {
+    "q": "Can attention weights reliably explain model decisions? How to accurately characterize the relationship between attention distribution and feature importance?",
+    "papers": [
+      "vaswani2017-attention"
+    ]
+  },
+  {
+    "q": "How to quantify specialization of different heads in multi-head attention? Do universal \"syntax heads\" or \"position heads\" exist?",
+    "papers": [
+      "vaswani2017-attention"
+    ]
+  },
+  {
+    "q": "How to design sparser, more efficient, and more interpretable attention variants to reduce computational cost?"
+  }
+]} />
+
 
 </TierBlock>
 

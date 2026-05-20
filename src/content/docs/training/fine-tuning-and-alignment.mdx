@@ -14,6 +14,7 @@ import TierSwitcher from '../../../components/TierSwitcher.astro';
 import TierBlock from '../../../components/TierBlock.astro';
 import PaperList from '../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../components/OpenQuestions.astro';
 import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 
@@ -53,6 +54,20 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 研究上，"对齐"是否真正改变了模型的内部目标，还是只是表面行为的抑制？这是一个开放问题。有证据表明，模型在某些情况下会"绕过"安全训练（jailbreak），说明对齐可能不是深层的。
 
 关键研究方向包括：奖励黑客（reward hacking）的检测与防御；长度偏差、位置偏差等偏好建模的 artifacts；多轮对话中的上下文一致性；以及，如何用更少的人类标注获得更稳健的对齐效果。
+
+<OpenQuestions questions={[
+  {
+    "q": "RLHF 中的 reward hacking 问题如何从根本上解决？DPO 是否完全规避了这一问题？",
+    "papers": []
+  },
+  {
+    "q": "对齐后的\"能力退化\"现象如何量化和缓解？如何在对齐与能力之间找到最优平衡？"
+  },
+  {
+    "q": "是否存在统一的对齐框架可以同时处理有用性、无害性、诚实性三个维度？"
+  }
+]} />
+
 
 </TierBlock>
 

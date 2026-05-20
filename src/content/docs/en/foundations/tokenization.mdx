@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 
@@ -51,6 +52,28 @@ Multilingual and code-heavy workloads need extra care: the same semantic content
 Tokenization is not only an engineering problem but also involves linguistic assumptions. Subword algorithms (BPE, WordPiece, SentencePiece, Unigram) deeply affect how models learn morphology and word formation. For example, does BPE's greedy merging bias models toward frequent compound words while ignoring rare but meaningful prefixes/suffixes?
 
 Tokenization fairness in multilingual models is an active area: "tokens per word" varies dramatically across languages, potentially causing systematically lower representation quality for resource-scarce languages. Byte-level BPE (as used in GPT-2) attempts to use bytes rather than Unicode characters as base units, improving coverage of unknown characters and code, but also produces longer sequences.
+
+<OpenQuestions questions={[
+  {
+    "q": "Does BPE's greedy merging systematically bias toward high-frequency compounds? How to quantify this bias's impact on linguistic learning?",
+    "papers": [
+      "sennrich2016-bpe"
+    ]
+  },
+  {
+    "q": "How to quantify multilingual tokenization fairness? How does \"tokens per word\" variance affect model performance across languages?",
+    "papers": [
+      "mikolov2013-word2vec"
+    ]
+  },
+  {
+    "q": "Byte-level vs character-level tokenization: Can the sequence length vs coverage tradeoff be further optimized?"
+  },
+  {
+    "q": "Do specialized domains (code, math symbols, emoji) require custom tokenization strategies?"
+  }
+]} />
+
 
 </TierBlock>
 
