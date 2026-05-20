@@ -116,6 +116,23 @@ async function main() {
     }
   }
 
+  // Check that all non-inbox papers have titles
+  const PAPERS_DIR = 'src/content/papers';
+  try {
+    const files = await readdir(PAPERS_DIR);
+    for (const f of files.filter((x) => x.endsWith('.yaml'))) {
+      const stub = parseYaml(await readFile(join(PAPERS_DIR, f), 'utf8'));
+      if (!stub.inbox && !stub.title) {
+        console.error(`\n❌ ${f}`);
+        console.error(`   - paper ${stub.id} missing title (non-inbox papers must have titles)`);
+        hasErrors = true;
+      }
+    }
+  } catch (e) {
+    console.error(`Error checking papers: ${e.message}`);
+    hasErrors = true;
+  }
+
   if (hasErrors) {
     console.error('\nContent lint failed.');
     process.exit(1);

@@ -1,10 +1,11 @@
 id: kwon2023-vllm
 arxiv_id: "2309.06180"
+title: Efficient Memory Management for Large Language Model Serving with PagedAttention
+year: 2023
 tldr_zh: |
   把操作系统的"分页内存"思想引入 KV cache，几乎消灭 OOM 浪费，让吞吐量翻 2-4 倍。vLLM 由此成为开源推理引擎事实标准；MCP/Agent 时代的算力底座。
-tldr_en: >
-  Introduces OS "paged memory" concept to KV cache, virtually eliminating OOM waste and multiplying throughput 2-4x.
-  vLLM thereby becomes de facto standard open-source inference engine; compute foundation for MCP/Agent era.
+tldr_en: |
+  Introduces OS "paged memory" concept to KV cache, virtually eliminating OOM waste and multiplying throughput 2-4x. vLLM thereby becomes de facto standard open-source inference engine; compute foundation for MCP/Agent era.
 tags:
   - vllm
   - paged-attention

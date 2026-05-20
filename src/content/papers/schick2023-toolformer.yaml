@@ -1,10 +1,11 @@
 id: schick2023-toolformer
 arxiv_id: "2302.04761"
+title: "Toolformer: Language Models Can Teach Themselves to Use Tools"
+year: 2023
 tldr_zh: |
   让模型自己生成"调用 API 的 token"并通过自监督评估有用性。是 function-calling / tool-use 训练范式的奠基论文，直接影响 GPT-4 function calling 的设计。
-tldr_en: >
-  Makes model generate "API-calling tokens" itself and evaluate usefulness through self-supervision. Foundational paper
-  for function-calling/tool-use training paradigm, directly influencing GPT-4 function calling design.
+tldr_en: |
+  Makes model generate "API-calling tokens" itself and evaluate usefulness through self-supervision. Foundational paper for function-calling/tool-use training paradigm, directly influencing GPT-4 function calling design.
 tags:
   - toolformer
   - function-calling

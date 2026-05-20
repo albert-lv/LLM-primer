@@ -1,10 +1,11 @@
 id: ai2024-yi
 arxiv_id: "2403.04652"
+title: "Yi: Open Foundation Models by 01.AI"
+year: 2024
 tldr_zh: |
   李开复 01.AI 的全栈技术报告，强调"小而强 + 数据质量"。Yi-34B 长期是开源中英 LLM 第一梯队，也是 200K 上下文开源模型早期代表。
-tldr_en: >
-  Kai-Fu Lee's 01.AI full-stack technical report, emphasizing "small but strong + data quality". Yi-34B long-term
-  first-tier open-source Chinese-English LLM, also early representative of 200K context open-source models.
+tldr_en: |
+  Kai-Fu Lee's 01.AI full-stack technical report, emphasizing "small but strong + data quality". Yi-34B long-term first-tier open-source Chinese-English LLM, also early representative of 200K context open-source models.
 tags:
   - yi
   - long-context

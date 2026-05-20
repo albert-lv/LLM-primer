@@ -1,10 +1,11 @@
 id: chen2023-longlora
 arxiv_id: "2309.12307"
+title: "LongLoRA: Efficient Fine-tuning of Long-Context Large Language Models"
+year: 2023
 tldr_zh: |
   用 shifted sparse attention + LoRA 把 7B 模型扩到 100K 上下文，且只用一台 8xA100。是长上下文微调的工程标杆；另见 YaRN、PoSE。
-tldr_en: >
-  Uses shifted sparse attention + LoRA to extend 7B model to 100K context with just one 8xA100 machine. Engineering
-  benchmark for long-context fine-tuning; see also YaRN, PoSE.
+tldr_en: |
+  Uses shifted sparse attention + LoRA to extend 7B model to 100K context with just one 8xA100 machine. Engineering benchmark for long-context fine-tuning; see also YaRN, PoSE.
 tags:
   - long-context
   - lora

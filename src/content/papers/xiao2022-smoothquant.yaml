@@ -1,10 +1,11 @@
 id: xiao2022-smoothquant
 arxiv_id: "2211.10438"
+title: "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models"
+year: 2022
 tldr_zh: |
   把激活的 outlier 通过等价数学变换"挪"到权重上，使得 INT8 推理可行。是 GPU FP8/INT8 部署能 work 的关键工程发现。
-tldr_en: >
-  Moves activation outliers to weights through equivalent mathematical transformation, making INT8 inference feasible.
-  Key engineering discovery enabling GPU FP8/INT8 deployment.
+tldr_en: |
+  Moves activation outliers to weights through equivalent mathematical transformation, making INT8 inference feasible. Key engineering discovery enabling GPU FP8/INT8 deployment.
 tags:
   - quantization
   - smoothquant

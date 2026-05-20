@@ -9,3 +9,4 @@ dist
 .vscode
 .idea
 .pnpm-store
+src/content/papers/.enriched/

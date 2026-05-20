@@ -1,10 +1,11 @@
 id: azar2023-ipo
 arxiv_id: "2310.12036"
+title: A General Theoretical Paradigm to Understand Learning from Human Preferences
+year: 2023
 tldr_zh: |
   用 Ψ-PO 框架统一 RLHF/DPO，并指出 DPO 在 BT 假设下会过拟合；提出 IPO 损失更稳健。是理解"为什么 DPO 不总是 work"的理论必读；另见 KTO、SimPO。
-tldr_en: >
-  Unifies RLHF/DPO with Ψ-PO framework, points out DPO overfits under BT assumption; proposes more robust IPO loss.
-  Theoretical must-read for understanding "why DPO doesn't always work"; see also KTO, SimPO.
+tldr_en: |
+  Unifies RLHF/DPO with Ψ-PO framework, points out DPO overfits under BT assumption; proposes more robust IPO loss. Theoretical must-read for understanding "why DPO doesn't always work"; see also KTO, SimPO.
 tags:
   - dpo
   - ipo
