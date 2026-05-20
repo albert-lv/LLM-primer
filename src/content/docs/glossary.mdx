@@ -8,6 +8,12 @@ updated: 2026-05-19
 
 # 术语表
 
+<div class="glossary-search">
+  <input type="text" id="glossary-search-input" placeholder="搜索术语..." />
+</div>
+
+<div id="glossary-content">
+
 ## 基础概念
 
 - **Token**：模型处理文本的最小编号单元；参见 [Tokenization](/foundations/tokenization/)。
@@ -90,3 +96,36 @@ updated: 2026-05-19
 - **MoE（Mixture of Experts）**： mixture of experts，用稀疏激活增加模型容量。
 - **SSM（State Space Model）**：状态空间模型，如 Mamba，线性复杂度序列建模。
 - **RoPE（Rotary Positional Embedding）**：旋转位置编码。
+
+</div>
+
+<style>
+.glossary-search {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--sl-color-bg-sidebar);
+  border-radius: 0.5rem;
+}
+.glossary-search input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+</style>
+
+<script>
+const input = document.getElementById("glossary-search-input");
+const content = document.getElementById("glossary-content");
+if (input && content) {
+  input.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase();
+    const items = content.querySelectorAll("li");
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(query) ? "" : "none";
+    });
+  });
+}
+</script>
