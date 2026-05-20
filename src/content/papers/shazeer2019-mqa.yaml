@@ -1,16 +1,20 @@
 id: shazeer2019-mqa
-arxiv_id: "1911.02150"
-title: "Fast Transformer Decoding: One Write-Head is All You Need"
+arxiv_id: '1911.02150'
+title: 'Fast Transformer Decoding: One Write-Head is All You Need'
 year: 2019
-tldr_zh: |
-  提出 Multi-Query Attention：所有 head 共享同一份 K/V，把 KV cache 占用打到 1/h。今天 KV cache 优化、长上下文推理的故事都从这篇 5 页短文开始。
-tldr_en: |
-  Proposes Multi-Query Attention: all heads share the same K/V, reducing KV cache usage to 1/h. All modern KV cache optimization and long-context inference stories start from this 5-page paper.
+authors:
+- Noam Shazeer
+tldr_zh: '提出 Multi-Query Attention：所有 head 共享同一份 K/V，把 KV cache 占用打到 1/h。今天 KV cache 优化、长上下文推理的故事都从这篇 5 页短文开始。
+
+  '
+tldr_en: 'Proposes Multi-Query Attention: all heads share the same K/V, reducing KV cache usage to 1/h. All modern KV cache optimization and long-context inference stories start from this 5-page paper.
+
+  '
 tags:
-  - multi-query-attention
-  - kv-cache
+- multi-query-attention
+- kv-cache
 modules:
-  - inference
+- inference
 domains:
-  - inference
-  - architecture
+- inference
+- architecture

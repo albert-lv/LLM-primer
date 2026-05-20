@@ -1,16 +1,26 @@
 id: wang2022-self-instruct
-arxiv_id: "2212.10560"
-title: "Self-Instruct: Aligning Language Models with Self-Generated Instructions"
+arxiv_id: '2212.10560'
+title: 'Self-Instruct: Aligning Language Models with Self-Generated Instructions'
 year: 2022
-tldr_zh: |
-  用 GPT-3 自己生成指令-输出数据再蒸馏到自己。Stanford Alpaca / Vicuna 都基于这套，开启"用大模型造数据训小模型"的合成数据时代。
-tldr_en: |
-  Uses GPT-3 to generate instruction-output data and distill to itself. Stanford Alpaca/Vicuna both based on this, opening "use large models to generate data for training small models" synthetic data era.
+authors:
+- Yizhong Wang
+- Yeganeh Kordi
+- Swaroop Mishra
+- Alisa Liu
+- Noah A. Smith
+- Daniel Khashabi
+- Hannaneh Hajishirzi
+tldr_zh: '用 GPT-3 自己生成指令-输出数据再蒸馏到自己。Stanford Alpaca / Vicuna 都基于这套，开启"用大模型造数据训小模型"的合成数据时代。
+
+  '
+tldr_en: 'Uses GPT-3 to generate instruction-output data and distill to itself. Stanford Alpaca/Vicuna both based on this, opening "use large models to generate data for training small models" synthetic data era.
+
+  '
 tags:
-  - self-instruct
-  - synthetic-data
-  - instruction-tuning
+- self-instruct
+- synthetic-data
+- instruction-tuning
 modules:
-  - training
+- training
 domains:
-  - alignment
+- alignment

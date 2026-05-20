@@ -1,16 +1,25 @@
 id: zou2023-universal-attack
-arxiv_id: "2307.15043"
+arxiv_id: '2307.15043'
 title: Universal and Transferable Adversarial Attacks on Aligned Language Models
 year: 2023
-tldr_zh: |
-  用 GCG 算法找到一段乱码后缀，能把对齐过的 LLaMA-2/Vicuna 全打穿，且攻击在多个闭源模型间迁移。震撼整个安全社区，让"对齐脆弱性"成为主流话题。
-tldr_en: |
-  Uses GCG algorithm to find gibberish suffix that breaks through aligned LLaMA-2/Vicuna, with attacks transferring across multiple closed-source models. Shocked entire security community, making "alignment fragility" mainstream topic.
+authors:
+- Andy Zou
+- Zifan Wang
+- Nicholas Carlini
+- Milad Nasr
+- J. Zico Kolter
+- Matt Fredrikson
+tldr_zh: '用 GCG 算法找到一段乱码后缀，能把对齐过的 LLaMA-2/Vicuna 全打穿，且攻击在多个闭源模型间迁移。震撼整个安全社区，让"对齐脆弱性"成为主流话题。
+
+  '
+tldr_en: 'Uses GCG algorithm to find gibberish suffix that breaks through aligned LLaMA-2/Vicuna, with attacks transferring across multiple closed-source models. Shocked entire security community, making "alignment fragility" mainstream topic.
+
+  '
 tags:
-  - jailbreak
-  - adversarial
-  - safety
+- jailbreak
+- adversarial
+- safety
 modules:
-  - applications
+- applications
 domains:
-  - safety
+- safety

@@ -1,15 +1,29 @@
 id: lee2023-rlaif
-arxiv_id: "2309.00267"
-title: "RLAIF: Scaling Reinforcement Learning from Human Feedback with AI Feedback"
+arxiv_id: '2309.00267'
+title: 'RLAIF: Scaling Reinforcement Learning from Human Feedback with AI Feedback'
 year: 2023
-tldr_zh: |
-  Google 系统性地证明 RLAIF 在多种任务上能匹敌 RLHF，把"AI 反馈替代人工"作为可扩展的对齐方案给出工程证据。
-tldr_en: |
-  Google systematically proves RLAIF can match RLHF on various tasks, providing engineering evidence for "AI feedback replacing human" as scalable alignment solution.
+authors:
+- Harrison Lee
+- Samrat Phatale
+- Hassan Mansoor
+- Thomas Mesnard
+- Johan Ferret
+- Kellie Lu
+- Colton Bishop
+- Ethan Hall
+- Victor Carbune
+- Abhinav Rastogi
+- Sushant Prakash
+tldr_zh: 'Google 系统性地证明 RLAIF 在多种任务上能匹敌 RLHF，把"AI 反馈替代人工"作为可扩展的对齐方案给出工程证据。
+
+  '
+tldr_en: 'Google systematically proves RLAIF can match RLHF on various tasks, providing engineering evidence for "AI feedback replacing human" as scalable alignment solution.
+
+  '
 tags:
-  - ai-feedback
-  - alignment
+- ai-feedback
+- alignment
 modules:
-  - training
+- training
 domains:
-  - alignment
+- alignment

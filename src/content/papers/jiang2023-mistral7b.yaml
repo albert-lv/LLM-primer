@@ -1,16 +1,37 @@
 id: jiang2023-mistral7b
-arxiv_id: "2310.06825"
+arxiv_id: '2310.06825'
 title: Mistral 7B
 year: 2023
-tldr_zh: |
-  用 GQA + sliding window attention，让 7B 模型干翻 LLaMA-2 13B；并第一次以"Apache 2.0 + 直接放权重"姿态进入舞台。引领欧洲开源 LLM 力量。
-tldr_en: |
-  Uses GQA + sliding window attention to make 7B model outperform LLaMA-2 13B; first enters scene with "Apache 2.0 + direct weight release" stance. Leads European open-source LLM force.
+authors:
+- Albert Q. Jiang
+- Alexandre Sablayrolles
+- Arthur Mensch
+- Chris Bamford
+- Devendra Singh Chaplot
+- Diego de las Casas
+- Florian Bressand
+- Gianna Lengyel
+- Guillaume Lample
+- Lucile Saulnier
+- Lélio Renard Lavaud
+- Marie-Anne Lachaux
+- Pierre Stock
+- Teven Le Scao
+- Thibaut Lavril
+- Thomas Wang
+- Timothée Lacroix
+- William El Sayed
+tldr_zh: '用 GQA + sliding window attention，让 7B 模型干翻 LLaMA-2 13B；并第一次以"Apache 2.0 + 直接放权重"姿态进入舞台。引领欧洲开源 LLM 力量。
+
+  '
+tldr_en: 'Uses GQA + sliding window attention to make 7B model outperform LLaMA-2 13B; first enters scene with "Apache 2.0 + direct weight release" stance. Leads European open-source LLM force.
+
+  '
 tags:
-  - mistral
-  - gqa
-  - open-source
+- mistral
+- gqa
+- open-source
 modules:
-  - foundations
+- foundations
 domains:
-  - pretraining
+- pretraining

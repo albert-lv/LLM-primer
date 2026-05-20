@@ -1,15 +1,24 @@
 id: chen2023-spec-sampling
-arxiv_id: "2302.01318"
+arxiv_id: '2302.01318'
 title: Accelerating Large Language Model Decoding with Speculative Sampling
 year: 2023
-tldr_zh: |
-  DeepMind 同期独立提出 speculative sampling，理论上证明可在保持采样分布不变的前提下加速。和 Leviathan 一起为这条路线定调；另见 Medusa、EAGLE 等后续。
-tldr_en: |
-  DeepMind's concurrent independent proposal of speculative sampling, theoretically proving acceleration while preserving sampling distribution. Together with Leviathan sets the direction; see also later Medusa, EAGLE.
+authors:
+- Charlie Chen
+- Sebastian Borgeaud
+- Geoffrey Irving
+- Jean-Baptiste Lespiau
+- Laurent Sifre
+- John Jumper
+tldr_zh: 'DeepMind 同期独立提出 speculative sampling，理论上证明可在保持采样分布不变的前提下加速。和 Leviathan 一起为这条路线定调；另见 Medusa、EAGLE 等后续。
+
+  '
+tldr_en: 'DeepMind''s concurrent independent proposal of speculative sampling, theoretically proving acceleration while preserving sampling distribution. Together with Leviathan sets the direction; see also later Medusa, EAGLE.
+
+  '
 tags:
-  - speculative-sampling
-  - theory
+- speculative-sampling
+- theory
 modules:
-  - inference
+- inference
 domains:
-  - inference
+- inference

@@ -1,16 +1,23 @@
 id: dettmers2022-llmint8
-arxiv_id: "2208.07339"
-title: "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale"
+arxiv_id: '2208.07339'
+title: 'LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale'
 year: 2022
-tldr_zh: |
-  揭示大模型激活中的"emergent outliers"，并提出混合精度方案。bitsandbytes 库背后的核心工作，让 175B 模型第一次能塞进 8 卡 A100。
-tldr_en: |
-  Reveals "emergent outliers" in large model activations and proposes mixed-precision solution. Core work behind bitsandbytes library, first enabling 175B models to fit in 8 A100s.
+authors:
+- Tim Dettmers
+- Mike Lewis
+- Younes Belkada
+- Luke Zettlemoyer
+tldr_zh: '揭示大模型激活中的"emergent outliers"，并提出混合精度方案。bitsandbytes 库背后的核心工作，让 175B 模型第一次能塞进 8 卡 A100。
+
+  '
+tldr_en: 'Reveals "emergent outliers" in large model activations and proposes mixed-precision solution. Core work behind bitsandbytes library, first enabling 175B models to fit in 8 A100s.
+
+  '
 tags:
-  - quantization
-  - int8
-  - outliers
+- quantization
+- int8
+- outliers
 modules:
-  - inference
+- inference
 domains:
-  - inference
+- inference

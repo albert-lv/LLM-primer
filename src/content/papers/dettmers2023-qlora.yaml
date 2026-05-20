@@ -1,16 +1,23 @@
 id: dettmers2023-qlora
-arxiv_id: "2305.14314"
-title: "QLoRA: Efficient Finetuning of Quantized LLMs"
+arxiv_id: '2305.14314'
+title: 'QLoRA: Efficient Finetuning of Quantized LLMs'
 year: 2023
-tldr_zh: |
-  4-bit NF4 + LoRA + paged optimizer，让 65B 在单张 48GB 显卡上 SFT。开源社区微调 LLaMA-2/3、Qwen 几乎 100% 用这套方案。
-tldr_en: |
-  4-bit NF4 + LoRA + paged optimizer enables SFT of 65B on single 48GB GPU. Open-source community fine-tuning of LLaMA-2/3, Qwen uses this approach almost 100%.
+authors:
+- Tim Dettmers
+- Artidoro Pagnoni
+- Ari Holtzman
+- Luke Zettlemoyer
+tldr_zh: '4-bit NF4 + LoRA + paged optimizer，让 65B 在单张 48GB 显卡上 SFT。开源社区微调 LLaMA-2/3、Qwen 几乎 100% 用这套方案。
+
+  '
+tldr_en: '4-bit NF4 + LoRA + paged optimizer enables SFT of 65B on single 48GB GPU. Open-source community fine-tuning of LLaMA-2/3, Qwen uses this approach almost 100%.
+
+  '
 tags:
-  - qlora
-  - quantization
+- qlora
+- quantization
 modules:
-  - training
+- training
 domains:
-  - alignment
-  - inference
+- alignment
+- inference

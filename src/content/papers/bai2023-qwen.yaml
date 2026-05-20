@@ -1,17 +1,68 @@
 id: bai2023-qwen
-arxiv_id: "2309.16609"
+arxiv_id: '2309.16609'
 title: Qwen Technical Report
 year: 2023
-tldr_zh: |
-  阿里通义千问首份完整技术报告，覆盖 1.8B–72B 全尺寸，并强调中英双语 + tokenizer 友好度。是中文开源 LLM 系列的代表性奠基；后续 Qwen2/2.5 是 2024-2025 开源 SOTA。
-tldr_en: |
-  Alibaba Qwen's first complete technical report, covering 1.8B-72B full range, emphasizing Chinese-English bilingual + tokenizer friendliness. Representative foundation for Chinese open-source LLM series; subsequent Qwen2/2.5 are 2024-2025 open-source SOTA.
+authors:
+- Jinze Bai
+- Shuai Bai
+- Yunfei Chu
+- Zeyu Cui
+- Kai Dang
+- Xiaodong Deng
+- Yang Fan
+- Wenbin Ge
+- Yu Han
+- Fei Huang
+- Binyuan Hui
+- Luo Ji
+- Mei Li
+- Junyang Lin
+- Runji Lin
+- Dayiheng Liu
+- Gao Liu
+- Chengqiang Lu
+- Keming Lu
+- Jianxin Ma
+- Rui Men
+- Xingzhang Ren
+- Xuancheng Ren
+- Chuanqi Tan
+- Sinan Tan
+- Jianhong Tu
+- Peng Wang
+- Shijie Wang
+- Wei Wang
+- Shengguang Wu
+- Benfeng Xu
+- Jin Xu
+- An Yang
+- Hao Yang
+- Jian Yang
+- Shusheng Yang
+- Yang Yao
+- Bowen Yu
+- Hongyi Yuan
+- Zheng Yuan
+- Jianwei Zhang
+- Xingxuan Zhang
+- Yichang Zhang
+- Zhenru Zhang
+- Chang Zhou
+- Jingren Zhou
+- Xiaohuan Zhou
+- Tianhang Zhu
+tldr_zh: '阿里通义千问首份完整技术报告，覆盖 1.8B–72B 全尺寸，并强调中英双语 + tokenizer 友好度。是中文开源 LLM 系列的代表性奠基；后续 Qwen2/2.5 是 2024-2025 开源 SOTA。
+
+  '
+tldr_en: 'Alibaba Qwen''s first complete technical report, covering 1.8B-72B full range, emphasizing Chinese-English bilingual + tokenizer friendliness. Representative foundation for Chinese open-source LLM series; subsequent Qwen2/2.5 are 2024-2025 open-source SOTA.
+
+  '
 tags:
-  - qwen
-  - bilingual
-  - open-source
+- qwen
+- bilingual
+- open-source
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - pretraining
+- pretraining

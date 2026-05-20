@@ -1,16 +1,69 @@
 id: liang2022-helm
-arxiv_id: "2211.09110"
+arxiv_id: '2211.09110'
 title: Holistic Evaluation of Language Models
 year: 2022
-tldr_zh: |
-  Stanford CRFM 系统化评测 30+ LLM × 多维度指标（准确性、鲁棒性、公平性、效率…），把"评测科学"立起来。是反"只看平均分"的代表性工作。
-tldr_en: |
-  Stanford CRFM systematically evaluates 30+ LLMs × multidimensional metrics (accuracy, robustness, fairness, efficiency...), establishing "evaluation science". Representative work against "only looking at average scores".
+authors:
+- Percy Liang
+- Rishi Bommasani
+- Tony Lee
+- Dimitris Tsipras
+- Dilara Soylu
+- Michihiro Yasunaga
+- Yian Zhang
+- Deepak Narayanan
+- Yuhuai Wu
+- Ananya Kumar
+- Benjamin Newman
+- Binhang Yuan
+- Bobby Yan
+- Ce Zhang
+- Christian Cosgrove
+- Christopher D. Manning
+- Christopher Ré
+- Diana Acosta-Navas
+- Drew A. Hudson
+- Eric Zelikman
+- Esin Durmus
+- Faisal Ladhak
+- Frieda Rong
+- Hongyu Ren
+- Huaxiu Yao
+- Jue Wang
+- Keshav Santhanam
+- Laurel Orr
+- Lucia Zheng
+- Mert Yuksekgonul
+- Mirac Suzgun
+- Nathan Kim
+- Neel Guha
+- Niladri Chatterji
+- Omar Khattab
+- Peter Henderson
+- Qian Huang
+- Ryan Chi
+- Sang Michael Xie
+- Shibani Santurkar
+- Surya Ganguli
+- Tatsunori Hashimoto
+- Thomas Icard
+- Tianyi Zhang
+- Vishrav Chaudhary
+- William Wang
+- Xuechen Li
+- Yifan Mai
+- Yuhui Zhang
+- Yuta Koreeda
+tldr_zh: 'Stanford CRFM 系统化评测 30+ LLM × 多维度指标（准确性、鲁棒性、公平性、效率…），把"评测科学"立起来。是反"只看平均分"的代表性工作。
+
+  '
+tldr_en: 'Stanford CRFM systematically evaluates 30+ LLMs × multidimensional metrics (accuracy, robustness, fairness, efficiency...), establishing "evaluation science". Representative work against "only looking at average scores".
+
+  '
 tags:
-  - helm
-  - evaluation
-  - benchmark
+- helm
+- evaluation
+- benchmark
 modules:
-  - applications
+- applications
 domains:
-  - evaluation
+- evaluation

@@ -1,16 +1,22 @@
 id: luong2015-attention
-arxiv_id: "1508.04025"
+arxiv_id: '1508.04025'
 title: Effective Approaches to Attention-based Neural Machine Translation
 year: 2015
-tldr_zh: |
-  系统化地比较 global vs local attention、不同打分函数（dot / general / concat），是后人讲 "attention score 是怎么算的" 时最常引用的工程化版本。
-tldr_en: |
-  Systematically compares global vs local attention and different scoring functions (dot/general/concat). The most commonly cited engineering reference when explaining "how attention scores are computed".
+authors:
+- Minh-Thang Luong
+- Hieu Pham
+- Christopher D. Manning
+tldr_zh: '系统化地比较 global vs local attention、不同打分函数（dot / general / concat），是后人讲 "attention score 是怎么算的" 时最常引用的工程化版本。
+
+  '
+tldr_en: 'Systematically compares global vs local attention and different scoring functions (dot/general/concat). The most commonly cited engineering reference when explaining "how attention scores are computed".
+
+  '
 tags:
-  - attention
-  - seq2seq
-  - nmt
+- attention
+- seq2seq
+- nmt
 modules:
-  - foundations
+- foundations
 domains:
-  - architecture
+- architecture

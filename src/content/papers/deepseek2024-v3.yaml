@@ -1,16 +1,20 @@
 id: deepseek2024-v3
-arxiv_id: "2412.19437"
+arxiv_id: '2412.19437'
 title: DeepSeek-V3 Technical Report
 year: 2024
-tldr_zh: |
-  671B 参数（37B 激活）MoE，14.8T token 训练；首次大规模在生产 LLM 上跑通 FP8 训练 + Multi-Token Prediction，并把训练成本压到 $5.6M。震动整个行业。
-tldr_en: |
-  671B parameters (37B activated) MoE, 14.8T token training; first large-scale production LLM to run FP8 training + Multi-Token Prediction, compressing training cost to $5.6M. Shook entire industry.
+authors:
+- DeepSeek-AI
+tldr_zh: '671B 参数（37B 激活）MoE，14.8T token 训练；首次大规模在生产 LLM 上跑通 FP8 训练 + Multi-Token Prediction，并把训练成本压到 $5.6M。震动整个行业。
+
+  '
+tldr_en: '671B parameters (37B activated) MoE, 14.8T token training; first large-scale production LLM to run FP8 training + Multi-Token Prediction, compressing training cost to $5.6M. Shook entire industry.
+
+  '
 tags:
-  - moe
-  - fp8
+- moe
+- fp8
 modules:
-  - training
+- training
 domains:
-  - architecture
-  - moe
+- architecture
+- moe

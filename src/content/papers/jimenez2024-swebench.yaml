@@ -1,16 +1,26 @@
 id: jimenez2024-swebench
-arxiv_id: "2310.06770"
-title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+arxiv_id: '2310.06770'
+title: 'SWE-bench: Can Language Models Resolve Real-World GitHub Issues?'
 year: 2024
-tldr_zh: |
-  用 12 个真实 Python 仓库 2294 个 issue 评测代码模型"端到端解决 bug"的能力。一夜成为 coding agent 行业标准评测，几乎每篇 coding agent 论文都报 SWE-bench 分数。
-tldr_en: |
-  Uses 12 real Python repos with 2294 issues to evaluate code models' "end-to-end bug solving" capability. Overnight became coding agent industry standard benchmark; almost every coding agent paper reports SWE-bench scores.
+authors:
+- Carlos E. Jimenez
+- John Yang
+- Alexander Wettig
+- Shunyu Yao
+- Kexin Pei
+- Ofir Press
+- Karthik Narasimhan
+tldr_zh: '用 12 个真实 Python 仓库 2294 个 issue 评测代码模型"端到端解决 bug"的能力。一夜成为 coding agent 行业标准评测，几乎每篇 coding agent 论文都报 SWE-bench 分数。
+
+  '
+tldr_en: 'Uses 12 real Python repos with 2294 issues to evaluate code models'' "end-to-end bug solving" capability. Overnight became coding agent industry standard benchmark; almost every coding agent paper reports SWE-bench scores.
+
+  '
 tags:
-  - coding-agent
-  - evaluation
+- coding-agent
+- evaluation
 modules:
-  - applications
+- applications
 domains:
-  - evaluation
-  - applications
+- evaluation
+- applications

@@ -1,15 +1,19 @@
 id: dao2023-flashattention2
-arxiv_id: "2307.08691"
-title: "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning"
+arxiv_id: '2307.08691'
+title: 'FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning'
 year: 2023
-tldr_zh: |
-  用更激进的 warp 级并行和 work partition 把 FlashAttention 再翻倍。今天 vLLM / SGLang / Megatron 训练后端基本都升级到 FA-2。
-tldr_en: |
-  Uses more aggressive warp-level parallelism and work partitioning to double FlashAttention performance. Today vLLM/SGLang/Megatron training backends have all upgraded to FA-2.
+authors:
+- Tri Dao
+tldr_zh: '用更激进的 warp 级并行和 work partition 把 FlashAttention 再翻倍。今天 vLLM / SGLang / Megatron 训练后端基本都升级到 FA-2。
+
+  '
+tldr_en: 'Uses more aggressive warp-level parallelism and work partitioning to double FlashAttention performance. Today vLLM/SGLang/Megatron training backends have all upgraded to FA-2.
+
+  '
 tags:
-  - flashattention
-  - cuda-optimization
+- flashattention
+- cuda-optimization
 modules:
-  - inference
+- inference
 domains:
-  - inference
+- inference

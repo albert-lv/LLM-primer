@@ -1,16 +1,47 @@
 id: borgeaud2022-retro
-arxiv_id: "2112.04426"
+arxiv_id: '2112.04426'
 title: Improving language models by retrieving from trillions of tokens
 year: 2022
-tldr_zh: |
-  DeepMind 在预训练阶段就引入 chunked retrieval，让 7B 模型匹敌 175B GPT-3。证明检索不只是 RAG 推理时招式，也是预训练范式的另一种可能。
-tldr_en: |
-  DeepMind introduces chunked retrieval during pre-training, making 7B model match 175B GPT-3. Proves retrieval isn't just RAG inference trick, but another possible pre-training paradigm.
+authors:
+- Sebastian Borgeaud
+- Arthur Mensch
+- Jordan Hoffmann
+- Trevor Cai
+- Eliza Rutherford
+- Katie Millican
+- George van den Driessche
+- Jean-Baptiste Lespiau
+- Bogdan Damoc
+- Aidan Clark
+- Diego de Las Casas
+- Aurelia Guy
+- Jacob Menick
+- Roman Ring
+- Tom Hennigan
+- Saffron Huang
+- Loren Maggiore
+- Chris Jones
+- Albin Cassirer
+- Andy Brock
+- Michela Paganini
+- Geoffrey Irving
+- Oriol Vinyals
+- Simon Osindero
+- Karen Simonyan
+- Jack W. Rae
+- Erich Elsen
+- Laurent Sifre
+tldr_zh: 'DeepMind 在预训练阶段就引入 chunked retrieval，让 7B 模型匹敌 175B GPT-3。证明检索不只是 RAG 推理时招式，也是预训练范式的另一种可能。
+
+  '
+tldr_en: 'DeepMind introduces chunked retrieval during pre-training, making 7B model match 175B GPT-3. Proves retrieval isn''t just RAG inference trick, but another possible pre-training paradigm.
+
+  '
 tags:
-  - retrieval
-  - pre-training
-  - rag
+- retrieval
+- pre-training
+- rag
 modules:
-  - applications
+- applications
 domains:
-  - applications
+- applications

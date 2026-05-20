@@ -1,16 +1,30 @@
 id: zhou2022-least-to-most
-arxiv_id: "2205.10625"
+arxiv_id: '2205.10625'
 title: Least-to-Most Prompting Enables Complex Reasoning in Large Language Models
 year: 2022
-tldr_zh: |
-  "先把难题拆成易题，再依次解决"是另一条与 CoT 平行的推理范式，对组合泛化任务尤其有效。和 CoT/ToT 一起构成"如何引导大模型分步思考"的三件套。
-tldr_en: |
-  "Break hard problems into easy ones, solve sequentially" is another reasoning paradigm parallel to CoT, especially effective for compositional generalization. Together with CoT/ToT forms the trio of "how to guide LLM step-by-step thinking".
+authors:
+- Denny Zhou
+- Nathanael Schärli
+- Le Hou
+- Jason Wei
+- Nathan Scales
+- Xuezhi Wang
+- Dale Schuurmans
+- Claire Cui
+- Olivier Bousquet
+- Quoc Le
+- Ed Chi
+tldr_zh: '"先把难题拆成易题，再依次解决"是另一条与 CoT 平行的推理范式，对组合泛化任务尤其有效。和 CoT/ToT 一起构成"如何引导大模型分步思考"的三件套。
+
+  '
+tldr_en: '"Break hard problems into easy ones, solve sequentially" is another reasoning paradigm parallel to CoT, especially effective for compositional generalization. Together with CoT/ToT forms the trio of "how to guide LLM step-by-step thinking".
+
+  '
 tags:
-  - least-to-most
-  - prompting
-  - reasoning
+- least-to-most
+- prompting
+- reasoning
 modules:
-  - applications
+- applications
 domains:
-  - reasoning
+- reasoning

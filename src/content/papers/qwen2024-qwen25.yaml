@@ -1,16 +1,63 @@
 id: qwen2024-qwen25
-arxiv_id: "2412.15115"
+arxiv_id: '2412.15115'
 title: Qwen2.5 Technical Report
 year: 2024
-tldr_zh: |
-  18T token 预训练，0.5B–72B 全家桶 + 专业 Coder/Math 子家族；是 2024-2025 最稳定的开源中英 LLM 之一。Hugging Face 下载/微调量长期 Top。
-tldr_en: |
-  18T token pre-training, 0.5B-72B full suite + specialized Coder/Math sub-families; one of most stable open-source Chinese-English LLMs of 2024-2025. Long-term top in Hugging Face downloads/fine-tuning.
+authors:
+- Qwen
+- ':'
+- An Yang
+- Baosong Yang
+- Beichen Zhang
+- Binyuan Hui
+- Bo Zheng
+- Bowen Yu
+- Chengyuan Li
+- Dayiheng Liu
+- Fei Huang
+- Haoran Wei
+- Huan Lin
+- Jian Yang
+- Jianhong Tu
+- Jianwei Zhang
+- Jianxin Yang
+- Jiaxi Yang
+- Jingren Zhou
+- Junyang Lin
+- Kai Dang
+- Keming Lu
+- Keqin Bao
+- Kexin Yang
+- Le Yu
+- Mei Li
+- Mingfeng Xue
+- Pei Zhang
+- Qin Zhu
+- Rui Men
+- Runji Lin
+- Tianhao Li
+- Tianyi Tang
+- Tingyu Xia
+- Xingzhang Ren
+- Xuancheng Ren
+- Yang Fan
+- Yang Su
+- Yichang Zhang
+- Yu Wan
+- Yuqiong Liu
+- Zeyu Cui
+- Zhenru Zhang
+- Zihan Qiu
+tldr_zh: '18T token 预训练，0.5B–72B 全家桶 + 专业 Coder/Math 子家族；是 2024-2025 最稳定的开源中英 LLM 之一。Hugging Face 下载/微调量长期 Top。
+
+  '
+tldr_en: '18T token pre-training, 0.5B-72B full suite + specialized Coder/Math sub-families; one of most stable open-source Chinese-English LLMs of 2024-2025. Long-term top in Hugging Face downloads/fine-tuning.
+
+  '
 tags:
-  - open-source
-  - bilingual
+- open-source
+- bilingual
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - pretraining
+- pretraining

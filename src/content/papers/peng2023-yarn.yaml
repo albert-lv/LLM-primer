@@ -1,15 +1,22 @@
 id: peng2023-yarn
-arxiv_id: "2309.00071"
-title: "YaRN: Efficient Context Window Extension of Large Language Models"
+arxiv_id: '2309.00071'
+title: 'YaRN: Efficient Context Window Extension of Large Language Models'
 year: 2023
-tldr_zh: |
-  在 RoPE 上做 NTK-aware 插值 + 温度修正，少量训练即可把上下文扩到 64K-128K。当下大多数开源模型扩长基本走 YaRN 或其变体。
-tldr_en: |
-  Applies NTK-aware interpolation + temperature correction on RoPE, extending context to 64K-128K with minimal training. Most open-source models today use YaRN or variants for length extension.
+authors:
+- Bowen Peng
+- Jeffrey Quesnelle
+- Honglu Fan
+- Enrico Shippole
+tldr_zh: '在 RoPE 上做 NTK-aware 插值 + 温度修正，少量训练即可把上下文扩到 64K-128K。当下大多数开源模型扩长基本走 YaRN 或其变体。
+
+  '
+tldr_en: 'Applies NTK-aware interpolation + temperature correction on RoPE, extending context to 64K-128K with minimal training. Most open-source models today use YaRN or variants for length extension.
+
+  '
 tags:
-  - long-context
-  - rope
+- long-context
+- rope
 modules:
-  - training
+- training
 domains:
-  - long-context
+- long-context

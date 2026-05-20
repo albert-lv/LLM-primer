@@ -1,15 +1,28 @@
 id: lin2023-awq
-arxiv_id: "2306.00978"
-title: "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration"
+arxiv_id: '2306.00978'
+title: 'AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration'
 year: 2023
-tldr_zh: |
-  发现"少数关键权重对应大激活"，按重要性做 per-channel scaling。在 4-bit 上比 GPTQ 更鲁棒、推理更快，是当下 INT4 部署的主流方案之一。
-tldr_en: |
-  Discovers "few critical weights correspond to large activations", applies per-channel scaling by importance. More robust and faster than GPTQ at 4-bit, one of mainstream INT4 deployment solutions today.
+authors:
+- Ji Lin
+- Jiaming Tang
+- Haotian Tang
+- Shang Yang
+- Wei-Ming Chen
+- Wei-Chen Wang
+- Guangxuan Xiao
+- Xingyu Dang
+- Chuang Gan
+- Song Han
+tldr_zh: '发现"少数关键权重对应大激活"，按重要性做 per-channel scaling。在 4-bit 上比 GPTQ 更鲁棒、推理更快，是当下 INT4 部署的主流方案之一。
+
+  '
+tldr_en: 'Discovers "few critical weights correspond to large activations", applies per-channel scaling by importance. More robust and faster than GPTQ at 4-bit, one of mainstream INT4 deployment solutions today.
+
+  '
 tags:
-  - quantization
-  - awq
+- quantization
+- awq
 modules:
-  - inference
+- inference
 domains:
-  - inference
+- inference

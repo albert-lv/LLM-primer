@@ -1,17 +1,38 @@
 id: zeng2022-glm130b
-arxiv_id: "2210.02414"
-title: "GLM-130B: An Open Bilingual Pre-trained Model"
+arxiv_id: '2210.02414'
+title: 'GLM-130B: An Open Bilingual Pre-trained Model'
 year: 2022
-tldr_zh: |
-  清华+智谱开放的中英双语 130B 模型，是中国大模型工业化最早的代表性技术报告。后续 ChatGLM-6B/9B 把开源中文对话推到普及量级。
-tldr_en: |
-  Tsinghua + Zhipu's open Chinese-English bilingual 130B model, earliest representative technical report of Chinese LLM industrialization. Subsequent ChatGLM-6B/9B pushed open-source Chinese dialogue to mass adoption.
+authors:
+- Aohan Zeng
+- Xiao Liu
+- Zhengxiao Du
+- Zihan Wang
+- Hanyu Lai
+- Ming Ding
+- Zhuoyi Yang
+- Yifan Xu
+- Wendi Zheng
+- Xiao Xia
+- Weng Lam Tam
+- Zixuan Ma
+- Yufei Xue
+- Jidong Zhai
+- Wenguang Chen
+- Peng Zhang
+- Yuxiao Dong
+- Jie Tang
+tldr_zh: '清华+智谱开放的中英双语 130B 模型，是中国大模型工业化最早的代表性技术报告。后续 ChatGLM-6B/9B 把开源中文对话推到普及量级。
+
+  '
+tldr_en: 'Tsinghua + Zhipu''s open Chinese-English bilingual 130B model, earliest representative technical report of Chinese LLM industrialization. Subsequent ChatGLM-6B/9B pushed open-source Chinese dialogue to mass adoption.
+
+  '
 tags:
-  - glm
-  - bilingual
-  - open-source
+- glm
+- bilingual
+- open-source
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - architecture
+- architecture

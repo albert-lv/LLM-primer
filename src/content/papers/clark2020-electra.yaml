@@ -1,17 +1,24 @@
 id: clark2020-electra
-arxiv_id: "2003.10555"
-title: "ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators"
+arxiv_id: '2003.10555'
+title: 'ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators'
 year: 2020
-tldr_zh: |
-  用 replaced token detection 替代 MLM，让小模型也能拿到 BERT-large 级表现。是"预训练目标决定样本效率"这条线索的代表作。
-tldr_en: |
-  Uses replaced token detection instead of MLM, allowing small models to achieve BERT-large level performance. Representative work on "pre-training objective determines sample efficiency".
+authors:
+- Kevin Clark
+- Minh-Thang Luong
+- Quoc V. Le
+- Christopher D. Manning
+tldr_zh: '用 replaced token detection 替代 MLM，让小模型也能拿到 BERT-large 级表现。是"预训练目标决定样本效率"这条线索的代表作。
+
+  '
+tldr_en: 'Uses replaced token detection instead of MLM, allowing small models to achieve BERT-large level performance. Representative work on "pre-training objective determines sample efficiency".
+
+  '
 tags:
-  - electra
-  - sample-efficiency
-  - pre-training
+- electra
+- sample-efficiency
+- pre-training
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - pretraining
+- pretraining
