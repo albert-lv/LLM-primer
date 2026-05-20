@@ -1,11 +1,11 @@
 id: yang2024-sweagent
 arxiv_id: "2405.15793"
-tldr_zh: >
-  提出 ACI（Agent-Computer Interface）概念，强调"agent 用什么工具/界面 ≥ 用什么模型"。把 GPT-4 + 良好 ACI 在 SWE-bench 提升 6 倍，奠定 coding agent
-  工程方法论。
-tldr_en: >
-  Proposes ACI (Agent-Computer Interface) concept, emphasizing "what tools/interface agent uses ≥ what model used".
-  GPT-4 + good ACI improves SWE-bench 6x, establishing coding agent engineering methodology.
+title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+year: 2024
+tldr_zh: |
+  提出 ACI（Agent-Computer Interface）概念，强调"agent 用什么工具/界面 ≥ 用什么模型"。把 GPT-4 + 良好 ACI 在 SWE-bench 提升 6 倍，奠定 coding agent 工程方法论。
+tldr_en: |
+  Proposes ACI (Agent-Computer Interface) concept, emphasizing "what tools/interface agent uses ≥ what model used". GPT-4 + good ACI improves SWE-bench 6x, establishing coding agent engineering methodology.
 tags:
   - swe-agent
   - coding-agent

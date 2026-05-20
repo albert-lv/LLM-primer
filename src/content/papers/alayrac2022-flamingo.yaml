@@ -1,10 +1,11 @@
 id: alayrac2022-flamingo
 arxiv_id: "2204.14198"
+title: "Flamingo: a Visual Language Model for Few-Shot Learning"
+year: 2022
 tldr_zh: |
   用 Perceiver Resampler 把图像特征接到冻结的 LLM 上做 few-shot 视觉问答。是"插件式多模态"主流路线（LLaVA、IDEFICS 等）的鼻祖。
-tldr_en: >
-  Uses Perceiver Resampler to connect image features to frozen LLM for few-shot visual QA. Ancestor of mainstream
-  "plug-in multimodal" approach (LLaVA, IDEFICS, etc.).
+tldr_en: |
+  Uses Perceiver Resampler to connect image features to frozen LLM for few-shot visual QA. Ancestor of mainstream "plug-in multimodal" approach (LLaVA, IDEFICS, etc.).
 tags:
   - flamingo
   - multimodal

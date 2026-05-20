@@ -1,10 +1,11 @@
 id: abdin2024-phi3
 arxiv_id: "2404.14219"
+title: "Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone"
+year: 2024
 tldr_zh: |
   3.8B Phi-3-mini 在多个评测上接近 GPT-3.5；继续印证"高质量合成 + 课程数据"的 Phi 配方。是端侧/本地大模型的代表工作。
-tldr_en: >
-  3.8B Phi-3-mini approaches GPT-3.5 on multiple benchmarks; continues to validate "high-quality synthesis + curriculum
-  data" Phi recipe. Representative work for edge/local large models.
+tldr_en: |
+  3.8B Phi-3-mini approaches GPT-3.5 on multiple benchmarks; continues to validate "high-quality synthesis + curriculum data" Phi recipe. Representative work for edge/local large models.
 tags:
   - edge-models
   - data-quality

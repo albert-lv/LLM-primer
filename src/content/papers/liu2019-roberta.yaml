@@ -1,10 +1,11 @@
 id: liu2019-roberta
 arxiv_id: "1907.11692"
+title: "RoBERTa: A Robustly Optimized BERT Pretraining Approach"
+year: 2019
 tldr_zh: |
   用更多数据、更长训练、去掉 NSP，证明 BERT 远未训练充分。重要意义不只是更强的模型，而是首次清晰展示"训练配方"本身就是核心研究问题。
-tldr_en: >
-  Uses more data, longer training, removes NSP to prove BERT was far from fully trained. Important not just for stronger
-  model, but for first clearly demonstrating that "training recipe" itself is a core research question.
+tldr_en: |
+  Uses more data, longer training, removes NSP to prove BERT was far from fully trained. Important not just for stronger model, but for first clearly demonstrating that "training recipe" itself is a core research question.
 tags:
   - bert
   - training-recipe

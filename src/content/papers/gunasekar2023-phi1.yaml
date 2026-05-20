@@ -1,10 +1,11 @@
 id: gunasekar2023-phi1
 arxiv_id: "2306.11644"
+title: Textbooks Are All You Need
+year: 2023
 tldr_zh: |
   微软用 7B token 高质量"教科书级"合成数据训出 1.3B 在 HumanEval 上接近 GPT-3.5。把"数据质量 >> 数据规模"的故事讲到极致，开启 Phi 系列。
-tldr_en: >
-  Microsoft uses 7B tokens of high-quality "textbook-level" synthetic data to train 1.3B model approaching GPT-3.5 on
-  HumanEval. Takes "data quality >> data scale" story to extreme, launching Phi series.
+tldr_en: |
+  Microsoft uses 7B tokens of high-quality "textbook-level" synthetic data to train 1.3B model approaching GPT-3.5 on HumanEval. Takes "data quality >> data scale" story to extreme, launching Phi series.
 tags:
   - phi
   - synthetic-data

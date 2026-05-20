@@ -1,11 +1,11 @@
 id: howard2018-ulmfit
 arxiv_id: "1801.06146"
+title: Universal Language Model Fine-tuning for Text Classification
+year: 2018
 tldr_zh: |
   第一篇明确提出"通用语言模型预训练 → 任务微调"流水线，并给出 discriminative LR、slanted triangular schedule 等关键 trick。和 ELMo 一起是 "BERT 之前最后一公里"。
-tldr_en: >
-  First paper to explicitly propose the "universal language model pre-training → task fine-tuning" pipeline, with key
-  tricks like discriminative LR and slanted triangular schedule. Together with ELMo, represents "the last mile before
-  BERT".
+tldr_en: |
+  First paper to explicitly propose the "universal language model pre-training → task fine-tuning" pipeline, with key tricks like discriminative LR and slanted triangular schedule. Together with ELMo, represents "the last mile before BERT".
 tags:
   - transfer-learning
   - language-model

@@ -1,10 +1,11 @@
 id: shah2024-flashattention3
 arxiv_id: "2407.08608"
+title: "FlashAttention-3: Fast and Accurate Attention with Asympotic IO Complexity"
+year: 2024
 tldr_zh: |
   利用 H100 的异步 TMA 与 FP8，把 attention 推到 1.2 PFLOPs，并保持数值精度。是 Hopper 架构上长上下文 + FP8 训练的关键依赖。
-tldr_en: >
-  Leverages H100's async TMA and FP8 to push attention to 1.2 PFLOPs while maintaining numerical precision. Key
-  dependency for long-context + FP8 training on Hopper architecture.
+tldr_en: |
+  Leverages H100's async TMA and FP8 to push attention to 1.2 PFLOPs while maintaining numerical precision. Key dependency for long-context + FP8 training on Hopper architecture.
 tags:
   - flashattention
   - fp8

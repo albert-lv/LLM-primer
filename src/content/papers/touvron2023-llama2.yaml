@@ -1,10 +1,11 @@
 id: touvron2023-llama2
 arxiv_id: "2307.09288"
+title: "Llama 2: Open Foundation and Fine-Tuned Chat Models"
+year: 2023
 tldr_zh: |
   第一个商用许可的高质量开源 chat 模型，并公开了 RLHF 配方（PPO + GAtt）。直接把开源生态推进到"接近 ChatGPT 体验"的阶段。
-tldr_en: >
-  First commercially licensed high-quality open-source chat model, publicly shares RLHF recipe (PPO + GAtt). Directly
-  advances open-source ecosystem to "near ChatGPT experience" stage.
+tldr_en: |
+  First commercially licensed high-quality open-source chat model, publicly shares RLHF recipe (PPO + GAtt). Directly advances open-source ecosystem to "near ChatGPT experience" stage.
 tags:
   - rlhf
   - open-source

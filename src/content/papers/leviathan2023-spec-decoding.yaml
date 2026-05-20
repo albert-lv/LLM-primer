@@ -1,10 +1,11 @@
 id: leviathan2023-spec-decoding
 arxiv_id: "2211.17192"
+title: Fast Inference from Transformers via Speculative Decoding
+year: 2023
 tldr_zh: |
   用一个小 draft model 预测多个 token，再让大模型一次校验，几乎无损地获得 2-3x 加速。是当下所有推理引擎（vLLM、TensorRT-LLM）的标配技术之一。
-tldr_en: >
-  Uses small draft model to predict multiple tokens, large model verifies in one pass, achieving nearly lossless 2-3x
-  speedup. Standard technique in all inference engines (vLLM, TensorRT-LLM) today.
+tldr_en: |
+  Uses small draft model to predict multiple tokens, large model verifies in one pass, achieving nearly lossless 2-3x speedup. Standard technique in all inference engines (vLLM, TensorRT-LLM) today.
 tags:
   - speculative-decoding
   - speedup

@@ -1,10 +1,11 @@
 id: stiennon2020-summarize
 arxiv_id: "2009.01325"
+title: Learning to summarize from human feedback
+year: 2020
 tldr_zh: |
   OpenAI 把 RLHF 第一次用到大型语言模型（摘要），证明 RLHF 比 SFT/MLE 在人类偏好上系统性更好。是 InstructGPT 的直接前身。
-tldr_en: >
-  OpenAI's first application of RLHF to large language models (summarization), proving RLHF systematically better than
-  SFT/MLE on human preferences. Direct predecessor to InstructGPT.
+tldr_en: |
+  OpenAI's first application of RLHF to large language models (summarization), proving RLHF systematically better than SFT/MLE on human preferences. Direct predecessor to InstructGPT.
 tags:
   - rlhf
   - summarization
