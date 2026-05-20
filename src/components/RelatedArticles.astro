@@ -31,12 +31,25 @@ for (const relatedSlug of related) {
 // 2. If less than 4, fill with same-module articles
 if (relatedArticles.length < 4 && currentModule) {
   const sameModuleDocs = allDocs
-    .filter(d => d.data.module === currentModule && d.id !== currentSlug && !d.id.endsWith('/index'))
+    .filter(d => {
+      const idNorm = d.id.replace(/^en\//, '').replace(/\.mdx?$/, '');
+      const slugNorm = currentSlug
+        .replace(/^en\//, '').replace(/^\//, '').replace(/\/$/, '');
+      return d.data.module === currentModule
+        && idNorm !== slugNorm
+        && idNorm !== 'index'
+        && !idNorm.endsWith('/index');
+    })
     .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 
   for (const doc of sameModuleDocs) {
     if (relatedArticles.length >= 4) break;
-    if (!relatedArticles.find(r => r.id === doc.id)) {
+    // Also normalize IDs when checking for duplicates
+    const docIdNorm = doc.id.replace(/^en\//, '').replace(/\.mdx?$/, '');
+    if (!relatedArticles.find(r => {
+      const rIdNorm = r.id.replace(/^en\//, '').replace(/\.mdx?$/, '');
+      return rIdNorm === docIdNorm;
+    })) {
       relatedArticles.push(doc);
     }
   }
