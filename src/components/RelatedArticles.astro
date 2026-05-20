@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+
+const { related = [], currentSlug } = Astro.props as { related?: string[]; currentSlug: string };
+const isEn = Astro.currentLocale === 'en';
+
+// Extract current module from slug
+const currentModule = currentSlug.split('/').find(p => ['foundations', 'training', 'inference', 'applications'].includes(p));
+
+// Get all docs for related articles
+const allDocs = await getCollection('docs', ({ data, id }) => {
+  if (data.status !== 'published') return false;
+  return isEn ? id.startsWith('en/') : !id.startsWith('en/');
+});
+
+// Build related articles list
+let relatedArticles = [];
+
+// 1. Add explicitly related articles
+for (const relatedSlug of related) {
+  const article = allDocs.find(d => {
+    const normalizedId = d.id.replace(/^en\//, '').replace(/\.mdx$/, '');
+    const normalizedSlug = relatedSlug.replace(/^en\//, '').replace(/^\//, '').replace(/\/$/, '');
+    return normalizedId === normalizedSlug;
+  });
+  if (article) {
+    relatedArticles.push(article);
+  }
+}
+
+// 2. If less than 4, fill with same-module articles
+if (relatedArticles.length < 4 && currentModule) {
+  const sameModuleDocs = allDocs
+    .filter(d => d.data.module === currentModule && d.id !== currentSlug && !d.id.endsWith('/index'))
+    .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+  for (const doc of sameModuleDocs) {
+    if (relatedArticles.length >= 4) break;
+    if (!relatedArticles.find(r => r.id === doc.id)) {
+      relatedArticles.push(doc);
+    }
+  }
+}
+
+// Limit to 4 articles
+relatedArticles = relatedArticles.slice(0, 4);
+
+function href(id: string) {
+  const path = id.replace(/^en\//, '').replace(/\.mdx$/, '');
+  return isEn ? `/en/${path}/` : `/${path}/`;
+}
+
+if (relatedArticles.length === 0) {
+  return null;
+}
+---
+
+<div class="related-articles">
+  <h2>{isEn ? 'Related Reading' : '相关阅读'}</h2>
+  <div class="related-grid">
+    {relatedArticles.map((article) => (
+      <a href={href(article.id)} class="related-card">
+        <h3>{article.data.title}</h3>
+        <p>{article.data.description}</p>
+        {article.data.tiers && article.data.tiers.length > 0 && (
+          <div class="tier-tags">
+            {article.data.tiers.includes('intro') && <span class="tier-tag intro">{isEn ? 'Intro' : '直觉'}</span>}
+            {article.data.tiers.includes('engineer') && <span class="tier-tag engineer">{isEn ? 'Engineer' : '工程'}</span>}
+            {article.data.tiers.includes('research') && <span class="tier-tag research">{isEn ? 'Research' : '研究'}</span>}
+          </div>
+        )}
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .related-articles {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .related-articles h2 {
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+  }
+
+  .related-card {
+    padding: 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .related-card:hover {
+    border-color: var(--sl-color-text-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .related-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .related-card p {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-2);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .tier-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tier-tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.7rem;
+    border-radius: 0.35rem;
+    font-weight: 500;
+  }
+
+  .tier-tag.intro {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+
+  .tier-tag.engineer {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  .tier-tag.research {
+    background: #fef3c7;
+    color: #a16207;
+  }
+</style>
