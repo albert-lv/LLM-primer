@@ -1,0 +1,143 @@
+---
+const { questions } = Astro.props as {
+  questions: Array<{ q: string; papers?: string[]; external?: string }>;
+};
+
+const isEn = Astro.currentLocale === 'en';
+---
+
+<div class="open-questions">
+  <h3>{isEn ? '🔬 Open Research Questions' : '🔬 开放研究问题'}</h3>
+  <p class="intro">
+    {isEn
+      ? 'Key questions and research directions in this area:'
+      : '该领域的关键问题与研究方向：'}
+  </p>
+  <ol class="question-list">
+    {questions.map((item) => (
+      <li class="question-item">
+        <div class="question-text">{item.q}</div>
+        {item.papers && item.papers.length > 0 && (
+          <div class="related-papers">
+            <span class="label">{isEn ? 'Related:' : '相关论文：'}</span>
+            {item.papers.map((paperId, idx) => (
+              <span>
+                {idx > 0 && ', '}
+                <a href={isEn ? `/en/papers/${paperId}/` : `/papers/${paperId}/`} class="paper-link">
+                  {paperId.split('-').slice(0, 2).join(' ')}
+                </a>
+              </span>
+            ))}
+          </div>
+        )}
+        {item.external && (
+          <div class="external-link">
+            <a href={item.external} target="_blank" rel="noopener" class="ext-link">
+              {isEn ? '📄 Related survey/review' : '📄 相关综述文章'}
+            </a>
+          </div>
+        )}
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .open-questions {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--sl-color-bg-sidebar);
+    border-left: 4px solid var(--sl-color-orange);
+    border-radius: 0.5rem;
+  }
+
+  .open-questions h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    color: var(--sl-color-text);
+  }
+
+  .intro {
+    margin: 0 0 1rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+  }
+
+  .question-list {
+    list-style: none;
+    counter-reset: question;
+    padding: 0;
+    margin: 0;
+  }
+
+  .question-item {
+    counter-increment: question;
+    margin-bottom: 1.25rem;
+    padding-left: 2rem;
+    position: relative;
+  }
+
+  .question-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .question-item::before {
+    content: counter(question);
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sl-color-orange);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .question-text {
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    color: var(--sl-color-text);
+  }
+
+  .related-papers {
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-2);
+    margin-top: 0.5rem;
+  }
+
+  .label {
+    font-weight: 500;
+    color: var(--sl-color-gray-1);
+  }
+
+  .paper-link {
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 0.85rem;
+  }
+
+  .paper-link:hover {
+    text-decoration: underline;
+  }
+
+  .external-link {
+    margin-top: 0.5rem;
+  }
+
+  .ext-link {
+    font-size: 0.85rem;
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+  }
+
+  .ext-link:hover {
+    text-decoration: underline;
+  }
+</style>
