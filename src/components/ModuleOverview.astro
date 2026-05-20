@@ -1,0 +1,263 @@
+---
+import { getCollection } from 'astro:content';
+
+const { module } = Astro.props as { module: 'foundations' | 'training' | 'inference' | 'applications' };
+const isEn = Astro.currentLocale === 'en';
+
+const docs = await getCollection('docs', ({ data, id }) => {
+  if (data.status !== 'published' || data.module !== module) return false;
+  return isEn ? id.startsWith('en/') : !id.startsWith('en/');
+});
+
+const articles = docs
+  .filter((d) => !d.id.endsWith('/index'))
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+function href(id: string) {
+  return isEn ? `/en/${id.replace(/^en\//, '')}/` : `/${id}/`;
+}
+
+const moduleNames = {
+  foundations: { zh: '基础', en: 'Foundations', icon: '🧠', desc_zh: '理解 LLM 必备的核心概念', desc_en: 'Essential concepts for understanding LLMs' },
+  training: { zh: '训练', en: 'Training', icon: '⚡', desc_zh: '从预训练到对齐的完整流程', desc_en: 'From pretraining to alignment' },
+  inference: { zh: '推理', en: 'Inference', icon: '🚀', desc_zh: '高效推理与优化技术', desc_en: 'Efficient inference and optimization' },
+  applications: { zh: '应用', en: 'Applications', icon: '🎯', desc_zh: 'RAG、Agent 与实际应用场景', desc_en: 'RAG, Agents, and real-world applications' }
+};
+
+const info = moduleNames[module];
+const title = isEn ? info.en : info.zh;
+const desc = isEn ? info.desc_en : info.desc_zh;
+const readingTime = articles.length * 8;
+
+// Count papers
+let totalPapers = 0;
+for (const article of articles) {
+  totalPapers += (article.data.papers?.length ?? 0);
+}
+---
+
+<div class="module-overview">
+  <div class="module-header">
+    <span class="module-icon">{info.icon}</span>
+    <div>
+      <h2>{title}</h2>
+      <p>{desc}</p>
+    </div>
+  </div>
+
+  <div class="module-stats">
+    <div class="stat">
+      <strong>{articles.length}</strong>
+      <span>{isEn ? 'Articles' : '篇文章'}</span>
+    </div>
+    <div class="stat">
+      <strong>{totalPapers}</strong>
+      <span>{isEn ? 'Papers Referenced' : '篇论文'}</span>
+    </div>
+    <div class="stat">
+      <strong>~{readingTime} {isEn ? 'min' : '分钟'}</strong>
+      <span>{isEn ? 'Reading Time' : '阅读时长'}</span>
+    </div>
+  </div>
+
+  <h3>{isEn ? 'Recommended Reading Order' : '推荐阅读顺序'}</h3>
+  <div class="article-grid">
+    {articles.map((article, index) => (
+      <a href={href(article.id)} class="article-card">
+        <div class="card-number">{index + 1}</div>
+        <div class="card-content">
+          <h4>{article.data.title}</h4>
+          <p>{article.data.description}</p>
+          <div class="card-meta">
+            {article.data.tiers && article.data.tiers.length > 0 && (
+              <div class="tier-tags">
+                {article.data.tiers.includes('intro') && <span class="tier-tag intro">{isEn ? 'Intro' : '直觉'}</span>}
+                {article.data.tiers.includes('engineer') && <span class="tier-tag engineer">{isEn ? 'Engineer' : '工程'}</span>}
+                {article.data.tiers.includes('research') && <span class="tier-tag research">{isEn ? 'Research' : '研究'}</span>}
+              </div>
+            )}
+            {article.data.papers && article.data.papers.length > 0 && (
+              <span class="paper-count">{article.data.papers.length} {isEn ? 'papers' : '篇论文'}</span>
+            )}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {articles.length > 0 && (
+    <div class="module-footer">
+      <a href={href(articles[0].id)} class="start-button">
+        {isEn ? '→ Start with First Article' : '→ 从第一篇开始阅读'}
+      </a>
+    </div>
+  )}
+</div>
+
+<style>
+  .module-overview { margin: 2rem 0; }
+
+  .module-header {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 1rem;
+  }
+
+  .module-icon {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .module-header h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.75rem;
+  }
+
+  .module-header p {
+    margin: 0;
+    color: var(--sl-color-gray-2);
+  }
+
+  .module-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 1rem;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 0.75rem;
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--sl-color-text-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat span {
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  .module-overview h3 {
+    margin: 2rem 0 1rem;
+  }
+
+  .article-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .article-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .article-card:hover {
+    border-color: var(--sl-color-text-accent);
+    transform: translateX(0.25rem);
+  }
+
+  .card-number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sl-color-bg-sidebar);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    color: var(--sl-color-text-accent);
+  }
+
+  .card-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-content h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  .card-content p {
+    margin: 0 0 0.75rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.9rem;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tier-tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tier-tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.35rem;
+    font-weight: 500;
+  }
+
+  .tier-tag.intro {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+
+  .tier-tag.engineer {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  .tier-tag.research {
+    background: #fef3c7;
+    color: #a16207;
+  }
+
+  .paper-count {
+    font-size: 0.8rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  .module-footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .start-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--sl-color-text-accent);
+    color: white;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .start-button:hover {
+    opacity: 0.9;
+  }
+</style>
