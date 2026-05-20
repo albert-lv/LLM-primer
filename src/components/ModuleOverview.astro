@@ -10,11 +10,15 @@ const docs = await getCollection('docs', ({ data, id }) => {
 });
 
 const articles = docs
-  .filter((d) => !d.id.endsWith('/index'))
+  .filter((d) => {
+    const norm = d.id.replace(/^en\//, '').replace(/\.mdx?$/, '');
+    return norm !== 'index' && !norm.endsWith('/index');
+  })
   .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 
 function href(id: string) {
-  return isEn ? `/en/${id.replace(/^en\//, '')}/` : `/${id}/`;
+  const path = id.replace(/^en\//, '').replace(/\.mdx?$/, '');
+  return isEn ? `/en/${path}/` : `/${path}/`;
 }
 
 const moduleNames = {
