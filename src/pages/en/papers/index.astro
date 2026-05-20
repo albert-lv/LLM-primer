@@ -7,6 +7,8 @@ const published = papers
   .filter((p) => !p.data.inbox)
   .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
 
+const inboxCount = papers.filter((p) => p.data.inbox).length;
+
 const domainLabels: Record<string, string> = {
   architecture: 'Architecture',
   pretraining: 'Pretraining',
@@ -33,7 +35,16 @@ for (const p of published) {
 ---
 
 <StarlightPage frontmatter={{ title: 'Paper Library', description: 'Curated LLM papers index' }}>
-  <p>{published.length} carefully selected LLM papers, each with a bilingual TLDR.</p>
+  <div class="page-header">
+    <div>
+      <p>{published.length} carefully selected LLM papers, each with a bilingual TLDR.</p>
+      {inboxCount > 0 && (
+        <a href="/en/papers/inbox/" class="inbox-link">
+          📥 View Inbox Papers ({inboxCount})
+        </a>
+      )}
+    </div>
+  </div>
 
   <div class="paper-toolbar">
     <input
@@ -181,6 +192,24 @@ for (const p of published) {
     margin-top: 0.25rem;
     color: var(--sl-color-gray-2, #444);
     font-size: 0.875rem;
+  }
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+  .inbox-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--sl-color-bg-sidebar);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .inbox-link:hover {
+    border-color: var(--sl-color-text-accent);
+    transform: translateX(2px);
   }
 </style>
 

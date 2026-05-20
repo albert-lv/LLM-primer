@@ -1,0 +1,206 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+const papers = await getCollection('papers');
+const inboxPapers = papers
+  .filter((p) => p.data.inbox === true)
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+
+const domainLabels: Record<string, string> = {
+  architecture: 'Architecture',
+  pretraining: 'Pretraining',
+  alignment: 'Alignment',
+  inference: 'Inference',
+  applications: 'Applications',
+  evaluation: 'Evaluation',
+  safety: 'Safety',
+  multimodal: 'Multimodal',
+  reasoning: 'Reasoning',
+  'long-context': 'Long Context',
+  moe: 'MoE',
+  uncategorized: 'Uncategorized',
+};
+---
+
+<StarlightPage frontmatter={{ title: 'Inbox Papers', description: 'Candidate papers awaiting metadata completion' }}>
+  <div class="inbox-header">
+    <p>Candidate papers pending review (currently <strong>{inboxPapers.length}</strong> papers).</p>
+    <p>Welcome to claim a paper and complete its TLDR, tags, modules, and other metadata. Submit a PR after completion for review and official inclusion.</p>
+    <a href="https://github.com/albert-lv/LLM-primer/issues/new?template=paper-contribution.md" class="contribute-btn" target="_blank" rel="noopener">
+      📝 Claim Paper / Submit Metadata
+    </a>
+  </div>
+
+  {inboxPapers.length === 0 ? (
+    <div class="empty-state">
+      <p>✨ Great! No pending candidate papers at the moment.</p>
+      <p>If you'd like to recommend new papers for the candidate pool, please create an <a href="https://github.com/albert-lv/LLM-primer/issues" target="_blank" rel="noopener">GitHub Issue</a>.</p>
+    </div>
+  ) : (
+    <ul class="paper-list">
+      {inboxPapers.map((paper) => (
+        <li class="paper-item inbox-item">
+          <div class="paper-header">
+            <a href={`/en/papers/${paper.data.id}/`} class="paper-title">
+              {paper.data.title ?? paper.data.id}
+            </a>
+            {paper.data.authors && paper.data.authors.length > 0 && (
+              <span class="paper-meta">
+                — {paper.data.authors[0]}{paper.data.authors.length > 1 ? ' et al.' : ''}
+                {paper.data.year ? ` (${paper.data.year})` : ''}
+              </span>
+            )}
+          </div>
+          {paper.data.domains && paper.data.domains.length > 0 && (
+            <div class="paper-domains">
+              {paper.data.domains.map((d) => (
+                <span class="domain-tag">{domainLabels[d] ?? d}</span>
+              ))}
+            </div>
+          )}
+          <div class="paper-tldr">
+            {paper.data.tldr_en || <em class="missing-tldr">English TLDR pending</em>}
+          </div>
+          {paper.data.arxiv_id && (
+            <div class="paper-links">
+              <a href={`https://arxiv.org/abs/${paper.data.arxiv_id}`} target="_blank" rel="noopener" class="arxiv-link">
+                arXiv
+              </a>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</StarlightPage>
+
+<style>
+  .inbox-header {
+    background: var(--sl-color-bg-sidebar);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .inbox-header p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+  }
+
+  .inbox-header p:last-of-type {
+    margin-bottom: 1.25rem;
+  }
+
+  .contribute-btn {
+    display: inline-block;
+    padding: 0.65rem 1.25rem;
+    background: var(--sl-color-text-accent);
+    color: white;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .contribute-btn:hover {
+    opacity: 0.9;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--sl-color-gray-2);
+  }
+
+  .empty-state p {
+    margin: 0.75rem 0;
+  }
+
+  .paper-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .paper-item {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s;
+  }
+
+  .inbox-item {
+    border-left: 4px solid var(--sl-color-orange);
+    background: var(--sl-color-bg-sidebar);
+  }
+
+  .paper-item:hover {
+    border-color: var(--sl-color-text-accent);
+    transform: translateX(4px);
+  }
+
+  .paper-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--sl-color-text);
+  }
+
+  .paper-title:hover {
+    color: var(--sl-color-text-accent);
+  }
+
+  .paper-meta {
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+
+  .paper-domains {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .domain-tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-gray-2);
+    border-radius: 0.35rem;
+    font-size: 0.8rem;
+  }
+
+  .paper-tldr {
+    color: var(--sl-color-gray-1);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .missing-tldr {
+    color: var(--sl-color-gray-3);
+  }
+
+  .paper-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .arxiv-link {
+    font-size: 0.85rem;
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+  }
+
+  .arxiv-link:hover {
+    text-decoration: underline;
+  }
+</style>
