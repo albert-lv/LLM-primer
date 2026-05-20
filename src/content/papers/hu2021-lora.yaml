@@ -22,8 +22,9 @@ tldr_en: |
   the dominant parameter-efficient fine-tuning (PEFT) method.
 tags:
   - lora
-  - fine-tuning
   - peft
   - efficiency
 modules:
   - training
+domains:
+  - alignment

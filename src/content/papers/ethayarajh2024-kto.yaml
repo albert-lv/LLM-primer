@@ -1,0 +1,22 @@
+id: ethayarajh2024-kto
+arxiv_id: "2402.01306"
+title: "KTO: Model Alignment as Prospect Theoretic Optimization"
+year: 2024
+authors:
+  - Kawin Ethayarajh
+  - Yejin Choi
+  - Swabha Swayamdipta
+tldr_zh: 提出 KTO（Kahneman-Tversky Optimization），仅需二元反馈（好/坏）即可对齐模型，无需像 DPO 那样需要成对偏好数据。将前景理论引入对齐优化，证明单条输出是否被喜欢的信号足以学习人类偏好。
+tldr_en: Proposes KTO (Kahneman-Tversky Optimization), which aligns models using only binary feedback (good/bad) without
+  requiring paired preference data like DPO. Introduces prospect theory into alignment optimization, proving that
+  knowing whether a single output is desirable is sufficient to learn human preferences.
+tags:
+  - preference-optimization
+  - alignment
+  - kto
+  - dpo
+modules:
+  - training
+domains:
+  - alignment
+inbox: false

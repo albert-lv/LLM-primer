@@ -1,0 +1,53 @@
+---
+title: "预训练与 Scaling Law：模型怎么学"
+description: "解释预训练目标、数据工程、Scaling Law 与计算最优训练。"
+module: training
+order: 1
+status: published
+tiers: [intro, engineer, research]
+papers: [kaplan2020-scaling, hoffmann2022-chinchilla, brown2020-gpt3, chowdhery2022-palm]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：读遍互联网，学会猜下一个词
+
+预训练是 LLM 能力的根基。模型在海量文本（网页、书籍、代码、论文）上做一个简单任务：给定前面的词，预测下一个词。通过反复练习，它逐渐学会语法、常识、推理模式和世界知识。
+
+这个过程就像小孩通过听大人说话学习语言：不是直接教规则，而是在大量输入中自发统计规律。模型越大、数据越多样、训练越久，它掌握的"隐性知识"就越丰富。所谓 Scaling Law，就是发现模型性能随规模、数据量、计算量可预测地提升。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：数据、稳定与计算效率
+
+工程上，预训练的核心挑战不是"跑起来"，而是"稳定、高效、可复现"。数据工程占极大比重：去重、过滤低质内容、平衡多语言与代码比例、处理隐私和版权敏感数据。好的数据配比能让小模型超过大模型在烂数据上的表现。
+
+训练稳定性方面，深层大模型容易出现 loss spike、梯度爆炸或注意力崩溃。常用手段包括：预热学习率、梯度裁剪、混合精度训练、各种归一化改进、激活检查点和模型并行/流水线并行策略。
+
+Chinchilla 的研究指出，许多模型在固定计算预算下训练 token 不足。计算最优训练的启发是：参数和数据应该同步增长，而不是一味堆参数量。这对预算有限的团队尤为重要。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：从经验规律到机理理解
+
+研究层面，Scaling Law 提供了经验预测工具，但其理论解释仍在发展中。关键问题包括：为什么损失随计算量呈幂律下降？这种规律在不同架构、数据分布和优化器下是否普适？是否存在规模之外的"相变"？
+
+当前研究方向还包括：数据课程（curriculum learning）能否加速收敛？持续预训练（continual pretraining）如何在保留旧知识的同时学习新领域？以及，预训练学到的"知识"与下游任务表现之间的因果链路是什么？
+
+</TierBlock>
+
+
+<PaperList ids={['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm']} />

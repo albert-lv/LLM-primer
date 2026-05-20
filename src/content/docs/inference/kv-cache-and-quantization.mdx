@@ -1,0 +1,60 @@
+---
+title: "KV Cache 与量化：让大模型跑得更快"
+description: "解释 KV Cache 原理、量化方法与推理成本优化。"
+module: inference
+order: 1
+status: published
+tiers: [intro, engineer, research]
+papers: [kwon2023-vllm, dettmers2022-llmint8, dettmers2023-qlora, frantar2022-gptq, lin2023-awq, xiao2022-smoothquant]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：记住已经算过的东西
+
+LLM 生成文本是一个词一个词地"续写"。如果每生成一个新词都要重新看一遍前面所有内容，那就会浪费大量计算。KV Cache 的直觉很简单：把前面 token 计算好的 Key 和 Value 向量存起来，下次直接用，不用再算一遍。
+
+量化则是另一个降低成本的思路：模型权重通常是 32 位浮点数，如果改成 16 位、8 位甚至 4 位，显存占用和计算量都会大幅下降。虽然会损失一点精度，但工程上往往完全可接受。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：内存墙与精度取舍
+
+KV Cache 是推理时的主要内存消耗之一，尤其在长上下文场景中。优化方向包括：
+
+- **PagedAttention（vLLM）**：把 KV Cache 分页管理，减少内存碎片，提高批处理效率。
+- **KV Cache 压缩**：通过量化、剪枝、滑动窗口或 Eviction 策略减少缓存体积。
+- **GQA / MQA**：让多个注意力头共享 Key/Value，降低缓存量。
+
+量化技术按粒度分类：
+- **PTQ（训练后量化）**：GPTQ、AWQ、SmoothQuant 等，对已经训练好的模型直接量化，无需重新训练。
+- **QAT（量化感知训练）**：在训练中模拟低精度，效果通常更好但成本更高。
+- **GGML/GGUF**：社区常用的 4-bit 量化格式，让大模型能在笔记本上运行。
+
+工程实践中，要评估量化后的困惑度（perplexity）、下游任务精度和端到端延迟，不能只看显存省了百分之几。不同层对精度敏感度不同，混合精度或逐层调优往往效果最好。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：精度与效率的边界
+
+研究上，量化的极限在哪里？1-bit 或 ternary 权重是否仍能保留语言能力？如何通过激活分布分析找到最优的裁剪阈值和缩放因子？
+
+另一个前沿是推测解码（speculative decoding）：用小模型快速生成候选序列，大模型并行验证并修正，从而在不损失质量的前提下加速 2-3 倍。这本质上是计算与内存之间的重新平衡。
+
+</TierBlock>
+
+
+<PaperList ids={['kwon2023-vllm', 'dettmers2022-llmint8', 'dettmers2023-qlora', 'frantar2022-gptq', 'lin2023-awq', 'xiao2022-smoothquant']} />

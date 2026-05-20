@@ -67,6 +67,8 @@ tags:
   - alignment
   - constitutional-ai
   - rlhf
-  - rlaif
 modules:
   - training
+domains:
+  - alignment
+  - safety

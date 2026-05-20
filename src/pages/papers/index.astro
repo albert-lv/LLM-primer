@@ -6,23 +6,81 @@ const papers = await getCollection('papers');
 const published = papers
   .filter((p) => !p.data.inbox)
   .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+
+const domainLabels: Record<string, string> = {
+  architecture: '架构',
+  pretraining: '预训练',
+  alignment: '对齐',
+  inference: '推理',
+  applications: '应用',
+  evaluation: '评估',
+  safety: '安全',
+  multimodal: '多模态',
+  reasoning: '推理能力',
+  'long-context': '长上下文',
+  moe: '混合专家',
+  uncategorized: '未分类',
+};
+
+const allDomains = Object.keys(domainLabels);
+
+const domainCounts: Record<string, number> = {};
+for (const p of published) {
+  for (const d of p.data.domains ?? []) {
+    domainCounts[d] = (domainCounts[d] || 0) + 1;
+  }
+}
 ---
 
 <StarlightPage frontmatter={{ title: '论文库', description: 'LLM 核心论文索引' }}>
   <p>收录 {published.length} 篇经过筛选的 LLM 核心论文，每篇附双语 TLDR。</p>
 
-  <ul class="paper-list">
+  <div class="paper-toolbar">
+    <input
+      type="text"
+      class="paper-search"
+      placeholder="搜索论文标题、作者或关键词..."
+      aria-label="搜索论文"
+    />
+    <select class="paper-sort" aria-label="排序方式">
+      <option value="year-desc">按年份（新→旧）</option>
+      <option value="year-asc">按年份（旧→新）</option>
+      <option value="title-asc">按标题（A-Z）</option>
+    </select>
+  </div>
+
+  <div class="domain-filter" role="group" aria-label="按领域筛选">
+    <button class="domain-btn active" data-domain="all">全部 ({published.length})</button>
+    {allDomains.map((d) => (
+      domainCounts[d] ? (
+        <button class="domain-btn" data-domain={d}>
+          {domainLabels[d]} ({domainCounts[d]})
+        </button>
+      ) : null
+    ))}
+  </div>
+
+  <p class="result-count">显示 <span id="visible-count">{published.length}</span> / {published.length} 篇</p>
+
+  <ul class="paper-list" id="paper-list">
     {published.map((paper) => (
-      <li class="paper-item">
-        <a href={`/papers/${paper.data.id}/`} class="paper-title">
-          {paper.data.title ?? paper.data.id}
-        </a>
-        {paper.data.authors && paper.data.authors.length > 0 && (
-          <span class="paper-meta">
-            — {paper.data.authors[0]}{paper.data.authors.length > 1 ? ' et al.' : ''}
-            {paper.data.year ? ` (${paper.data.year})` : ''}
-          </span>
-        )}
+      <li class="paper-item" data-domains={paper.data.domains?.join(' ') ?? ''} data-year={paper.data.year ?? 0} data-title={paper.data.title ?? paper.data.id}>
+        <div class="paper-header">
+          <a href={`/papers/${paper.data.id}/`} class="paper-title">
+            {paper.data.title ?? paper.data.id}
+          </a>
+          {paper.data.authors && paper.data.authors.length > 0 && (
+            <span class="paper-meta">
+              — {paper.data.authors[0]}{paper.data.authors.length > 1 ? ' et al.' : ''}
+              {paper.data.year ? ` (${paper.data.year})` : ''}
+            </span>
+          )}
+        </div>
+        <div class="paper-domains">
+          {(paper.data.domains ?? []).map((d) => (
+            <span class="domain-tag">{domainLabels[d] ?? d}</span>
+          ))}
+        </div>
         <p class="paper-tldr">{paper.data.tldr_zh}</p>
       </li>
     ))}
@@ -30,6 +88,61 @@ const published = papers
 </StarlightPage>
 
 <style>
+  .paper-toolbar {
+    display: flex;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    flex-wrap: wrap;
+  }
+  .paper-search {
+    flex: 1;
+    min-width: 12rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--sl-color-gray-4, #ccc);
+    border-radius: 0.4rem;
+    background: transparent;
+    color: inherit;
+    font-size: 0.9rem;
+  }
+  .paper-sort {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--sl-color-gray-4, #ccc);
+    border-radius: 0.4rem;
+    background: transparent;
+    color: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .result-count {
+    color: var(--sl-color-gray-3, #888);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .domain-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+  .domain-btn {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--sl-color-gray-4, #ccc);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--sl-color-gray-2, #444);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .domain-btn:hover {
+    border-color: var(--sl-color-accent, #0070f3);
+    color: var(--sl-color-accent, #0070f3);
+  }
+  .domain-btn.active {
+    background: var(--sl-color-accent, #0070f3);
+    color: white;
+    border-color: var(--sl-color-accent, #0070f3);
+  }
   .paper-list {
     list-style: none;
     padding: 0;
@@ -39,6 +152,9 @@ const published = papers
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--sl-color-gray-5, #eee);
   }
+  .paper-item.hidden {
+    display: none;
+  }
   .paper-title {
     font-weight: 600;
     font-size: 1rem;
@@ -47,9 +163,101 @@ const published = papers
     color: var(--sl-color-gray-3, #666);
     font-size: 0.875rem;
   }
+  .paper-domains {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.35rem 0;
+  }
+  .domain-tag {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    background: var(--sl-color-gray-6, #f0f0f0);
+    color: var(--sl-color-gray-2, #555);
+    font-size: 0.75rem;
+  }
   .paper-tldr {
     margin-top: 0.25rem;
     color: var(--sl-color-gray-2, #444);
     font-size: 0.875rem;
   }
 </style>
+
+<script>
+  function initPaperList() {
+    const searchInput = document.querySelector<HTMLInputElement>('.paper-search');
+    const sortSelect = document.querySelector<HTMLSelectElement>('.paper-sort');
+    const domainButtons = document.querySelectorAll<HTMLButtonElement>('.domain-btn');
+    const list = document.getElementById('paper-list');
+    const items = Array.from(list?.querySelectorAll<HTMLElement>('.paper-item') ?? []);
+    const countSpan = document.getElementById('visible-count');
+
+    let activeDomain = 'all';
+    let searchQuery = '';
+    let sortMode = 'year-desc';
+
+    function update() {
+      const visible: HTMLElement[] = [];
+
+      for (const item of items) {
+        const domains = item.dataset.domains?.split(' ') ?? [];
+        const title = (item.dataset.title ?? '').toLowerCase();
+        const tldr = (item.querySelector('.paper-tldr')?.textContent ?? '').toLowerCase();
+        const meta = (item.querySelector('.paper-meta')?.textContent ?? '').toLowerCase();
+
+        const domainMatch = activeDomain === 'all' || domains.includes(activeDomain);
+        const searchMatch = !searchQuery ||
+          title.includes(searchQuery) ||
+          tldr.includes(searchQuery) ||
+          meta.includes(searchQuery);
+
+        if (domainMatch && searchMatch) {
+          item.classList.remove('hidden');
+          visible.push(item);
+        } else {
+          item.classList.add('hidden');
+        }
+      }
+
+      // Sort visible items
+      visible.sort((a, b) => {
+        if (sortMode === 'year-desc') {
+          return (Number(b.dataset.year) || 0) - (Number(a.dataset.year) || 0);
+        } else if (sortMode === 'year-asc') {
+          return (Number(a.dataset.year) || 0) - (Number(b.dataset.year) || 0);
+        } else {
+          return (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '');
+        }
+      });
+
+      // Re-append in sorted order
+      for (const item of visible) {
+        list?.appendChild(item);
+      }
+
+      if (countSpan) countSpan.textContent = String(visible.length);
+    }
+
+    searchInput?.addEventListener('input', (e) => {
+      searchQuery = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      update();
+    });
+
+    sortSelect?.addEventListener('change', (e) => {
+      sortMode = (e.target as HTMLSelectElement).value;
+      update();
+    });
+
+    domainButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeDomain = btn.dataset.domain ?? 'all';
+        domainButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        update();
+      });
+    });
+  }
+
+  initPaperList();
+</script>

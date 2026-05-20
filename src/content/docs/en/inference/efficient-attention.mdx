@@ -1,0 +1,54 @@
+---
+title: "Efficient Attention: Breaking the Quadratic Sequence Bottleneck"
+description: "FlashAttention, sparse attention, and long-context inference optimization."
+module: inference
+order: 2
+status: published
+tiers: [intro, engineer, research]
+papers: [dao2022-flashattention, dao2023-flashattention2, shah2024-flashattention3]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: don't move data back and forth in memory
+
+Standard attention computation grows quadratically with sequence length. More critically, it requires frequent reads and writes of huge attention matrices from GPU memory. FlashAttention's intuition is: split the computation into small tiles, perform them in GPU fast cache (SRAM), and reduce slow memory (HBM) traffic. This accelerates attention without approximation or loss of precision.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: IO-aware optimization and kernel fusion
+
+FlashAttention's core contribution is an IO-aware algorithm: through tiling and recomputation, it reduces attention memory access from O(N²) HBM traffic to nearly O(N). FlashAttention-2 further optimized thread-block partitioning and warp-level scheduling; FlashAttention-3 added specialized optimizations for Hopper architecture asynchronous execution and FP8.
+
+Beyond FlashAttention, long-context engineering includes:
+- **Sparse attention**: sliding windows, dilated attention, local-global hybrids that approximate full attention at lower cost.
+- **Linear attention**: kernel tricks or state-space models (SSM) that reduce complexity to linear, exemplified by Mamba.
+- **Context compression**: compress long text into shorter representations, reducing the number of tokens that must attend.
+
+When choosing a method, evaluate: does it support arbitrary causal masks? Is it compatible with existing training frameworks? Does it add overhead for short sequences? And what is the end-to-end gain on real long-text tasks?
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: is quadratic attention necessary?
+
+A fundamental research question is whether Transformer's quadratic complexity is necessary. State-space models, RWKV, RetNet, and related work attempt to achieve linear complexity while preserving long-range dependency capability.
+
+However, attention itself has unique advantages: dynamic routing, strong interpretability, and relatively mild dependence on training data distribution. Future architectures may be hybrid: linear methods for local patterns, standard attention for global patterns, or learned routing that dynamically selects computation modes.
+
+</TierBlock>
+
+
+<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3']} />

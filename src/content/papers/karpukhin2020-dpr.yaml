@@ -2,11 +2,14 @@ id: karpukhin2020-dpr
 arxiv_id: "2004.04906"
 tldr_zh: |
   双塔 BERT + in-batch negatives 训出第一个工业级稠密检索器，几乎一夜淘汰 BM25。今天向量检索（FAISS、pgvector）的工程范式从这里定型。
-tldr_en: |
-  Dual-tower BERT + in-batch negatives trains first industrial-grade dense retriever, virtually eliminating BM25 overnight. Today's vector search (FAISS, pgvector) engineering paradigm solidified here.
+tldr_en: >
+  Dual-tower BERT + in-batch negatives trains first industrial-grade dense retriever, virtually eliminating BM25
+  overnight. Today's vector search (FAISS, pgvector) engineering paradigm solidified here.
 tags:
   - dpr
   - dense-retrieval
   - embedding
 modules:
+  - applications
+domains:
   - applications

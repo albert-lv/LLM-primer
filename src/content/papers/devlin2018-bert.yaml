@@ -20,7 +20,8 @@ tags:
   - bert
   - pretraining
   - masked-lm
-  - fine-tuning
 modules:
   - foundations
   - training
+domains:
+  - architecture

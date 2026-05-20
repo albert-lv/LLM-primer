@@ -1,6 +1,6 @@
 id: peters2018-elmo
 arxiv_id: "1802.05365"
-title: "Deep contextualized word representations"
+title: Deep contextualized word representations
 year: 2018
 authors:
   - Matthew E. Peters
@@ -26,3 +26,5 @@ tags:
   - lstm
 modules:
   - foundations
+domains:
+  - architecture

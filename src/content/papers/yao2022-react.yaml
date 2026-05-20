@@ -25,3 +25,5 @@ tags:
   - react
 modules:
   - applications
+domains:
+  - applications

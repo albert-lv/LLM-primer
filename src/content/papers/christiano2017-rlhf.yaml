@@ -1,6 +1,6 @@
 id: christiano2017-rlhf
 arxiv_id: "1706.03741"
-title: "Deep Reinforcement Learning from Human Preferences"
+title: Deep Reinforcement Learning from Human Preferences
 year: 2017
 authors:
   - Paul Christiano
@@ -25,3 +25,5 @@ tags:
   - human-feedback
 modules:
   - training
+domains:
+  - alignment

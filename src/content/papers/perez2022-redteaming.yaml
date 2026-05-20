@@ -2,11 +2,15 @@ id: perez2022-redteaming
 arxiv_id: "2202.03286"
 tldr_zh: |
   DeepMind 用一个 LLM 自动产生攻击 prompt 来红队另一个 LLM，把红队工程化。安全/越狱研究从此从"人工搜 prompt"走向自动化范式。
-tldr_en: |
-  DeepMind uses one LLM to automatically generate attack prompts for red-teaming another LLM, engineering red-teaming. Safety/jailbreak research since then shifted from "manual prompt search" to automated paradigm.
+tldr_en: >
+  DeepMind uses one LLM to automatically generate attack prompts for red-teaming another LLM, engineering red-teaming.
+  Safety/jailbreak research since then shifted from "manual prompt search" to automated paradigm.
 tags:
   - red-teaming
   - safety
   - adversarial
 modules:
   - applications
+domains:
+  - safety
+  - evaluation

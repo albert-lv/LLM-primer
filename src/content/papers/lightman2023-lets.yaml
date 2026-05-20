@@ -1,0 +1,31 @@
+id: lightman2023-lets
+arxiv_id: "2305.20050"
+title: Let's Verify Step by Step
+year: 2023
+authors:
+  - Hunter Lightman
+  - Vineet Kosaraju
+  - Yura Burda
+  - Harri Edwards
+  - Bowen Baker
+  - Teddy Lee
+  - Jan Leike
+  - John Schulman
+  - Ilya Sutskever
+  - Karl Cobbe
+tldr_zh: 提出过程监督（Process Supervision）方法：不仅奖励最终正确答案，还奖励每一步推理的正确性。通过训练一个验证器来评估每个推理步骤，在数学推理任务上显著优于仅奖励最终结果的结果监督（Outcome Supervision）。
+tldr_en: "Proposes process supervision: rewarding not just the final correct answer but also the correctness of each
+  reasoning step. By training a verifier to evaluate each step, significantly outperforms outcome supervision (which
+  only rewards the final result) on mathematical reasoning tasks."
+tags:
+  - process-supervision
+  - reasoning
+  - verification
+  - math
+  - prm
+modules:
+  - applications
+domains:
+  - reasoning
+  - evaluation
+inbox: false

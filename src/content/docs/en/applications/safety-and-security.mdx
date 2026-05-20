@@ -1,0 +1,59 @@
+---
+title: "Safety and Adversarial: Protecting and Attacking Models"
+description: "Hallucinations, jailbreaks, prompt injection, and defense strategies."
+module: applications
+order: 5
+status: published
+tiers: [intro, engineer, research]
+papers: [wei2023-jailbroken, perez2022-redteaming, zou2023-universal-attack, bai2022-hh]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: models can be "tricked" too
+
+LLM safety has two sides: models may "say the wrong thing" (hallucinations, bias, harmful content), and they may be tricked by malicious inputs into doing things they should not (jailbreaks, prompt injection). Like a gatekeeper who must both identify bad actors and resist deceptive tactics.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: layered defense and continuous monitoring
+
+Engineering defenses are typically layered:
+
+- **Input layer**: Filter sensitive prompts, detect known attack patterns, restrict input length and format.
+- **Model layer**: Alignment training (RLHF, Constitutional AI), refusal strategies, output classifiers.
+- **Output layer**: Post-processing filters, watermarks, fact-checking, citation verification.
+- **System layer**: Sandboxed execution, least privilege, audit logs, rate limiting.
+
+Common attacks:
+- **Jailbreak**: Bypass safety restrictions through roleplay, encoding tricks, or logic traps.
+- **Prompt injection**: Embed malicious instructions in untrusted input (web pages, emails) to hijack model behavior.
+- **Data extraction**: Craft prompts to extract private information from training data.
+
+There is no perfect defense. The key is defense in depth and continuous red teaming.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: safety is generalizable refusal
+
+At the research level, the core safety question is: can models learn "generalizable refusal"—not just rejecting attacks seen during training, but also defending against unseen variants? Current evidence suggests that adversarial attacks often transfer: jailbreaks discovered on one model frequently work on others.
+
+Frontier directions include: automated red teaming (using models to attack models), provable defense bounds, mechanistic interpretability to locate harmful behavior circuits, and formal methods to verify output constraints in critical systems.
+
+</TierBlock>
+
+
+<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh']} />

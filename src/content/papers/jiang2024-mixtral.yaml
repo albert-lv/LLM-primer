@@ -1,6 +1,6 @@
 id: jiang2024-mixtral
 arxiv_id: "2401.04088"
-title: "Mixtral of Experts"
+title: Mixtral of Experts
 year: 2024
 authors:
   - Albert Q. Jiang
@@ -44,3 +44,6 @@ tags:
   - mixture-of-experts
 modules:
   - training
+domains:
+  - moe
+  - architecture

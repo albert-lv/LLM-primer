@@ -1,0 +1,33 @@
+id: radford2021-learning
+arxiv_id: "2103.00020"
+title: Learning Transferable Visual Models From Natural Language Supervision
+year: 2021
+authors:
+  - Alec Radford
+  - Jong Wook Kim
+  - Chris Hallacy
+  - Aditya Ramesh
+  - Gabriel Goh
+  - Sandhini Agarwal
+  - Girish Sastry
+  - Amanda Askell
+  - Pamela Mishkin
+  - Jack Clark
+  - Gretchen Krueger
+  - Ilya Sutskever
+tldr_zh: CLIP 的原始论文，提出使用自然语言监督来学习可迁移的视觉表示。通过在 4 亿对图像-文本数据上训练对比学习模型，CLIP 实现了零样本图像分类，并展示了强大的跨任务迁移能力，开创了视觉-语言对齐的新范式。
+tldr_en: The original CLIP paper, proposing learning transferable visual representations from natural language
+  supervision. By training a contrastive model on 400 million image-text pairs, CLIP achieves zero-shot image
+  classification and demonstrates strong cross-task transferability, pioneering a new paradigm for vision-language
+  alignment.
+tags:
+  - clip
+  - vision-language
+  - contrastive-learning
+  - multimodal
+  - zero-shot
+modules:
+  - foundations
+domains:
+  - multimodal
+inbox: false

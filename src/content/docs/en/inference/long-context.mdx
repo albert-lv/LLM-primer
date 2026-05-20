@@ -1,0 +1,60 @@
+---
+title: "Long Context: Helping Models Read Farther"
+description: "Context window extension, positional encoding extrapolation, and long-text evaluation."
+module: inference
+order: 3
+status: published
+tiers: [intro, engineer, research]
+papers: [peng2023-yarn, chen2023-longlora, press2021-alibi]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: from short paragraphs to entire books
+
+Early Transformers could only handle a few hundred words—roughly a short paragraph. Today's models can process tens of thousands to millions of tokens, equivalent to entire books or large codebases. Long-context capability lets models analyze long documents in one pass, maintain multi-turn conversation memory, and handle complex multi-step reasoning.
+
+But "can fit it in" does not mean "can understand it." Many models degrade in the latter half of long texts, a phenomenon called "lost in the middle"—recall rates for the middle portion of context are lower than for the beginning and end.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: extension, evaluation, and practical tips
+
+Main methods for extending context windows:
+
+- **Positional encoding extrapolation**: Interpolation (NTK-aware, YaRN) or scaling on top of RoPE, letting models adapt to longer position indices.
+- **Continued pretraining**: Continue training on long-text data so the model truly learns to exploit long-range dependencies.
+- **Sparse attention**: Local-global hybrids, sliding windows to reduce computational cost for long sequences.
+
+Practical engineering tips:
+- Place the most important information at the beginning or end of the prompt, avoiding burying it in the middle.
+- For long-document summarization, chunk first then merge, or have the model recursively summarize bottom-up.
+- Use "needle-in-a-haystack" tests to verify whether the model can locate key information in long texts.
+
+Evaluation should cover: fact retrieval, multi-hop reasoning, long-code understanding, and long-conversation consistency—not just "how long an input it can accept."
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: fundamental limits of attention mechanisms
+
+Research-level, the fundamental bottleneck of long context is not just computational complexity, but the efficiency of attention patterns: humans actively skip irrelevant parts when reading long texts, while standard attention still computes all position pairs. How can models learn "selective reading"?
+
+Directions include: learnable sparse patterns, content-based retrieval routing, and hybrid architectures combining external memory with short-term context. Long context is also a litmus test for model "understanding" depth: does increased token capacity truly correspond to improved long-range reasoning ability?
+
+</TierBlock>
+
+
+<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi']} />

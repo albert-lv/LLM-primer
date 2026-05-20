@@ -2,11 +2,14 @@ id: gao2022-hyde
 arxiv_id: "2212.10496"
 tldr_zh: |
   让 LLM 先"假装"生成一个回答，再用它的 embedding 检索真文档。零监督、强泛化，是 RAG 时代最常被复用的检索增强 trick 之一。
-tldr_en: |
-  Makes LLM "pretend" to generate an answer first, then uses its embedding to retrieve real documents. Zero-shot, strong generalization—one of the most reused retrieval enhancement tricks in RAG era.
+tldr_en: >
+  Makes LLM "pretend" to generate an answer first, then uses its embedding to retrieve real documents. Zero-shot, strong
+  generalization—one of the most reused retrieval enhancement tricks in RAG era.
 tags:
   - hyde
   - retrieval
   - rag
 modules:
+  - applications
+domains:
   - applications

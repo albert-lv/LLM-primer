@@ -1,0 +1,57 @@
+---
+title: "RAG 与检索增强：让模型有外部记忆"
+description: "解释检索增强生成、向量数据库与 RAG 系统架构。"
+module: applications
+order: 1
+status: published
+tiers: [intro, engineer, research]
+papers: [lewis2020-rag, karpukhin2020-dpr, gao2022-hyde, borgeaud2022-retro]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：开卷考试比闭卷考试更准
+
+LLM 的知识来自预训练数据，有截止日期，也可能记错。RAG（Retrieval-Augmented Generation）的思路是：在回答前先查资料，把检索到的相关文档放进 prompt，让模型基于这些资料生成答案。这就像开卷考试：模型不是全靠记忆，而是可以引用外部信息。
+
+RAG 的核心优势是：知识可更新（换数据库就行）、答案可溯源（知道来自哪篇文档）、幻觉更少（有依据而非编造）。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：分块、嵌入、排序与生成的全链路
+
+一个完整的 RAG 系统包含多个环节，每个环节都有工程取舍：
+
+1. **文档处理**：长文档需要分块（chunking）。块太大可能超出上下文窗口；块太小可能丢失上下文语义。常见策略包括固定长度、按段落、按语义边界或递归分块。
+2. **嵌入与索引**：用 embedding 模型把文本变成向量，存入向量数据库（如 FAISS、Milvus、Pinecone）。要评估召回率：Top-k 检索是否包含了真正相关的文档？
+3. **查询优化**：用户原始 query 可能表达不清。HyDE（假设文档嵌入）让模型先生成假答案，再用假答案去检索；查询重写、扩展和路由也是常用手段。
+4. **重排序（Reranking）**：先用轻量模型召回大量候选，再用更强的交叉编码器精确排序，平衡速度与精度。
+5. **生成与引用**：把检索结果拼进 prompt 时要注意顺序、冗余和冲突。要求模型给出引用来源，方便用户核验。
+
+评估 RAG 不能只看生成质量，还要测检索召回、答案忠实度（faithfulness）和端到端延迟。一个常见的失败模式是"检索到了但模型没用到"，说明生成环节与检索环节没有对齐。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：RAG 的边界与新方向
+
+研究上，RAG 与长上下文模型的关系是热门话题：如果模型能直接读整本书，是否还需要检索？当前共识是，检索在精确性、可更新性和计算效率上仍有优势，但两者正在融合——模型可以自主决定何时检索、检索什么。
+
+前沿方向包括：自适应检索（只在不确定时查资料）、多跳推理（跨文档追踪线索）、结构化 RAG（结合知识图谱、数据库 SQL 等）、以及端到端可微检索（让模型自己学习怎么查）。
+
+</TierBlock>
+
+
+<PaperList ids={['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro']} />

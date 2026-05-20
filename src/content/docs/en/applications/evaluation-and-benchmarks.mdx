@@ -1,0 +1,54 @@
+---
+title: "Evaluation and Benchmarks: Judging Model Quality"
+description: "LLM evaluation methods, benchmarks, and common pitfalls."
+module: applications
+order: 4
+status: published
+tiers: [intro, engineer, research]
+papers: [hendrycks2020-mmlu, liang2022-helm, chen2021-humaneval, zheng2023-mtbench]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: no single score captures a model
+
+Evaluating an LLM is like evaluating a person: you would not judge someone solely by their math score. A model may score high on knowledge QA yet perform poorly on code generation, logical reasoning, or multi-turn conversation. Good evaluation requires comprehensive testing across dimensions, scenarios, and difficulty levels.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: choose evaluation matched to your task
+
+In practice, evaluation operates at several levels:
+
+- **Automatic metrics**: Perplexity, BLEU, and ROUGE work for tasks with reference answers; code uses pass@k; reasoning uses accuracy. But automatic metrics often diverge from real user experience.
+- **LLM-as-a-judge**: Use a stronger model to evaluate outputs from weaker models. Benchmarks like MT-Bench adopt this approach. It is low-cost but suffers from position bias, length bias, and self-preference.
+- **Human evaluation**: The gold standard, but expensive and slow. Commonly used for alignment assessment, creative writing, and open-ended dialogue.
+- **Red teaming**: Proactively seek failure modes, including jailbreaks, prompt injection, bias, and dangerous content generation.
+
+Common pitfalls include: training data contamination (test sets appearing in pretraining data), prompt sensitivity (scores changing dramatically with rephrasing), and over-optimizing for a single benchmark leading to capability distortion.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: evaluation is science
+
+At the research level, evaluation itself is a scientific question. HELM proposed a holistic evaluation framework emphasizing comprehensive coverage of scenarios, metrics, and goals. Yet a gap remains between benchmarks and real-world deployment: leading on benchmarks does not guarantee usefulness in products.
+
+Open questions include: how to evaluate emergent abilities? How to quantify the impact of decoding strategies on evaluation results? How to design benchmarks that resist "gaming"? And when models approach or exceed human capabilities, who serves as the judge?
+
+</TierBlock>
+
+
+<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench']} />

@@ -1,0 +1,51 @@
+---
+title: "Positional Encoding: Where Does Order Come From"
+description: "Absolute positions, relative positions, and RoPE."
+module: foundations
+order: 6
+status: published
+tiers: [intro, engineer, research]
+papers: [vaswani2017-attention, su2021-rope, press2021-alibi]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: attention alone does not know "which word"
+
+Self-attention compares all tokens at once. Without position information, "I love you" and "you love I" would be hard to distinguish. Positional encoding tells the model where each token sits in the sequence, so it can understand order, distance, and local structure.
+
+The original Transformer used sinusoidal absolute positional encodings. Later models moved toward relative-position ideas. RoPE bakes position into Query and Key via rotation, so attention scores naturally include relative distance and generalize better to longer contexts.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: position schemes affect extrapolation
+
+Absolute position embeddings are simple to implement, but extrapolation beyond training length is usually poor. Relative position bias, ALiBi, RoPE, and other schemes try to let the model handle unseen lengths more stably. Real long-context systems also combine interpolation, scaling, continued pretraining, and retrieval augmentation.
+
+Positional encoding is not an isolated module: it interacts with tokenizer, training length, attention kernels, KV cache, and evaluation sets. Before expanding the context window, test needle-in-a-haystack, long-document QA, code navigation, and multi-hop reasoning—not just whether the model accepts longer input.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: theoretical limits of positional encoding
+
+The core research question is: how can models generalize to lengths unseen during training? Sinusoidal encoding has a clear closed form but poor extrapolation; RoPE achieves relative positional encoding through rotation matrices, and can be extended to some degree with interpolation or scaling. ALiBi directly adds a linearly proportional bias to attention scores based on distance, remaining simple and stable during extrapolation.
+
+A deeper question is: must position information be added explicitly? Some studies suggest that in sufficiently deep networks, models can indirectly infer position from statistical regularities in attention patterns. Moreover, architectures without positional encoding (such as certain state-space models) also demonstrate sequential modeling capability, challenging the traditional assumption that positional encoding is essential.
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'su2021-rope', 'press2021-alibi']} />

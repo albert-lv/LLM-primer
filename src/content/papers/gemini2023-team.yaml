@@ -2,11 +2,15 @@ id: gemini2023-team
 arxiv_id: "2312.11805"
 tldr_zh: |
   Google 的多模态模型族（Ultra/Pro/Nano），"原生多模态"叙事的代表。1.5 系列后续把上下文推到 1M-10M token，是长上下文工业落地的标杆。
-tldr_en: |
-  Google's multimodal model family (Ultra/Pro/Nano), representative of "natively multimodal" narrative. 1.5 series later pushes context to 1M-10M tokens, benchmark for long-context industrial deployment.
+tldr_en: >
+  Google's multimodal model family (Ultra/Pro/Nano), representative of "natively multimodal" narrative. 1.5 series later
+  pushes context to 1M-10M tokens, benchmark for long-context industrial deployment.
 tags:
   - gemini
   - multimodal
   - long-context
 modules:
   - applications
+domains:
+  - pretraining
+  - multimodal

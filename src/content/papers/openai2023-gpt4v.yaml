@@ -1,15 +1,18 @@
 id: openai2023-gpt4v
-source_url: "https://cdn.openai.com/papers/GPTV_System_Card.pdf"
-title: "GPT-4V(ision) System Card"
+source_url: https://cdn.openai.com/papers/GPTV_System_Card.pdf
+title: GPT-4V(ision) System Card
 year: 2023
-authors: ["OpenAI"]
+authors:
+  - OpenAI
 tldr_zh: |
   第一份产品级多模态 LLM 的安全/能力披露文档。把"图像 + 文本"统一进 ChatGPT，是 GPT-4o 端到端语音/图像/视频之前的关键一步。
-tldr_en: |
-  First production-grade multimodal LLM safety/capability disclosure document. Unifies "image + text" into ChatGPT, key step before GPT-4o's end-to-end audio/image/video.
+tldr_en: >
+  First production-grade multimodal LLM safety/capability disclosure document. Unifies "image + text" into ChatGPT, key
+  step before GPT-4o's end-to-end audio/image/video.
 tags:
-  - gpt-4v
   - multimodal
   - vision-language
 modules:
   - applications
+domains:
+  - multimodal

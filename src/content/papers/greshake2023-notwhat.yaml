@@ -1,0 +1,25 @@
+id: greshake2023-notwhat
+arxiv_id: "2302.12173"
+title: "Not What You Have Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"
+year: 2023
+authors:
+  - Kai Greshake
+  - Saif Abdelnabi
+  - Shrihari Mishra
+  - Christoph Endres
+  - Thorsten Holz
+  - Mario Fritz
+tldr_zh: 揭示了间接提示注入攻击：攻击者通过控制 LLM 应用处理的外部数据（如网页、邮件、文档）来注入恶意指令，从而操控应用行为。展示了 Bing Chat、GitHub Copilot 等真实应用中的攻击场景。
+tldr_en: "Reveals indirect prompt injection attacks: adversaries control external data processed by LLM applications
+  (web pages, emails, documents) to inject malicious instructions and hijack application behavior. Demonstrates attacks
+  on Bing Chat, GitHub Copilot, and other real applications."
+tags:
+  - prompt-injection
+  - safety
+  - adversarial
+  - security
+modules:
+  - applications
+domains:
+  - safety
+inbox: false

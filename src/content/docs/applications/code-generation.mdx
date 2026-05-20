@@ -1,0 +1,54 @@
+---
+title: "代码生成：模型如何写程序"
+description: "解释代码预训练、代码补全与软件工程 Agent。"
+module: applications
+order: 6
+status: published
+tiers: [intro, engineer, research]
+papers: [chen2021-humaneval, jimenez2024-swebench, yang2024-sweagent]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：从代码里学代码
+
+代码生成模型的核心直觉很简单：代码也是一种"语言"，有语法、语义和上下文依赖。通过在大量代码（GitHub、Stack Overflow、文档）上训练，模型学会了变量命名、控制流、API 调用和调试模式。你给模型一个函数签名和注释，它就能补全实现；给一段有 bug 的代码，它有时能指出问题。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：从补全到 Agent
+
+工程上，代码生成已从简单的自动补全发展到复杂的软件工程 Agent：
+
+- **代码补全**：IDE 插件根据光标位置和上下文预测下一行或下一个 token。关键在于上下文窗口要足够覆盖相关函数定义和导入语句。
+- **单元测试生成**：根据函数签名和注释自动生成测试用例，减少 boilerplate 编写时间。
+- **代码审查**：自动检测常见 bug、安全漏洞和风格问题，但无法替代人类对业务逻辑的理解。
+- **SWE Agent**：如 SWE-agent，能自主浏览代码库、定位 bug、编写修复并运行测试。这要求模型具备长上下文理解、工具调用和多步规划能力。
+
+评估代码生成不能只看语法正确性：HumanEval 测函数级补全，SWE-bench 测真实 GitHub issue 修复能力。生产中使用时要关注：幻觉 API（调用不存在的函数）、安全漏洞（注入、越界）、以及代码风格与现有库的一致性。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：代码理解的本质
+
+研究上，代码生成引发了一个根本问题：模型是否真正"理解"了代码的语义和执行流程，还是只是在模式匹配？证据是混合的：模型在常见模式上表现优异，但在需要深层推理、多文件协调或复杂算法设计时仍会失败。
+
+前沿方向包括：执行引导生成（用实际运行结果反馈修正代码）、形式化验证结合（让模型生成附带证明的代码）、以及从自然语言需求到可部署系统的端到端生成。代码可能是检验 LLM"推理能力"的最严格基准之一，因为代码的执行结果是非黑即白的。
+
+</TierBlock>
+
+
+<PaperList ids={['chen2021-humaneval', 'jimenez2024-swebench', 'yang2024-sweagent']} />

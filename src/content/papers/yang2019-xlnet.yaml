@@ -2,11 +2,13 @@ id: yang2019-xlnet
 arxiv_id: "1906.08237"
 tldr_zh: |
   提出 Permutation LM 把 AR 和 AE 的好处合并，配合 Transformer-XL 长序列；展示"预训练目标"本身仍然是开放问题，是 BERT 之后最有想象力的替代品。
-tldr_en: |
-  Proposes Permutation LM to merge benefits of AR and AE, combined with Transformer-XL for long sequences. Shows "pre-training objective" is still an open question, most imaginative alternative after BERT.
+tldr_en: >
+  Proposes Permutation LM to merge benefits of AR and AE, combined with Transformer-XL for long sequences. Shows
+  "pre-training objective" is still an open question, most imaginative alternative after BERT.
 tags:
   - permutation-lm
-  - transformer-xl
   - pre-training
 modules:
   - foundations
+domains:
+  - architecture

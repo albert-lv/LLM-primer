@@ -1,0 +1,57 @@
+---
+title: "RAG and Retrieval Augmentation: Giving Models External Memory"
+description: "Retrieval-augmented generation, vector databases, and RAG system architecture."
+module: applications
+order: 1
+status: published
+tiers: [intro, engineer, research]
+papers: [lewis2020-rag, karpukhin2020-dpr, gao2022-hyde, borgeaud2022-retro]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: open-book exams are more accurate than closed-book
+
+An LLM's knowledge comes from pretraining data, which has a cutoff date and may contain errors. RAG (Retrieval-Augmented Generation) works by looking up relevant documents before answering, inserting them into the prompt, and generating an answer grounded in those sources. It is like an open-book exam: the model does not rely solely on memory, but can cite external information.
+
+RAG's core advantages: knowledge can be updated (just swap the database), answers are traceable (you know which document they came from), and hallucinations are reduced (answers are grounded rather than invented).
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: chunking, embedding, reranking, and generation
+
+A complete RAG system has multiple stages, each with engineering trade-offs:
+
+1. **Document processing**: Long documents must be chunked. Chunks that are too large may exceed the context window; chunks that are too small may lose contextual semantics. Common strategies include fixed-length, paragraph-based, semantic-boundary, or recursive chunking.
+2. **Embedding and indexing**: Use an embedding model to turn text into vectors and store them in a vector database (e.g., FAISS, Milvus, Pinecone). Evaluate recall: does Top-k retrieval include the truly relevant documents?
+3. **Query optimization**: The user's original query may be poorly expressed. HyDE (Hypothetical Document Embeddings) has the model generate a hypothetical answer first, then retrieve using that answer; query rewriting, expansion, and routing are also common.
+4. **Reranking**: Use a lightweight model to recall many candidates, then a stronger cross-encoder to precisely rerank, balancing speed and accuracy.
+5. **Generation and citation**: When拼接 retrieved results into the prompt, watch for ordering, redundancy, and conflicts. Ask the model to provide citations so users can verify.
+
+Evaluating RAG requires more than generation quality: you must also measure retrieval recall, answer faithfulness, and end-to-end latency. A common failure mode is "retrieved but not used," indicating a misalignment between the retrieval and generation stages.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: the boundary and new directions of RAG
+
+A hot research topic is the relationship between RAG and long-context models: if a model can read an entire book, is retrieval still needed? The current consensus is that retrieval still has advantages in precision, updatability, and computational efficiency, but the two are converging—models can autonomously decide when and what to retrieve.
+
+Frontier directions include: adaptive retrieval (only look up when uncertain), multi-hop reasoning (tracing clues across documents), structured RAG (combining knowledge graphs, SQL databases, etc.), and end-to-end differentiable retrieval (letting the model learn how to retrieve).
+
+</TierBlock>
+
+
+<PaperList ids={['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro']} />

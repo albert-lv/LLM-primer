@@ -15,6 +15,27 @@ import RecentArticles from '../../components/RecentArticles.astro';
   <a href="/foundations/why-llm-emerges/#tier=research"><strong>研究派</strong><span>追踪论文、假设、证据和开放问题。</span></a>
 </div>
 
+## 学习路径
+
+<div class="module-cards">
+  <a href="/foundations/tokenization/">
+    <strong>基础 / Foundations</strong>
+    <span>Tokenization、Attention、Transformer、采样与解码、位置编码、Embedding、涌现能力</span>
+  </a>
+  <a href="/training/pretraining-and-scaling/">
+    <strong>训练 / Training</strong>
+    <span>预训练与 Scaling Law、微调与对齐（SFT、RLHF、DPO）</span>
+  </a>
+  <a href="/inference/kv-cache-and-quantization/">
+    <strong>推理 / Inference</strong>
+    <span>KV Cache 与量化、FlashAttention 与高效注意力</span>
+  </a>
+  <a href="/applications/rag-and-retrieval/">
+    <strong>应用 / Applications</strong>
+    <span>RAG 与检索增强、Agent 与工具使用</span>
+  </a>
+</div>
+
 ## 最近更新
 
 <RecentArticles />
@@ -31,4 +52,8 @@ import RecentArticles from '../../components/RecentArticles.astro';
 .reader-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
 .reader-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
 .reader-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; }
+.module-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+.module-cards a { border: 1px solid var(--sl-color-gray-5); border-radius: 0.85rem; padding: 1rem; text-decoration: none; }
+.module-cards strong { display: block; font-size: 1.05rem; }
+.module-cards span { display: block; color: var(--sl-color-gray-2); margin-top: 0.35rem; font-size: 0.9rem; }
 `}</style>

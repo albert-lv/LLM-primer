@@ -26,3 +26,5 @@ tags:
   - nlp
 modules:
   - foundations
+domains:
+  - architecture

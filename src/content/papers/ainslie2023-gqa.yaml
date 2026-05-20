@@ -25,3 +25,6 @@ tags:
 modules:
   - inference
   - foundations
+domains:
+  - inference
+  - architecture

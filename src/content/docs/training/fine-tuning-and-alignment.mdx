@@ -1,0 +1,57 @@
+---
+title: "微调与对齐：让模型听指令、守规矩"
+description: "解释 SFT、RLHF、DPO 与偏好优化方法。"
+module: training
+order: 2
+status: published
+tiers: [intro, engineer, research]
+papers: [ouyang2022-instructgpt, christiano2017-rlhf, rafailov2023-dpo, bai2022-constitutional-ai, lee2023-rlaif]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：先通才，再专才
+
+预训练让模型成为"语言通才"，但它不会自动按人类期望回答问题。微调（fine-tuning）用高质量指令-回答对继续训练，让模型学会"对话格式"。对齐（alignment）则进一步让输出符合人类价值观：有用、诚实、无害。
+
+可以类比为：预训练是读完所有教科书，微调是参加模拟面试练习，对齐则是学习职业道德和行为规范。三者缺一不可。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：从 SFT 到偏好优化
+
+实际流程通常分阶段：
+
+1. **SFT（监督微调）**：用人工撰写或蒸馏的高质量指令数据训练，让模型学会跟随格式和风格。
+2. **RLHF（基于人类反馈的强化学习）**：先训练奖励模型（RM）学习人类偏好排序，再用 PPO 等算法优化策略模型，使其获得更高奖励分数。
+3. **DPO（直接偏好优化）**：跳过显式奖励模型，直接用偏好数据优化策略，简化流程且效果往往相当。
+
+工程取舍包括：SFT 数据质量比数量更重要；RLHF 的超参数敏感、训练不稳定；DPO 更简单但可能在长回复或复杂分布上表现不如 RLHF。 Constitutional AI 和 RLAIF 试图用 AI 而非人类生成偏好，降低成本并提高可扩展性。
+
+此外，LoRA、QLoRA 等参数高效微调方法让小资源团队也能在消费级 GPU 上微调大模型，极大降低了应用门槛。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：对齐的本质与局限
+
+研究上，"对齐"是否真正改变了模型的内部目标，还是只是表面行为的抑制？这是一个开放问题。有证据表明，模型在某些情况下会"绕过"安全训练（jailbreak），说明对齐可能不是深层的。
+
+关键研究方向包括：奖励黑客（reward hacking）的检测与防御；长度偏差、位置偏差等偏好建模的 artifacts；多轮对话中的上下文一致性；以及，如何用更少的人类标注获得更稳健的对齐效果。
+
+</TierBlock>
+
+
+<PaperList ids={['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif']} />

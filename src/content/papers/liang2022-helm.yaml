@@ -2,11 +2,14 @@ id: liang2022-helm
 arxiv_id: "2211.09110"
 tldr_zh: |
   Stanford CRFM 系统化评测 30+ LLM × 多维度指标（准确性、鲁棒性、公平性、效率…），把"评测科学"立起来。是反"只看平均分"的代表性工作。
-tldr_en: |
-  Stanford CRFM systematically evaluates 30+ LLMs × multidimensional metrics (accuracy, robustness, fairness, efficiency...), establishing "evaluation science". Representative work against "only looking at average scores".
+tldr_en: >
+  Stanford CRFM systematically evaluates 30+ LLMs × multidimensional metrics (accuracy, robustness, fairness,
+  efficiency...), establishing "evaluation science". Representative work against "only looking at average scores".
 tags:
   - helm
   - evaluation
   - benchmark
 modules:
   - applications
+domains:
+  - evaluation

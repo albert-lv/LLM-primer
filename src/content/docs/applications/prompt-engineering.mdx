@@ -1,0 +1,57 @@
+---
+title: "提示工程：与模型对话的艺术"
+description: "解释零样本、少样本、Chain-of-Thought 与结构化提示设计。"
+module: applications
+order: 3
+status: published
+tiers: [intro, engineer, research]
+papers: [wei2022-cot, kojima2022-zeroshot-cot, wang2022-self-consistency, zhou2022-least-to-most]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：提示是模型的"上下文剧本"
+
+提示工程不是"骗"模型，而是给它最有利于完成任务的上下文。就像给演员一份好的剧本，模型需要清晰的指令、相关的背景信息和适当的示例来发挥最佳水平。
+
+基础技巧包括：明确任务描述、提供少量示例（few-shot）、分解复杂问题、要求模型逐步思考（Chain-of-Thought）。这些方法不需要修改模型权重，却能显著提升表现。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：从简单 prompt 到系统化设计
+
+工程实践中，提示设计已从"写一段话"演变为系统化工程：
+
+- **角色设定**：给模型分配明确角色（"你是一位资深数据分析师"），可稳定输出风格。
+- **结构化模板**：用 XML、Markdown 或 JSON 分隔指令、上下文、输入和输出格式，降低解析错误。
+- **Few-shot 选择**：示例的数量、顺序和质量都会影响结果。相似示例通常比随机示例更有效；示例顺序可能产生位置偏差。
+- **Chain-of-Thought**：在提示中加入"让我们逐步思考"或提供推理示例，能显著提升数学和逻辑任务表现，但会增加 token 消耗。
+- **Self-consistency**：让模型多次采样并投票，比单次 greedy decoding 更可靠，尤其适合有明确答案的任务。
+
+生产系统中，提示版本管理同样重要：改变提示可能影响数百个下游用例。应建立提示版本库、回归测试和 A/B 评估框架。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：提示的本质与自动优化
+
+研究上，提示工程的成功揭示了 LLM 的哪些能力？是上下文学习（in-context learning）让模型从示例中提取模式，还是提示 merely "解锁"了预训练已掌握的能力？这关系到我们对 LLM 泛化机制的理解。
+
+自动提示优化（Automatic Prompt Engineering）试图用搜索、强化学习或梯度方法自动发现最佳提示。方向包括：离散提示搜索、软提示（soft prompts/prefix tuning）、以及让模型自己生成和评估候选提示。未来可能是"提示即代码"：用编程语言和类型系统来约束和组合提示模板。
+
+</TierBlock>
+
+
+<PaperList ids={['wei2022-cot', 'kojima2022-zeroshot-cot', 'wang2022-self-consistency', 'zhou2022-least-to-most']} />

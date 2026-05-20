@@ -1,6 +1,6 @@
 id: openai2024-o1-systemcard
-source_url: "https://openai.com/index/openai-o1-system-card/"
-title: "OpenAI o1 System Card"
+source_url: https://openai.com/index/openai-o1-system-card/
+title: OpenAI o1 System Card
 year: 2024
 authors:
   - OpenAI
@@ -21,3 +21,6 @@ tags:
 modules:
   - inference
   - training
+domains:
+  - reasoning
+  - safety

@@ -1,0 +1,54 @@
+---
+title: "Code Generation: How Models Write Programs"
+description: "Code pretraining, code completion, and software engineering agents."
+module: applications
+order: 6
+status: published
+tiers: [intro, engineer, research]
+papers: [chen2021-humaneval, jimenez2024-swebench, yang2024-sweagent]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: learning code from code
+
+The core intuition behind code generation is simple: code is also a "language" with syntax, semantics, and contextual dependencies. By training on large amounts of code (GitHub, Stack Overflow, documentation), models learn variable naming, control flow, API calls, and debugging patterns. Give a model a function signature and comments, and it can complete the implementation; give it buggy code, and it may sometimes spot the problem.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: from completion to agents
+
+In practice, code generation has evolved from simple autocomplete to complex software engineering agents:
+
+- **Code completion**: IDE plugins predict the next line or token based on cursor position and context. The key is that the context window must be large enough to cover relevant function definitions and imports.
+- **Unit test generation**: Automatically generate test cases from function signatures and comments, reducing boilerplate writing time.
+- **Code review**: Automatically detect common bugs, security vulnerabilities, and style issues, but cannot replace human understanding of business logic.
+- **SWE agents**: Such as SWE-agent, which can autonomously browse codebases, locate bugs, write fixes, and run tests. This requires long-context understanding, tool calling, and multi-step planning.
+
+Evaluating code generation cannot rely solely on syntactic correctness: HumanEval tests function-level completion, while SWE-bench tests real GitHub issue repair capabilities. In production, watch for: hallucinated APIs (calling non-existent functions), security vulnerabilities (injection, out-of-bounds), and consistency with existing codebase style.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: the nature of code understanding
+
+Research raises a fundamental question: do models truly "understand" code semantics and execution flow, or are they merely pattern matching? Evidence is mixed: models excel on common patterns but still fail when deep reasoning, multi-file coordination, or complex algorithm design is required.
+
+Frontier directions include: execution-guided generation (using actual runtime results to refine code), formal verification integration (having models generate code accompanied by proofs), and end-to-end generation from natural language requirements to deployable systems. Code may be one of the strictest benchmarks for testing LLM "reasoning ability," because execution results are binary—pass or fail.
+
+</TierBlock>
+
+
+<PaperList ids={['chen2021-humaneval', 'jimenez2024-swebench', 'yang2024-sweagent']} />

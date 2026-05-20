@@ -2,11 +2,15 @@ id: bai2022-hh
 arxiv_id: "2204.05862"
 tldr_zh: |
   Anthropic 早期 RLHF 论文，HH-RLHF 数据集自此成为开源对齐研究的"MNIST"。是理解 helpful vs harmless 张力的最早系统化工作。
-tldr_en: |
-  Anthropic's early RLHF paper, HH-RLHF dataset since then became "MNIST" of open-source alignment research. Earliest systematic work understanding helpful vs harmless tension.
+tldr_en: >
+  Anthropic's early RLHF paper, HH-RLHF dataset since then became "MNIST" of open-source alignment research. Earliest
+  systematic work understanding helpful vs harmless tension.
 tags:
   - rlhf
   - alignment
   - safety
 modules:
   - training
+domains:
+  - alignment
+  - safety

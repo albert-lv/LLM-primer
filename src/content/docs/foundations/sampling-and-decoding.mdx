@@ -4,8 +4,8 @@ description: "解释 temperature、top-k、top-p 与推理时的选择。"
 module: foundations
 order: 3
 status: published
-tiers: [intro, engineer]
-papers: [brown2020-gpt3, wei2022-cot]
+tiers: [intro, engineer, research]
+papers: [brown2020-gpt3, wei2022-cot, snell2024-test-time-compute]
 updated: 2026-05-19
 ---
 
@@ -41,5 +41,15 @@ Temperature 调整分布尖锐程度；top-k 只保留概率最高的 k 个 toke
 
 </TierBlock>
 
+<TierBlock tier="research">
 
-<PaperList ids={['brown2020-gpt3', 'wei2022-cot']} />
+## 研究版：解码即搜索
+
+研究上，解码策略的选择本质上是在"输出质量"与"多样性"之间的权衡，但近年来的工作表明，测试时计算（test-time compute）可以打破这一权衡。通过让模型在解码时进行更多推理步骤（如反复修正、多路径搜索、验证器打分），小模型可能达到甚至超过大模型的表现。
+
+关键问题包括：最优的解码策略是否因任务而异？是否存在任务无关的通用解码算法？以及，从信息论角度看，采样温度与模型置信度之间有什么关系？这些问题的答案将决定未来 LLM 的推理架构设计。
+
+</TierBlock>
+
+
+<PaperList ids={['brown2020-gpt3', 'wei2022-cot', 'snell2024-test-time-compute']} />

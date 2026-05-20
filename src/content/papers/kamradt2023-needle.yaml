@@ -1,0 +1,22 @@
+id: kamradt2023-needle
+source_url: https://github.com/gkamradt/LLMTest_NeedleInAHaystack
+title: Needle in a Haystack — Pressure Testing LLMs
+year: 2023
+authors:
+  - Greg Kamradt
+tldr_zh: 提出"大海捞针"（Needle-in-a-Haystack）测试方法：在长文本中随机插入一个关键事实，测试模型能否在回答问题准确定位该事实。成为评估长上下文模型事实检索能力的事实标准方法，揭示了大多数模型在长文本中的"lost
+  in the middle"问题。
+tldr_en: 'Proposes the Needle-in-a-Haystack test: inserting a key fact at random positions in a long document and
+  testing whether the model can locate it when answering questions. Became the de facto standard for evaluating factual
+  retrieval in long-context models, revealing the "lost in the middle" problem in most models.'
+tags:
+  - needle-in-a-haystack
+  - long-context
+  - evaluation
+  - retrieval
+modules:
+  - inference
+domains:
+  - long-context
+  - evaluation
+inbox: false

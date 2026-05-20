@@ -1,6 +1,6 @@
 id: ouyang2022-instructgpt
 arxiv_id: "2203.02155"
-title: "Training language models to follow instructions with human feedback"
+title: Training language models to follow instructions with human feedback
 year: 2022
 authors:
   - Long Ouyang
@@ -39,3 +39,5 @@ tags:
 modules:
   - training
   - applications
+domains:
+  - alignment

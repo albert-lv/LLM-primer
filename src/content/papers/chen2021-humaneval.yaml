@@ -2,11 +2,15 @@ id: chen2021-humaneval
 arxiv_id: "2107.03374"
 tldr_zh: |
   提出 Codex 模型 + HumanEval 基准（164 道编程题）。HumanEval 至今是 coding 模型的"心电图指标"；这篇论文也是 GitHub Copilot 的根。
-tldr_en: |
-  Proposes Codex model + HumanEval benchmark (164 programming problems). HumanEval remains "ECG metric" for coding models today; this paper is also root of GitHub Copilot.
+tldr_en: >
+  Proposes Codex model + HumanEval benchmark (164 programming problems). HumanEval remains "ECG metric" for coding
+  models today; this paper is also root of GitHub Copilot.
 tags:
   - codex
   - humaneval
   - code-generation
 modules:
+  - applications
+domains:
+  - evaluation
   - applications

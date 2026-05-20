@@ -2,11 +2,13 @@ id: kojima2022-zeroshot-cot
 arxiv_id: "2205.11916"
 tldr_zh: |
   一句 "Let's think step by step" 就能在数学题上把准确率从 ~17% 拉到 ~78%。CoT 能力是模型自带、prompt 触发，这一发现震惊了整个社区。
-tldr_en: |
-  A single phrase "Let's think step by step" boosts math accuracy from ~17% to ~78%. CoT capability is inherent in models, triggered by prompts—this discovery shocked the entire community.
+tldr_en: >
+  A single phrase "Let's think step by step" boosts math accuracy from ~17% to ~78%. CoT capability is inherent in
+  models, triggered by prompts—this discovery shocked the entire community.
 tags:
   - chain-of-thought
-  - zero-shot
   - prompting
 modules:
   - applications
+domains:
+  - reasoning

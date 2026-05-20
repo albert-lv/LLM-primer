@@ -1,0 +1,49 @@
+---
+title: "Why LLMs Emerge Abilities"
+description: "A careful look at scale, data, compute, and emergence."
+module: foundations
+order: 7
+status: published
+tiers: [intro, engineer, research]
+papers: [kaplan2020-scaling, brown2020-gpt3, hoffmann2022-chinchilla, wei2022-cot]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: more practice brings new combinatorial abilities
+
+Many LLM abilities come from a simple objective: predict the next token on massive text. When the model is large enough, the data is diverse enough, and training is long enough, it learns grammar, facts, formatting, reasoning templates, and tool-use traces. "Emergence" often refers to abilities that suddenly become observable as scale increases.
+
+But emergence is not magic. Many phenomena are shaped by the choice of evaluation metric and prompting style: a continuously improving ability can look like a sudden jump when measured by a pass/fail threshold. The right attitude is to acknowledge qualitative changes from scale while guarding against anthropomorphism.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: scaling laws and compute-optimal training
+
+Scaling laws study the empirical relationship between model size, data volume, compute, and loss. Early results pushed the "bigger is better" route; Chinchilla further showed that many models are under-trained on tokens for their size, and that data and parameters should be more balanced under a fixed compute budget.
+
+In practice, capability is not determined by parameter count alone. Data quality, deduplication, mixing ratios, context length, training stability, alignment, and inference strategy all change outcomes. Chain-of-thought and similar prompting methods show that existing capabilities may need the right interface to be unlocked.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: treat emergence as a testable hypothesis
+
+Research on emergence should report continuous metrics, calibration curves, task difficulty, and prompt sensitivity. Distinguish statistical patterns learned during pretraining, in-context learning, tool externalization, and post-training alignment. The better question is not "does the model truly understand?" but "under what distributions, constraints, and interventions does it stably exhibit which predictable capabilities?"
+
+</TierBlock>
+
+
+<PaperList ids={['kaplan2020-scaling', 'brown2020-gpt3', 'hoffmann2022-chinchilla', 'wei2022-cot']} />

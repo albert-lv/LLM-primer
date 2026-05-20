@@ -25,3 +25,6 @@ tags:
   - architecture
 modules:
   - foundations
+domains:
+  - architecture
+  - long-context

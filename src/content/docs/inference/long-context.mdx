@@ -1,0 +1,60 @@
+---
+title: "长上下文：让模型读得更远"
+description: "解释上下文窗口扩展、位置编码外推与长文本评测。"
+module: inference
+order: 3
+status: published
+tiers: [intro, engineer, research]
+papers: [peng2023-yarn, chen2023-longlora, press2021-alibi]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：从短文到整本书
+
+早期的 Transformer 只能处理几百个词，相当于一段短文。今天的模型可以处理数万甚至上百万 token，相当于整本书或大量代码库。长上下文能力让模型能一次性分析长文档、维护多轮对话记忆、处理复杂的多步推理。
+
+但"能放进去"不等于"能看懂"。很多模型在长文本的后半部分表现下降，这被称为" lost in the middle "现象——模型对上下文中间部分的召回率低于开头和结尾。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：扩展、评测与实用技巧
+
+扩展上下文窗口的主要方法：
+
+- **位置编码外推**：RoPE 基础上做插值（NTK-aware、YaRN）或缩放，让模型适应更长的位置索引。
+- **继续预训练**：在长文本数据上继续训练，让模型真正学会利用长距离依赖。
+- **稀疏注意力**：局部-全局混合、滑动窗口，降低长序列的计算成本。
+
+工程实用技巧：
+- 把最重要的信息放在 prompt 的开头或结尾，避免埋在中间。
+- 长文档摘要时，先分块再合并，或让模型自底向上递归总结。
+- 使用"needle-in-a-haystack"测试验证模型是否能在长文本中定位关键信息。
+
+评测要覆盖：事实检索、多跳推理、长代码理解、长对话一致性，而不仅是"能接受多长输入"。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：注意力机制的根本限制
+
+研究上，长上下文的根本瓶颈不仅是计算复杂度，更是注意力模式的效率：人类阅读长文时会主动跳过无关部分，而标准注意力仍要计算所有位置对。如何让模型学会"选择性阅读"？
+
+方向包括：可学习的稀疏模式、基于内容的检索路由、以及把外部记忆与短期上下文结合的混合架构。长上下文也是评估模型"理解"深度的试金石：表面上的 token 容量增长，是否对应真正的长程推理能力提升？
+
+</TierBlock>
+
+
+<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi']} />

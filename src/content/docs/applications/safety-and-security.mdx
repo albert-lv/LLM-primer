@@ -1,0 +1,59 @@
+---
+title: "安全与对抗：模型的防护与攻击"
+description: "解释幻觉、jailbreak、提示注入与防御策略。"
+module: applications
+order: 5
+status: published
+tiers: [intro, engineer, research]
+papers: [wei2023-jailbroken, perez2022-redteaming, zou2023-universal-attack, bai2022-hh]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：模型也会"被骗"
+
+LLM 的安全问题可以从两个角度看：模型可能"说错话"（幻觉、偏见、有害内容），也可能被恶意输入"骗"去做不该做的事（jailbreak、提示注入）。就像守门人既要识别坏人，也要抵挡欺骗话术。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：分层防御与持续监测
+
+工程防御通常分层实施：
+
+- **输入层**：过滤敏感 prompt、检测已知攻击模式、限制输入长度和格式。
+- **模型层**：对齐训练（RLHF、Constitutional AI）、拒绝策略、输出分类器。
+- **输出层**：后处理过滤、水印、事实核查、引用验证。
+- **系统层**：沙箱执行、权限最小化、审计日志、速率限制。
+
+常见攻击：
+- **Jailbreak**：通过角色扮演、编码转换、逻辑陷阱等绕过安全限制。
+- **提示注入**：在不可信输入（如网页内容、邮件）中嵌入恶意指令，劫持模型行为。
+- **数据提取**：通过精心构造的 prompt 提取训练数据中的隐私信息。
+
+没有完美的防御，关键是纵深防御（defense in depth）和持续红队测试。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：安全的本质是可泛化的拒绝
+
+研究上，安全的核心问题是：模型能否学习"可泛化的拒绝"——即不仅拒绝训练时见过的攻击，也能抵御未见过的变体？当前证据表明，对抗性攻击往往可迁移：在一个模型上发现的 jailbreak 常常对其他模型也有效。
+
+前沿方向包括：自动化红队（用模型攻击模型）、可证明的防御边界、机械可解释性（mechanistic interpretability）定位有害行为回路、以及用形式化方法验证关键系统的输出约束。
+
+</TierBlock>
+
+
+<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh']} />

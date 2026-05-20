@@ -1,0 +1,26 @@
+id: lee2022-deduplicating
+arxiv_id: "2107.06499"
+title: Deduplicating Training Data Makes Language Models Better
+year: 2022
+authors:
+  - Katherine Lee
+  - Daphne Ippolito
+  - Andrew Nystrom
+  - Chiyuan Zhang
+  - Douglas Eck
+  - Chris Callison-Burch
+  - Nicholas Carlini
+tldr_zh: 系统证明训练数据去重能显著提升语言模型性能并减少记忆效应。通过在 C4 和 RealNews 数据集上去除近似重复和精确重复，模型在下游任务上表现更好，且生成训练数据副本的概率大幅降低。
+tldr_en: Systematically demonstrates that deduplicating training data significantly improves language model performance
+  and reduces memorization. By removing near-duplicate and exact-duplicate examples from C4 and RealNews, models perform
+  better on downstream tasks and are far less likely to emit training data verbatim.
+tags:
+  - deduplication
+  - data-quality
+  - pretraining
+  - privacy
+modules:
+  - training
+domains:
+  - pretraining
+inbox: false

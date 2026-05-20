@@ -14,6 +14,7 @@ export interface EnrichedPaper {
   tldr_en: string;
   tags: string[];
   modules: string[];
+  domains: string[];
   inbox: boolean;
   // enriched fields
   abstract?: string;

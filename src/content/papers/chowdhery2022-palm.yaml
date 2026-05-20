@@ -1,13 +1,87 @@
 id: chowdhery2022-palm
 arxiv_id: "2204.02311"
-tldr_zh: |
-  Google 540B 模型，展示更大规模带来的"涌现"行为（多步推理、解释笑话），并首次大规模使用 Pathways 系统。是 GPT-3 之后另一条独立的工程路线。
-tldr_en: |
-  Google's 540B model demonstrating "emergent" behaviors from larger scale (multi-step reasoning, joke explanation), first large-scale use of Pathways system. An independent engineering path after GPT-3.
+title: "PaLM: Scaling Language Modeling with Pathways"
+year: 2022
+authors:
+  - Aakanksha Chowdhery
+  - Sharan Narang
+  - Jacob Devlin
+  - Maarten Bosma
+  - Gaurav Mishra
+  - Adam Roberts
+  - Paul Barham
+  - Hyung Won Chung
+  - Charles Sutton
+  - Sebastian Gehrmann
+  - Parker Schuh
+  - Kensen Shi
+  - Sasha Tsvyashchenko
+  - Joshua Maynez
+  - Abhishek Rao
+  - Parker Barnes
+  - Yi Tay
+  - Noam Shazeer
+  - Vinodkumar Prabhakaran
+  - Emily Reif
+  - Nan Du
+  - Ben Hutchinson
+  - Reiner Pope
+  - James Bradbury
+  - Jacob Austin
+  - Michael Isard
+  - Guy Gur-Ari
+  - Pengcheng Yin
+  - Toju Duke
+  - Anselm Levskaya
+  - Sanjay Ghemawat
+  - Sunipa Dev
+  - Henryk Michalewski
+  - Xavier Garcia
+  - Vedant Misra
+  - Kevin Robinson
+  - Liam Fedus
+  - Denny Zhou
+  - Daphne Ippolito
+  - David Luan
+  - Hyeontaek Lim
+  - Barret Zoph
+  - Alexander Spiridonov
+  - Ryan Sepassi
+  - David Dohan
+  - Shivani Agrawal
+  - Mark Omernick
+  - Andrew M. Dai
+  - Thanumalayan Sankaranarayana Pillai
+  - Marie Pellat
+  - Aitor Lewkowycz
+  - Erica Moreira
+  - Rewon Child
+  - Oleksandr Polozov
+  - Katherine Lee
+  - Zongwei Zhou
+  - Xuezhi Wang
+  - Brennan Saeta
+  - Mark Diaz
+  - Orhan Firat
+  - Michele Catasta
+  - Jason Wei
+  - Kathy Meier-Hellstern
+  - Douglas Eck
+  - Jeff Dean
+  - Slav Petrov
+  - Noah Fiedel
+tldr_zh: Google 的 540B 参数 PaLM 模型，展示了 Pathways 系统上的大规模训练。论文详细记录了训练稳定性技术、数据混合策略和涌现能力观察，是大模型预训练工程的重要参考。
+tldr_en: Google's 540B parameter PaLM model trained on the Pathways system. The paper details training stability
+  techniques, data mixture strategies, and observations of emergent capabilities, serving as an important reference for
+  large-model pretraining engineering.
 tags:
-  - palm
-  - emergence
+  - pretraining
   - scaling
+  - pathways
+  - emergence
+  - training-stability
 modules:
-  - foundations
   - training
+domains:
+  - pretraining
+inbox: false

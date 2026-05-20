@@ -21,3 +21,6 @@ tags:
 modules:
   - training
   - inference
+domains:
+  - reasoning
+  - alignment

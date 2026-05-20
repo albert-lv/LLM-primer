@@ -1,6 +1,6 @@
 id: lewis2020-rag
 arxiv_id: "2005.11401"
-title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+title: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
 year: 2020
 authors:
   - Patrick Lewis
@@ -30,4 +30,6 @@ tags:
   - knowledge
   - generation
 modules:
+  - applications
+domains:
   - applications

@@ -2,11 +2,13 @@ id: frantar2022-gptq
 arxiv_id: "2210.17323"
 tldr_zh: |
   第一次实现"在单卡上 4-bit 量化 175B 模型而几乎不掉精度"。把 LLM 推理硬件门槛从 8xA100 拉到一张消费级显卡，普及"开源大模型本地跑"。
-tldr_en: |
-  First to achieve "4-bit quantization of 175B model on single GPU with almost no accuracy loss". Lowered LLM inference hardware barrier from 8xA100 to single consumer GPU, popularizing "run open-source LLMs locally".
+tldr_en: >
+  First to achieve "4-bit quantization of 175B model on single GPU with almost no accuracy loss". Lowered LLM inference
+  hardware barrier from 8xA100 to single consumer GPU, popularizing "run open-source LLMs locally".
 tags:
   - quantization
   - gptq
-  - inference
 modules:
+  - inference
+domains:
   - inference

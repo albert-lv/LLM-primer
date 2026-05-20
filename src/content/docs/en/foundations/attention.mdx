@@ -4,8 +4,8 @@ description: "Attention weights, Q/K/V, multi-head self-attention, and compute c
 module: foundations
 order: 2
 status: published
-tiers: [intro, engineer]
-papers: [vaswani2017-attention, bahdanau2014-attention]
+tiers: [intro, engineer, research]
+papers: [vaswani2017-attention, bahdanau2014-attention, luong2015-attention]
 updated: 2026-05-19
 ---
 
@@ -39,5 +39,15 @@ Full self-attention scales roughly with sequence length squared. Inference syste
 
 </TierBlock>
 
+<TierBlock tier="research">
 
-<PaperList ids={['vaswani2017-attention', 'bahdanau2014-attention']} />
+## Research view: interpretability of attention patterns
+
+Can attention weights themselves explain model decisions? Early work assumed attention provides transparent signals of "where the model is looking," but subsequent research shows that attention distributions do not straightforwardly correspond to feature importance—models can maintain outputs despite high attention weights, and vice versa.
+
+Deeper research directions include: specialization of different heads in multi-head attention (syntax heads, position heads, rare-token heads); dynamic evolution of attention patterns across layers (shallow vs. deep); and the relationship between attention and gradient-based attribution methods. Understanding these helps design sparser, more efficient, and more interpretable attention variants.
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'bahdanau2014-attention', 'luong2015-attention']} />

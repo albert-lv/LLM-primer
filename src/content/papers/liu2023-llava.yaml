@@ -2,11 +2,14 @@ id: liu2023-llava
 arxiv_id: "2304.08485"
 tldr_zh: |
   CLIP 视觉 encoder + LLaMA + GPT-4 合成的多模态指令数据，用极少算力做出第一个开源 GPT-4V 风格模型。开源多模态生态（LLaVA-1.5/1.6、Qwen-VL、InternVL）的范式起点。
-tldr_en: |
-  CLIP vision encoder + LLaMA + GPT-4 synthesized multimodal instruction data creates first open-source GPT-4V style model with minimal compute. Starting point for open-source multimodal ecosystem (LLaVA-1.5/1.6, Qwen-VL, InternVL).
+tldr_en: >
+  CLIP vision encoder + LLaMA + GPT-4 synthesized multimodal instruction data creates first open-source GPT-4V style
+  model with minimal compute. Starting point for open-source multimodal ecosystem (LLaVA-1.5/1.6, Qwen-VL, InternVL).
 tags:
   - llava
   - multimodal
   - vision-language
 modules:
   - applications
+domains:
+  - multimodal

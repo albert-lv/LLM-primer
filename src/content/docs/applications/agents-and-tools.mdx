@@ -1,0 +1,57 @@
+---
+title: "Agent 与工具使用：模型不只是聊天"
+description: "解释 LLM Agent、工具调用、规划与多 Agent 协作。"
+module: applications
+order: 2
+status: published
+tiers: [intro, engineer, research]
+papers: [yao2022-react, schick2023-toolformer, shinn2023-reflexion, yang2024-sweagent, anthropic2024-mcp]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：给模型一双"手"
+
+聊天模型只能说话，Agent 则能通过工具作用于世界：查天气、写代码、操作数据库、调用 API。核心思想是把"思考"和"行动"结合：模型先推理当前需要什么信息，然后调用工具获取，再基于结果继续推理。
+
+ReAct 框架把这个循环显式化：模型输出"思考→行动→观察→再思考"的交替序列。这就像人类解决问题时，不是一直空想，而是边查资料边推理。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：可靠性、状态与安全
+
+工程上，Agent 系统的核心挑战是可靠性：
+
+- **工具定义**：用 JSON Schema 或 OpenAPI 描述工具接口，让模型知道每个工具的参数和用途。MCP（Model Context Protocol）试图标准化这一层。
+- **调用解析**：模型输出通常是文本，需要可靠地解析出工具调用结构。Function calling 训练让模型原生输出结构化调用，比后解析更稳定。
+- **错误处理**：工具可能失败、超时或返回异常。Agent 需要能重试、回退或换用替代工具。
+- **状态管理**：多步任务需要维护对话历史、中间结果和计划。Reflexion 等工作让 Agent 能自我反思失败原因并调整策略。
+- **安全边界**：Agent 能执行代码或访问外部系统时，权限控制和沙箱化至关重要。提示注入（prompt injection）可能让攻击者劫持 Agent 行为。
+
+评估 Agent 比评估纯文本生成更难：要看任务完成率、步骤效率、错误恢复能力和成本。SWE-bench 等基准测试通过真实代码任务衡量 Agent 的实用性。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：从单 Agent 到多 Agent 与自主系统
+
+研究层面，单 Agent 的局限在于：一个模型同时承担规划、执行、记忆和反思，容易出错且难以扩展。多 Agent 系统把不同角色分配给不同实例：有的负责规划，有的负责执行，有的负责验证，通过对话或共享状态协作。
+
+更深的问题是：Agent 的"自主性"边界在哪里？当模型能自己决定调用什么工具、修改什么文件、访问什么数据时，如何定义和监督它的目标？这是技术、产品和伦理的交叉领域。
+
+</TierBlock>
+
+
+<PaperList ids={['yao2022-react', 'schick2023-toolformer', 'shinn2023-reflexion', 'yang2024-sweagent', 'anthropic2024-mcp']} />

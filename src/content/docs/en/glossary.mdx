@@ -8,33 +8,85 @@ updated: 2026-05-19
 
 # Glossary
 
+## Basics
+
 - **Token**: The smallest numbered text unit consumed by a model; see [Tokenization](/en/foundations/tokenization/).
 - **Tokenizer**: The component that maps text to token IDs.
 - **Vocabulary**: The fixed mapping between tokens and IDs.
-- **Embedding**: A continuous vector for a discrete symbol; see [Embeddings](/foundations/embeddings/).
+- **Embedding**: A continuous vector for a discrete symbol; see [Embeddings](/en/foundations/embeddings/).
 - **Context window**: The maximum number of tokens a model can read at once.
 - **Attention**: A mechanism for dynamically selecting relevant context; see [Attention](/en/foundations/attention/).
 - **Self-attention**: Attention among tokens in the same sequence.
+- **Cross-attention**: Attention from one sequence to another.
 - **Q/K/V**: Query, Key, and Value projections in attention.
 - **Transformer block**: A layer made of attention, MLP, residuals, and normalization.
 - **MLP**: The feed-forward network applied to each token representation.
 - **Residual connection**: Adding a layer input back to its output for stable deep training.
-- **LayerNorm**: Normalization that stabilizes activation statistics.
-- **Positional encoding**: Information that tells a model token order and distance.
+- **LayerNorm / RMSNorm**: Normalization that stabilizes activation statistics.
+- **Positional encoding**: Information that tells a model token order and distance; see [Positional Encoding](/en/foundations/positional-encoding/).
 - **RoPE**: Rotary positional embeddings for relative position information.
-- **Logit**: An unnormalized score before softmax.
-- **Softmax**: A function that converts logits into probabilities.
+- **ALiBi**: Attention with Linear Biases for relative position.
+
+## Training
+
+- **Pretraining**: Learning general language patterns from large-scale data; see [Pretraining](/en/training/pretraining-and-scaling/).
+- **Fine-tuning**: Continuing training on task-specific data; see [Fine-Tuning](/en/training/fine-tuning-and-alignment/).
+- **SFT (Supervised Fine-Tuning)**: Training on instruction-response pairs.
+- **RLHF**: Optimizing outputs with rewards learned from human preferences.
+- **DPO**: Direct Preference Optimization without an explicit reward model.
+- **PPO**: Proximal Policy Optimization, a common RL algorithm in RLHF.
+- **LoRA**: Low-Rank Adaptation, a parameter-efficient fine-tuning method.
+- **QLoRA**: Quantized LoRA for fine-tuning large models on consumer GPUs.
+- **Alignment**: The process of making model outputs conform to human values.
+- **Scaling Law**: The empirical observation that model performance improves predictably with scale, data, and compute.
+- **Compute-optimal training**: Balancing model size and training data under a fixed compute budget.
+- **Loss spike**: A sudden sharp increase in training loss.
+- **Gradient clipping**: Limiting gradient norms to prevent explosion.
+- **Mixed precision**: Accelerating training with FP16/BF16 alongside FP32.
+- **Activation checkpointing**: Trading recomputation for reduced memory usage.
+
+## Inference
+
+- **KV cache**: Cached Keys and Values used to speed autoregressive generation; see [KV Cache](/en/inference/kv-cache-and-quantization/).
+- **GQA (Grouped-Query Attention)**: Multiple query heads share the same KV heads.
+- **MQA (Multi-Query Attention)**: All query heads share a single KV head.
+- **Quantization**: Lower-precision weights or activations to reduce cost; see [Quantization](/en/inference/kv-cache-and-quantization/).
+- **PTQ (Post-Training Quantization)**: Quantizing an already-trained model.
+- **QAT (Quantization-Aware Training)**: Simulating low precision during training.
+- **FlashAttention**: An IO-aware attention algorithm that reduces memory traffic; see [Efficient Attention](/en/inference/efficient-attention/).
+- **Speculative decoding**: Using a small model to draft candidates verified by the large model.
+- **Greedy decoding**: Always selecting the highest-probability token.
+- **Beam search**: Keeping multiple candidate sequences during decoding.
 - **Temperature**: A decoding parameter controlling distribution sharpness.
 - **Top-k**: Sampling only from the k highest-probability candidates.
-- **Top-p**: Sampling from the smallest set whose cumulative probability reaches p.
-- **Decoding**: The strategy for turning probabilities into generated text.
+- **Top-p (Nucleus sampling)**: Sampling from the smallest set whose cumulative probability reaches p.
+- **Decoding**: The strategy for turning probabilities into generated text; see [Sampling and Decoding](/en/foundations/sampling-and-decoding/).
+
+## Applications
+
 - **Prompt**: The instruction, context, and examples sent to a model.
 - **Few-shot**: Guiding a task by including a small number of examples.
 - **Chain-of-thought**: Prompting the model to write intermediate reasoning steps.
-- **Pretraining**: Learning general language patterns from large-scale data.
-- **Fine-tuning**: Continuing training on task-specific data.
-- **RLHF**: Optimizing outputs with rewards learned from human preferences.
-- **RAG**: Retrieving external evidence and inserting it into context.
-- **KV cache**: Cached Keys and Values used to speed autoregressive inference.
-- **Quantization**: Lower-precision weights or activations to reduce cost.
+- **RAG**: Retrieving external evidence and inserting it into context; see [RAG](/en/applications/rag-and-retrieval/).
+- **Embedding model**: A specialized model that turns text into vectors.
+- **Vector database**: A database for storing and retrieving vectors.
+- **Reranker**: A model that precisely reorders retrieved candidates.
+- **Agent**: An LLM system that can use tools and execute multi-step tasks; see [Agents](/en/applications/agents-and-tools/).
+- **Tool calling / Function calling**: The mechanism for models to invoke external tools.
+- **MCP (Model Context Protocol)**: Anthropic's proposed standard protocol for tool calling.
+- **ReAct**: A reasoning-and-acting alternating framework for agents.
+- **Reflection**: The ability of an agent to self-reflect and adjust strategy.
+- **Multi-agent**: Systems where multiple agents collaborate on tasks.
 - **Hallucination**: A plausible but unreliable model-generated claim.
+- **Jailbreak**: An attack that bypasses model safety restrictions.
+- **Prompt injection**: An attack that manipulates model behavior through malicious input.
+
+## Architecture & Models
+
+- **Encoder**: The bidirectional input-processing part of a model, e.g., BERT.
+- **Decoder**: The autoregressive output-generating part of a model, e.g., GPT.
+- **Encoder-decoder**: An architecture with both encoder and decoder, e.g., T5.
+- **Causal mask**: A mask that prevents a model from seeing future tokens.
+- **MoE (Mixture of Experts)**: Sparsely activated experts to increase model capacity.
+- **SSM (State Space Model)**: Linear-complexity sequence modeling, e.g., Mamba.
+- **RoPE (Rotary Positional Embedding)**: Rotary positional encoding.

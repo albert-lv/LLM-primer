@@ -1,6 +1,6 @@
 id: dubey2024-llama3
 arxiv_id: "2407.21783"
-title: "The Llama 3 Herd of Models"
+title: The Llama 3 Herd of Models
 year: 2024
 authors:
   - Meta AI
@@ -20,3 +20,5 @@ tags:
   - multimodal
 modules:
   - training
+domains:
+  - pretraining

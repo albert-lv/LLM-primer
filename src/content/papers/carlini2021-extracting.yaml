@@ -1,0 +1,31 @@
+id: carlini2021-extracting
+arxiv_id: "2012.07805"
+title: Extracting Training Data from Large Language Models
+year: 2021
+authors:
+  - Nicholas Carlini
+  - Florian Tramer
+  - Eric Wallace
+  - Matthew Jagielski
+  - Ariel Herbert-Voss
+  - Katherine Lee
+  - Adam Roberts
+  - Tom Brown
+  - Dawn Song
+  - Ulfar Erlingsson
+  - Alina Oprea
+  - Colin Raffel
+tldr_zh: 展示了从 GPT-2 等语言模型中提取训练数据片段的可行性。通过精心设计的解码策略，可以从模型中恢复出数百条逐字记忆的训练样本，揭示了大规模语言模型的隐私风险。
+tldr_en: Demonstrates the feasibility of extracting training data fragments from language models like GPT-2. Through
+  carefully designed decoding strategies, hundreds of verbatim memorized training examples can be recovered, revealing
+  privacy risks in large language models.
+tags:
+  - privacy
+  - memorization
+  - data-extraction
+  - safety
+modules:
+  - applications
+domains:
+  - safety
+inbox: false

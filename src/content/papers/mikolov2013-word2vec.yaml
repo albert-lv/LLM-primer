@@ -1,6 +1,6 @@
 id: mikolov2013-word2vec
 arxiv_id: "1301.3781"
-title: "Efficient Estimation of Word Representations in Vector Space"
+title: Efficient Estimation of Word Representations in Vector Space
 year: 2013
 authors:
   - Tomas Mikolov
@@ -22,3 +22,5 @@ tags:
   - nlp
 modules:
   - foundations
+domains:
+  - architecture

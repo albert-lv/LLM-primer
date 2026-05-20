@@ -1,0 +1,25 @@
+id: xiao2023-streamingllm
+arxiv_id: "2309.17453"
+title: Efficient Streaming Language Models with Attention Sinks
+year: 2023
+authors:
+  - Guangxuan Xiao
+  - Yuandong Tian
+  - Beidi Chen
+  - Song Han
+  - Mike Lewis
+tldr_zh: 提出 Attention Sink 现象：在自回归生成中，模型始终关注开头的几个初始 token。利用这一发现，StreamingLLM 可以在不重新计算的情况下处理无限长输入流，同时保持性能稳定。
+tldr_en: "Discovers the Attention Sink phenomenon: in autoregressive generation, models consistently attend to a few
+  initial tokens. StreamingLLM leverages this to handle infinite-length input streams without recomputation while
+  maintaining stable performance."
+tags:
+  - attention-sink
+  - long-context
+  - streaming
+  - inference
+modules:
+  - inference
+domains:
+  - inference
+  - long-context
+inbox: false

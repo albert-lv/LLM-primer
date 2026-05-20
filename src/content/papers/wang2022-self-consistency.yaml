@@ -1,6 +1,6 @@
 id: wang2022-self-consistency
 arxiv_id: "2203.11171"
-title: "Self-Consistency Improves Chain of Thought Reasoning in Language Models"
+title: Self-Consistency Improves Chain of Thought Reasoning in Language Models
 year: 2022
 authors:
   - Xuezhi Wang
@@ -28,3 +28,5 @@ tags:
 modules:
   - inference
   - applications
+domains:
+  - reasoning

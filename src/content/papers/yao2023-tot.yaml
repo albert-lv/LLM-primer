@@ -27,3 +27,6 @@ tags:
 modules:
   - inference
   - applications
+domains:
+  - reasoning
+  - applications

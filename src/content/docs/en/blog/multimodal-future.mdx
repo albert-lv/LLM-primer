@@ -1,0 +1,29 @@
+---
+title: "Multimodal: LLMs Beyond Text"
+description: "Exploring the trends and challenges of vision, audio, and text fusion."
+status: published
+tiers: [intro, engineer]
+updated: 2026-05-19
+---
+
+# Multimodal: LLMs Beyond Text
+
+The core capability of large language models is processing sequential discrete symbols—originally text, now rapidly expanding to images, audio, video, and even robot control signals.
+
+## From Text to Vision
+
+CLIP proved that a shared text-image representation space is feasible: using contrastive learning to let models understand that "a picture of a cat" and the word "cat" point to the same concept. GPT-4V and Gemini further demonstrated that after incorporating visual data during pretraining, models can perform image captioning, visual question answering, and cross-modal reasoning.
+
+In practice, multimodal LLMs commonly add a vision encoder (such as ViT) before the text decoder, using a projection layer to map image features into the text embedding space. Training is usually staged: pretrain vision and text encoders separately, align them, then fine-tune on multimodal instruction data.
+
+## Audio and Beyond
+
+Speech-to-text (Whisper), text-to-speech, and music generation all share the same trend: using a unified Transformer architecture to process multiple modalities. The key challenge is that different modalities have vastly different sequence lengths, information densities, and temporal scales. One second of audio may contain tens of thousands of sample points, while the text describing it needs only a few words.
+
+## Research Frontiers
+
+- **Modality alignment**: Do vision tokens and text tokens truly operate "in the same space," or are they merely forced to share attention mechanism projections?
+- **World models**: Is multimodality a path toward physical world understanding? Can video prediction, robot control, and causal reasoning be learned within a unified framework?
+- **Evaluation dilemmas**: How can we fairly evaluate multimodal models' "understanding"? Existing benchmarks often only test surface associations rather than deep reasoning.
+
+Multimodality is not simply "adding a new input interface." It may redefine our understanding of LLM capability boundaries and architecture design.

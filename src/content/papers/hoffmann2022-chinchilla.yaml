@@ -1,6 +1,6 @@
 id: hoffmann2022-chinchilla
 arxiv_id: "2203.15556"
-title: "Training Compute-Optimal Large Language Models"
+title: Training Compute-Optimal Large Language Models
 year: 2022
 authors:
   - Jordan Hoffmann
@@ -36,6 +36,7 @@ tldr_en: |
 tags:
   - scaling-laws
   - compute-optimal
-  - training
 modules:
   - training
+domains:
+  - pretraining

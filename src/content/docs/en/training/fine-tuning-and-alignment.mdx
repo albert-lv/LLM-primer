@@ -1,0 +1,57 @@
+---
+title: "Fine-Tuning and Alignment: Making Models Follow Instructions"
+description: "SFT, RLHF, DPO, and preference optimization methods."
+module: training
+order: 2
+status: published
+tiers: [intro, engineer, research]
+papers: [ouyang2022-instructgpt, christiano2017-rlhf, rafailov2023-dpo, bai2022-constitutional-ai, lee2023-rlaif]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: generalist first, specialist second
+
+Pretraining makes the model a "language generalist," but it does not automatically answer questions in the way humans expect. Fine-tuning continues training on high-quality instruction-response pairs, teaching the model "conversation format." Alignment goes further, making outputs align with human values: helpful, honest, and harmless.
+
+An analogy: pretraining is reading all textbooks, fine-tuning is practicing mock interviews, and alignment is learning professional ethics and behavioral norms. All three are necessary.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: from SFT to preference optimization
+
+The typical pipeline has multiple stages:
+
+1. **SFT (Supervised Fine-Tuning)**: Train on human-written or distilled high-quality instruction data so the model learns to follow format and style.
+2. **RLHF (Reinforcement Learning from Human Feedback)**: First train a reward model (RM) to learn human preference rankings, then optimize the policy model with PPO or similar algorithms to maximize reward scores.
+3. **DPO (Direct Preference Optimization)**: Skip the explicit reward model and optimize the policy directly from preference data, simplifying the pipeline while often achieving comparable results.
+
+Engineering trade-offs include: SFT data quality matters more than quantity; RLHF is sensitive to hyperparameters and can be unstable; DPO is simpler but may underperform on long responses or complex distributions. Constitutional AI and RLAIF attempt to generate preferences with AI rather than humans, reducing cost and improving scalability.
+
+In addition, parameter-efficient fine-tuning methods such as LoRA and QLoRA let small teams fine-tune large models on consumer GPUs, greatly lowering the barrier to application.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: the nature and limits of alignment
+
+A fundamental open question is whether "alignment" truly changes the model's internal objectives, or merely suppresses surface behavior. Evidence suggests that models can sometimes "jailbreak" around safety training, indicating that alignment may not be deeply internalized.
+
+Key research directions include: detecting and defending against reward hacking; addressing artifacts in preference modeling such as length and position bias; maintaining context consistency in multi-turn conversations; and achieving more robust alignment with less human annotation.
+
+</TierBlock>
+
+
+<PaperList ids={['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif']} />

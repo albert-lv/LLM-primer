@@ -8,6 +8,8 @@ updated: 2026-05-19
 
 # 术语表
 
+## 基础概念
+
 - **Token**：模型处理文本的最小编号单元；参见 [Tokenization](/foundations/tokenization/)。
 - **Tokenizer**：把文本映射到 token ID 的组件。
 - **Vocabulary**：token 到 ID 的固定表。
@@ -15,26 +17,76 @@ updated: 2026-05-19
 - **Context window**：模型一次能读取的最大 token 数。
 - **Attention**：动态选择相关上下文的机制；参见 [Attention](/foundations/attention/)。
 - **Self-attention**：同一序列内部 token 彼此关注。
+- **Cross-attention**：一个序列的 token 关注另一个序列的 token。
 - **Q/K/V**：注意力中的 Query、Key、Value 投影。
 - **Transformer block**：注意力、MLP、残差和归一化组成的层。
 - **MLP**：逐 token 的前馈网络，提供非线性变换。
 - **Residual connection**：把输入加回输出，帮助深层训练。
-- **LayerNorm**：稳定激活分布的归一化方法。
+- **LayerNorm / RMSNorm**：稳定激活分布的归一化方法。
 - **Positional encoding**：向模型注入顺序信息；参见 [位置编码](/foundations/positional-encoding/)。
 - **RoPE**：用旋转方式编码相对位置的方案。
-- **Logit**：softmax 前的未归一化分数。
-- **Softmax**：把 logits 转成概率分布的函数。
+- **ALiBi**：通过注意力偏置编码相对位置的方案。
+
+## 训练
+
+- **Pretraining**：在大规模数据上学习通用语言模式；参见 [预训练](/training/pretraining-and-scaling/)。
+- **Fine-tuning**：用特定数据继续训练以适配任务；参见 [微调](/training/fine-tuning-and-alignment/)。
+- **SFT（Supervised Fine-Tuning）**：监督微调，用指令-回答对训练。
+- **RLHF**：用人类偏好训练奖励模型并优化输出。
+- **DPO**：直接偏好优化，无需显式奖励模型。
+- **PPO**：近端策略优化，RLHF 中常用的强化学习算法。
+- **LoRA**：低秩适应，参数高效微调方法。
+- **QLoRA**：量化后的 LoRA，可在消费级 GPU 上微调大模型。
+- **Alignment**：让模型输出符合人类价值观的过程。
+- **Scaling Law**：模型性能随规模、数据、计算量可预测提升的经验规律。
+- **Compute-optimal training**：在固定计算预算下平衡模型大小与训练数据量。
+- **Loss spike**：训练过程中损失突然急剧上升的现象。
+- **Gradient clipping**：限制梯度范数以防止爆炸。
+- **Mixed precision**：混合使用 FP16/BF16 与 FP32 加速训练。
+- **Activation checkpointing**：用重计算换显存的技术。
+
+## 推理
+
+- **KV cache**：推理时缓存历史 Key/Value 以加速生成；参见 [KV Cache](/inference/kv-cache-and-quantization/)。
+- **GQA（Grouped-Query Attention）**：分组查询注意力，多头共享 KV。
+- **MQA（Multi-Query Attention）**：多查询注意力，所有头共享单一 KV。
+- **Quantization**：用更低精度表示权重或激活以降低成本；参见 [量化](/inference/kv-cache-and-quantization/)。
+- **PTQ（Post-Training Quantization）**：训练后量化。
+- **QAT（Quantization-Aware Training）**：量化感知训练。
+- **FlashAttention**：通过分块和重计算减少显存流量的高效注意力算法；参见 [高效注意力](/inference/efficient-attention/)。
+- **Speculative decoding**：用小模型生成候选、大模型验证的加速方法。
+- **Greedy decoding**：每步选概率最高 token 的解码策略。
+- **Beam search**：保留多个候选序列的解码策略。
 - **Temperature**：控制采样分布尖锐程度的参数。
 - **Top-k**：只在概率最高的 k 个候选中采样。
-- **Top-p**：保留累计概率达到 p 的候选集合。
-- **Decoding**：从概率分布生成文本的策略。
+- **Top-p（Nucleus sampling）**：保留累计概率达到 p 的候选集合。
+- **Decoding**：从概率分布生成文本的策略；参见 [采样与解码](/foundations/sampling-and-decoding/)。
+
+## 应用
+
 - **Prompt**：给模型的输入指令、上下文和示例。
 - **Few-shot**：在 prompt 中给少量示例来引导任务。
 - **Chain-of-thought**：诱导模型写出中间推理步骤的方法。
-- **Pretraining**：在大规模数据上学习通用语言模式。
-- **Fine-tuning**：用特定数据继续训练以适配任务。
-- **RLHF**：用人类偏好训练奖励模型并优化输出。
-- **RAG**：检索外部资料并放入上下文来回答。
-- **KV cache**：推理时缓存历史 Key/Value 以加速生成。
-- **Quantization**：用更低精度表示权重或激活以降低成本。
+- **RAG**：检索外部资料并放入上下文来回答；参见 [RAG](/applications/rag-and-retrieval/)。
+- **Embedding model**：把文本变成向量的专用模型。
+- **Vector database**：存储和检索向量的数据库。
+- **Reranker**：对检索结果进行精确排序的模型。
+- **Agent**：能使用工具、执行多步任务的 LLM 系统；参见 [Agent](/applications/agents-and-tools/)。
+- **Tool calling / Function calling**：模型调用外部工具/函数的机制。
+- **MCP（Model Context Protocol）**：Anthropic 提出的工具调用标准协议。
+- **ReAct**：推理与行动交替的 Agent 框架。
+- **Reflection**：Agent 自我反思并调整策略的能力。
+- **Multi-agent**：多个 Agent 协作完成任务的系统。
 - **Hallucination**：模型生成看似合理但不可靠的信息。
+- **Jailbreak**：绕过模型安全限制的攻击手段。
+- **Prompt injection**：通过恶意输入操控模型行为的攻击。
+
+## 架构与模型
+
+- **Encoder**：双向处理输入的模型部分，如 BERT。
+- **Decoder**：自回归生成输出的模型部分，如 GPT。
+- **Encoder-decoder**：同时包含编码器和解码器的架构，如 T5。
+- **Causal mask**：防止模型看到未来 token 的掩码。
+- **MoE（Mixture of Experts）**： mixture of experts，用稀疏激活增加模型容量。
+- **SSM（State Space Model）**：状态空间模型，如 Mamba，线性复杂度序列建模。
+- **RoPE（Rotary Positional Embedding）**：旋转位置编码。

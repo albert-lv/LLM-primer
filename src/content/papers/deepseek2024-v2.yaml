@@ -2,11 +2,14 @@ id: deepseek2024-v2
 arxiv_id: "2405.04434"
 tldr_zh: |
   引入 Multi-head Latent Attention (MLA) 把 KV cache 砍到 1/13，让 236B MoE 推理价格碾压同档闭源。MLA 是 V3/R1 推理性价比的核心来源。
-tldr_en: |
-  Introduces Multi-head Latent Attention (MLA) reducing KV cache to 1/13, making 236B MoE inference price crush same-tier closed-source. MLA is core source of V3/R1 inference cost-effectiveness.
+tldr_en: >
+  Introduces Multi-head Latent Attention (MLA) reducing KV cache to 1/13, making 236B MoE inference price crush
+  same-tier closed-source. MLA is core source of V3/R1 inference cost-effectiveness.
 tags:
-  - deepseek-v2
   - mla
   - moe
 modules:
+  - inference
+domains:
+  - architecture
   - inference

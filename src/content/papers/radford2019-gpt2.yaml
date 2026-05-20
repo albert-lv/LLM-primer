@@ -1,6 +1,6 @@
 id: radford2019-gpt2
-source_url: "https://openai.com/research/language-models-are-unsupervised-multitask-learners"
-title: "Language Models are Unsupervised Multitask Learners"
+source_url: https://openai.com/research/language-models-are-unsupervised-multitask-learners
+title: Language Models are Unsupervised Multitask Learners
 year: 2019
 authors:
   - Alec Radford
@@ -20,9 +20,10 @@ tldr_en: |
   "staged released" due to misuse concerns.
 tags:
   - gpt
-  - zero-shot
   - language-model
   - pretraining
 modules:
   - foundations
   - training
+domains:
+  - pretraining

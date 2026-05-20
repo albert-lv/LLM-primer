@@ -20,6 +20,9 @@ export default defineConfig({
       sidebar: [
         { label: '首页 / Home', link: '/' },
         { label: '基础 / Foundations', autogenerate: { directory: 'foundations' } },
+        { label: '训练 / Training', autogenerate: { directory: 'training' } },
+        { label: '推理 / Inference', autogenerate: { directory: 'inference' } },
+        { label: '应用 / Applications', autogenerate: { directory: 'applications' } },
         { label: '术语 / Glossary', link: '/glossary/' },
         { label: '博客 / Blog', autogenerate: { directory: 'blog' } },
         { label: 'Papers', link: '/papers/' },

@@ -1,6 +1,6 @@
 id: raffel2020-t5
 arxiv_id: "1910.10683"
-title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+title: Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer
 year: 2020
 authors:
   - Colin Raffel
@@ -28,3 +28,5 @@ tags:
   - pretraining
 modules:
   - training
+domains:
+  - architecture

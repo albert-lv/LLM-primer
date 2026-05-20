@@ -1,0 +1,60 @@
+---
+title: "KV Cache and Quantization: Making Large Models Faster"
+description: "KV cache principles, quantization methods, and inference cost optimization."
+module: inference
+order: 1
+status: published
+tiers: [intro, engineer, research]
+papers: [kwon2023-vllm, dettmers2022-llmint8, dettmers2023-qlora, frantar2022-gptq, lin2023-awq, xiao2022-smoothquant]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: remember what you already computed
+
+LLMs generate text one token at a time. If each new token required recomputing attention over all previous tokens, it would waste enormous compute. The intuition behind KV Cache is simple: store the Key and Value vectors computed for previous tokens and reuse them directly, avoiding redundant computation.
+
+Quantization is another cost-reduction idea: model weights are typically 32-bit floats. If reduced to 16-bit, 8-bit, or even 4-bit, memory footprint and compute drop significantly. Some precision is lost, but the trade-off is often fully acceptable in practice.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: the memory wall and precision trade-offs
+
+KV Cache is one of the main memory consumers during inference, especially in long-context scenarios. Optimization directions include:
+
+- **PagedAttention (vLLM)**: Manage KV Cache in pages to reduce memory fragmentation and improve batching efficiency.
+- **KV Cache compression**: Reduce cache size through quantization, pruning, sliding windows, or eviction policies.
+- **GQA / MQA**: Share Key/Value across multiple attention heads to reduce cache volume.
+
+Quantization techniques by category:
+- **PTQ (Post-Training Quantization)**: GPTQ, AWQ, SmoothQuant, etc. Quantize an already-trained model without retraining.
+- **QAT (Quantization-Aware Training)**: Simulate low precision during training; usually better results but higher cost.
+- **GGML/GGUF**: Community-standard 4-bit formats that let large models run on laptops.
+
+In practice, evaluate perplexity, downstream task accuracy, and end-to-end latency after quantization—not just memory savings. Different layers have different sensitivity to precision; mixed precision or per-layer tuning often works best.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: the boundary of precision and efficiency
+
+Research questions include: what are the limits of quantization? Can 1-bit or ternary weights still preserve language ability? How can activation distribution analysis find optimal clipping thresholds and scaling factors?
+
+Another frontier is speculative decoding: a small model rapidly generates candidate sequences, and the large model verifies and corrects them in parallel, achieving 2-3x speedup without quality loss. This is essentially a rebalancing between computation and memory.
+
+</TierBlock>
+
+
+<PaperList ids={['kwon2023-vllm', 'dettmers2022-llmint8', 'dettmers2023-qlora', 'frantar2022-gptq', 'lin2023-awq', 'xiao2022-smoothquant']} />

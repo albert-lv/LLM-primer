@@ -1,0 +1,54 @@
+---
+title: "评估与基准：如何判断模型好坏"
+description: "解释 LLM 评估方法、基准测试与常见陷阱。"
+module: applications
+order: 4
+status: published
+tiers: [intro, engineer, research]
+papers: [hendrycks2020-mmlu, liang2022-helm, chen2021-humaneval, zheng2023-mtbench]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import PaperList from '../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：没有单一分数能概括模型
+
+评估 LLM 就像评估一个人：你不会只看数学成绩就判断他是否优秀。模型可能在知识问答上得分高，但在代码生成、逻辑推理或多轮对话上表现平平。好的评估需要多维度、多场景、多难度的综合测试。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：选择适合任务的评估策略
+
+工程上，评估分为几个层次：
+
+- **自动指标**：困惑度（perplexity）、BLEU、ROUGE 适用于有标准答案的任务；代码用 pass@k；推理用准确率。但自动指标往往与真实用户体验不完全一致。
+- **模型作为评判（LLM-as-a-judge）**：用更强的模型评估较弱模型的输出，MT-Bench 等基准采用此法。成本低但存在位置偏差、长度偏差和自身偏好问题。
+- **人类评估**：金标准，但昂贵且慢。常用于对齐评估、创意写作和开放式对话。
+- **红队测试（Red Teaming）**：主动寻找模型的失败模式，包括 jailbreak、提示注入、偏见和危险内容生成。
+
+常见陷阱包括：训练数据污染（测试集已出现在预训练数据中）、提示敏感性（换种问法分数大变）、以及过度优化单一基准导致的能力扭曲。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：评估即科学
+
+研究层面，评估本身就是科学问题。HELM 提出了 holistic 评估框架，强调场景、指标和目标的全面覆盖。但评估与现实部署之间仍有鸿沟：基准上的领先不等于产品中的好用。
+
+开放问题包括：如何评估涌现能力？如何量化解码策略对评估结果的影响？如何设计不易被"刷分"的基准？以及，当模型能力接近或超过人类时，谁来担任评判者？
+
+</TierBlock>
+
+
+<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench']} />

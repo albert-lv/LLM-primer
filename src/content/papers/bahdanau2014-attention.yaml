@@ -1,6 +1,6 @@
 id: bahdanau2014-attention
 arxiv_id: "1409.0473"
-title: "Neural Machine Translation by Jointly Learning to Align and Translate"
+title: Neural Machine Translation by Jointly Learning to Align and Translate
 year: 2014
 authors:
   - Dzmitry Bahdanau
@@ -21,3 +21,5 @@ tags:
   - machine-translation
 modules:
   - foundations
+domains:
+  - architecture

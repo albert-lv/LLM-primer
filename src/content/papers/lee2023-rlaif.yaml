@@ -2,11 +2,13 @@ id: lee2023-rlaif
 arxiv_id: "2309.00267"
 tldr_zh: |
   Google 系统性地证明 RLAIF 在多种任务上能匹敌 RLHF，把"AI 反馈替代人工"作为可扩展的对齐方案给出工程证据。
-tldr_en: |
-  Google systematically proves RLAIF can match RLHF on various tasks, providing engineering evidence for "AI feedback replacing human" as scalable alignment solution.
+tldr_en: >
+  Google systematically proves RLAIF can match RLHF on various tasks, providing engineering evidence for "AI feedback
+  replacing human" as scalable alignment solution.
 tags:
-  - rlaif
   - ai-feedback
   - alignment
 modules:
   - training
+domains:
+  - alignment

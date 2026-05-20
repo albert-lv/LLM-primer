@@ -1,6 +1,6 @@
 id: kaplan2020-scaling
 arxiv_id: "2001.08361"
-title: "Scaling Laws for Neural Language Models"
+title: Scaling Laws for Neural Language Models
 year: 2020
 authors:
   - Jared Kaplan
@@ -28,3 +28,5 @@ tags:
   - power-law
 modules:
   - training
+domains:
+  - pretraining

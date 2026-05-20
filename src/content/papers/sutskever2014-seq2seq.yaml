@@ -1,6 +1,6 @@
 id: sutskever2014-seq2seq
 arxiv_id: "1409.3215"
-title: "Sequence to Sequence Learning with Neural Networks"
+title: Sequence to Sequence Learning with Neural Networks
 year: 2014
 authors:
   - Ilya Sutskever
@@ -22,3 +22,5 @@ tags:
   - machine-translation
 modules:
   - foundations
+domains:
+  - architecture

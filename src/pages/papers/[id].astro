@@ -3,6 +3,21 @@ import { getCollection } from 'astro:content';
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { buildCitedByIndex } from '../../lib/cited-by';
 
+const domainLabels: Record<string, string> = {
+  architecture: '架构',
+  pretraining: '预训练',
+  alignment: '对齐',
+  inference: '推理',
+  applications: '应用',
+  evaluation: '评估',
+  safety: '安全',
+  multimodal: '多模态',
+  reasoning: '推理能力',
+  'long-context': '长上下文',
+  moe: '混合专家',
+  uncategorized: '未分类',
+};
+
 export async function getStaticPaths() {
   const papers = await getCollection('papers');
   const docs = await getCollection('docs');
@@ -26,6 +41,24 @@ export async function getStaticPaths() {
 
 const { paper, citedByArticles } = Astro.props;
 const docs = await getCollection('docs');
+const allPapers = await getCollection('papers');
+const publishedPapers = allPapers.filter((p) => !p.data.inbox);
+
+// Find related papers: share at least one domain, exclude self
+const relatedPapers = publishedPapers
+  .filter((p) => p.data.id !== paper.id)
+  .filter((p) => (p.data.domains ?? []).some((d) => (paper.domains ?? []).includes(d)))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0))
+  .slice(0, 6);
+
+// Find papers cited by the same articles (co-citation network)
+const coCitedPapers = publishedPapers
+  .filter((p) => p.data.id !== paper.id)
+  .filter((p) => citedByArticles.some((slug) => {
+    const doc = docs.find((d) => d.slug === slug);
+    return doc?.data.papers?.includes(p.data.id);
+  }))
+  .slice(0, 4);
 ---
 
 <StarlightPage
@@ -61,6 +94,17 @@ const docs = await getCollection('docs');
       </p>
     )}
 
+    {paper.domains && paper.domains.length > 0 && (
+      <section>
+        <h2>领域</h2>
+        <div class="domain-tags">
+          {paper.domains.map((d) => (
+            <span class="domain-tag">{domainLabels[d] ?? d}</span>
+          ))}
+        </div>
+      </section>
+    )}
+
     <section class="tldr-section">
       <h2>TLDR（中文）</h2>
       <p>{paper.tldr_zh}</p>
@@ -87,6 +131,41 @@ const docs = await getCollection('docs');
         </ul>
       </section>
     )}
+
+    {coCitedPapers.length > 0 && (
+      <section>
+        <h2>同被引用</h2>
+        <p class="section-hint">这些论文与本文出现在同一篇文章中</p>
+        <ul class="related-list">
+          {coCitedPapers.map((p) => (
+            <li>
+              <a href={`/papers/${p.data.id}/`}>{p.data.title ?? p.data.id}</a>
+              <span class="related-meta">{p.data.authors?.[0]}{p.data.authors && p.data.authors.length > 1 ? ' et al.' : ''} {p.data.year ? `(${p.data.year})` : ''}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {relatedPapers.length > 0 && (
+      <section>
+        <h2>相关论文</h2>
+        <p class="section-hint">同一领域的其他论文</p>
+        <ul class="related-list">
+          {relatedPapers.map((p) => (
+            <li>
+              <a href={`/papers/${p.data.id}/`}>{p.data.title ?? p.data.id}</a>
+              <span class="related-meta">{p.data.authors?.[0]}{p.data.authors && p.data.authors.length > 1 ? ' et al.' : ''} {p.data.year ? `(${p.data.year})` : ''}</span>
+              <div class="related-domains">
+                {(p.data.domains ?? []).map((d) => (
+                  <span class="domain-tag small">{domainLabels[d] ?? d}</span>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
   </div>
 </StarlightPage>
 
@@ -107,5 +186,53 @@ const docs = await getCollection('docs');
   .tldr-section h2 {
     margin-top: 0;
     font-size: 1rem;
+  }
+  .domain-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .domain-tag {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    background: var(--sl-color-gray-6, #f0f0f0);
+    color: var(--sl-color-gray-2, #555);
+    font-size: 0.8rem;
+  }
+  .domain-tag.small {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+  }
+  .section-hint {
+    color: var(--sl-color-gray-3, #888);
+    font-size: 0.85rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .related-list {
+    list-style: none;
+    padding: 0;
+  }
+  .related-list li {
+    margin-bottom: 0.75rem;
+    padding: 0.6rem;
+    border: 1px solid var(--sl-color-gray-5, #eee);
+    border-radius: 0.4rem;
+  }
+  .related-list a {
+    font-weight: 500;
+  }
+  .related-meta {
+    display: block;
+    color: var(--sl-color-gray-3, #666);
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+  }
+  .related-domains {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.3rem;
   }
 </style>

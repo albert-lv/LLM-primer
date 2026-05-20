@@ -1,6 +1,6 @@
 id: brown2020-gpt3
 arxiv_id: "2005.14165"
-title: "Language Models are Few-Shot Learners"
+title: Language Models are Few-Shot Learners
 year: 2020
 authors:
   - Tom Brown
@@ -47,3 +47,6 @@ tags:
 modules:
   - foundations
   - training
+domains:
+  - pretraining
+  - reasoning

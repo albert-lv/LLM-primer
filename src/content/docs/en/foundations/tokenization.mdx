@@ -4,8 +4,8 @@ description: "Tokens, vocabularies, BPE intuition, and engineering trade-offs."
 module: foundations
 order: 1
 status: published
-tiers: [intro, engineer]
-papers: [mikolov2013-word2vec]
+tiers: [intro, engineer, research]
+papers: [mikolov2013-word2vec, sennrich2016-bpe]
 updated: 2026-05-19
 ---
 
@@ -41,5 +41,15 @@ Multilingual and code-heavy workloads need extra care: the same semantic content
 
 </TierBlock>
 
+<TierBlock tier="research">
 
-<PaperList ids={['mikolov2013-word2vec']} />
+## Research view: linguistic boundaries of vocabulary construction
+
+Tokenization is not only an engineering problem but also involves linguistic assumptions. Subword algorithms (BPE, WordPiece, SentencePiece, Unigram) deeply affect how models learn morphology and word formation. For example, does BPE's greedy merging bias models toward frequent compound words while ignoring rare but meaningful prefixes/suffixes?
+
+Tokenization fairness in multilingual models is an active area: "tokens per word" varies dramatically across languages, potentially causing systematically lower representation quality for resource-scarce languages. Byte-level BPE (as used in GPT-2) attempts to use bytes rather than Unicode characters as base units, improving coverage of unknown characters and code, but also produces longer sequences.
+
+</TierBlock>
+
+
+<PaperList ids={['mikolov2013-word2vec', 'sennrich2016-bpe']} />

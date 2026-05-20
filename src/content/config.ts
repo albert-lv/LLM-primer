@@ -3,6 +3,20 @@ import { docsSchema } from '@astrojs/starlight/schema';
 
 const TierEnum = z.enum(['intro', 'engineer', 'research']);
 const ModuleEnum = z.enum(['foundations', 'training', 'inference', 'applications']);
+const DomainEnum = z.enum([
+  'architecture',
+  'pretraining',
+  'alignment',
+  'inference',
+  'applications',
+  'evaluation',
+  'safety',
+  'multimodal',
+  'reasoning',
+  'long-context',
+  'moe',
+  'uncategorized',
+]);
 
 const docs = defineCollection({
   schema: docsSchema({
@@ -34,6 +48,7 @@ const papers = defineCollection({
     tldr_en: z.string().min(20).max(800),
     tags: z.array(z.string()).default([]),
     modules: z.array(ModuleEnum).default([]),
+    domains: z.array(DomainEnum).default([]),
     inbox: z.boolean().default(false),
   }),
 });

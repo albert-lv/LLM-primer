@@ -1,6 +1,6 @@
 id: wei2022-cot
 arxiv_id: "2201.11903"
-title: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+title: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
 year: 2022
 authors:
   - Jason Wei
@@ -28,3 +28,6 @@ tags:
 modules:
   - applications
   - inference
+domains:
+  - reasoning
+  - applications

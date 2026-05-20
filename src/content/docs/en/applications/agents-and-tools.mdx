@@ -1,0 +1,57 @@
+---
+title: "Agents and Tool Use: Models Are More Than Chat"
+description: "LLM agents, tool calling, planning, and multi-agent collaboration."
+module: applications
+order: 2
+status: published
+tiers: [intro, engineer, research]
+papers: [yao2022-react, schick2023-toolformer, shinn2023-reflexion, yang2024-sweagent, anthropic2024-mcp]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: give the model a pair of "hands"
+
+Chat models can only talk; agents can act on the world through tools: check weather, write code, query databases, call APIs. The core idea is to combine "thinking" and "acting": the model first reasons about what information it needs, then calls a tool to obtain it, and continues reasoning from the result.
+
+The ReAct framework makes this loop explicit: the model outputs an alternating sequence of "thought → action → observation → thought." This is like how humans solve problems—not by pure contemplation, but by looking things up while reasoning.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: reliability, state, and safety
+
+In practice, the core challenge of agent systems is reliability:
+
+- **Tool definition**: Describe tool interfaces with JSON Schema or OpenAPI so the model knows each tool's parameters and purpose. MCP (Model Context Protocol) aims to standardize this layer.
+- **Call parsing**: Model output is usually text; you need robust parsing to extract structured tool calls. Function-calling training lets models natively output structured calls, which is more stable than post-hoc parsing.
+- **Error handling**: Tools can fail, time out, or return errors. Agents need to retry, fall back, or switch to alternative tools.
+- **State management**: Multi-step tasks require maintaining conversation history, intermediate results, and plans. Reflexion and related work let agents self-reflect on failure causes and adjust strategy.
+- **Safety boundaries**: When agents can execute code or access external systems, permission control and sandboxing are critical. Prompt injection can let attackers hijack agent behavior.
+
+Evaluating agents is harder than evaluating pure text generation: you must measure task completion rate, step efficiency, error recovery, and cost. Benchmarks like SWE-bench measure practicality through real coding tasks.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: from single agents to multi-agent and autonomous systems
+
+A limitation of single agents is that one model simultaneously handles planning, execution, memory, and reflection, which is error-prone and hard to scale. Multi-agent systems assign different roles to different instances: some plan, some execute, some verify, collaborating through conversation or shared state.
+
+A deeper question is: what are the boundaries of agent "autonomy"? When a model can decide which tools to call, which files to modify, and which data to access, how do we define and supervise its goals? This is a cross-disciplinary area spanning technology, product, and ethics.
+
+</TierBlock>
+
+
+<PaperList ids={['yao2022-react', 'schick2023-toolformer', 'shinn2023-reflexion', 'yang2024-sweagent', 'anthropic2024-mcp']} />

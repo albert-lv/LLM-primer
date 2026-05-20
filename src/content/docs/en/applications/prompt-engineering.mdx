@@ -1,0 +1,57 @@
+---
+title: "Prompt Engineering: The Art of Talking to Models"
+description: "Zero-shot, few-shot, chain-of-thought, and structured prompt design."
+module: applications
+order: 3
+status: published
+tiers: [intro, engineer, research]
+papers: [wei2022-cot, kojima2022-zeroshot-cot, wang2022-self-consistency, zhou2022-least-to-most]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: prompts are the model's "context script"
+
+Prompt engineering is not about tricking the model; it is about providing the most helpful context for the task. Like giving an actor a good script, the model needs clear instructions, relevant background, and appropriate examples to perform at its best.
+
+Basic techniques include: explicit task descriptions, providing a few examples (few-shot), breaking down complex problems, and asking the model to think step by step (Chain-of-Thought). These methods require no weight updates yet can significantly improve performance.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: from simple prompts to systematic design
+
+In practice, prompt design has evolved from "write a paragraph" to a systematic engineering discipline:
+
+- **Role assignment**: Giving the model a clear role ("You are a senior data analyst") stabilizes output style.
+- **Structured templates**: Use XML, Markdown, or JSON to separate instructions, context, input, and output format, reducing parsing errors.
+- **Few-shot selection**: The number, order, and quality of examples all matter. Similar examples are usually more effective than random ones; example ordering can introduce position bias.
+- **Chain-of-Thought**: Adding "Let's think step by step" or providing reasoning examples significantly improves math and logic performance, but increases token cost.
+- **Self-consistency**: Sampling multiple times and voting is more reliable than single greedy decoding, especially for tasks with clear answers.
+
+In production systems, prompt version management is equally important: changing a prompt may affect hundreds of downstream use cases. Establish prompt version control, regression tests, and A/B evaluation frameworks.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: the nature of prompting and automatic optimization
+
+Research questions include: what capabilities does prompt engineering reveal about LLMs? Is it in-context learning extracting patterns from examples, or does the prompt merely "unlock" abilities already acquired during pretraining? This relates to our fundamental understanding of LLM generalization.
+
+Automatic Prompt Engineering (APE) attempts to discover optimal prompts through search, reinforcement learning, or gradient-based methods. Directions include discrete prompt search, soft prompts / prefix tuning, and letting models generate and evaluate candidate prompts themselves. The future may be "prompts as code": using programming languages and type systems to constrain and compose prompt templates.
+
+</TierBlock>
+
+
+<PaperList ids={['wei2022-cot', 'kojima2022-zeroshot-cot', 'wang2022-self-consistency', 'zhou2022-least-to-most']} />

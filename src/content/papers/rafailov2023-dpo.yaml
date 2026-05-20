@@ -25,3 +25,5 @@ tags:
   - rlhf
 modules:
   - training
+domains:
+  - alignment

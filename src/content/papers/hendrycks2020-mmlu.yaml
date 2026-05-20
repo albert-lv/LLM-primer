@@ -2,11 +2,14 @@ id: hendrycks2020-mmlu
 arxiv_id: "2009.03300"
 tldr_zh: |
   57 学科 1.4 万道考题，从此"刷 MMLU"成为衡量 LLM 通用能力的事实标准。即使在 2025 年仍是模型卡里第一行的指标；另见后续 MMLU-Pro。
-tldr_en: |
-  57 subjects with 14K exam questions, since then "grinding MMLU" became de facto standard for measuring LLM general capability. Still first-line metric in model cards even in 2025; see also later MMLU-Pro.
+tldr_en: >
+  57 subjects with 14K exam questions, since then "grinding MMLU" became de facto standard for measuring LLM general
+  capability. Still first-line metric in model cards even in 2025; see also later MMLU-Pro.
 tags:
   - mmlu
   - evaluation
   - benchmark
 modules:
   - applications
+domains:
+  - evaluation

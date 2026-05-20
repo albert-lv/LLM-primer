@@ -4,8 +4,8 @@ description: "The Transformer block, decoder-only LLMs, and major design trade-o
 module: foundations
 order: 3
 status: published
-tiers: [intro, engineer]
-papers: [vaswani2017-attention, devlin2018-bert, radford2019-gpt2]
+tiers: [intro, engineer, research]
+papers: [vaswani2017-attention, devlin2018-bert, radford2019-gpt2, du2021-glam, fedus2021-switch]
 updated: 2026-05-19
 ---
 
@@ -37,5 +37,15 @@ Architecture choices such as RoPE, grouped-query attention, activation functions
 
 </TierBlock>
 
+<TierBlock tier="research">
 
-<PaperList ids={['vaswani2017-attention', 'devlin2018-bert', 'radford2019-gpt2']} />
+## Research view: architecture evolution and mixture of experts
+
+The dominance of decoder-only architectures was not preordained, but an empirical choice. Encoder-decoder models like T5 still hold advantages in translation and summarization, while pure decoders excel in generation simplicity and scaling convenience.
+
+Mixture of Experts (MoE) is a hot topic in architecture research: through sparse activation, models can expand parameter count without increasing inference compute. But MoE introduces new challenges in routing stability, load balancing, communication overhead, and fine-tuning difficulty. Future architectures may be modular, composable systems that dynamically select sub-networks per task, rather than today's "one giant model for everything."
+
+</TierBlock>
+
+
+<PaperList ids={['vaswani2017-attention', 'devlin2018-bert', 'radford2019-gpt2', 'du2021-glam', 'fedus2021-switch']} />

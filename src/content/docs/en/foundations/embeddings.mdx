@@ -1,0 +1,51 @@
+---
+title: "Embeddings: Putting Discrete Symbols into Continuous Space"
+description: "Word vectors, contextual representations, and the foundation of semantic retrieval."
+module: foundations
+order: 4
+status: published
+tiers: [intro, engineer, research]
+papers: [mikolov2013-word2vec, peters2018-elmo, pennington2014-glove]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: similar meanings cluster together
+
+An embedding turns a token, sentence, or document into a vector of numbers. In an ideal embedding space, semantically similar items are closer together: "cat" and "dog" are nearer to each other than "cat" and "rocket". This lets models process discrete language with continuous math, and enables search, clustering, recommendation, and RAG.
+
+Early word vectors showed that vector differences can encode relationships (e.g., king - man + woman ≈ queen). Later contextual representations showed that the same word should have different meanings in different sentences. For example, "Apple" in "Apple released a phone" and "I ate an apple" should not be identical.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: vector quality depends on the objective
+
+Training embeddings can use many objectives: predicting neighboring words, language modeling, contrastive learning, or supervised fine-tuning. Different objectives produce different geometric structures. Retrieval systems care about recall and ranking, so you must evaluate vector dimension, normalization, distance function, chunking strategy, and negative-sample quality.
+
+In an LLM, the input embedding layer maps token IDs to vectors; the output layer is often tied to or derived from the embedding weights. In RAG, the embedding model is the entry point to the external index. Do not treat embeddings as the whole story: they excel at similarity, but still need extra evaluation for numbers, negation, time, and compositional logic.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: geometry and semantics of vector space
+
+Research on embedding space geometry reveals statistical regularities of language, but also systematic biases. Word2Vec's "king - man + woman ≈ queen" demonstrated linear encoding of analogical relations, but do these relations hold fairly across all sociocultural concepts? Studies show that pretrained word vectors often carry gender, racial, and occupational biases that propagate to downstream tasks.
+
+Contextual representations (such as ELMo and BERT) mitigate some ambiguity problems of static word vectors, but introduce new questions: representations from different layers capture different levels of linguistic structure (surface syntax vs. deep semantics). Probing tasks attempt to determine what models "know," but does a successful probe mean the model truly grasps a concept, or merely exploits statistical cues? This remains a central debate in representation learning.
+
+</TierBlock>
+
+
+<PaperList ids={['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove']} />

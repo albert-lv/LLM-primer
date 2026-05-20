@@ -1,0 +1,55 @@
+---
+title: "Sampling and Decoding: From Probabilities to Text"
+description: "Temperature, top-k, top-p, and the choices made at inference time."
+module: foundations
+order: 3
+status: published
+tiers: [intro, engineer, research]
+papers: [brown2020-gpt3, wei2022-cot, snell2024-test-time-compute]
+updated: 2026-05-19
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import PaperList from '../../../../components/PaperList.astro';
+
+
+<TierSwitcher />
+
+
+import SamplingPlayground from '../../../../components/islands/SamplingPlayground';
+
+<TierBlock tier="intro">
+
+## Intuition: the model gives probabilities; the strategy chooses
+
+An LLM does not output a single deterministic answer at each step. It produces a probability table over the next token. Decoding strategy decides how to pick from that table. Greedy decoding always picks the highest-probability token; it is stable but tends to be flat. Sampling introduces randomness, which is better for writing, brainstorming, and diverse candidates.
+
+Temperature sharpens or flattens the distribution; top-k keeps only the k highest-probability tokens; top-p keeps the smallest set whose cumulative probability reaches p. They are not model capabilities; they are control knobs at inference time.
+
+<SamplingPlayground client:visible />
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: reliability comes from constraints and evaluation
+
+Production systems rarely adjust only temperature. Structured output combines JSON schema, tool calling, or constrained decoding; QA systems lower randomness and add citations; creative systems allow more diversity. Chain-of-thought prompting changes the model's internal reasoning trajectory, but also increases token cost and the risk of leaking intermediate errors.
+
+When evaluating, record decoding parameters, because the same model can behave very differently under different temperature and top-p settings. Online regression tests should fix random seeds or use deterministic strategies; open-ended products should measure diversity, factuality, refusal rate, and user satisfaction together.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: decoding as search
+
+Research shows that decoding strategy is essentially a trade-off between output quality and diversity, but recent work suggests that test-time compute can break this trade-off. By allowing the model to perform more reasoning steps during decoding (such as iterative correction, multi-path search, and verifier scoring), smaller models can match or even surpass larger models.
+
+Key questions include: does the optimal decoding strategy vary by task? Is there a task-agnostic universal decoding algorithm? And from an information-theoretic perspective, what is the relationship between sampling temperature and model confidence? Answers to these questions will shape future LLM inference architecture design.
+
+</TierBlock>
+
+
+<PaperList ids={['brown2020-gpt3', 'wei2022-cot', 'snell2024-test-time-compute']} />
