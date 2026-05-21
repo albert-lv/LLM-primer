@@ -1,33 +1,41 @@
 id: wei2022-cot
-arxiv_id: "2201.11903"
+arxiv_id: '2201.11903'
 title: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
 year: 2022
 authors:
-  - Jason Wei
-  - Xuezhi Wang
-  - Dale Schuurmans
-  - Maarten Bosma
-  - Brian Ichter
-  - Fei Xia
-  - Ed H. Chi
-  - Quoc V. Le
-  - Denny Zhou
-tldr_zh: |
-  提出 Chain-of-Thought（思维链）提示技术：通过在提示中加入中间推理步骤，
+- Jason Wei
+- Xuezhi Wang
+- Dale Schuurmans
+- Maarten Bosma
+- Brian Ichter
+- Fei Xia
+- Ed H. Chi
+- Quoc V. Le
+- Denny Zhou
+tldr_zh: '提出 Chain-of-Thought（思维链）提示技术：通过在提示中加入中间推理步骤，
+
   可以大幅提升大语言模型在数学、逻辑、常识推理等任务上的表现。
+
   这个简单技巧把 LLM 的推理能力推向了接近人类的水平。
-tldr_en: |
-  Introduces chain-of-thought prompting: adding intermediate reasoning steps to prompts
+
+  '
+tldr_en: 'Introduces chain-of-thought prompting: adding intermediate reasoning steps to prompts
+
   dramatically improves LLM performance on math, logic, and commonsense reasoning tasks.
+
   This simple technique brought LLM reasoning capabilities close to human-level performance.
+
+  '
 tags:
-  - chain-of-thought
-  - reasoning
-  - prompting
-  - few-shot
+- chain-of-thought
+- reasoning
+- prompting
+- few-shot
 modules:
-  - applications
-  - inference
+- applications
+- inference
 domains:
-  - reasoning
-  - applications
+- reasoning
+- applications
+prerequisites:
+- brown2020-gpt3

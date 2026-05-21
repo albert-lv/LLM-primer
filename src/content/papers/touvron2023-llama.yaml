@@ -31,3 +31,5 @@ modules:
 - training
 domains:
 - pretraining
+prerequisites:
+- radford2019-gpt2

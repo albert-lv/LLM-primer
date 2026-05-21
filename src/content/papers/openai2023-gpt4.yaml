@@ -1,20 +1,22 @@
 id: openai2023-gpt4
-arxiv_id: "2303.08774"
+arxiv_id: '2303.08774'
 title: GPT-4 Technical Report
 year: 2023
 authors:
-  - OpenAI
-tldr_zh: |
-  工业界报告而非完整论文，但首次明确把"可预测的 scaling"用作产品交付承诺，并系统披露安全/红队流程。是 LLM 从"研究 demo"到"基础设施"的转折点。
-tldr_en: >
-  Industry report rather than full paper, but first to explicitly use "predictable scaling" as product delivery
-  commitment and systematically disclose safety/red-team processes. Turning point from LLM as "research demo" to
-  "infrastructure".
+- OpenAI
+tldr_zh: '工业界报告而非完整论文，但首次明确把"可预测的 scaling"用作产品交付承诺，并系统披露安全/红队流程。是 LLM 从"研究 demo"到"基础设施"的转折点。
+
+  '
+tldr_en: 'Industry report rather than full paper, but first to explicitly use "predictable scaling" as product delivery commitment and systematically disclose safety/red-team processes. Turning point from LLM as "research demo" to "infrastructure".
+
+  '
 tags:
-  - scaling
-  - safety
+- scaling
+- safety
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - pretraining
+- pretraining
+prerequisites:
+- brown2020-gpt3

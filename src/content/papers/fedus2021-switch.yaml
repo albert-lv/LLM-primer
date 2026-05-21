@@ -1,27 +1,36 @@
 id: fedus2021-switch
-arxiv_id: "2101.03961"
-title: "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity"
+arxiv_id: '2101.03961'
+title: 'Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity'
 year: 2021
 authors:
-  - William Fedus
-  - Barret Zoph
-  - Noam Shazeer
-tldr_zh: |
-  Switch Transformer 是第一个在实践中将 Transformer 扩展到万亿参数的架构。通过混合专家
+- William Fedus
+- Barret Zoph
+- Noam Shazeer
+tldr_zh: 'Switch Transformer 是第一个在实践中将 Transformer 扩展到万亿参数的架构。通过混合专家
+
   （MoE）机制，每个 token 只激活一小部分参数（"稀疏激活"），在相同算力下达到了比密集模型
+
   更好的效果。今天 GPT-4、Mixtral 等大模型都可能使用了类似架构。
-tldr_en: |
-  Switch Transformer is the first architecture to scale Transformers to trillion parameters
+
+  '
+tldr_en: 'Switch Transformer is the first architecture to scale Transformers to trillion parameters
+
   in practice. Using Mixture-of-Experts (MoE), each token only activates a small fraction
+
   of parameters ("sparse activation"), achieving better performance than dense models at the
+
   same compute. GPT-4 and Mixtral likely use similar architectures.
+
+  '
 tags:
-  - moe
-  - mixture-of-experts
-  - scaling
-  - sparse
+- moe
+- mixture-of-experts
+- scaling
+- sparse
 modules:
-  - training
+- training
 domains:
-  - moe
-  - pretraining
+- moe
+- pretraining
+prerequisites:
+- devlin2018-bert

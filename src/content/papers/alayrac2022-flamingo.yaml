@@ -44,3 +44,5 @@ modules:
 - applications
 domains:
 - multimodal
+prerequisites:
+- radford2021-clip

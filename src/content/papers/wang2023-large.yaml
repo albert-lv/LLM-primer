@@ -1,28 +1,28 @@
 id: wang2023-large
-arxiv_id: "2306.05685"
+arxiv_id: '2306.05685'
 title: Large Language Models are not Fair Evaluators
 year: 2023
 authors:
-  - Peiyi Wang
-  - Lei Li
-  - Liang Chen
-  - Dawei Zhu
-  - Binghuai Lin
-  - Yunbo Cao
-  - Qi Liu
-  - Tianyu Liu
-  - Zhifang Sui
+- Peiyi Wang
+- Lei Li
+- Liang Chen
+- Dawei Zhu
+- Binghuai Lin
+- Yunbo Cao
+- Qi Liu
+- Tianyu Liu
+- Zhifang Sui
 tldr_zh: 系统评估了 LLM-as-a-Judge 方法的偏见问题：位置偏见（偏好第一个回答）、长度偏见（偏好更长的回答）和自增强偏见（偏好自己生成的内容）。提出了缓解这些偏见的方法，如交换位置评分和引入参考答案。
-tldr_en: "Systematically evaluates bias issues in LLM-as-a-Judge methods: position bias (preferring the first response),
-  length bias (preferring longer responses), and self-enhancement bias (preferring self-generated content). Proposes
-  mitigation methods such as position-swapped evaluation and reference-based scoring."
+tldr_en: 'Systematically evaluates bias issues in LLM-as-a-Judge methods: position bias (preferring the first response), length bias (preferring longer responses), and self-enhancement bias (preferring self-generated content). Proposes mitigation methods such as position-swapped evaluation and reference-based scoring.'
 tags:
-  - llm-as-judge
-  - evaluation
-  - bias
-  - alignment
+- llm-as-judge
+- evaluation
+- bias
+- alignment
 modules:
-  - applications
+- applications
 domains:
-  - evaluation
+- evaluation
+prerequisites:
+- zheng2023-mtbench
 inbox: false

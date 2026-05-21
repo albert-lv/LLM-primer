@@ -25,3 +25,5 @@ modules:
 - inference
 domains:
 - inference
+prerequisites:
+- shazeer2019-mqa

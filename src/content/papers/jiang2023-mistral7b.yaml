@@ -35,3 +35,5 @@ modules:
 - foundations
 domains:
 - pretraining
+prerequisites:
+- touvron2023-llama

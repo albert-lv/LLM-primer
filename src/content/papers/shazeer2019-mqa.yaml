@@ -18,3 +18,5 @@ modules:
 domains:
 - inference
 - architecture
+prerequisites:
+- vaswani2017-attention

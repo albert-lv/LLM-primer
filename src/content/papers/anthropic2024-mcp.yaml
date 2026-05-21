@@ -3,22 +3,32 @@ source_url: https://www.anthropic.com/news/model-context-protocol
 title: Model Context Protocol (MCP)
 year: 2024
 authors:
-  - Anthropic
-tldr_zh: |
-  模型上下文协议（MCP）是 Anthropic 提出的开放标准，规定了 LLM 应用如何与外部工具、
+- Anthropic
+tldr_zh: '模型上下文协议（MCP）是 Anthropic 提出的开放标准，规定了 LLM 应用如何与外部工具、
+
   数据源和服务进行标准化通信。通过统一的"resources/tools/prompts"接口，
+
   任何 MCP-compatible 的工具都可以无缝接入任何 MCP-compatible 的模型，
+
   目标是成为 AI 工具调用的 USB 标准。
-tldr_en: |
-  The Model Context Protocol (MCP) is an open standard proposed by Anthropic for how LLM
+
+  '
+tldr_en: 'The Model Context Protocol (MCP) is an open standard proposed by Anthropic for how LLM
+
   applications communicate standardly with external tools, data sources, and services.
+
   Through unified "resources/tools/prompts" interfaces, any MCP-compatible tool can seamlessly
+
   connect to any MCP-compatible model — aiming to be the "USB standard" for AI tool use.
+
+  '
 tags:
-  - mcp
-  - tool-use
-  - agent
+- mcp
+- tool-use
+- agent
 modules:
-  - applications
+- applications
 domains:
-  - applications
+- applications
+prerequisites:
+- schick2023-toolformer

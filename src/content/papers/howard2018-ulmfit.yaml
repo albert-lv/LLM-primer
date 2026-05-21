@@ -19,3 +19,5 @@ modules:
 - training
 domains:
 - pretraining
+prerequisites:
+- mikolov2013-word2vec

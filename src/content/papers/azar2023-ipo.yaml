@@ -24,3 +24,5 @@ modules:
 - training
 domains:
 - alignment
+prerequisites:
+- rafailov2023-dpo

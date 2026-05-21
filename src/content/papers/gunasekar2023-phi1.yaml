@@ -36,3 +36,5 @@ modules:
 - training
 domains:
 - pretraining
+prerequisites:
+- hoffmann2022-chinchilla

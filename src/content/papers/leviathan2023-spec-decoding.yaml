@@ -19,3 +19,5 @@ modules:
 - inference
 domains:
 - inference
+prerequisites:
+- vaswani2017-attention

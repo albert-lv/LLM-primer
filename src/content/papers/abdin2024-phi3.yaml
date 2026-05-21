@@ -17,3 +17,5 @@ modules:
 - training
 domains:
 - pretraining
+prerequisites:
+- gunasekar2023-phi1

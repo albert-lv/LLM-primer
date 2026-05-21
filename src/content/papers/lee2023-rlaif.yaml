@@ -27,3 +27,5 @@ modules:
 - training
 domains:
 - alignment
+prerequisites:
+- ouyang2022-instructgpt

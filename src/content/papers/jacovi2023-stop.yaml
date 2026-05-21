@@ -1,23 +1,23 @@
 id: jacovi2023-stop
-arxiv_id: "2307.03101"
-title: "Stop Uploading Test Data in Plain Text: New Protocols for Dataset Release"
+arxiv_id: '2307.03101'
+title: 'Stop Uploading Test Data in Plain Text: New Protocols for Dataset Release'
 year: 2023
 authors:
-  - Alon Jacovi
-  - Avi Caciularu
-  - Omer Goldman
-  - Yoav Goldberg
+- Alon Jacovi
+- Avi Caciularu
+- Omer Goldman
+- Yoav Goldberg
 tldr_zh: 提出检测和预防基准数据污染的系统方法。通过分析模型在污染数据上的异常表现模式（如逐字记忆测试集），可以可靠地检测预训练数据是否包含公开测试集。呼吁发布加密或延迟公开的测试集。
-tldr_en: Proposes systematic methods for detecting and preventing benchmark data contamination. By analyzing anomalous
-  performance patterns on contaminated data (such as verbatim memorization of test sets), it reliably detects whether
-  pretraining data contains publicly available test sets. Calls for releasing encrypted or delayed-public test sets.
+tldr_en: Proposes systematic methods for detecting and preventing benchmark data contamination. By analyzing anomalous performance patterns on contaminated data (such as verbatim memorization of test sets), it reliably detects whether pretraining data contains publicly available test sets. Calls for releasing encrypted or delayed-public test sets.
 tags:
-  - contamination
-  - benchmark
-  - evaluation
-  - data-leakage
+- contamination
+- benchmark
+- evaluation
+- data-leakage
 modules:
-  - applications
+- applications
 domains:
-  - evaluation
+- evaluation
+prerequisites:
+- hendrycks2020-mmlu
 inbox: false

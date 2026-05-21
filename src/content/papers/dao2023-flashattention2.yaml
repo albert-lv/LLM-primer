@@ -17,3 +17,5 @@ modules:
 - inference
 domains:
 - inference
+prerequisites:
+- dao2022-flashattention

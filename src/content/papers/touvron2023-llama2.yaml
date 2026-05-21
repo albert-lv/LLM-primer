@@ -18,3 +18,5 @@ modules:
 domains:
 - pretraining
 - alignment
+prerequisites:
+- touvron2023-llama

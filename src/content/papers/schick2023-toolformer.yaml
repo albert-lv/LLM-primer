@@ -25,3 +25,5 @@ modules:
 - applications
 domains:
 - applications
+prerequisites:
+- wei2022-cot

@@ -45,3 +45,5 @@ modules:
 - applications
 domains:
 - applications
+prerequisites:
+- lewis2020-rag

@@ -1,52 +1,59 @@
 id: brown2020-gpt3
-arxiv_id: "2005.14165"
+arxiv_id: '2005.14165'
 title: Language Models are Few-Shot Learners
 year: 2020
 authors:
-  - Tom Brown
-  - Benjamin Mann
-  - Nick Ryder
-  - Melanie Subbiah
-  - Jared Kaplan
-  - Prafulla Dhariwal
-  - Arvind Neelakanth
-  - Amanda Askell
-  - Sandhini Agarwal
-  - Ariel Herbert-Voss
-  - Gretchen Krueger
-  - Tom Henighan
-  - Rewon Child
-  - Aditya Ramesh
-  - Daniel Ziegler
-  - Jeffrey Wu
-  - Clemens Winter
-  - Chris Hesse
-  - Mark Chen
-  - Eric Sigler
-  - Mateusz Litwin
-  - Scott Gray
-  - Benjamin Chess
-  - Jack Clark
-  - Christopher Berner
-  - Sam McCandlish
-  - Alec Radford
-  - Ilya Sutskever
-  - Dario Amodei
-tldr_zh: |
-  OpenAI 的 GPT-3 论文，展示了 1750 亿参数的语言模型通过 few-shot in-context learning
+- Tom Brown
+- Benjamin Mann
+- Nick Ryder
+- Melanie Subbiah
+- Jared Kaplan
+- Prafulla Dhariwal
+- Arvind Neelakanth
+- Amanda Askell
+- Sandhini Agarwal
+- Ariel Herbert-Voss
+- Gretchen Krueger
+- Tom Henighan
+- Rewon Child
+- Aditya Ramesh
+- Daniel Ziegler
+- Jeffrey Wu
+- Clemens Winter
+- Chris Hesse
+- Mark Chen
+- Eric Sigler
+- Mateusz Litwin
+- Scott Gray
+- Benjamin Chess
+- Jack Clark
+- Christopher Berner
+- Sam McCandlish
+- Alec Radford
+- Ilya Sutskever
+- Dario Amodei
+tldr_zh: 'OpenAI 的 GPT-3 论文，展示了 1750 亿参数的语言模型通过 few-shot in-context learning
+
   能在无需微调的情况下完成各种任务。这篇论文确立了"规模即能力"的范式，并开创了提示工程这个方向。
-tldr_en: |
-  OpenAI's GPT-3 paper demonstrates that a 175B parameter language model can perform diverse
+
+  '
+tldr_en: 'OpenAI''s GPT-3 paper demonstrates that a 175B parameter language model can perform diverse
+
   tasks through few-shot in-context learning without fine-tuning. It established the paradigm
+
   that scale unlocks emergent capabilities and launched the era of prompt engineering.
+
+  '
 tags:
-  - gpt
-  - few-shot
-  - scaling
-  - in-context-learning
+- gpt
+- few-shot
+- scaling
+- in-context-learning
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - pretraining
-  - reasoning
+- pretraining
+- reasoning
+prerequisites:
+- radford2019-gpt2

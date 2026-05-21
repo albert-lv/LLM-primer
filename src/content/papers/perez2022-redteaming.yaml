@@ -27,3 +27,5 @@ modules:
 domains:
 - safety
 - evaluation
+prerequisites:
+- brown2020-gpt3

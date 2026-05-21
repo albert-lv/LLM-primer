@@ -20,3 +20,5 @@ modules:
 - training
 domains:
 - long-context
+prerequisites:
+- su2021-rope

@@ -24,3 +24,5 @@ modules:
 - applications
 domains:
 - evaluation
+prerequisites:
+- brown2020-gpt3

@@ -24,3 +24,5 @@ modules:
 - training
 domains:
 - alignment
+prerequisites:
+- taori2023-alpaca

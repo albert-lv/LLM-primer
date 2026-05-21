@@ -29,3 +29,5 @@ modules:
 - applications
 domains:
 - multimodal
+prerequisites:
+- radford2019-gpt2

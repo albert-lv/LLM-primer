@@ -1,27 +1,36 @@
 id: devlin2018-bert
-arxiv_id: "1810.04805"
-title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
+arxiv_id: '1810.04805'
+title: 'BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding'
 year: 2018
 authors:
-  - Jacob Devlin
-  - Ming-Wei Chang
-  - Kenton Lee
-  - Kristina Toutanova
-tldr_zh: |
-  BERT 用掩码语言模型（MLM）和下一句预测（NSP）在大规模文本上预训练双向 Transformer，
+- Jacob Devlin
+- Ming-Wei Chang
+- Kenton Lee
+- Kristina Toutanova
+tldr_zh: 'BERT 用掩码语言模型（MLM）和下一句预测（NSP）在大规模文本上预训练双向 Transformer，
+
   然后通过微调适配下游任务。BERT 一举刷新了 11 项 NLP 基准，确立了"预训练+微调"的现代
+
   NLP 范式，是 GPT 系列和后续模型的主要竞争对手。
-tldr_en: |
-  BERT uses masked language modeling (MLM) and next sentence prediction to pretrain a
+
+  '
+tldr_en: 'BERT uses masked language modeling (MLM) and next sentence prediction to pretrain a
+
   bidirectional Transformer on large text corpora, then fine-tunes for downstream tasks.
+
   It simultaneously surpassed SOTA on 11 NLP benchmarks, establishing the "pretrain+finetune"
+
   paradigm that dominates modern NLP.
+
+  '
 tags:
-  - bert
-  - pretraining
-  - masked-lm
+- bert
+- pretraining
+- masked-lm
 modules:
-  - foundations
-  - training
+- foundations
+- training
 domains:
-  - architecture
+- architecture
+prerequisites:
+- vaswani2017-attention

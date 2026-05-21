@@ -21,3 +21,5 @@ modules:
 - applications
 domains:
 - applications
+prerequisites:
+- karpukhin2020-dpr

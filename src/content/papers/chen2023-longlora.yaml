@@ -24,3 +24,5 @@ modules:
 domains:
 - long-context
 - alignment
+prerequisites:
+- hu2021-lora

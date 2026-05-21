@@ -1,26 +1,26 @@
 id: gururangan2020-dont
-arxiv_id: "2004.10964"
-title: "Do not Stop Pretraining: Adapt Language Models to Domains and Tasks"
+arxiv_id: '2004.10964'
+title: 'Do not Stop Pretraining: Adapt Language Models to Domains and Tasks'
 year: 2020
 authors:
-  - Suchin Gururangan
-  - Ana Marasovic
-  - Swabha Swayamdipta
-  - Kyle Lo
-  - Iz Beltagy
-  - Doug Downey
-  - Noah A. Smith
+- Suchin Gururangan
+- Ana Marasovic
+- Swabha Swayamdipta
+- Kyle Lo
+- Iz Beltagy
+- Doug Downey
+- Noah A. Smith
 tldr_zh: 证明了在目标领域数据上继续预训练（Domain-Adaptive Pretraining, DAPT）能显著提升任务表现。在生物医学、计算机科学、新闻和评论四个领域上，DAPT 相比直接使用通用预训练模型平均提升 4-8 个百分点。
-tldr_en: Demonstrates that continuing pretraining on target-domain data (Domain-Adaptive Pretraining, DAPT)
-  significantly improves task performance. Across biomedical, computer science, news, and reviews domains, DAPT improves
-  over generic pretrained models by 4-8 percentage points on average.
+tldr_en: Demonstrates that continuing pretraining on target-domain data (Domain-Adaptive Pretraining, DAPT) significantly improves task performance. Across biomedical, computer science, news, and reviews domains, DAPT improves over generic pretrained models by 4-8 percentage points on average.
 tags:
-  - continual-pretraining
-  - domain-adaptation
-  - pretraining
-  - transfer-learning
+- continual-pretraining
+- domain-adaptation
+- pretraining
+- transfer-learning
 modules:
-  - training
+- training
 domains:
-  - pretraining
+- pretraining
+prerequisites:
+- howard2018-ulmfit
 inbox: false

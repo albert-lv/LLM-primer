@@ -22,3 +22,5 @@ modules:
 - inference
 domains:
 - inference
+prerequisites:
+- dao2023-flashattention2

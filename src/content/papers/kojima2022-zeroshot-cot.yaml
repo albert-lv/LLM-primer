@@ -21,3 +21,5 @@ modules:
 - applications
 domains:
 - reasoning
+prerequisites:
+- wei2022-cot

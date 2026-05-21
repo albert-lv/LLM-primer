@@ -1,24 +1,24 @@
 id: liu2023-h2o
-arxiv_id: "2306.14048"
-title: "H2O: Heavy-Hitter Oracle for Accurate KV Cache Compression"
+arxiv_id: '2306.14048'
+title: 'H2O: Heavy-Hitter Oracle for Accurate KV Cache Compression'
 year: 2023
 authors:
-  - Zichang Liu
-  - Jue Wang
-  - Tri Dao
-  - Tianyi Zhou
-  - Binhang Yuan
-tldr_zh: 发现 KV Cache 中存在"重击者"（Heavy Hitters）现象：少数关键 token 贡献了绝大部分注意力权重。H2O 通过保留这些重击者 token 的 KV，可以在仅保留 20-30% KV Cache
-  的情况下保持几乎无损的性能。
-tldr_en: "Discovers Heavy Hitters in KV Cache: a small set of tokens contributes most attention weights. H2O preserves
-  these heavy-hitter KV pairs, maintaining near-lossless performance with only 20-30% of the original KV cache."
+- Zichang Liu
+- Jue Wang
+- Tri Dao
+- Tianyi Zhou
+- Binhang Yuan
+tldr_zh: 发现 KV Cache 中存在"重击者"（Heavy Hitters）现象：少数关键 token 贡献了绝大部分注意力权重。H2O 通过保留这些重击者 token 的 KV，可以在仅保留 20-30% KV Cache 的情况下保持几乎无损的性能。
+tldr_en: 'Discovers Heavy Hitters in KV Cache: a small set of tokens contributes most attention weights. H2O preserves these heavy-hitter KV pairs, maintaining near-lossless performance with only 20-30% of the original KV cache.'
 tags:
-  - kv-cache
-  - compression
-  - heavy-hitters
-  - inference
+- kv-cache
+- compression
+- heavy-hitters
+- inference
 modules:
-  - inference
+- inference
 domains:
-  - inference
+- inference
+prerequisites:
+- shazeer2019-mqa
 inbox: false

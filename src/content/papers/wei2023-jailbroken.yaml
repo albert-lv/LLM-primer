@@ -20,3 +20,5 @@ modules:
 - applications
 domains:
 - safety
+prerequisites:
+- perez2022-redteaming

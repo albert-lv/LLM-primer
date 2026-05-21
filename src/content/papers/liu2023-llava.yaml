@@ -21,3 +21,5 @@ modules:
 - applications
 domains:
 - multimodal
+prerequisites:
+- alayrac2022-flamingo

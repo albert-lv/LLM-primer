@@ -22,3 +22,5 @@ modules:
 - foundations
 domains:
 - architecture
+prerequisites:
+- devlin2018-bert

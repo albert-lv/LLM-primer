@@ -24,3 +24,5 @@ modules:
 domains:
 - evaluation
 - applications
+prerequisites:
+- chen2021-humaneval

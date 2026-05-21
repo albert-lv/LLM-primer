@@ -22,3 +22,5 @@ modules:
 - foundations
 domains:
 - architecture
+prerequisites:
+- sutskever2014-seq2seq

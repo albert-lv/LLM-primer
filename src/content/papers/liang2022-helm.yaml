@@ -67,3 +67,5 @@ modules:
 - applications
 domains:
 - evaluation
+prerequisites:
+- hendrycks2020-mmlu

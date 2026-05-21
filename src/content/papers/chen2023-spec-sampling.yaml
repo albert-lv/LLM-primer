@@ -22,3 +22,5 @@ modules:
 - inference
 domains:
 - inference
+prerequisites:
+- leviathan2023-spec-decoding

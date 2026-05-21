@@ -22,3 +22,5 @@ modules:
 - applications
 domains:
 - applications
+prerequisites:
+- yao2022-react

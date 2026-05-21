@@ -20,3 +20,5 @@ modules:
 domains:
 - pretraining
 - multimodal
+prerequisites:
+- radford2021-clip

@@ -18,3 +18,5 @@ modules:
 domains:
 - architecture
 - inference
+prerequisites:
+- jiang2024-mixtral

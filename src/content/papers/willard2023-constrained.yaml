@@ -1,22 +1,22 @@
 id: willard2023-constrained
-arxiv_id: "2307.09702"
+arxiv_id: '2307.09702'
 title: Efficient Guided Generation for Large Language Models
 year: 2023
 authors:
-  - Brandon T. Willard
-  - Remi Louf
+- Brandon T. Willard
+- Remi Louf
 tldr_zh: 提出高效的约束解码方法，让大语言模型在生成过程中实时遵守 JSON Schema、正则表达式或上下文无关文法。通过将语法约束转化为有限状态自动机，在几乎不增加延迟的情况下保证输出格式正确。
-tldr_en: Proposes efficient constrained decoding that enforces JSON Schema, regular expressions, or context-free
-  grammars during generation. Converts syntax constraints into finite-state automata, guaranteeing correct output format
-  with minimal latency overhead.
+tldr_en: Proposes efficient constrained decoding that enforces JSON Schema, regular expressions, or context-free grammars during generation. Converts syntax constraints into finite-state automata, guaranteeing correct output format with minimal latency overhead.
 tags:
-  - constrained-decoding
-  - structured-output
-  - grammar
-  - inference
+- constrained-decoding
+- structured-output
+- grammar
+- inference
 modules:
-  - inference
+- inference
 domains:
-  - inference
-  - applications
+- inference
+- applications
+prerequisites:
+- vaswani2017-attention
 inbox: false

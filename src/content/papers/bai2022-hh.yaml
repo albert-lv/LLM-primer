@@ -49,3 +49,5 @@ modules:
 domains:
 - alignment
 - safety
+prerequisites:
+- christiano2017-rlhf

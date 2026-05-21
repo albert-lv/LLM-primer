@@ -26,3 +26,5 @@ modules:
 - inference
 domains:
 - inference
+prerequisites:
+- dettmers2022-llmint8

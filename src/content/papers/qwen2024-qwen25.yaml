@@ -61,3 +61,5 @@ modules:
 - training
 domains:
 - pretraining
+prerequisites:
+- bai2023-qwen

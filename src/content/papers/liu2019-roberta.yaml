@@ -28,3 +28,5 @@ modules:
 - training
 domains:
 - pretraining
+prerequisites:
+- devlin2018-bert

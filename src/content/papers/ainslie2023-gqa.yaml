@@ -1,30 +1,38 @@
 id: ainslie2023-gqa
-arxiv_id: "2305.13245"
-title: "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints"
+arxiv_id: '2305.13245'
+title: 'GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints'
 year: 2023
 authors:
-  - Joshua Ainslie
-  - James Lee-Thorp
-  - Michiel de Jong
-  - Yury Zemlyanskiy
-  - Federico Lebrón
-  - Sumit Sanghai
-tldr_zh: |
-  GQA（分组查询注意力）是 MHA（多头注意力）和 MQA（多查询注意力）的折中方案：
+- Joshua Ainslie
+- James Lee-Thorp
+- Michiel de Jong
+- Yury Zemlyanskiy
+- Federico Lebrón
+- Sumit Sanghai
+tldr_zh: 'GQA（分组查询注意力）是 MHA（多头注意力）和 MQA（多查询注意力）的折中方案：
+
   将 KV 头的数量分成若干组，每组共享 KV，显著减少了 KV 缓存内存占用，
+
   同时保持接近 MHA 的模型质量。LLaMA 2/3、Mistral 等主流模型都采用了 GQA。
-tldr_en: |
-  GQA (Grouped Query Attention) is a middle ground between MHA and MQA: grouping KV heads
+
+  '
+tldr_en: 'GQA (Grouped Query Attention) is a middle ground between MHA and MQA: grouping KV heads
+
   so multiple query heads share the same KV, significantly reducing KV cache memory while
+
   maintaining near-MHA quality. LLaMA 2/3, Mistral, and other major models all use GQA.
+
+  '
 tags:
-  - attention
-  - gqa
-  - kv-cache
-  - efficiency
+- attention
+- gqa
+- kv-cache
+- efficiency
 modules:
-  - inference
-  - foundations
+- inference
+- foundations
 domains:
-  - inference
-  - architecture
+- inference
+- architecture
+prerequisites:
+- shazeer2019-mqa

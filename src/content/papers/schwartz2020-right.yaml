@@ -1,25 +1,25 @@
 id: schwartz2020-right
-arxiv_id: "2003.03618"
-title: "The Right Tool for the Job: Matching Model and Instance Complexities"
+arxiv_id: '2003.03618'
+title: 'The Right Tool for the Job: Matching Model and Instance Complexities'
 year: 2020
 authors:
-  - Roy Schwartz
-  - Gabriel Stanovsky
-  - Shie Mannar
-  - Jesse Dodge
-  - Noah A. Smith
+- Roy Schwartz
+- Gabriel Stanovsky
+- Shie Mannar
+- Jesse Dodge
+- Noah A. Smith
 tldr_zh: 提出自适应计算思想：不同输入实例需要的计算量不同。通过训练一个轻量级路由器将简单样本分配给较小模型、复杂样本分配给较大模型，可以在几乎不损失精度的情况下将平均推理成本降低 2-3 倍。
-tldr_en: "Proposes adaptive computation: different input instances require different amounts of computation. By training
-  a lightweight router to assign simple samples to smaller models and complex samples to larger models, reduces average
-  inference cost by 2-3x with minimal accuracy loss."
+tldr_en: 'Proposes adaptive computation: different input instances require different amounts of computation. By training a lightweight router to assign simple samples to smaller models and complex samples to larger models, reduces average inference cost by 2-3x with minimal accuracy loss.'
 tags:
-  - adaptive-computation
-  - early-exit
-  - cascading
-  - efficiency
-  - inference
+- adaptive-computation
+- early-exit
+- cascading
+- efficiency
+- inference
 modules:
-  - inference
+- inference
 domains:
-  - inference
+- inference
+prerequisites:
+- vaswani2017-attention
 inbox: false

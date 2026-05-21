@@ -1,42 +1,50 @@
 id: hoffmann2022-chinchilla
-arxiv_id: "2203.15556"
+arxiv_id: '2203.15556'
 title: Training Compute-Optimal Large Language Models
 year: 2022
 authors:
-  - Jordan Hoffmann
-  - Sebastian Borgeaud
-  - Arthur Mensch
-  - Elena Buchatskaya
-  - Trevor Cai
-  - Eliza Rutherford
-  - Diego de Las Casas
-  - Lisa Anne Hendrycks
-  - Johannes Welbl
-  - Aidan Clark
-  - Tom Hennigan
-  - Eric Noland
-  - Katie Millican
-  - George van den Driessche
-  - Bogdan Damoc
-  - Aurelia Guy
-  - Simon Osindero
-  - Karen Simonyan
-  - Erich Elsen
-  - Jack W. Rae
-  - Oriol Vinyals
-  - Laurent Sifre
-tldr_zh: |
-  提出了 Chinchilla 法则：在固定算力预算下，模型参数量和训练数据量应该同比例增长
+- Jordan Hoffmann
+- Sebastian Borgeaud
+- Arthur Mensch
+- Elena Buchatskaya
+- Trevor Cai
+- Eliza Rutherford
+- Diego de Las Casas
+- Lisa Anne Hendrycks
+- Johannes Welbl
+- Aidan Clark
+- Tom Hennigan
+- Eric Noland
+- Katie Millican
+- George van den Driessche
+- Bogdan Damoc
+- Aurelia Guy
+- Simon Osindero
+- Karen Simonyan
+- Erich Elsen
+- Jack W. Rae
+- Oriol Vinyals
+- Laurent Sifre
+tldr_zh: '提出了 Chinchilla 法则：在固定算力预算下，模型参数量和训练数据量应该同比例增长
+
   （而非此前主流认为的参数增长更重要）。这重新定义了 LLM 训练的最优策略，
+
   Chinchilla 70B 在多个基准上超越了 Gopher 280B。
-tldr_en: |
-  Proposes the Chinchilla scaling laws: given a fixed compute budget, model parameters and
+
+  '
+tldr_en: 'Proposes the Chinchilla scaling laws: given a fixed compute budget, model parameters and
+
   training tokens should scale equally (challenging the prior belief that parameters matter
+
   more). Chinchilla 70B outperformed Gopher 280B, redefining optimal LLM training strategy.
+
+  '
 tags:
-  - scaling-laws
-  - compute-optimal
+- scaling-laws
+- compute-optimal
 modules:
-  - training
+- training
 domains:
-  - pretraining
+- pretraining
+prerequisites:
+- kaplan2020-scaling

@@ -26,3 +26,5 @@ modules:
 - training
 domains:
 - alignment
+prerequisites:
+- christiano2017-rlhf

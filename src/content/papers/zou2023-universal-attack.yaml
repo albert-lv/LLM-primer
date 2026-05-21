@@ -23,3 +23,5 @@ modules:
 - applications
 domains:
 - safety
+prerequisites:
+- wei2023-jailbroken

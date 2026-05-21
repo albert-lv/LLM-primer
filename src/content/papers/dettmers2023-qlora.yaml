@@ -21,3 +21,6 @@ modules:
 domains:
 - alignment
 - inference
+prerequisites:
+- hu2021-lora
+- dettmers2022-llmint8

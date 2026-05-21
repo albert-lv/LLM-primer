@@ -45,3 +45,5 @@ modules:
 domains:
 - moe
 - pretraining
+prerequisites:
+- fedus2021-switch

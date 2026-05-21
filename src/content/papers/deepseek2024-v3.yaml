@@ -18,3 +18,5 @@ modules:
 domains:
 - architecture
 - moe
+prerequisites:
+- deepseek2024-v2

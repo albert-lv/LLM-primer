@@ -22,3 +22,5 @@ modules:
 - foundations
 domains:
 - architecture
+prerequisites:
+- mikolov2013-word2vec

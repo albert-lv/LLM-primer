@@ -36,3 +36,5 @@ modules:
 - training
 domains:
 - architecture
+prerequisites:
+- raffel2020-t5

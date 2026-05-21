@@ -20,3 +20,5 @@ modules:
 - foundations
 domains:
 - architecture
+prerequisites:
+- bahdanau2014-attention
