@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 
 
 <TierSwitcher />
@@ -53,6 +54,13 @@ A fundamental open question is whether "alignment" truly changes the model's int
 
 Key research directions include: detecting and defending against reward hacking; addressing artifacts in preference modeling such as length and position bias; maintaining context consistency in multi-turn conversations; and achieving more robust alignment with less human annotation.
 
+
+
+<OpenQuestions questions={[
+  { q: "How can reward hacking in RLHF be fundamentally addressed? Does DPO completely circumvent this issue?" },
+  { q: "How can the \"capability degeneration\" phenomenon after alignment be quantified and mitigated? How to find the optimal balance between alignment and capability?" },
+  { q: "Is there a unified alignment framework that can simultaneously handle helpfulness, harmlessness, and honesty?" },
+]} />
 </TierBlock>
 
 

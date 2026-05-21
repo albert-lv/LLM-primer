@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 
 
 <TierSwitcher />
@@ -56,6 +57,13 @@ Research questions include: what are the limits of quantization? Can 1-bit or te
 
 Another frontier is speculative decoding: a small model rapidly generates candidate sequences, and the large model verifies and corrects them in parallel, achieving 2-3x speedup without quality loss. This is essentially a rebalancing between computation and memory.
 
+
+
+<OpenQuestions questions={[
+  { q: "Can KV cache memory footprint be further compressed without significant precision loss? Which approach is better: sparsification, quantization, or distillation?" },
+  { q: "What is the optimal strategy for mixed-precision inference? Which layers and parameters are more suitable for low precision?" },
+  { q: "Is quantization-aware training necessary? Can post-training quantization achieve the same effect?" },
+]} />
 </TierBlock>
 
 

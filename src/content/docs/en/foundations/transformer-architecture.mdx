@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 
 
 <TierSwitcher />
@@ -47,6 +48,13 @@ The dominance of decoder-only architectures was not preordained, but an empirica
 
 Mixture of Experts (MoE) is a hot topic in architecture research: through sparse activation, models can expand parameter count without increasing inference compute. But MoE introduces new challenges in routing stability, load balancing, communication overhead, and fine-tuning difficulty. Future architectures may be modular, composable systems that dynamically select sub-networks per task, rather than today's "one giant model for everything."
 
+
+
+<OpenQuestions questions={[
+  { q: "Which components of the Transformer architecture are essentially necessary? Can they be further simplified or replaced?", papers: ["vaswani2017-attention"] },
+  { q: "Pre-LN vs Post-LN: What is the mechanism by which different normalization positions affect training stability and model performance?" },
+  { q: "Can the role of FFN be replaced with more efficient structures? Is MoE the only viable direction for sparsification?" },
+]} />
 </TierBlock>
 
 
