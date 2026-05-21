@@ -38,6 +38,64 @@ BERT 展示了双向编码器在理解任务上的力量；GPT-2 展示了只看
 
 架构变体会调整归一化位置、激活函数、注意力头数、KV 头共享、RoPE、MoE 或上下文扩展方法。选型时要同时看训练稳定性、推理吞吐、显存、KV cache 大小和生态支持，而不是只比较参数量。
 
+### 示例代码：简化的 Transformer Block
+
+```python
+import numpy as np
+
+class TransformerBlock:
+    """简化的 Transformer decoder block"""
+
+    def __init__(self, d_model, n_heads, d_ff):
+        self.d_model = d_model
+        self.n_heads = n_heads
+        self.d_ff = d_ff
+        # 实际应初始化权重矩阵，这里简化
+
+    def layer_norm(self, x):
+        """Layer Normalization"""
+        mean = x.mean(axis=-1, keepdims=True)
+        std = x.std(axis=-1, keepdims=True)
+        return (x - mean) / (std + 1e-5)
+
+    def self_attention(self, x):
+        """简化的自注意力（省略实际计算）"""
+        # 实际会计算 Q, K, V 并应用缩放点积注意力
+        return x  # 这里仅作示意
+
+    def feed_forward(self, x):
+        """前馈网络：两层线性变换 + 激活"""
+        # FFN(x) = W2·ReLU(W1·x + b1) + b2
+        # 实际维度：d_model → d_ff → d_model
+        return x  # 这里仅作示意
+
+    def forward(self, x):
+        """
+        Transformer block 的前向传播
+        x: [seq_len, d_model]
+        """
+        # 1. Pre-norm + 自注意力 + 残差
+        residual = x
+        x = self.layer_norm(x)
+        x = self.self_attention(x)
+        x = x + residual
+
+        # 2. Pre-norm + FFN + 残差
+        residual = x
+        x = self.layer_norm(x)
+        x = self.feed_forward(x)
+        x = x + residual
+
+        return x
+
+# 示例使用
+seq_len, d_model = 10, 512
+block = TransformerBlock(d_model=512, n_heads=8, d_ff=2048)
+x = np.random.randn(seq_len, d_model)
+output = block.forward(x)
+print(f"输入形状: {x.shape}, 输出形状: {output.shape}")
+```
+
 </TierBlock>
 
 <TierBlock tier="research">

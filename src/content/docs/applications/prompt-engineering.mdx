@@ -44,6 +44,45 @@ import OpenQuestions from '../../../components/OpenQuestions.astro';
 
 生产系统中，提示版本管理同样重要：改变提示可能影响数百个下游用例。应建立提示版本库、回归测试和 A/B 评估框架。
 
+### 示例代码：Few-shot 提示与 Chain-of-Thought
+
+```python
+def few_shot_prompt(task_description, examples, new_input):
+    """构造 few-shot 提示"""
+    prompt = f"{task_description}\n\n"
+    for ex in examples:
+        prompt += f"输入: {ex['input']}\n输出: {ex['output']}\n\n"
+    prompt += f"输入: {new_input}\n输出:"
+    return prompt
+
+# 示例：情感分类
+task_desc = "判断以下文本的情感（正面/负面）："
+examples = [
+    {"input": "这部电影太精彩了！", "output": "正面"},
+    {"input": "服务态度很差，不推荐。", "output": "负面"},
+    {"input": "价格合理，质量不错。", "output": "正面"}
+]
+new_input = "产品质量一般般，凑合能用。"
+prompt = few_shot_prompt(task_desc, examples, new_input)
+print(prompt)
+
+# Chain-of-Thought 示例
+def cot_prompt(question):
+    """构造 CoT 提示"""
+    return f"""{question}
+
+让我们一步步思考：
+1. 首先，识别问题中的关键信息
+2. 然后，列出解题所需的步骤
+3. 逐步计算或推理
+4. 最后，给出答案
+
+解答："""
+
+math_question = "小明有15个苹果，给了小红5个，又买了8个，现在有多少个？"
+print(cot_prompt(math_question))
+```
+
 </TierBlock>
 
 <TierBlock tier="research">
