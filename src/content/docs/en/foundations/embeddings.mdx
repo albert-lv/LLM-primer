@@ -38,6 +38,37 @@ Training embeddings can use many objectives: predicting neighboring words, langu
 
 In an LLM, the input embedding layer maps token IDs to vectors; the output layer is often tied to or derived from the embedding weights. In RAG, the embedding model is the entry point to the external index. Do not treat embeddings as the whole story: they excel at similarity, but still need extra evaluation for numbers, negation, time, and compositional logic.
 
+### Example code: semantic relationships in word vectors
+
+```python
+import numpy as np
+
+def cosine_similarity(v1, v2):
+    """Compute cosine similarity between two vectors"""
+    return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+
+# Simplified word vectors (real dimensions are typically 256-1024)
+embeddings = {
+    'king': np.array([0.5, 0.8, 0.2, 0.9]),
+    'queen': np.array([0.4, 0.7, 0.3, 0.85]),
+    'man': np.array([0.6, 0.3, 0.1, 0.4]),
+    'woman': np.array([0.5, 0.2, 0.2, 0.35]),
+    'cat': np.array([0.1, 0.1, 0.9, 0.2]),
+    'dog': np.array([0.15, 0.12, 0.85, 0.25]),
+}
+
+# Show analogy: king - man + woman ≈ queen
+king_man_woman = embeddings['king'] - embeddings['man'] + embeddings['woman']
+similarity = cosine_similarity(king_man_woman, embeddings['queen'])
+print(f"'king-man+woman' similarity to 'queen': {similarity:.3f}")
+
+# Show semantic similarity
+cat_dog_sim = cosine_similarity(embeddings['cat'], embeddings['dog'])
+cat_king_sim = cosine_similarity(embeddings['cat'], embeddings['king'])
+print(f"cat-dog similarity: {cat_dog_sim:.3f}")
+print(f"cat-king similarity: {cat_king_sim:.3f}")
+```
+
 </TierBlock>
 
 <TierBlock tier="research">
