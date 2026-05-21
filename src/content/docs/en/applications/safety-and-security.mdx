@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 
 
 <TierSwitcher />
@@ -58,7 +59,7 @@ Frontier directions include: automated red teaming (using models to attack model
 
 
 <OpenQuestions questions={[
-  { q: "Is there a theoretical equilibrium point in the "cat-and-mouse game" between adversarial attacks (e.g., GCG) and model alignment?", papers: ["zou2023-universal-attack", "wei2023-jailbroken"] },
+  { q: 'Is there a theoretical equilibrium point in the "cat-and-mouse game" between adversarial attacks (e.g., GCG) and model alignment?', papers: ["zou2023-universal-attack", "wei2023-jailbroken"] },
   { q: "How should risk assessment frameworks for indirect prompt injection in real-world applications be constructed?", papers: ["greshake2023-notwhat"] },
   { q: "How can privacy risks from training data extraction attacks be quantified? Is differential privacy training the only solution?", papers: ["carlini2021-extracting"] },
 ]} />

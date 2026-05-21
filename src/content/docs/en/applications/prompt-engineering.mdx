@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 
 
 <TierSwitcher />
@@ -58,7 +59,7 @@ Automatic Prompt Engineering (APE) attempts to discover optimal prompts through 
 <OpenQuestions questions={[
   { q: "What are the boundaries of Chain-of-thought effectiveness? Which task types cannot benefit from explicit reasoning?", papers: ["wei2022-cot", "kojima2022-zeroshot-cot"] },
   { q: "Can automatic prompt optimization (e.g., APE, OPRO) surpass human-designed prompts? What are the structural characteristics of its search space?", papers: ["zhou2022-least-to-most"] },
-  { q: "Does the "slow thinking" capability demonstrated by DeepSeek-R1 and o1-class models represent the end of prompt engineering? Or does it open a new paradigm?", papers: ["deepseek2025-r1", "lightman2023-lets"] },
+  { q: 'Does the "slow thinking" capability demonstrated by DeepSeek-R1 and o1-class models represent the end of prompt engineering? Or does it open a new paradigm?', papers: ["deepseek2025-r1", "lightman2023-lets"] },
 ]} />
 </TierBlock>
 

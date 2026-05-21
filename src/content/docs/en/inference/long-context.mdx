@@ -14,6 +14,7 @@ import TierSwitcher from '../../../../components/TierSwitcher.astro';
 import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
 
 
 <TierSwitcher />
@@ -59,7 +60,7 @@ Directions include: learnable sparse patterns, content-based retrieval routing, 
 
 
 <OpenQuestions questions={[
-  { q: "How should "effective context length" be defined for long-context models? Is the Needle-in-a-Haystack test sufficient?", papers: ["kamradt2023-needle", "peng2023-yarn"] },
+  { q: 'How should "effective context length" be defined for long-context models? Is the Needle-in-a-Haystack test sufficient?', papers: ["kamradt2023-needle", "peng2023-yarn"] },
   { q: "How can information loss from KV cache compression methods (e.g., H2O) be quantified at extremely long sequence lengths?", papers: ["liu2023-h2o"] },
   { q: "What is the theoretical guarantee for position encoding extrapolation methods like Yarn/NTK-aware? How does it relate to training duration?", papers: ["peng2023-yarn", "xiao2023-streamingllm"] },
 ]} />
