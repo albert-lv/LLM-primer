@@ -21,7 +21,7 @@ jobs:
       - run: node scripts/arxiv-inbox.mjs
       - uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: chore: update arxiv inbox
-          title: chore: update arxiv inbox
+          commit-message: "chore: update arxiv inbox"
+          title: "chore: update arxiv inbox"
           body: Automated arXiv inbox refresh.
           branch: automation/arxiv-inbox
