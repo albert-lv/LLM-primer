@@ -38,6 +38,64 @@ A modern decoder block usually contains normalization, causal self-attention, an
 
 Architecture choices such as RoPE, grouped-query attention, activation functions, MoE layers, and normalization placement affect both training stability and inference throughput. Compare systems by memory, KV-cache size, latency, and quality—not only parameter count.
 
+### Example code: simplified Transformer block
+
+```python
+import numpy as np
+
+class TransformerBlock:
+    """Simplified Transformer decoder block"""
+
+    def __init__(self, d_model, n_heads, d_ff):
+        self.d_model = d_model
+        self.n_heads = n_heads
+        self.d_ff = d_ff
+        # Actual implementation would initialize weight matrices
+
+    def layer_norm(self, x):
+        """Layer Normalization"""
+        mean = x.mean(axis=-1, keepdims=True)
+        std = x.std(axis=-1, keepdims=True)
+        return (x - mean) / (std + 1e-5)
+
+    def self_attention(self, x):
+        """Simplified self-attention (actual computation omitted)"""
+        # Would compute Q, K, V and apply scaled dot-product attention
+        return x  # Placeholder for demonstration
+
+    def feed_forward(self, x):
+        """Feed-forward network: two linear layers + activation"""
+        # FFN(x) = W2·ReLU(W1·x + b1) + b2
+        # Actual dimensions: d_model → d_ff → d_model
+        return x  # Placeholder for demonstration
+
+    def forward(self, x):
+        """
+        Transformer block forward pass
+        x: [seq_len, d_model]
+        """
+        # 1. Pre-norm + self-attention + residual
+        residual = x
+        x = self.layer_norm(x)
+        x = self.self_attention(x)
+        x = x + residual
+
+        # 2. Pre-norm + FFN + residual
+        residual = x
+        x = self.layer_norm(x)
+        x = self.feed_forward(x)
+        x = x + residual
+
+        return x
+
+# Example usage
+seq_len, d_model = 10, 512
+block = TransformerBlock(d_model=512, n_heads=8, d_ff=2048)
+x = np.random.randn(seq_len, d_model)
+output = block.forward(x)
+print(f"Input shape: {x.shape}, Output shape: {output.shape}")
+```
+
 </TierBlock>
 
 <TierBlock tier="research">
