@@ -38,6 +38,39 @@ Scaling laws study the empirical relationship between model size, data volume, c
 
 In practice, capability is not determined by parameter count alone. Data quality, deduplication, mixing ratios, context length, training stability, alignment, and inference strategy all change outcomes. Chain-of-thought and similar prompting methods show that existing capabilities may need the right interface to be unlocked.
 
+### Example code: simple scaling law visualization
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def scaling_law_loss(N, D, alpha=0.34, beta=0.28):
+    """
+    Simplified scaling law: L(N, D) ≈ N^(-alpha) + D^(-beta)
+    N: model parameters (in billions)
+    D: training data (in billions of tokens)
+    """
+    return N**(-alpha) + D**(-beta)
+
+# Plot relationship between parameters and loss
+params = np.logspace(0, 3, 50)  # 1B to 1000B parameters
+data_fixed = 300  # Fixed at 300B tokens
+losses = [scaling_law_loss(p, data_fixed) for p in params]
+
+print(f"Predicted loss for 1B param model: {scaling_law_loss(1, data_fixed):.4f}")
+print(f"Predicted loss for 10B param model: {scaling_law_loss(10, data_fixed):.4f}")
+print(f"Predicted loss for 100B param model: {scaling_law_loss(100, data_fixed):.4f}")
+
+# Show compute-optimal balance
+print("\nCompute-optimal examples:")
+for compute_budget in [1e18, 1e20, 1e22]:  # FLOPs
+    # Simplified: assume N and D should be roughly balanced
+    N_opt = (compute_budget / 6) ** 0.5 / 1e9  # Convert to billions
+    D_opt = (compute_budget / 6) ** 0.5 / 1e9  # Convert to billions
+    print(f"Compute budget {compute_budget:.0e} FLOPs: "
+          f"optimal ~{N_opt:.1f}B params, {D_opt:.1f}B tokens")
+```
+
 </TierBlock>
 
 <TierBlock tier="research">
