@@ -5,7 +5,7 @@ module: applications
 order: 6
 status: published
 tiers: [intro, engineer, research]
-papers: [chen2021-humaneval, jimenez2024-swebench, yang2024-sweagent]
+papers: ['chen2021-humaneval', 'jimenez2024-swebench', 'yang2024-sweagent', 'openai2024-o1-systemcard', 'deepseek2025-r1']
 related: [applications/agents-and-tools, applications/evaluation-and-benchmarks, training/fine-tuning-and-alignment]
 updated: 2026-05-19
 ---
@@ -53,13 +53,13 @@ Frontier directions include: execution-guided generation (using actual runtime r
 
 
 <OpenQuestions questions={[
-  { q: '代码生成模型在真实软件工程任务中的瓶颈是什么？SWE-bench 揭示了哪些关键差距？', papers: ["jimenez2024-swebench"] },
-  { q: '如何评估代码模型对大型代码库的理解能力？现有 benchmarks 的覆盖度是否足够？', papers: ["chen2021-humaneval", "jimenez2024-swebench"] },
-  { q: 'Agent-based 代码生成（如 SWE-agent）与传统端到端生成在可靠性和可维护性上的权衡是什么？', papers: ["yang2024-sweagent"] },
+  { q: "What are the bottlenecks of code generation models in real-world software engineering tasks? What key gaps has SWE-bench revealed?", papers: ["jimenez2024-swebench"] },
+  { q: "How can code models' understanding of large codebases be evaluated? Is the coverage of existing benchmarks sufficient?", papers: ["chen2021-humaneval", "jimenez2024-swebench"] },
+  { q: "What are the tradeoffs between Agent-based code generation (e.g., SWE-agent) and traditional end-to-end generation in terms of reliability and maintainability?", papers: ["yang2024-sweagent"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/code-generation" />
 
-<PaperList ids={['chen2021-humaneval', 'jimenez2024-swebench', 'yang2024-sweagent']} />
+<PaperList ids={['chen2021-humaneval', 'jimenez2024-swebench', 'yang2024-sweagent', 'openai2024-o1-systemcard', 'deepseek2025-r1']} />

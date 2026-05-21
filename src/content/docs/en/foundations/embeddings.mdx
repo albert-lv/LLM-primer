@@ -5,7 +5,7 @@ module: foundations
 order: 4
 status: published
 tiers: [intro, engineer, research]
-papers: ['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove', 'mikolov2013-skipgram-negsampling', 'kim2014-textcnn']
+papers: ['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove', 'mikolov2013-skipgram-negsampling', 'kim2014-textcnn', 'clark2020-electra']
 related: [foundations/tokenization, foundations/positional-encoding, applications/rag-and-retrieval]
 updated: 2026-05-19
 ---
@@ -50,13 +50,13 @@ Contextual representations (such as ELMo and BERT) mitigate some ambiguity probl
 
 
 <OpenQuestions questions={[
-  { q: '静态词向量（word2vec、GloVe）与上下文相关表示（ELMo）的本质区别是什么？这种演进是否是必然的？', papers: ["mikolov2013-word2vec", "pennington2014-glove", "peters2018-elmo"] },
-  { q: '负采样（negative sampling）的目标函数与隐式矩阵分解之间有何数学联系？', papers: ["mikolov2013-skipgram-negsampling"] },
-  { q: '多语言或低资源语言的嵌入质量如何系统性地提升？词表构造对嵌入学习有何影响？', papers: ["mikolov2013-word2vec"] },
+  { q: "What is the fundamental difference between static word vectors (word2vec, GloVe) and contextualized representations (ELMo)? Is this evolution inevitable?", papers: ["mikolov2013-word2vec", "pennington2014-glove", "peters2018-elmo"] },
+  { q: "What is the mathematical connection between negative sampling's objective function and implicit matrix factorization?", papers: ["mikolov2013-skipgram-negsampling"] },
+  { q: "How can embedding quality for multilingual or low-resource languages be systematically improved? How does vocabulary construction affect embedding learning?", papers: ["mikolov2013-word2vec"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="foundations/embeddings" />
 
-<PaperList ids={['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove', 'mikolov2013-skipgram-negsampling', 'kim2014-textcnn']} />
+<PaperList ids={['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove', 'mikolov2013-skipgram-negsampling', 'kim2014-textcnn', 'clark2020-electra']} />

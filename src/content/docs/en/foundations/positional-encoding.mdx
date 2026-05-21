@@ -5,7 +5,7 @@ module: foundations
 order: 6
 status: published
 tiers: [intro, engineer, research]
-papers: ['vaswani2017-attention', 'su2021-rope', 'press2021-alibi', 'yang2019-xlnet']
+papers: ['vaswani2017-attention', 'su2021-rope', 'press2021-alibi', 'yang2019-xlnet', 'zeng2022-glm130b']
 related: [foundations/attention, foundations/transformer-architecture, inference/long-context]
 updated: 2026-05-19
 ---
@@ -50,13 +50,13 @@ A deeper question is: must position information be added explicitly? Some studie
 
 
 <OpenQuestions questions={[
-  { q: 'RoPE 的旋转矩阵形式为何能自然地支持相对位置编码？其外推极限在哪里？', papers: ["su2021-rope"] },
-  { q: 'ALiBi 的线性偏置方案与显式位置编码（如正弦/RoPE）在训练动态上有何本质差异？', papers: ["press2021-alibi"] },
-  { q: '超长上下文场景下，位置编码是否仍然是瓶颈？是否存在无需位置编码的替代架构？', papers: ["yang2019-xlnet"] },
+  { q: "Why does RoPE's rotation matrix formulation naturally support relative position encoding? What are its extrapolation limits?", papers: ["su2021-rope"] },
+  { q: "What are the fundamental differences in training dynamics between ALiBi's linear bias approach and explicit position encodings (e.g., sinusoidal/RoPE)?", papers: ["press2021-alibi"] },
+  { q: "In ultra-long context scenarios, is position encoding still the bottleneck? Are there alternative architectures that do not require position encoding?", papers: ["yang2019-xlnet"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="foundations/positional-encoding" />
 
-<PaperList ids={['vaswani2017-attention', 'su2021-rope', 'press2021-alibi', 'yang2019-xlnet']} />
+<PaperList ids={['vaswani2017-attention', 'su2021-rope', 'press2021-alibi', 'yang2019-xlnet', 'zeng2022-glm130b']} />

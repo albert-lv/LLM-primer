@@ -5,7 +5,7 @@ module: applications
 order: 1
 status: published
 tiers: [intro, engineer, research]
-papers: ['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro', 'radford2021-clip']
+papers: ['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro', 'radford2021-clip', 'liu2023-llava']
 related: [foundations/embeddings, applications/agents-and-tools, inference/long-context]
 updated: 2026-05-19
 ---
@@ -56,13 +56,13 @@ Frontier directions include: adaptive retrieval (only look up when uncertain), m
 
 
 <OpenQuestions questions={[
-  { q: '检索与生成的协同优化：何时应该检索更多文档 vs. 信任模型参数记忆？', papers: ["lewis2020-rag", "borgeaud2022-retro"] },
-  { q: 'HyDE 等查询扩展方法的理论基础是什么？在什么条件下能稳定提升召回率？', papers: ["gao2022-hyde"] },
-  { q: '多模态 RAG（如结合 CLIP）面临哪些独特的挑战？图文检索的对齐质量如何保障？', papers: ["radford2021-clip"] },
+  { q: "How can retrieval and generation be co-optimized? When should more documents be retrieved vs. trusting the model's parametric memory?", papers: ["lewis2020-rag", "borgeaud2022-retro"] },
+  { q: "What is the theoretical foundation of query expansion methods like HyDE? Under what conditions can they stably improve recall?", papers: ["gao2022-hyde"] },
+  { q: "What unique challenges does multimodal RAG (e.g., combining CLIP) face? How can the alignment quality of image-text retrieval be guaranteed?", papers: ["radford2021-clip"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/rag-and-retrieval" />
 
-<PaperList ids={['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro', 'radford2021-clip']} />
+<PaperList ids={['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro', 'radford2021-clip', 'liu2023-llava']} />
