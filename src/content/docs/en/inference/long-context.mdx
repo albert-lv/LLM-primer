@@ -56,9 +56,16 @@ Research-level, the fundamental bottleneck of long context is not just computati
 
 Directions include: learnable sparse patterns, content-based retrieval routing, and hybrid architectures combining external memory with short-term context. Long context is also a litmus test for model "understanding" depth: does increased token capacity truly correspond to improved long-range reasoning ability?
 
+
+
+<OpenQuestions questions={[
+  { q: '长上下文模型的"有效上下文长度"如何定义？Needle-in-a-Haystack 测试是否充分？', papers: ["kamradt2023-needle", "peng2023-yarn"] },
+  { q: 'H2O 等 KV cache 压缩方法在极长序列下的信息损失如何量化？', papers: ["liu2023-h2o"] },
+  { q: '位置编码外推与训练时长的关系：Yarn/NTK-aware 等方法的理论保证是什么？', papers: ["peng2023-yarn", "xiao2023-streamingllm"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/long-context" />
 
-<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi']} />
+<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o']} />

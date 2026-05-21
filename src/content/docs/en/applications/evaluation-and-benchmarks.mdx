@@ -50,9 +50,16 @@ At the research level, evaluation itself is a scientific question. HELM proposed
 
 Open questions include: how to evaluate emergent abilities? How to quantify the impact of decoding strategies on evaluation results? How to design benchmarks that resist "gaming"? And when models approach or exceed human capabilities, who serves as the judge?
 
+
+
+<OpenQuestions questions={[
+  { q: 'LLM-as-a-Judge 的偏差来源有哪些？如何设计更公正的评估协议？', papers: ["wang2023-large", "zheng2023-mtbench"] },
+  { q: '数据污染（data contamination）问题在静态 benchmarks 中如何系统性地检测和缓解？', papers: ["jacovi2023-stop"] },
+  { q: 'Holistic 评估（如 HELM）与任务特定评估之间的张力如何调和？', papers: ["liang2022-helm", "hendrycks2020-mmlu"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/evaluation-and-benchmarks" />
 
-<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench']} />
+<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench', 'jacovi2023-stop', 'wang2023-large']} />

@@ -45,9 +45,16 @@ In practice, capability is not determined by parameter count alone. Data quality
 
 Research on emergence should report continuous metrics, calibration curves, task difficulty, and prompt sensitivity. Distinguish statistical patterns learned during pretraining, in-context learning, tool externalization, and post-training alignment. The better question is not "does the model truly understand?" but "under what distributions, constraints, and interventions does it stably exhibit which predictable capabilities?"
 
+
+
+<OpenQuestions questions={[
+  { q: '涌现能力（emergence）究竟是连续相变还是测量手段造成的假象？如何设计更灵敏的评测来检验？', papers: ["wei2022-cot"] },
+  { q: '小模型（如 Phi-1/3）通过高质量数据也能展现接近大模型的能力，这如何修正 scaling law 的叙事？', papers: ["gunasekar2023-phi1", "hoffmann2022-chinchilla"] },
+  { q: '推理能力（如 chain-of-thought）是否可以通过纯预训练获得，还是必须依赖微调阶段的显式引导？', papers: ["wei2022-cot", "brown2020-gpt3"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="foundations/why-llm-emerges" />
 
-<PaperList ids={['kaplan2020-scaling', 'brown2020-gpt3', 'hoffmann2022-chinchilla', 'wei2022-cot']} />
+<PaperList ids={['kaplan2020-scaling', 'brown2020-gpt3', 'hoffmann2022-chinchilla', 'wei2022-cot', 'openai2023-gpt4', 'gunasekar2023-phi1']} />

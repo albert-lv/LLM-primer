@@ -53,9 +53,16 @@ Research questions include: what capabilities does prompt engineering reveal abo
 
 Automatic Prompt Engineering (APE) attempts to discover optimal prompts through search, reinforcement learning, or gradient-based methods. Directions include discrete prompt search, soft prompts / prefix tuning, and letting models generate and evaluate candidate prompts themselves. The future may be "prompts as code": using programming languages and type systems to constrain and compose prompt templates.
 
+
+
+<OpenQuestions questions={[
+  { q: 'Chain-of-thought 的有效性边界在哪里？哪些任务类型无法从显式推理中受益？', papers: ["wei2022-cot", "kojima2022-zeroshot-cot"] },
+  { q: '自动提示优化能否超越人类设计的提示？其搜索空间的结构特征是什么？', papers: ["zhou2022-least-to-most"] },
+  { q: 'DeepSeek-R1 和 o1 类模型展示的"慢思考"能力是否代表了提示工程的终结？还是开启了新的范式？', papers: ["deepseek2025-r1", "lightman2023-lets"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/prompt-engineering" />
 
-<PaperList ids={['wei2022-cot', 'kojima2022-zeroshot-cot', 'wang2022-self-consistency', 'zhou2022-least-to-most']} />
+<PaperList ids={['wei2022-cot', 'kojima2022-zeroshot-cot', 'wang2022-self-consistency', 'zhou2022-least-to-most', 'lightman2023-lets', 'deepseek2025-r1']} />

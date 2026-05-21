@@ -50,6 +50,13 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 前沿方向包括：执行引导生成（用实际运行结果反馈修正代码）、形式化验证结合（让模型生成附带证明的代码）、以及从自然语言需求到可部署系统的端到端生成。代码可能是检验 LLM"推理能力"的最严格基准之一，因为代码的执行结果是非黑即白的。
 
+
+
+<OpenQuestions questions={[
+  { q: '代码生成模型在真实软件工程任务中的瓶颈是什么？SWE-bench 揭示了哪些关键差距？', papers: ["jimenez2024-swebench"] },
+  { q: '如何评估代码模型对大型代码库的理解能力？现有 benchmarks 的覆盖度是否足够？', papers: ["chen2021-humaneval", "jimenez2024-swebench"] },
+  { q: 'Agent-based 代码生成（如 SWE-agent）与传统端到端生成在可靠性和可维护性上的权衡是什么？', papers: ["yang2024-sweagent"] },
+]} />
 </TierBlock>
 
 

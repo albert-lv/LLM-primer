@@ -47,9 +47,16 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 更深的问题是：位置信息是否必须以显式编码形式加入？有研究表明，在足够深的网络中，模型可以从注意力模式的统计规律中间接推断位置。此外，无位置编码的架构（如某些状态空间模型）也展示了顺序建模的可能性，挑战了"位置编码是必需品"的传统假设。
 
+
+
+<OpenQuestions questions={[
+  { q: 'RoPE 的旋转矩阵形式为何能自然地支持相对位置编码？其外推极限在哪里？', papers: ["su2021-rope"] },
+  { q: 'ALiBi 的线性偏置方案与显式位置编码（如正弦/RoPE）在训练动态上有何本质差异？', papers: ["press2021-alibi"] },
+  { q: '超长上下文场景下，位置编码是否仍然是瓶颈？是否存在无需位置编码的替代架构？', papers: ["yang2019-xlnet"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="foundations/positional-encoding" />
 
-<PaperList ids={['vaswani2017-attention', 'su2021-rope', 'press2021-alibi']} />
+<PaperList ids={['vaswani2017-attention', 'su2021-rope', 'press2021-alibi', 'yang2019-xlnet']} />

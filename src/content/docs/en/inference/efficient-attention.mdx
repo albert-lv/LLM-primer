@@ -50,9 +50,16 @@ A fundamental research question is whether Transformer's quadratic complexity is
 
 However, attention itself has unique advantages: dynamic routing, strong interpretability, and relatively mild dependence on training data distribution. Future architectures may be hybrid: linear methods for local patterns, standard attention for global patterns, or learned routing that dynamically selects computation modes.
 
+
+
+<OpenQuestions questions={[
+  { q: 'FlashAttention 的 IO-aware 分块策略能否推广到非 Transformer 架构？内存-计算的权衡极限在哪里？', papers: ["dao2022-flashattention", "shah2024-flashattention3"] },
+  { q: 'GQA/MQA 的内存节省与质量损失之间的量化关系是什么？是否存在最优的 KV 头分组策略？', papers: ["ainslie2023-gqa", "shazeer2019-mqa"] },
+  { q: 'DeepSeek-V2 的 MLA（Multi-head Latent Attention）能否成为下一代注意力标准？其与低秩近似的理论联系是什么？', papers: ["deepseek2024-v2"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/efficient-attention" />
 
-<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3']} />
+<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2']} />

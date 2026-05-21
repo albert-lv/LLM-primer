@@ -53,9 +53,16 @@ A hot research topic is the relationship between RAG and long-context models: if
 
 Frontier directions include: adaptive retrieval (only look up when uncertain), multi-hop reasoning (tracing clues across documents), structured RAG (combining knowledge graphs, SQL databases, etc.), and end-to-end differentiable retrieval (letting the model learn how to retrieve).
 
+
+
+<OpenQuestions questions={[
+  { q: '检索与生成的协同优化：何时应该检索更多文档 vs. 信任模型参数记忆？', papers: ["lewis2020-rag", "borgeaud2022-retro"] },
+  { q: 'HyDE 等查询扩展方法的理论基础是什么？在什么条件下能稳定提升召回率？', papers: ["gao2022-hyde"] },
+  { q: '多模态 RAG（如结合 CLIP）面临哪些独特的挑战？图文检索的对齐质量如何保障？', papers: ["radford2021-clip"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/rag-and-retrieval" />
 
-<PaperList ids={['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro']} />
+<PaperList ids={['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro', 'radford2021-clip']} />

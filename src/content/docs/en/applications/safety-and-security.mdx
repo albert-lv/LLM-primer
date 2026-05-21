@@ -55,9 +55,16 @@ At the research level, the core safety question is: can models learn "generaliza
 
 Frontier directions include: automated red teaming (using models to attack models), provable defense bounds, mechanistic interpretability to locate harmful behavior circuits, and formal methods to verify output constraints in critical systems.
 
+
+
+<OpenQuestions questions={[
+  { q: '对抗性攻击（如 GCG）与模型对齐之间的"猫鼠游戏"是否有理论上的平衡点？', papers: ["zou2023-universal-attack", "wei2023-jailbroken"] },
+  { q: '间接提示注入（indirect prompt injection）在真实应用中的风险评估框架应该如何构建？', papers: ["greshake2023-notwhat"] },
+  { q: '数据提取攻击（training data extraction）的隐私风险如何量化？差分隐私训练是否是唯一解？', papers: ["carlini2021-extracting"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/safety-and-security" />
 
-<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh']} />
+<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat']} />

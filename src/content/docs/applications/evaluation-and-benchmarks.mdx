@@ -50,9 +50,16 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 开放问题包括：如何评估涌现能力？如何量化解码策略对评估结果的影响？如何设计不易被"刷分"的基准？以及，当模型能力接近或超过人类时，谁来担任评判者？
 
+
+
+<OpenQuestions questions={[
+  { q: 'LLM-as-a-Judge 的偏差来源有哪些？如何设计更公正的评估协议？', papers: ["wang2023-large", "zheng2023-mtbench"] },
+  { q: '数据污染（data contamination）问题在静态 benchmarks 中如何系统性地检测和缓解？', papers: ["jacovi2023-stop"] },
+  { q: 'Holistic 评估（如 HELM）与任务特定评估之间的张力如何调和？', papers: ["liang2022-helm", "hendrycks2020-mmlu"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/evaluation-and-benchmarks" />
 
-<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench']} />
+<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench', 'jacovi2023-stop', 'wang2023-large']} />

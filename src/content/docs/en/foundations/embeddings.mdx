@@ -47,9 +47,16 @@ Research on embedding space geometry reveals statistical regularities of languag
 
 Contextual representations (such as ELMo and BERT) mitigate some ambiguity problems of static word vectors, but introduce new questions: representations from different layers capture different levels of linguistic structure (surface syntax vs. deep semantics). Probing tasks attempt to determine what models "know," but does a successful probe mean the model truly grasps a concept, or merely exploits statistical cues? This remains a central debate in representation learning.
 
+
+
+<OpenQuestions questions={[
+  { q: '静态词向量（word2vec、GloVe）与上下文相关表示（ELMo）的本质区别是什么？这种演进是否是必然的？', papers: ["mikolov2013-word2vec", "pennington2014-glove", "peters2018-elmo"] },
+  { q: '负采样（negative sampling）的目标函数与隐式矩阵分解之间有何数学联系？', papers: ["mikolov2013-skipgram-negsampling"] },
+  { q: '多语言或低资源语言的嵌入质量如何系统性地提升？词表构造对嵌入学习有何影响？', papers: ["mikolov2013-word2vec"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="foundations/embeddings" />
 
-<PaperList ids={['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove']} />
+<PaperList ids={['mikolov2013-word2vec', 'peters2018-elmo', 'pennington2014-glove', 'mikolov2013-skipgram-negsampling', 'kim2014-textcnn']} />

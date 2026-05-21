@@ -56,9 +56,16 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 方向包括：可学习的稀疏模式、基于内容的检索路由、以及把外部记忆与短期上下文结合的混合架构。长上下文也是评估模型"理解"深度的试金石：表面上的 token 容量增长，是否对应真正的长程推理能力提升？
 
+
+
+<OpenQuestions questions={[
+  { q: '长上下文模型的"有效上下文长度"如何定义？Needle-in-a-Haystack 测试是否充分？', papers: ["kamradt2023-needle", "peng2023-yarn"] },
+  { q: 'H2O 等 KV cache 压缩方法在极长序列下的信息损失如何量化？', papers: ["liu2023-h2o"] },
+  { q: '位置编码外推与训练时长的关系：Yarn/NTK-aware 等方法的理论保证是什么？', papers: ["peng2023-yarn", "xiao2023-streamingllm"] },
+]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/long-context" />
 
-<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi']} />
+<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o']} />
