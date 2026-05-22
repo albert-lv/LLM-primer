@@ -1,5 +1,4 @@
 import path from 'node:path';
-import { visit } from 'unist-util-visit';
 
 const injected = new WeakSet();
 
@@ -105,23 +104,38 @@ export default function remarkRunnableCode() {
     injected.add(tree);
 
     let used = false;
-    visit(tree, 'code', (node, index, parent) => {
-      if (!parent || typeof index !== 'number') return;
-      const { run, packages } = parseMeta(node.meta);
-      if (!run) return;
+    const walk = (node) => {
+      if (!node || typeof node !== 'object') return;
+      const children = node.children;
+      if (!Array.isArray(children)) return;
 
-      used = true;
-      parent.children[index] = {
-        type: 'mdxJsxFlowElement',
-        name: 'RunnableCode',
-        attributes: [
-          attrString('code', node.value ?? ''),
-          attrString('lang', node.lang ?? 'python'),
-          attrArray('packages', packages),
-        ],
-        children: [],
-      };
-    });
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        if (!child || typeof child !== 'object') continue;
+
+        if (child.type === 'code') {
+          const { run, packages } = parseMeta(child.meta);
+          if (run) {
+            used = true;
+            children[i] = {
+              type: 'mdxJsxFlowElement',
+              name: 'RunnableCode',
+              attributes: [
+                attrString('code', child.value ?? ''),
+                attrString('lang', child.lang ?? 'python'),
+                attrArray('packages', packages),
+              ],
+              children: [],
+            };
+            continue;
+          }
+        }
+
+        walk(child);
+      }
+    };
+
+    walk(tree);
 
     if (!used) return;
 
@@ -134,4 +148,3 @@ export default function remarkRunnableCode() {
     tree.children.unshift(importNode('RunnableCode', specifierPath));
   };
 }
-
