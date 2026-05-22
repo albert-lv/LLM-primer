@@ -8,7 +8,7 @@ export default defineConfig({
   site: 'https://llm-primer.pages.dev',
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: 'hover',
+    defaultStrategy: 'viewport',
   },
   markdown: {
     remarkPlugins: [remarkMath],
