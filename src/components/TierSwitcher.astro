@@ -13,7 +13,7 @@ const tiers = isEn
     ];
 ---
 
-<div class="tier-switcher" role="group" aria-label={isEn ? 'Reading level' : '阅读档位'}>
+<div class="tier-switcher not-content" role="group" aria-label={isEn ? 'Reading level' : '阅读档位'}>
   {tiers.map((t) => (
     <button class="tier-btn" data-tier-id={t.id} aria-selected="false">
       {t.label}
