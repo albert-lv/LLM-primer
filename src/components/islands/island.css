@@ -12,6 +12,14 @@
 .cell { display: inline-block; min-width: 3.2rem; border-radius: 0.35rem; padding: 0.35rem; color: white; }
 .controls-grid label { flex: 1 1 12rem; display: grid; gap: 0.25rem; }
 .demo-button { border: 0; border-radius: 999px; padding: 0.5rem 0.85rem; background: var(--sl-color-accent); color: white; cursor: pointer; }
+.demo-button.secondary { background: var(--sl-color-gray-5); color: var(--sl-color-white); }
+.island-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin: 0.75rem 0; }
+.island-table { width: 100%; border-collapse: collapse; }
+.island-table th, .island-table td { padding: 0.5rem; border-bottom: 1px solid var(--sl-color-gray-6); vertical-align: middle; }
+.island-table th { font-size: 0.9rem; color: var(--sl-color-gray-2); text-transform: lowercase; }
+.island-table td.num, .island-table th.num { width: 7rem; }
+.island-table input { width: 100%; box-sizing: border-box; border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem; padding: 0.35rem 0.5rem; background: var(--sl-color-bg); color: var(--sl-color-white); }
+.island-table tr.top { background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent); }
 .next-token { font-size: 1.1rem; }
 .bars { display: grid; gap: 0.35rem; }
 .bar-row { display: grid; grid-template-columns: 5rem 1fr 4rem; gap: 0.5rem; align-items: center; }
