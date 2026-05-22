@@ -6,6 +6,8 @@ tiers: [intro, engineer]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../components/BlogInteraction.astro';
+
 # 如何使用 LLM Primer 学习
 
 LLM Primer 的文章按模块组织，每篇文章提供三个阅读档位。你可以根据自己的背景和目标选择深度。
@@ -26,6 +28,12 @@ LLM Primer 的文章按模块组织，每篇文章提供三个阅读档位。你
 
 你的选择会被记住，下次访问时自动恢复。
 
+可以把学习优先级粗略写成：
+
+$$
+\text{priority} = \frac{\text{当前问题相关性}}{\text{理解成本}}
+$$
+
 ## 结合论文库
 
 文章中的关键说法都链接到论文库的对应条目。每篇论文提供双语 TLDR，并列出引用它的所有文章。这是一个双向导航：从概念到证据，从论文到应用场景。
@@ -33,3 +41,24 @@ LLM Primer 的文章按模块组织，每篇文章提供三个阅读档位。你
 ## 参与贡献
 
 发现错误、想补充内容、或者想认领 inbox 中的候选论文？欢迎提交 PR。我们的目标是维护一套能长期迭代的 LLM 学习地图，而不是追逐热点。
+
+<BlogInteraction
+  title="互动：选择下一篇文章"
+  prompt="在继续学习前，先勾选你现在的目标。"
+  checkpoints={['我想先建立概念直觉', '我需要解决工程落地问题', '我想追踪论文和开放问题']}
+  revealText="如果第一项最重要，从基础模块开始；如果第二项最重要，优先看推理和应用；如果第三项最重要，进入研究档并结合论文库。"
+/>
+
+下面的 Python 代码可以直接运行，用一个简单打分帮助你挑选下一篇文章：
+
+```python
+articles = [
+    {"title": "Tokenization", "relevance": 5, "cost": 2},
+    {"title": "KV Cache", "relevance": 4, "cost": 3},
+    {"title": "Alignment", "relevance": 3, "cost": 4},
+]
+
+for article in sorted(articles, key=lambda x: x["relevance"] / x["cost"], reverse=True):
+    score = article["relevance"] / article["cost"]
+    print(f"{article['title']}: {score:.2f}")
+```

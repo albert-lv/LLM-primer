@@ -6,6 +6,8 @@ tiers: [intro, engineer]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../../components/BlogInteraction.astro';
+
 # New Training, Inference, and Applications Modules
 
 LLM Primer started with foundational concepts like Tokenization, Attention, and Transformer. As the content matured, we expanded into three new modules:
@@ -14,6 +16,14 @@ LLM Primer started with foundational concepts like Tokenization, Attention, and 
 
 - **[Pretraining and Scaling Law](/en/training/pretraining-and-scaling/)**: From data engineering to compute-optimal training, understanding how models "learn to predict the next word."
 - **[Fine-Tuning and Alignment](/en/training/fine-tuning-and-alignment/)**: How SFT, RLHF, DPO, and related methods turn a "generalist" into an "obedient assistant."
+
+A useful first approximation for training compute is:
+
+$$
+C \approx 6ND
+$$
+
+where $N$ is parameter count, $D$ is training tokens, and $C$ is compute.
 
 ## Inference
 
@@ -26,3 +36,11 @@ LLM Primer started with foundational concepts like Tokenization, Attention, and 
 - **[Agents and Tool Use](/en/applications/agents-and-tools/)**: From chat to action—how models interact with the real world through tools.
 
 Each article follows LLM Primer's three-tier design: intuition first, engineering trade-offs next, and research questions when useful. Contributions via PR—new content, corrections, or adopting inbox papers—are always welcome.
+
+<BlogInteraction
+  title="Interactive: Pick the module you need"
+  prompt="Check the direction that best matches your current learning goal."
+  checkpoints={['I need to understand model training', 'I need to reduce inference cost or latency', 'I need to connect models to a real product workflow']}
+  revealLabel="Suggested module"
+  revealText="Training maps to model learning, Inference maps to cost and latency, and Applications maps to product integration."
+/>

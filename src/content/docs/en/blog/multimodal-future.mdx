@@ -6,6 +6,8 @@ tiers: [intro, engineer]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../../components/BlogInteraction.astro';
+
 # Multimodal: LLMs Beyond Text
 
 The core capability of large language models is processing sequential discrete symbols—originally text, now rapidly expanding to images, audio, video, and even robot control signals.
@@ -15,6 +17,12 @@ The core capability of large language models is processing sequential discrete s
 CLIP proved that a shared text-image representation space is feasible: using contrastive learning to let models understand that "a picture of a cat" and the word "cat" point to the same concept. GPT-4V and Gemini further demonstrated that after incorporating visual data during pretraining, models can perform image captioning, visual question answering, and cross-modal reasoning.
 
 In practice, multimodal LLMs commonly add a vision encoder (such as ViT) before the text decoder, using a projection layer to map image features into the text embedding space. Training is usually staged: pretrain vision and text encoders separately, align them, then fine-tune on multimodal instruction data.
+
+Cross-modal inputs turn context length into a sum of multiple token streams:
+
+$$
+L_{\text{total}} = L_{\text{text}} + L_{\text{image}} + L_{\text{audio}}
+$$
 
 ## Audio and Beyond
 
@@ -27,3 +35,11 @@ Speech-to-text (Whisper), text-to-speech, and music generation all share the sam
 - **Evaluation dilemmas**: How can we fairly evaluate multimodal models' "understanding"? Existing benchmarks often only test surface associations rather than deep reasoning.
 
 Multimodality is not simply "adding a new input interface." It may redefine our understanding of LLM capability boundaries and architecture design.
+
+<BlogInteraction
+  title="Interactive: Decompose a multimodal task"
+  prompt="Choose an image-text or audio task, then check whether it needs these pieces."
+  checkpoints={['An encoder turns the raw modality into tokens or embeddings', 'A projection layer aligns those features with the language model space', 'The evaluation separates surface matching from real reasoning']}
+  revealLabel="Suggested interpretation"
+  revealText="If the evaluation only checks keyword overlap, it does not yet demonstrate cross-modal understanding."
+/>

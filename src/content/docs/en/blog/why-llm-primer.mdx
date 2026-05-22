@@ -6,6 +6,8 @@ tiers: [intro, engineer]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../../components/BlogInteraction.astro';
+
 # Why LLM Primer Exists
 
 LLM learning material often jumps between friendly metaphors and dense papers. LLM Primer connects those layers. Articles are written in tiers: intuition first, engineering trade-offs next, and research details when they are useful.
@@ -13,3 +15,17 @@ LLM learning material often jumps between friendly metaphors and dense papers. L
 The project treats papers as traceable evidence. Important claims should point to published paper entries, while unreviewed candidates stay in the inbox until someone adopts and summarizes them.
 
 Community contributions are welcome: new articles, English translations, interactive demos, paper TLDRs, and corrections. The goal is not to chase every headline, but to maintain a durable learning map for LLM fundamentals.
+
+LLM Primer treats durable content as a balance of intuition, practice, and evidence:
+
+$$
+\text{value} = \text{intuition} + \text{practice} + \text{evidence}
+$$
+
+<BlogInteraction
+  title="Interactive: Should this material be included?"
+  prompt="When reading an external source, check whether it meets LLM Primer's curation standard."
+  checkpoints={['It explains the core intuition in one sentence', 'It includes reproducible engineering steps or experiment settings', 'Its key claims trace back to papers or public reports']}
+  revealLabel="Suggested interpretation"
+  revealText="If all three are true, it is a strong article candidate; if only one is true, keep it in the paper inbox or a discussion first."
+/>

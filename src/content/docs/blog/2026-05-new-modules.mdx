@@ -6,6 +6,8 @@ tiers: [intro, engineer]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../components/BlogInteraction.astro';
+
 # 新增训练、推理与应用模块
 
 LLM Primer 最初从基础概念出发，覆盖了 Tokenization、Attention、Transformer 等核心主题。随着内容沉淀，我们将知识库扩展到三个新模块：
@@ -14,6 +16,14 @@ LLM Primer 最初从基础概念出发，覆盖了 Tokenization、Attention、Tr
 
 - **[预训练与 Scaling Law](/training/pretraining-and-scaling/)**：从数据工程到计算最优训练，理解模型如何"学会猜下一个词"。
 - **[微调与对齐](/training/fine-tuning-and-alignment/)**：SFT、RLHF、DPO 等方法如何让模型从"通才"变成"听话的助手"。
+
+训练成本经常可以先用近似关系建立直觉：
+
+$$
+C \approx 6ND
+$$
+
+其中 $N$ 是参数量，$D$ 是训练 token 数，$C$ 是训练计算量。
 
 ## 推理 / Inference
 
@@ -26,3 +36,10 @@ LLM Primer 最初从基础概念出发，覆盖了 Tokenization、Attention、Tr
 - **[Agent 与工具使用](/applications/agents-and-tools/)**：从聊天到行动，模型如何通过工具作用于真实世界。
 
 每篇文章都延续 LLM Primer 的三档阅读设计：直觉版先建立概念，工程版讨论实现取舍，研究版追踪开放问题。欢迎通过 PR 补充内容、修正错误或认领 inbox 中的候选论文。
+
+<BlogInteraction
+  title="互动：选择你要补齐的模块"
+  prompt="根据当前学习目标，勾选你最需要优先阅读的方向。"
+  checkpoints={['需要理解模型如何训练', '需要降低推理成本或延迟', '需要把模型接入真实应用流程']}
+  revealText="训练对应 Training，成本和延迟对应 Inference，业务集成对应 Applications。"
+/>
