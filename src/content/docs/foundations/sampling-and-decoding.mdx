@@ -60,7 +60,7 @@ graph LR
 
 **Softmax with Temperature：**
 
-$$P(x_i) = \frac{\exp(x_i / T)}{\sum_j \exp(x_j / T)}$$
+$$P(x_i) = \frac\{\exp(x_i / T)\}\{\sum_j \exp(x_j / T)\}$$
 
 其中 $T$ 是 temperature 参数：
 - $T \to 0$：趋近于贪心解码
@@ -69,9 +69,9 @@ $$P(x_i) = \frac{\exp(x_i / T)}{\sum_j \exp(x_j / T)}$$
 
 **Top-P (Nucleus) 采样：**
 
-$$V^{(p)} = \{w_i | \sum_{j=1}^{i} P(w_j) \leq p\}$$
+$$V^\{(p)\} = \{w_i | \sum_\{j=1\}^\{i\} P(w_j) \leq p\}$$
 
-$$w_{next} \sim \text{Uniform}(V^{(p)})$$
+$$w_\{next\} \sim \text\{Uniform\}(V^\{(p)\})$$
 
 </TierBlock>
 
