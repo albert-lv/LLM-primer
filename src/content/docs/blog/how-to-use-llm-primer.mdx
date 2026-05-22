@@ -7,6 +7,7 @@ updated: 2026-05-19
 ---
 
 import BlogInteraction from '../../../components/BlogInteraction.astro';
+import PriorityCalculator from '../../../components/islands/PriorityCalculator';
 
 # 如何使用 LLM Primer 学习
 
@@ -62,3 +63,7 @@ for article in sorted(articles, key=lambda x: x["relevance"] / x["cost"], revers
     score = article["relevance"] / article["cost"]
     print(f"{article['title']}: {score:.2f}")
 ```
+
+或者直接用下面这个交互式计算器试一试：
+
+<PriorityCalculator client:visible />
