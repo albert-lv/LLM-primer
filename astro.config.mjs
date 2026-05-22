@@ -1,13 +1,24 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
 
 export default defineConfig({
   site: 'https://llm-primer.pages.dev',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
   integrations: [
     react(),
     starlight({
       title: 'LLM Primer',
+      customCss: ['./src/styles/custom.css'],
       defaultLocale: 'root',
       locales: {
         root: { label: '简体中文', lang: 'zh-CN' },
