@@ -23,6 +23,17 @@ pnpm build
 - `engineer`：涵盖实现细节、权衡、失败模式和评估。
 - `research`：引用证据、假设、限制和开放问题。
 
+## Mermaid 流程图
+
+用 `mermaid` 语言标注的代码块即可在站点中渲染流程图：
+
+```mermaid
+flowchart TD
+  A[开始] --> B{Mermaid?}
+  B -->|是| C[渲染为图]
+  B -->|否| D[保留为代码块]
+```
+
 ## 论文采纳
 
 未审阅的候选论文存放在 `src/content/papers/_inbox` 并带有 `inbox: true`。只有在添加有用的双语 TLDR 并检查文章引用后，才将论文移至 `src/content/papers/`。
