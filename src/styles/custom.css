@@ -5,3 +5,14 @@
   overflow-y: hidden;
   padding: 0.25rem 0;
 }
+
+.sl-mermaid {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.sl-mermaid svg {
+  height: auto;
+  max-width: 100%;
+}
