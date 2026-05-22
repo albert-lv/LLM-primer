@@ -32,6 +32,47 @@ LLM 每一步输出的不是一个确定答案，而是一张“下一个 token 
 
 Temperature 调整分布尖锐程度；top-k 只保留概率最高的 k 个 token；top-p 保留累计概率达到 p 的最小集合。它们不是模型能力本身，而是推理时的控制旋钮。
 
+**解码策略对比图：**
+
+```mermaid
+graph LR
+    A[模型输出 logits] --> B{解码策略}
+    
+    B --> C[Greedy Decoding]
+    B --> D[Beam Search]
+    B --> E[随机采样]
+    
+    C --> C1[选择最高概率 token]
+    
+    D --> D1[维护k个候选序列]
+    D1 --> D2[每步扩展并保留最优k个]
+    
+    E --> E1[应用 Temperature]
+    E1 --> E2{Top-K/Top-P}
+    E2 --> E3[从过滤后的分布采样]
+    
+    style C fill:#ff9,stroke:#333
+    style D fill:#9ff,stroke:#333
+    style E fill:#f9f,stroke:#333
+```
+
+**核心公式：**
+
+**Softmax with Temperature：**
+
+$$P(x_i) = \frac{\exp(x_i / T)}{\sum_j \exp(x_j / T)}$$
+
+其中 $T$ 是 temperature 参数：
+- $T \to 0$：趋近于贪心解码
+- $T = 1$：标准 softmax
+- $T > 1$：分布更平坦，增加随机性
+
+**Top-P (Nucleus) 采样：**
+
+$$V^{(p)} = \{w_i | \sum_{j=1}^{i} P(w_j) \leq p\}$$
+
+$$w_{next} \sim \text{Uniform}(V^{(p)})$$
+
 </TierBlock>
 
 <TierBlock tier="engineer">

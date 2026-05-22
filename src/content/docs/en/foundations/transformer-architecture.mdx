@@ -44,13 +44,21 @@ Architecture choices such as RoPE, grouped-query attention, activation functions
 import numpy as np
 
 class TransformerBlock:
-    """Simplified Transformer decoder block"""
+    """Simplified Transformer decoder block (runnable educational demo)"""
 
     def __init__(self, d_model, n_heads, d_ff):
         self.d_model = d_model
         self.n_heads = n_heads
         self.d_ff = d_ff
-        # Actual implementation would initialize weight matrices
+        # Initialize simplified weight matrices
+        # (In real training use Xavier/Kaiming initialization)
+        rng = np.random.default_rng(0)
+        self.W_q = rng.normal(0, 0.01, (d_model, d_model))
+        self.W_k = rng.normal(0, 0.01, (d_model, d_model))
+        self.W_v = rng.normal(0, 0.01, (d_model, d_model))
+        self.W_o = rng.normal(0, 0.01, (d_model, d_model))
+        self.W1 = rng.normal(0, 0.01, (d_model, d_ff))
+        self.W2 = rng.normal(0, 0.01, (d_ff, d_model))
 
     def layer_norm(self, x):
         """Layer Normalization"""
@@ -59,15 +67,24 @@ class TransformerBlock:
         return (x - mean) / (std + 1e-5)
 
     def self_attention(self, x):
-        """Simplified self-attention (actual computation omitted)"""
-        # Would compute Q, K, V and apply scaled dot-product attention
-        return x  # Placeholder for demonstration
+        """Simplified single-head scaled dot-product attention"""
+        # x: [seq_len, d_model]
+        Q = x @ self.W_q  # [seq_len, d_model]
+        K = x @ self.W_k
+        V = x @ self.W_v
+
+        # Scaled dot-product: softmax(Q·K^T / sqrt(d)) · V
+        scores = Q @ K.T / np.sqrt(self.d_model)  # [seq_len, seq_len]
+        # Numerical stability: subtract max before exp
+        exp_scores = np.exp(scores - np.max(scores, axis=-1, keepdims=True))
+        attn_weights = exp_scores / np.sum(exp_scores, axis=-1, keepdims=True)
+        return attn_weights @ V @ self.W_o
 
     def feed_forward(self, x):
-        """Feed-forward network: two linear layers + activation"""
-        # FFN(x) = W2·ReLU(W1·x + b1) + b2
-        # Actual dimensions: d_model → d_ff → d_model
-        return x  # Placeholder for demonstration
+        """Feed-forward: d_model → d_ff → d_model with ReLU activation"""
+        # FFN(x) = W2 · ReLU(W1 · x)
+        hidden = np.maximum(0, x @ self.W1)  # ReLU
+        return hidden @ self.W2
 
     def forward(self, x):
         """

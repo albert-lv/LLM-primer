@@ -24,13 +24,30 @@ import AttentionHeatmap from '../../../components/islands/AttentionHeatmap';
 
 <TierBlock tier="intro">
 
-## 直觉版：一边生成，一边“看重点”
+## 直觉版：一边生成，一边"看重点"
 
-注意力机制解决的问题是：当模型处理一个 token 时，应该重点参考哪些上下文？翻译“it”时可能要看前面的名词，回答问题时要看相关证据。注意力权重就是一组会随输入变化的分数，表示当前 token 对其他 token 的依赖强弱。
+注意力机制解决的问题是：当模型处理一个 token 时，应该重点参考哪些上下文？翻译"it"时可能要看前面的名词，回答问题时要看相关证据。注意力权重就是一组会随输入变化的分数，表示当前 token 对其他 token 的依赖强弱。
 
 <AttentionHeatmap client:visible />
 
-Bahdanau 注意力先在序列到序列模型中证明了“动态查找上下文”的价值；Transformer 进一步把自注意力变成核心计算单元，让所有位置可以并行建立依赖关系。
+**注意力机制核心流程图：**
+
+```mermaid
+graph TD
+    A[输入序列 X] --> B[投影层: W_Q, W_K, W_V]
+    B --> C[Query矩阵 Q]
+    B --> D[Key矩阵 K]
+    B --> E[Value矩阵 V]
+    C --> F[计算相似度: QK^T/√d_k]
+    D --> F
+    F --> G[Softmax归一化]
+    G --> H[注意力权重 A]
+    H --> I[加权求和: AV]
+    E --> I
+    I --> J[输出: 上下文表示]
+```
+
+Bahdanau 注意力先在序列到序列模型中证明了"动态查找上下文"的价值；Transformer 进一步把自注意力变成核心计算单元，让所有位置可以并行建立依赖关系。
 
 </TierBlock>
 
