@@ -107,8 +107,13 @@ A bilingual, multi-tiered, community-driven LLM learning knowledge base covering
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: 1rem;
   margin: 1.5rem 0 2rem;
+  align-items: stretch;
 }
 .tier-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 10.5rem;
   padding: 1.25rem;
   border-radius: 0.85rem;
   border: 2px solid;
@@ -140,6 +145,7 @@ A bilingual, multi-tiered, community-driven LLM learning knowledge base covering
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--sl-color-gray-1);
+  flex: 1;
 }
 
 .module-cards {
