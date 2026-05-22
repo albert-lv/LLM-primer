@@ -145,6 +145,8 @@ export default function remarkRunnableCode() {
     });
     if (alreadyHasImport) return;
 
-    tree.children.unshift(importNode('RunnableCode', specifierPath));
+    const firstContentIndex = tree.children.findIndex((n) => n?.type !== 'yaml' && n?.type !== 'toml');
+    const insertAt = firstContentIndex === -1 ? tree.children.length : firstContentIndex;
+    tree.children.splice(insertAt, 0, importNode('RunnableCode', specifierPath));
   };
 }
