@@ -6,6 +6,8 @@ tiers: [intro, engineer, research]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../../components/BlogInteraction.astro';
+
 # Open Questions in LLMs (2026)
 
 LLMs are evolving rapidly, yet many fundamental questions remain unanswered. Here are the core open questions that LLM Primer tracks:
@@ -17,6 +19,12 @@ Do models truly "understand" language and the world, or are they performing soph
 ## Scale and Efficiency
 
 Will scaling laws continue indefinitely? Is there a threshold beyond which returns diminish? Can smaller models with better data and algorithms match the capabilities of large models?
+
+One simplified view is that capability depends on data, compute, and alignment together:
+
+$$
+\text{capability} \approx f(\text{data}, \text{compute}, \text{alignment})
+$$
 
 ## Alignment and Safety
 
@@ -31,3 +39,11 @@ Will the fusion of vision, audio, and text give models "physical intuition"? Is 
 When model capabilities approach or exceed human performance, who judges? Have existing benchmarks been "gamed"? How do we design evaluation systems that resist manipulation?
 
 These questions have no easy answers, but they drive LLM Primer's continuous updates. We welcome community contributions: proposing new questions, adding evidence, and correcting outdated views.
+
+<BlogInteraction
+  title="Interactive: Turn an open question into a research question"
+  prompt="Pick one open question and check whether it is concrete enough."
+  checkpoints={['It has observable inputs and outputs', 'It has at least one baseline or control group', 'A negative result would still teach us something']}
+  revealLabel="Suggested interpretation"
+  revealText="When all three are true, the question is closer to an executable research plan than a broad topic list."
+/>

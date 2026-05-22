@@ -6,6 +6,8 @@ tiers: [intro, engineer]
 updated: 2026-05-19
 ---
 
+import BlogInteraction from '../../../../components/BlogInteraction.astro';
+
 # How to Use LLM Primer for Learning
 
 Articles in LLM Primer are organized by module, and each article offers three reading tiers. Choose the depth that matches your background and goals.
@@ -26,6 +28,12 @@ The tier switcher at the top of each article lets you switch depth within the sa
 
 Your choice is remembered and automatically restored on your next visit.
 
+A simple way to prioritize reading is:
+
+$$
+\text{priority} = \frac{\text{relevance to your current problem}}{\text{cost to understand}}
+$$
+
 ## Combine with the Paper Library
 
 Key claims in articles link to corresponding entries in the paper library. Each paper provides a bilingual TLDR and lists all articles that cite it. This is bidirectional navigation: from concepts to evidence, and from papers to application scenarios.
@@ -33,3 +41,25 @@ Key claims in articles link to corresponding entries in the paper library. Each 
 ## Contribute
 
 Found an error? Want to add content? Or adopt a candidate paper from the inbox? Pull requests are welcome. Our goal is to maintain a durable learning map for LLM fundamentals—not to chase every headline.
+
+<BlogInteraction
+  title="Interactive: Choose your next article"
+  prompt="Before continuing, check the goal that best matches your current need."
+  checkpoints={['I need conceptual intuition first', 'I need to solve an engineering problem', 'I want papers and open questions']}
+  revealLabel="Suggested path"
+  revealText="Start with Foundations for intuition, Inference or Applications for engineering, and the research tier plus paper library for research questions."
+/>
+
+This Python snippet is runnable and ranks candidate articles by the same idea:
+
+```python
+articles = [
+    {"title": "Tokenization", "relevance": 5, "cost": 2},
+    {"title": "KV Cache", "relevance": 4, "cost": 3},
+    {"title": "Alignment", "relevance": 3, "cost": 4},
+]
+
+for article in sorted(articles, key=lambda x: x["relevance"] / x["cost"], reverse=True):
+    score = article["relevance"] / article["cost"]
+    print(f"{article['title']}: {score:.2f}")
+```
