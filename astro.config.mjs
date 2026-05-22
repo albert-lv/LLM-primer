@@ -19,6 +19,9 @@ export default defineConfig({
     starlight({
       title: 'LLM Primer',
       customCss: ['./src/styles/custom.css'],
+      components: {
+        Head: './src/components/Head.astro',
+      },
       defaultLocale: 'root',
       locales: {
         root: { label: '简体中文', lang: 'zh-CN' },
