@@ -29,12 +29,19 @@ const tiers = isEn
     flex-wrap: wrap;
   }
   .tier-btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 5.5rem;
     padding: 0.25rem 0.75rem;
     border: 1px solid var(--sl-color-gray-4, #ccc);
     border-radius: 999px;
     background: transparent;
     cursor: pointer;
     font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
     transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
   .tier-btn[aria-selected="true"] {

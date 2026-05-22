@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  prompt: string;
+  checkpoints: string[];
+  revealLabel?: string;
+  revealText: string;
+}
+
+const { title, prompt, checkpoints, revealLabel = '参考答案', revealText } = Astro.props;
+---
+
+<section class="blog-interaction">
+  <h2>{title}</h2>
+  <p>{prompt}</p>
+  <div class="blog-checklist">
+    {checkpoints.map((item) => (
+      <label>
+        <input type="checkbox" />
+        <span>{item}</span>
+      </label>
+    ))}
+  </div>
+  <details>
+    <summary>{revealLabel}</summary>
+    <p>{revealText}</p>
+  </details>
+</section>
+
+<style>
+  .blog-interaction {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    background: var(--sl-color-bg-sidebar);
+  }
+
+  .blog-interaction h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+
+  .blog-checklist {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .blog-checklist label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .blog-checklist input {
+    margin-top: 0.35rem;
+  }
+
+  .blog-interaction details {
+    border-top: 1px solid var(--sl-color-gray-6);
+    padding-top: 0.75rem;
+  }
+</style>
