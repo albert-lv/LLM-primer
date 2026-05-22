@@ -1,0 +1,47 @@
+.runnable-code pre.code-area {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--sl-color-gray-6);
+  overflow-x: auto;
+}
+
+.runnable-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.progress {
+  margin-top: 0.75rem;
+  color: var(--sl-color-gray-2);
+  font-size: 0.9rem;
+}
+
+.runnable-output {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--sl-color-gray-7);
+  max-height: 18rem;
+  overflow: auto;
+  font-family: var(--sl-font-mono);
+  font-size: 0.9rem;
+}
+
+.runnable-output .err {
+  color: var(--sl-color-red);
+}
+
+@media (max-width: 560px) {
+  .runnable-code pre.code-area {
+    padding: 0.6rem;
+    line-height: 1.35;
+  }
+
+  .runnable-output {
+    max-height: 9rem;
+  }
+}
+

@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
+import remarkRunnableCode from './src/plugins/remark-runnable-code.mjs';
 
 export default defineConfig({
   site: 'https://llm-primer.pages.dev',
@@ -11,14 +12,14 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   markdown: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkRunnableCode],
     rehypePlugins: [rehypeKatex],
   },
   integrations: [
     react(),
     starlight({
       title: 'LLM Primer',
-      customCss: ['./src/styles/custom.css'],
+      customCss: ['./src/styles/custom.css', './src/styles/runnable-code.css'],
       components: {
         Head: './src/components/Head.astro',
       },
