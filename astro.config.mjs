@@ -19,9 +19,13 @@ export default defineConfig({
     react(),
     starlight({
       title: 'LLM Primer',
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/albert-lv/LLM-primer' },
+      ],
       customCss: ['./src/styles/custom.css', './src/styles/runnable-code.css'],
       components: {
         Head: './src/components/Head.astro',
+        Footer: './src/components/Footer.astro',
       },
       defaultLocale: 'root',
       locales: {

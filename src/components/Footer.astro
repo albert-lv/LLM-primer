@@ -1,0 +1,89 @@
+---
+// @ts-nocheck
+import EditLink from 'virtual:starlight/components/EditLink';
+import LastUpdated from 'virtual:starlight/components/LastUpdated';
+import Pagination from 'virtual:starlight/components/Pagination';
+import config from 'virtual:starlight/user-config';
+import { Icon } from '@astrojs/starlight/components';
+---
+
+<footer class="sl-flex">
+	<div class="meta sl-flex">
+		<EditLink />
+		<LastUpdated />
+	</div>
+	<Pagination />
+
+	<div class="github-footer sl-flex">
+		<a href="https://github.com/albert-lv/LLM-primer" target="_blank" rel="noopener noreferrer">
+			<Icon name="github" size="1.2em" />
+			在 GitHub 上查看源码 / View on GitHub
+		</a>
+	</div>
+
+	{
+		config.credits && (
+			<a class="kudos sl-flex" href="https://starlight.astro.build">
+				<Icon name={'starlight'} /> {Astro.locals.t('builtWithStarlight.label')}
+			</a>
+		)
+	}
+</footer>
+
+<style>
+	@layer starlight.core {
+		footer {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		.meta {
+			gap: 0.75rem 3rem;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin-top: 3rem;
+			font-size: var(--sl-text-sm);
+			color: var(--sl-color-gray-3);
+		}
+		.meta > :global(p:only-child) {
+			margin-inline-start: auto;
+		}
+
+		.kudos {
+			align-items: center;
+			gap: 0.5em;
+			margin: 1.5rem auto;
+			font-size: var(--sl-text-xs);
+			text-decoration: none;
+			color: var(--sl-color-gray-3);
+		}
+		.kudos:hover {
+			color: var(--sl-color-white);
+		}
+	}
+
+	@layer starlight.components {
+		.kudos :global(svg) {
+			color: var(--sl-color-orange);
+		}
+	}
+
+	.github-footer {
+		justify-content: center;
+	}
+	.github-footer a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+		font-size: var(--sl-text-sm);
+		padding: 0.4em 1em;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5em;
+		transition: color 0.2s, border-color 0.2s;
+	}
+	.github-footer a:hover {
+		color: var(--sl-color-white);
+		border-color: var(--sl-color-gray-3);
+	}
+</style>
