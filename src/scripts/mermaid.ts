@@ -31,7 +31,18 @@ function ensureInitialized(state: MermaidState): boolean {
 }
 
 function extractSource(pre: HTMLPreElement): string {
-  // Expressive Code wraps each line in extra elements; textContent still yields the original code.
+  // Expressive Code wraps each line in <div class="ec-line">; textContent across sibling divs
+  // omits newlines, so we extract lines individually and join with \n.
+  const lines = pre.querySelectorAll<HTMLElement>('.ec-line');
+  if (lines.length > 0) {
+    return Array.from(lines)
+      .map((l) => {
+        const code = l.querySelector('.code');
+        return ((code ?? l).textContent ?? '').replace(/\u00a0/g, ' ');
+      })
+      .join('\n')
+      .trim();
+  }
   return (pre.textContent ?? '').replace(/\u00a0/g, ' ').trim();
 }
 
