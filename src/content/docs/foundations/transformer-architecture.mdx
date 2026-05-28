@@ -60,10 +60,10 @@ graph TB
 ```mermaid
 graph LR
     A[输入 x] --> B[RMSNorm]
-    B --> C[因果自注意力\nCausal Self-Attention]
+    B --> C[因果自注意力<br/>Causal Self-Attention]
     C --> D[残差连接 + Add]
     D --> E[RMSNorm]
-    E --> F[MLP\n前馈网络]
+    E --> F[MLP<br/>前馈网络]
     F --> G[残差连接 + Add]
     G --> H[输出 x']
     

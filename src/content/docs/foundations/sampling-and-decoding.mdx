@@ -48,7 +48,7 @@ graph LR
     D1 --> D2[每步扩展并保留最优k个]
     
     E --> E1[应用 Temperature]
-    E1 --> E2{Top-K/Top-P}
+    E1 --> E2{"Top-K / Top-P"}
     E2 --> E3[从过滤后的分布采样]
     
     style C fill:#ff9,stroke:#333
