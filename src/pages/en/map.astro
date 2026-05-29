@@ -1,215 +1,243 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+
+const allDocs = await getCollection('docs', (entry) => {
+  // Only English docs (en/ prefix), skip index/glossary/blog
+  return (
+    entry.slug.startsWith('en/') &&
+    entry.data.module !== undefined &&
+    entry.data.status === 'published'
+  );
+});
+
+type ModuleKey = 'foundations' | 'training' | 'inference' | 'applications';
+const modules: Record<ModuleKey, { label: string; labelZh: string; icon: string; color: string; accent: string; articles: typeof allDocs }> = {
+  foundations: { label: 'Foundations', labelZh: '基础', icon: '🧠', color: '#0ea5e9', accent: '#0369a1', articles: [] },
+  training:    { label: 'Training',    labelZh: '训练', icon: '⚡', color: '#22c55e', accent: '#15803d', articles: [] },
+  inference:   { label: 'Inference',   labelZh: '推理', icon: '🚀', color: '#eab308', accent: '#a16207', articles: [] },
+  applications:{ label: 'Applications',labelZh: '应用', icon: '🎯', color: '#ec4899', accent: '#be185d', articles: [] },
+};
+
+for (const doc of allDocs) {
+  const mod = doc.data.module as ModuleKey;
+  if (modules[mod]) {
+    modules[mod].articles.push(doc);
+  }
+}
+
+for (const mod of Object.values(modules)) {
+  mod.articles.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+}
 ---
 
-<StarlightPage frontmatter={{ title: 'Learning Path Map', description: 'LLM Primer knowledge structure visualization' }}>
-  <div class="map-intro">
-    <p>This map visualizes the core knowledge structure and recommended learning paths in LLM Primer.</p>
-    <p>Click on nodes to jump directly to corresponding articles. Follow arrows for progressive learning.</p>
-  </div>
+<StarlightPage frontmatter={{ title: 'Eagle View · 鹰瞰大图', description: 'Data-driven overview of LLM Primer — all modules and articles in one place.' }}>
 
-  <svg viewBox="0 0 800 600" class="learning-map" xmlns="http://www.w3.org/2000/svg">
-    <!-- Foundations Module -->
-    <g id="foundations">
-      <circle cx="150" cy="150" r="60" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
-      <text x="150" y="145" text-anchor="middle" font-size="16" font-weight="bold">Foundations</text>
-      <text x="150" y="165" text-anchor="middle" font-size="12">基础</text>
+<div class="ev-intro">
+  <p>An eagle-eye view of LLM Primer's full knowledge structure. Hover a module card to highlight learning paths; click any article link to jump directly in.</p>
+  <p>LLM Primer 全站结构鹰瞰。悬停模块卡片可高亮学习路径，点击文章链接直达正文。</p>
+</div>
 
-      <a href="/en/foundations/tokenization/">
-        <circle cx="100" cy="80" r="25" fill="#bfdbfe" stroke="#0369a1" stroke-width="2"/>
-        <text x="100" y="85" text-anchor="middle" font-size="10">Tokenization</text>
-      </a>
+<div class="ev-grid">
+  {(Object.entries(modules) as [ModuleKey, typeof modules[ModuleKey]][]).map(([key, mod]) => (
+    <div class={`ev-card ev-card--${key}`} style={`--mod-color: ${mod.color}; --mod-accent: ${mod.accent}`}>
+      <div class="ev-card__header">
+        <span class="ev-card__icon">{mod.icon}</span>
+        <div>
+          <a href={`/en/${key}/`} class="ev-card__title-link">
+            <div class="ev-card__title">{mod.label}</div>
+            <div class="ev-card__title-zh">{mod.labelZh}</div>
+          </a>
+        </div>
+        <span class="ev-card__count">{mod.articles.length} articles</span>
+      </div>
+      <ul class="ev-card__articles">
+        {mod.articles.map((doc) => (
+          <li>
+            <a href={`/${doc.slug}/`} class="ev-article-link">
+              {doc.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>
 
-      <a href="/en/foundations/attention/">
-        <circle cx="200" cy="80" r="25" fill="#bfdbfe" stroke="#0369a1" stroke-width="2"/>
-        <text x="200" y="85" text-anchor="middle" font-size="10">Attention</text>
-      </a>
-
-      <a href="/en/foundations/transformer-architecture/">
-        <circle cx="150" cy="240" r="25" fill="#bfdbfe" stroke="#0369a1" stroke-width="2"/>
-        <text x="150" y="245" text-anchor="middle" font-size="10">Transformer</text>
-      </a>
-    </g>
-
-    <!-- Training Module -->
-    <g id="training">
-      <circle cx="400" cy="150" r="60" fill="#f0fdf4" stroke="#22c55e" stroke-width="3"/>
-      <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold">Training</text>
-      <text x="400" y="165" text-anchor="middle" font-size="12">训练</text>
-
-      <a href="/en/training/pretraining-and-scaling/">
-        <circle cx="350" cy="80" r="25" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
-        <text x="350" y="85" text-anchor="middle" font-size="10">Pretraining</text>
-      </a>
-
-      <a href="/en/training/fine-tuning-and-alignment/">
-        <circle cx="450" cy="80" r="25" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
-        <text x="450" y="85" text-anchor="middle" font-size="10">Alignment</text>
-      </a>
-    </g>
-
-    <!-- Inference Module -->
-    <g id="inference">
-      <circle cx="650" cy="150" r="60" fill="#fef3c7" stroke="#eab308" stroke-width="3"/>
-      <text x="650" y="145" text-anchor="middle" font-size="16" font-weight="bold">Inference</text>
-      <text x="650" y="165" text-anchor="middle" font-size="12">推理</text>
-
-      <a href="/en/inference/kv-cache-and-quantization/">
-        <circle cx="600" cy="80" r="25" fill="#fef08a" stroke="#a16207" stroke-width="2"/>
-        <text x="600" y="85" text-anchor="middle" font-size="10">KV Cache</text>
-      </a>
-
-      <a href="/en/inference/efficient-attention/">
-        <circle cx="700" cy="80" r="25" fill="#fef08a" stroke="#a16207" stroke-width="2"/>
-        <text x="700" y="85" text-anchor="middle" font-size="10">Efficient</text>
-      </a>
-    </g>
-
-    <!-- Applications Module -->
-    <g id="applications">
-      <circle cx="400" cy="450" r="60" fill="#fce7f3" stroke="#ec4899" stroke-width="3"/>
-      <text x="400" y="445" text-anchor="middle" font-size="16" font-weight="bold">Applications</text>
-      <text x="400" y="465" text-anchor="middle" font-size="12">应用</text>
-
-      <a href="/en/applications/rag-and-retrieval/">
-        <circle cx="300" cy="450" r="25" fill="#fbcfe8" stroke="#be185d" stroke-width="2"/>
-        <text x="300" y="455" text-anchor="middle" font-size="10">RAG</text>
-      </a>
-
-      <a href="/en/applications/agents-and-tools/">
-        <circle cx="400" cy="520" r="25" fill="#fbcfe8" stroke="#be185d" stroke-width="2"/>
-        <text x="400" y="525" text-anchor="middle" font-size="10">Agents</text>
-      </a>
-
-      <a href="/en/applications/prompt-engineering/">
-        <circle cx="500" cy="450" r="25" fill="#fbcfe8" stroke="#be185d" stroke-width="2"/>
-        <text x="500" y="455" text-anchor="middle" font-size="10">Prompting</text>
-      </a>
-    </g>
-
-    <!-- Connection arrows -->
+<div class="ev-diagram-wrap">
+  <svg class="ev-diagram" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-        <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
+      <marker id="ev-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="var(--sl-color-gray-4, #6b7280)" />
+      </marker>
+      <marker id="ev-arrow-dash" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="var(--sl-color-gray-5, #9ca3af)" />
       </marker>
     </defs>
 
-    <line x1="210" y1="150" x2="340" y2="150" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
-    <line x1="460" y1="150" x2="590" y2="150" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
-    <line x1="150" y1="210" x2="200" y2="400" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
-    <line x1="650" y1="210" x2="500" y2="400" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+    {([ 
+      { cx: 90,  cy: 100, label: 'Foundations', labelSub: '基础', color: '#0ea5e9' },
+      { cx: 260, cy: 100, label: 'Training',     labelSub: '训练', color: '#22c55e' },
+      { cx: 430, cy: 100, label: 'Inference',    labelSub: '推理', color: '#eab308' },
+      { cx: 590, cy: 100, label: 'Applications', labelSub: '应用', color: '#ec4899' },
+    ] as const).map(({ cx, cy, label, labelSub, color }) => (
+      <>
+        <circle cx={cx} cy={cy} r="52" fill="none" stroke={color} stroke-width="2" opacity="0.6"/>
+        <circle cx={cx} cy={cy} r="48" fill={color} opacity="0.08"/>
+        <text x={cx} y={cy - 6} text-anchor="middle" font-size="13" font-weight="700" fill={color}>{label}</text>
+        <text x={cx} y={cy + 12} text-anchor="middle" font-size="11" fill="var(--sl-color-gray-3, #9ca3af)">{labelSub}</text>
+      </>
+    ))}
+
+    <line x1="142" y1="100" x2="208" y2="100" stroke="var(--sl-color-gray-4, #6b7280)" stroke-width="2" marker-end="url(#ev-arrow)"/>
+    <line x1="312" y1="100" x2="378" y2="100" stroke="var(--sl-color-gray-4, #6b7280)" stroke-width="2" marker-end="url(#ev-arrow)"/>
+    <line x1="482" y1="100" x2="538" y2="100" stroke="var(--sl-color-gray-4, #6b7280)" stroke-width="2" marker-end="url(#ev-arrow)"/>
+    <path d="M 90 152 Q 340 190 590 152" fill="none" stroke="var(--sl-color-gray-5, #9ca3af)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ev-arrow-dash)"/>
+    <path d="M 430 152 Q 510 175 538 148" fill="none" stroke="var(--sl-color-gray-5, #9ca3af)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ev-arrow-dash)"/>
   </svg>
 
-  <div class="map-legend">
-    <h3>Legend</h3>
-    <ul>
-      <li><span class="legend-item solid-line"></span> Recommended learning path</li>
-      <li><span class="legend-item dashed-line"></span> Optional cross-module connection</li>
-      <li><span class="legend-circle foundations"></span> Foundations module</li>
-      <li><span class="legend-circle training"></span> Training module</li>
-      <li><span class="legend-circle inference"></span> Inference module</li>
-      <li><span class="legend-circle applications"></span> Applications module</li>
-    </ul>
+  <div class="ev-diagram-legend">
+    <span class="ev-legend-item">── Recommended learning path</span>
+    <span class="ev-legend-item">╌╌ Optional cross-module link</span>
   </div>
+</div>
+
 </StarlightPage>
 
 <style>
-  .map-intro {
+  .ev-intro {
     margin-bottom: 2rem;
-    padding: 1.25rem;
+    padding: 1rem 1.25rem;
     background: var(--sl-color-bg-sidebar);
     border-radius: 0.75rem;
+    border: 1px solid var(--sl-color-gray-6);
   }
 
-  .map-intro p {
-    margin: 0.5rem 0;
+  .ev-intro p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: var(--sl-color-gray-2);
   }
 
-  .learning-map {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    margin: 2rem auto;
-    display: block;
-    background: var(--sl-color-bg);
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  .ev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
   }
 
-  .learning-map a {
-    cursor: pointer;
+  .ev-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.1rem;
+    border: 2px solid var(--mod-color);
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--mod-color) 5%, var(--sl-color-bg));
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
-  .learning-map a:hover circle {
-    filter: brightness(0.9);
+  .ev-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--mod-color) 25%, transparent);
   }
 
-  .map-legend {
-    margin-top: 2rem;
-    padding: 1.25rem;
-    background: var(--sl-color-bg-sidebar);
-    border-radius: 0.75rem;
+  .ev-card__title-link {
+    text-decoration: none;
   }
 
-  .map-legend h3 {
-    margin: 0 0 1rem;
+  .ev-card__title-link:hover .ev-card__title {
+    text-decoration: underline;
   }
 
-  .map-legend ul {
+  .ev-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .ev-card__icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .ev-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--mod-color);
+    line-height: 1.2;
+  }
+
+  .ev-card__title-zh {
+    font-size: 0.78rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  .ev-card__count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--mod-color) 15%, transparent);
+    color: var(--mod-color);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ev-card__articles {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 
-  .map-legend li {
+  .ev-card__articles li {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .ev-article-link {
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: color 0.12s, background 0.12s;
+    display: block;
+  }
+
+  .ev-article-link:hover {
+    color: var(--mod-color);
+    background: color-mix(in srgb, var(--mod-color) 10%, transparent);
+    text-decoration: none;
+  }
+
+  .ev-diagram-wrap {
+    margin: 2rem 0;
+  }
+
+  .ev-diagram {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .ev-diagram-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  .ev-legend-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .legend-item {
-    display: inline-block;
-    width: 40px;
-    height: 2px;
-    background: #6b7280;
-  }
-
-  .legend-item.dashed-line {
-    background: repeating-linear-gradient(
-      to right,
-      #6b7280 0,
-      #6b7280 5px,
-      transparent 5px,
-      transparent 10px
-    );
-  }
-
-  .legend-circle {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid;
-  }
-
-  .legend-circle.foundations {
-    background: #bfdbfe;
-    border-color: #0369a1;
-  }
-
-  .legend-circle.training {
-    background: #bbf7d0;
-    border-color: #15803d;
-  }
-
-  .legend-circle.inference {
-    background: #fef08a;
-    border-color: #a16207;
-  }
-
-  .legend-circle.applications {
-    background: #fbcfe8;
-    border-color: #be185d;
+    gap: 0.4rem;
   }
 </style>

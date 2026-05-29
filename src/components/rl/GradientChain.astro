@@ -1,0 +1,280 @@
+---
+import RlFigure from './RlFigure.astro';
+---
+
+<RlFigure title="Fig 7 · softmax Jacobian → 梯度回传 → Megatron 管线" subtitle="梯度如何从 loss 流回 235B 参数 / Gradient flow through the full training pipeline">
+  <div class="gc-wrap">
+
+    <!-- Pipeline flow diagram -->
+    <div class="gc-pipeline">
+
+      <!-- Loss node -->
+      <div class="gc-node gc-node--loss">
+        <div class="gc-node__icon">L</div>
+        <div class="gc-node__label">scalar loss</div>
+        <div class="gc-node__sub">∈ ℝ</div>
+      </div>
+
+      <div class="gc-connector">
+        <div class="gc-connector__line"></div>
+        <div class="gc-connector__label">∂L/∂logit ∈ ℝ<sup>V</sup></div>
+        <div class="gc-connector__arrow">▼</div>
+      </div>
+
+      <!-- Softmax Jacobian -->
+      <div class="gc-node gc-node--softmax">
+        <div class="gc-node__icon">∂softmax</div>
+        <div class="gc-node__label">Softmax Jacobian</div>
+        <div class="gc-node__sub">
+          J = diag(p) − p·p<sup>⊤</sup> ∈ ℝ<sup>V×V</sup><br/>
+          <span class="gc-node__note">V ≈ 128k vocab; full J 太大→实际用向量积简化</span>
+        </div>
+      </div>
+
+      <div class="gc-connector">
+        <div class="gc-connector__line"></div>
+        <div class="gc-connector__label">∂L/∂h<sub>last</sub> ∈ ℝ<sup>d</sup> (d = 8192)</div>
+        <div class="gc-connector__arrow">▼</div>
+      </div>
+
+      <!-- Transformer layers -->
+      <div class="gc-node gc-node--layers">
+        <div class="gc-node__icon">
+          <span class="gc-layer-stack">
+            <span class="gc-layer">Layer 96</span>
+            <span class="gc-layer">Layer …</span>
+            <span class="gc-layer">Layer 1</span>
+          </span>
+        </div>
+        <div class="gc-node__label">Transformer backprop</div>
+        <div class="gc-node__sub">
+          96 layers × (Attn + FFN) = 235B params total<br/>
+          每层累积 ∂L/∂W via chain rule
+        </div>
+      </div>
+
+      <div class="gc-connector">
+        <div class="gc-connector__line"></div>
+        <div class="gc-connector__label">gradient tensors 分发到各设备</div>
+        <div class="gc-connector__arrow">▼</div>
+      </div>
+
+      <!-- Megatron pipeline -->
+      <div class="gc-node gc-node--megatron">
+        <div class="gc-node__icon">Megatron-LM</div>
+        <div class="gc-node__label">3D 并行切分</div>
+        <div class="gc-megatron-grid">
+          <div class="gc-megatron-row">
+            <div class="gc-megatron-cell gc-megatron-cell--pp">PP stage 1<br/><small>layers 1–24</small></div>
+            <div class="gc-megatron-cell gc-megatron-cell--pp">PP stage 2<br/><small>layers 25–48</small></div>
+            <div class="gc-megatron-cell gc-megatron-cell--pp">PP stage 3<br/><small>layers 49–72</small></div>
+            <div class="gc-megatron-cell gc-megatron-cell--pp">PP stage 4<br/><small>layers 73–96</small></div>
+          </div>
+          <div class="gc-megatron-labels">
+            <span>← Tensor Parallel (TP) →</span>
+            <span>↕ Data Parallel (DP)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gc-connector">
+        <div class="gc-connector__line"></div>
+        <div class="gc-connector__label">AllReduce grad sync (DP) + send/recv (PP)</div>
+        <div class="gc-connector__arrow">▼</div>
+      </div>
+
+      <!-- Optimizer -->
+      <div class="gc-node gc-node--optim">
+        <div class="gc-node__icon">Adam</div>
+        <div class="gc-node__label">Optimizer step</div>
+        <div class="gc-node__sub">θ ← θ − α · m̂ / (√v̂ + ε) &nbsp;·&nbsp; 235B params updated</div>
+      </div>
+    </div>
+
+    <div class="gc-note">
+      Softmax Jacobian 的维度爆炸（V×V ≈ 128k²）在实现中用向量乘法 <code>(p − y)</code> 简化为 O(V) 操作。
+      Megatron 的流水线并行（PP）、张量并行（TP）、数据并行（DP）三维切分让 235B 参数更新分布在数千 GPU 上。
+      <br/>
+      The softmax Jacobian dimension explosion (V×V) is avoided in practice using the simplified gradient <code>(p − y)</code> — O(V) ops.
+      Megatron's 3D parallelism (PP/TP/DP) distributes the 235B parameter update across thousands of GPUs.
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .gc-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gc-pipeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .gc-node {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .gc-node--loss {
+    background: #0d1117;
+    border-color: #d29922;
+  }
+
+  .gc-node--softmax {
+    background: #0d1117;
+    border-color: #388bfd;
+  }
+
+  .gc-node--layers {
+    background: #0d1117;
+    border-color: #3fb950;
+  }
+
+  .gc-node--megatron {
+    background: #0d1117;
+    border-color: #a371f7;
+  }
+
+  .gc-node--optim {
+    background: #0d1117;
+    border-color: #f78166;
+  }
+
+  .gc-node__icon {
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: ui-monospace, 'Cascadia Code', monospace;
+    color: #e6edf3;
+  }
+
+  .gc-node__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #c9d1d9;
+  }
+
+  .gc-node__sub {
+    font-size: 0.75rem;
+    color: #8b949e;
+    line-height: 1.5;
+  }
+
+  .gc-node__note {
+    font-style: italic;
+    color: #6e7681;
+  }
+
+  .gc-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px 0;
+  }
+
+  .gc-connector__line {
+    width: 2px;
+    height: 14px;
+    background: #444c56;
+  }
+
+  .gc-connector__label {
+    font-size: 0.72rem;
+    color: #79c0ff;
+    font-family: ui-monospace, monospace;
+    text-align: center;
+    padding: 1px 6px;
+    background: #0d2346;
+    border-radius: 3px;
+    max-width: 400px;
+  }
+
+  .gc-connector__arrow {
+    color: #444c56;
+    font-size: 0.8rem;
+    margin-top: 1px;
+  }
+
+  /* Layer stack animation feel */
+  .gc-layer-stack {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+
+  .gc-layer {
+    display: block;
+    padding: 2px 8px;
+    background: #161b22;
+    border: 1px solid #3fb950;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    color: #3fb950;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .gc-megatron-grid {
+    margin-top: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .gc-megatron-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .gc-megatron-cell {
+    flex: 1;
+    min-width: 80px;
+    padding: 4px 6px;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .gc-megatron-cell--pp {
+    background: #1b1040;
+    border: 1px solid #a371f7;
+    color: #d2a8ff;
+  }
+
+  .gc-megatron-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #6e7681;
+  }
+
+  .gc-note {
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    border-left: 3px solid #444c56;
+    line-height: 1.6;
+  }
+
+  .gc-note code {
+    background: #0d1117;
+    padding: 0 3px;
+    border-radius: 2px;
+    color: #79c0ff;
+    font-size: 0.76rem;
+  }
+</style>

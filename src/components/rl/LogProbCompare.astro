@@ -1,0 +1,150 @@
+---
+import RlFigure from './RlFigure.astro';
+
+// Per-token log prob comparison data (illustrative)
+const tokenData = [
+  { token: 'RLHF', logNew: -0.32, logOld: -0.45 },
+  { token: 'uses', logNew: -0.18, logOld: -0.20 },
+  { token: 'human', logNew: -0.55, logOld: -0.38 },
+  { token: 'feedback', logNew: -0.41, logOld: -0.62 },
+  { token: 'to', logNew: -0.12, logOld: -0.15 },
+  { token: 'align', logNew: -0.78, logOld: -0.90 },
+  { token: 'LLMs', logNew: -0.25, logOld: -0.21 },
+  { token: '<eos>', logNew: -0.08, logOld: -0.09 },
+];
+
+// Scale for SVG bar chart
+const chartW = 480;
+const chartH = 120;
+const barW = 22;
+const gap = 14;
+const groupW = barW * 2 + gap;
+const marginL = 48;
+const marginB = 28;
+const maxAbs = 1.0;
+---
+
+<RlFigure title="Fig 4 · log_prob vs old_log_prob" subtitle="新旧策略 per-token 概率对比 / New vs reference policy per-token log probabilities">
+  <div class="lp-wrap">
+    <svg
+      viewBox={`0 0 ${chartW} ${chartH + marginB + 8}`}
+      width="100%"
+      style="overflow: visible;"
+    >
+      <!-- zero line -->
+      <line
+        x1={marginL}
+        y1={8}
+        x2={marginL}
+        y2={chartH + 8}
+        stroke="#444c56"
+        stroke-width="1"
+      />
+      <line
+        x1={marginL}
+        y1={chartH + 8}
+        x2={chartW}
+        y2={chartH + 8}
+        stroke="#444c56"
+        stroke-width="1"
+      />
+
+      <!-- Y axis label -->
+      <text x="4" y={chartH / 2 + 8} fill="#8b949e" font-size="10" text-anchor="middle"
+        transform={`rotate(-90, 8, ${chartH / 2 + 8})`}>log p</text>
+
+      {tokenData.map((d, i) => {
+        const x0 = marginL + i * (groupW + 8) + 4;
+        const scaleY = (v: number) => chartH + 8 + (v / maxAbs) * (chartH - 8);
+        // bars go downward (log probs are negative)
+        const hNew = Math.abs(d.logNew) / maxAbs * (chartH - 16);
+        const hOld = Math.abs(d.logOld) / maxAbs * (chartH - 16);
+        const yNew = chartH + 8 - hNew;
+        const yOld = chartH + 8 - hOld;
+        return (
+          <>
+            {/* new policy bar */}
+            <rect x={x0} y={yNew} width={barW} height={hNew}
+              fill="#238636" opacity="0.85" rx="2"/>
+            <text x={x0 + barW / 2} y={yNew - 2} text-anchor="middle"
+              fill="#d2f4bc" font-size="8">
+              {d.logNew.toFixed(2)}
+            </text>
+
+            {/* old policy bar */}
+            <rect x={x0 + barW + gap / 2} y={yOld} width={barW} height={hOld}
+              fill="#d29922" opacity="0.85" rx="2"/>
+            <text x={x0 + barW + gap / 2 + barW / 2} y={yOld - 2} text-anchor="middle"
+              fill="#e3b341" font-size="8">
+              {d.logOld.toFixed(2)}
+            </text>
+
+            {/* token label */}
+            <text x={x0 + barW + gap / 4} y={chartH + 20} text-anchor="middle"
+              fill="#8b949e" font-size="9">
+              {d.token}
+            </text>
+          </>
+        );
+      })}
+    </svg>
+
+    <div class="lp-legend">
+      <div class="lp-legend__item">
+        <span class="lp-legend__swatch" style="background:#238636"></span>
+        <span>log π<sub>θ</sub>(a<sub>t</sub>|s<sub>t</sub>) — new policy</span>
+      </div>
+      <div class="lp-legend__item">
+        <span class="lp-legend__swatch" style="background:#d29922"></span>
+        <span>log π<sub>old</sub>(a<sub>t</sub>|s<sub>t</sub>) — reference / old policy</span>
+      </div>
+    </div>
+
+    <div class="lp-note">
+      差值 Δ = log π<sub>θ</sub> − log π<sub>old</sub> 决定重要性采样比 r<sub>t</sub> = exp(Δ)，
+      PPO/GRPO 对 r<sub>t</sub> 进行裁剪以防策略漂移。
+      <br/>
+      The difference Δ = log π<sub>θ</sub> − log π<sub>old</sub> determines importance ratio r<sub>t</sub> = exp(Δ),
+      which PPO/GRPO clips to prevent policy drift.
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .lp-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .lp-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .lp-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #8b949e;
+  }
+
+  .lp-legend__swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .lp-note {
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    border-left: 3px solid #444c56;
+    line-height: 1.6;
+  }
+</style>

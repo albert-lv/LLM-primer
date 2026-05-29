@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+const { title, subtitle } = Astro.props;
+---
+
+<div class="rl-fig">
+  <div class="rl-fig__header">
+    <span class="rl-fig__title">{title}</span>
+    {subtitle && <span class="rl-fig__subtitle">{subtitle}</span>}
+  </div>
+  <div class="rl-fig__body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .rl-fig {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .rl-fig__header {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #21262d;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .rl-fig__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e6edf3;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  }
+
+  .rl-fig__subtitle {
+    font-size: 0.8rem;
+    color: #8b949e;
+  }
+
+  .rl-fig__body {
+    padding: 1.25rem;
+    overflow-x: auto;
+  }
+</style>

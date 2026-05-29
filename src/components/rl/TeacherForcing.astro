@@ -1,0 +1,194 @@
+---
+import RlFigure from './RlFigure.astro';
+
+// Sequence: prompt + response
+const sequence = [
+  { text: 'User', type: 'prompt' },
+  { text: ':', type: 'prompt' },
+  { text: 'Explain', type: 'prompt' },
+  { text: 'RLHF', type: 'prompt' },
+  { text: '.', type: 'prompt' },
+  { text: '<sep>', type: 'prompt' },
+  { text: 'RLHF', type: 'response' },
+  { text: 'uses', type: 'response' },
+  { text: 'human', type: 'response' },
+  { text: 'feedback', type: 'response' },
+  { text: '<eos>', type: 'response' },
+];
+// Show output positions (shift left by 1 for next-token prediction)
+const outputPositions = sequence.slice(1);
+---
+
+<RlFigure title="Fig 3 · teacher-forcing forward (Megatron)" subtitle="重算 log_prob：把 prompt+response 整条喂入模型 / Recalculate log_prob with teacher-forcing">
+  <div class="tf-wrap">
+    <div class="tf-section-label">Input sequence (teacher-forcing)</div>
+    <div class="tf-row tf-row--input">
+      {sequence.map((tok, i) => (
+        <div class={`tf-cell tf-cell--${tok.type}`}>
+          <span class="tf-cell__pos">t={i}</span>
+          <span class="tf-cell__tok">{tok.text}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="tf-arrow-row">
+      <div class="tf-arrow-down-group">
+        {sequence.map((_, i) => (
+          <svg class="tf-arrow-down" width="30" height="20" viewBox="0 0 30 20">
+            <line x1="15" y1="0" x2="15" y2="12" stroke="#444c56" stroke-width="1.5"/>
+            <polygon points="10,10 15,20 20,10" fill="#444c56"/>
+          </svg>
+        ))}
+      </div>
+    </div>
+
+    <div class="tf-model-box">
+      <span class="tf-model-label">Megatron policy model π<sub>θ</sub> (235B)</span>
+    </div>
+
+    <div class="tf-arrow-row">
+      <div class="tf-arrow-down-group">
+        {outputPositions.map(() => (
+          <svg class="tf-arrow-down" width="30" height="20" viewBox="0 0 30 20">
+            <line x1="15" y1="0" x2="15" y2="12" stroke="#388bfd" stroke-width="1.5"/>
+            <polygon points="10,10 15,20 20,10" fill="#388bfd"/>
+          </svg>
+        ))}
+      </div>
+    </div>
+
+    <div class="tf-section-label">Output: log P(t+1 | t<sub>≤t</sub>) for response positions</div>
+    <div class="tf-row tf-row--output">
+      {outputPositions.map((tok, i) => (
+        <div class={`tf-cell tf-cell--${tok.type} ${tok.type === 'response' ? 'tf-cell--active' : ''}`}>
+          <span class="tf-cell__pos">t={i + 1}</span>
+          <span class="tf-cell__tok">{tok.text}</span>
+          {tok.type === 'response' && (
+            <span class="tf-cell__logp">log p</span>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="tf-note">
+      Teacher-forcing：每步输入真实 token（而非上步预测），并行高效重算整条序列的 log_prob。
+      <br/>
+      Teacher-forcing feeds ground-truth tokens at each step, enabling efficient parallel log_prob recalculation.
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .tf-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    overflow-x: auto;
+  }
+
+  .tf-section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tf-row {
+    display: flex;
+    gap: 4px;
+    min-width: max-content;
+  }
+
+  .tf-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 52px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid transparent;
+  }
+
+  .tf-cell--prompt {
+    background: #1c2128;
+    border-color: #444c56;
+  }
+
+  .tf-cell--response {
+    background: #1a1f24;
+    border-color: #444c56;
+  }
+
+  .tf-cell--active {
+    background: #0e2a1c;
+    border-color: #238636;
+  }
+
+  .tf-cell__pos {
+    font-size: 0.65rem;
+    color: #8b949e;
+    padding: 2px 4px;
+    border-bottom: 1px solid #21262d;
+    width: 100%;
+    text-align: center;
+    font-family: ui-monospace, monospace;
+  }
+
+  .tf-cell__tok {
+    padding: 4px 4px;
+    font-size: 0.72rem;
+    font-family: ui-monospace, 'Cascadia Code', monospace;
+    color: #c9d1d9;
+    text-align: center;
+  }
+
+  .tf-cell__logp {
+    font-size: 0.65rem;
+    color: #79c0ff;
+    padding: 2px 4px;
+    background: #0d2346;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #1158d6;
+  }
+
+  .tf-arrow-row {
+    min-width: max-content;
+  }
+
+  .tf-arrow-down-group {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .tf-arrow-down {
+    min-width: 52px;
+  }
+
+  .tf-model-box {
+    padding: 0.6rem 1.25rem;
+    background: #161b22;
+    border: 1px solid #388bfd;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .tf-model-label {
+    font-size: 0.85rem;
+    color: #79c0ff;
+    font-weight: 600;
+  }
+
+  .tf-note {
+    margin-top: 0.25rem;
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    border-left: 3px solid #444c56;
+    line-height: 1.6;
+  }
+</style>

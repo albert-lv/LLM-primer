@@ -15,6 +15,13 @@ import TierBlock from '../../../components/TierBlock.astro';
 import PaperList from '../../../components/PaperList.astro';
 import OpenQuestions from '../../../components/OpenQuestions.astro';
 import RelatedArticles from '../../../components/RelatedArticles.astro';
+import ResponseMask from '../../../components/rl/ResponseMask.astro';
+import Rollout from '../../../components/rl/Rollout.astro';
+import TeacherForcing from '../../../components/rl/TeacherForcing.astro';
+import LogProbCompare from '../../../components/rl/LogProbCompare.astro';
+import RatioClipping from '../../../components/rl/RatioClipping.astro';
+import LossAggregation from '../../../components/rl/LossAggregation.astro';
+import GradientChain from '../../../components/rl/GradientChain.astro';
 
 
 <TierSwitcher />
@@ -70,6 +77,68 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 </TierBlock>
 
+
+---
+
+## 训练数据流：从 rollout 到梯度回传（工程视角）
+
+<TierBlock tier="intro">
+
+RL 对齐训练的核心循环可以用一句话概括：**先采样一批回答，重算新旧策略的 token 概率，再用比值裁剪控制更新幅度，最后把 loss 回传到所有参数**。七张图展示这条数据流的每一步。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+### Fig 1 · response_mask：哪些 token 参与 loss
+
+RL 训练只对模型生成的 response 部分计算 loss；prompt 部分的 loss 被掩码为 0，否则奖励信号会污染到输入侧。
+
+<ResponseMask />
+
+### Fig 2 · rollout：采样生成 response（vLLM）
+
+在每个训练步开始前，用当前策略从 vLLM 批量采样多条回答（rollout）。这些回答将送入奖励模型打分，并用于后续 log_prob 计算。
+
+<Rollout />
+
+### Fig 3 · teacher-forcing forward：重算 log_prob（Megatron）
+
+得到采样回答后，把「prompt + response」整条序列以 teacher-forcing 方式重新喂入策略模型，在一次前向计算中并行得到所有 response token 的 log P。这是当前策略 π_θ 的 log_prob。
+
+<TeacherForcing />
+
+### Fig 4 · log_prob vs old_log_prob：新旧策略对比
+
+将上一步得到的 log π_θ 与采样时记录的 log π_old 逐 token 对比，差值决定策略的"漂移程度"。
+
+<LogProbCompare />
+
+### Fig 5 · ratio clipping：PPO / GRPO 裁剪
+
+比值 r_t = exp(log π_θ − log π_old) 代表策略更新幅度。PPO 把 r_t 裁剪到 [1−ε, 1+ε]，防止单步更新过大造成训练崩溃。
+
+<RatioClipping />
+
+### Fig 6 · seq-mean-token-mean：loss 聚合方式
+
+先在每条序列内对 response token 取平均（消除序列长度偏差），再跨 mini-batch 取平均得到标量 loss。
+
+<LossAggregation />
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+### Fig 7 · softmax Jacobian → 梯度回传 → Megatron 管线
+
+从标量 loss 开始，梯度经由 softmax Jacobian 传回 logit，再沿 96 层 Transformer 反传至所有 235B 参数，最终由 Megatron-LM 的三维并行切分（PP/TP/DP）分发到各 GPU 更新权重。
+
+<GradientChain />
+
+</TierBlock>
+
+---
 
 <RelatedArticles related={frontmatter.related} currentSlug="training/fine-tuning-and-alignment" />
 
