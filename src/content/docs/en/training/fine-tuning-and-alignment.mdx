@@ -15,6 +15,13 @@ import TierBlock from '../../../../components/TierBlock.astro';
 import PaperList from '../../../../components/PaperList.astro';
 import RelatedArticles from '../../../../components/RelatedArticles.astro';
 import OpenQuestions from '../../../../components/OpenQuestions.astro';
+import ResponseMask from '../../../../components/rl/ResponseMask.astro';
+import Rollout from '../../../../components/rl/Rollout.astro';
+import TeacherForcing from '../../../../components/rl/TeacherForcing.astro';
+import LogProbCompare from '../../../../components/rl/LogProbCompare.astro';
+import RatioClipping from '../../../../components/rl/RatioClipping.astro';
+import LossAggregation from '../../../../components/rl/LossAggregation.astro';
+import GradientChain from '../../../../components/rl/GradientChain.astro';
 
 
 <TierSwitcher />
@@ -63,6 +70,68 @@ Key research directions include: detecting and defending against reward hacking;
 ]} />
 </TierBlock>
 
+
+---
+
+## Training Data Flow: From Rollout to Gradient Backprop (Engineering View)
+
+<TierBlock tier="intro">
+
+The core loop of RL alignment training can be summarized in one sentence: **sample a batch of responses, recalculate per-token probabilities for both old and new policies, clip the ratio to control update magnitude, then backpropagate loss through all parameters**. The seven figures below walk through every step of this data flow.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+### Fig 1 · response_mask: which tokens contribute to loss
+
+RL training computes loss only on the model-generated response tokens; prompt token losses are masked to zero, otherwise the reward signal would contaminate the input side.
+
+<ResponseMask />
+
+### Fig 2 · rollout: sampling responses (vLLM)
+
+At the start of each training step, the current policy samples multiple response completions via vLLM (rollout). These responses are scored by the reward model and used for subsequent log_prob calculation.
+
+<Rollout />
+
+### Fig 3 · teacher-forcing forward: recalculating log_prob (Megatron)
+
+With the sampled responses in hand, the full "prompt + response" sequence is fed back into the policy model using teacher-forcing, computing log P for every response token in a single forward pass. This gives log_prob under the current policy π_θ.
+
+<TeacherForcing />
+
+### Fig 4 · log_prob vs old_log_prob: comparing new and reference policy
+
+The log π_θ from the previous step is compared token-by-token against the log π_old recorded during sampling. The difference determines how much the policy has drifted.
+
+<LogProbCompare />
+
+### Fig 5 · ratio clipping: PPO / GRPO
+
+The importance ratio r_t = exp(log π_θ − log π_old) measures the per-token policy update magnitude. PPO clips r_t to [1−ε, 1+ε] to prevent excessively large updates that could destabilize training.
+
+<RatioClipping />
+
+### Fig 6 · seq-mean-token-mean: loss aggregation
+
+Loss is first averaged over response tokens within each sequence (eliminating length bias), then averaged across the mini-batch to produce a scalar loss.
+
+<LossAggregation />
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+### Fig 7 · softmax Jacobian → gradient backprop → Megatron pipeline
+
+Starting from a scalar loss, gradients flow back through the softmax Jacobian to the logits, then back through 96 Transformer layers to all 235B parameters. Megatron-LM's 3D parallelism (PP/TP/DP) distributes the gradient updates across thousands of GPUs.
+
+<GradientChain />
+
+</TierBlock>
+
+---
 
 <RelatedArticles related={frontmatter.related} currentSlug="training/fine-tuning-and-alignment" />
 

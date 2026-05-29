@@ -1,0 +1,145 @@
+---
+import RlFigure from './RlFigure.astro';
+
+const prompt = ['<bos>', 'User', ':', 'Explain', 'RLHF', '.', '<sep>', 'Assistant', ':'];
+const responses = [
+  ['RLHF', 'uses', 'human', 'feedback', '...', '<eos>'],
+  ['Reinforcement', 'Learning', 'from', 'Human', '...', '<eos>'],
+  ['It', 'trains', 'a', 'reward', 'model', '<eos>'],
+  ['RLHF', 'aligns', 'LLMs', 'with', '...', '<eos>'],
+];
+---
+
+<RlFigure title="Fig 2 · rollout (vLLM)" subtitle="采样生成多条 response / Sample multiple responses via rollout">
+  <div class="ro-wrap">
+    <!-- prompt -->
+    <div class="ro-section-label">Prompt (固定 / fixed)</div>
+    <div class="ro-prompt">
+      {prompt.map((tok) => (
+        <span class="ro-tok ro-tok--prompt">{tok}</span>
+      ))}
+    </div>
+
+    <!-- arrow down -->
+    <div class="ro-arrow">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+        <line x1="12" y1="0" x2="12" y2="24" stroke="#388bfd" stroke-width="2"/>
+        <polygon points="4,20 12,32 20,20" fill="#388bfd"/>
+      </svg>
+      <span class="ro-arrow-label">vLLM rollout (temperature sampling)</span>
+    </div>
+
+    <!-- responses -->
+    <div class="ro-section-label">Sampled Responses (n = {responses.length})</div>
+    <div class="ro-responses">
+      {responses.map((resp, i) => (
+        <div class="ro-resp">
+          <span class="ro-resp__idx">r{i + 1}</span>
+          <div class="ro-resp__tokens">
+            {resp.map((tok) => (
+              <span class="ro-tok ro-tok--response">{tok}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="ro-note">
+      每条 response 将用于后续 log_prob 计算 &amp; 奖励打分
+      <br/>
+      Each sampled response feeds into log_prob recalculation &amp; reward scoring
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .ro-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .ro-section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ro-prompt {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .ro-tok {
+    padding: 3px 7px;
+    border-radius: 3px;
+    font-family: ui-monospace, 'Cascadia Code', monospace;
+    font-size: 0.75rem;
+  }
+
+  .ro-tok--prompt {
+    background: #1c2128;
+    color: #8b949e;
+    border: 1px solid #444c56;
+  }
+
+  .ro-tok--response {
+    background: #0e2a1c;
+    color: #d2f4bc;
+    border: 1px solid #238636;
+  }
+
+  .ro-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+  }
+
+  .ro-arrow-label {
+    font-size: 0.8rem;
+    color: #79c0ff;
+    font-style: italic;
+  }
+
+  .ro-responses {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ro-resp {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .ro-resp__idx {
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: ui-monospace, monospace;
+    color: #f78166;
+    min-width: 22px;
+    margin-top: 4px;
+  }
+
+  .ro-resp__tokens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .ro-note {
+    margin-top: 0.25rem;
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    border-left: 3px solid #444c56;
+    line-height: 1.6;
+  }
+</style>

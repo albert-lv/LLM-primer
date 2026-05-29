@@ -1,0 +1,249 @@
+---
+import RlFigure from './RlFigure.astro';
+
+// 3 sequences with variable-length response tokens
+const sequences = [
+  {
+    id: 'seq 1',
+    tokens: [
+      { t: 'RLHF', loss: 0.32 },
+      { t: 'uses', loss: 0.18 },
+      { t: 'human', loss: 0.55 },
+      { t: 'feedback', loss: 0.41 },
+      { t: '<eos>', loss: 0.08 },
+    ],
+    seqMean: ((0.32 + 0.18 + 0.55 + 0.41 + 0.08) / 5),
+  },
+  {
+    id: 'seq 2',
+    tokens: [
+      { t: 'Reinforcement', loss: 0.27 },
+      { t: 'Learning', loss: 0.44 },
+      { t: 'from', loss: 0.19 },
+      { t: 'Human', loss: 0.38 },
+      { t: 'Feedback', loss: 0.52 },
+      { t: '.', loss: 0.07 },
+      { t: '<eos>', loss: 0.06 },
+    ],
+    seqMean: ((0.27 + 0.44 + 0.19 + 0.38 + 0.52 + 0.07 + 0.06) / 7),
+  },
+  {
+    id: 'seq 3',
+    tokens: [
+      { t: 'It', loss: 0.14 },
+      { t: 'trains', loss: 0.36 },
+      { t: 'a', loss: 0.09 },
+      { t: 'reward', loss: 0.48 },
+      { t: 'model', loss: 0.31 },
+      { t: '<eos>', loss: 0.05 },
+    ],
+    seqMean: ((0.14 + 0.36 + 0.09 + 0.48 + 0.31 + 0.05) / 6),
+  },
+];
+
+const batchMean = sequences.reduce((s, seq) => s + seq.seqMean, 0) / sequences.length;
+
+function pct(v: number) {
+  return (v * 100).toFixed(0) + '%';
+}
+---
+
+<RlFigure title="Fig 6 · seq-mean → token-mean loss aggregation" subtitle="先序列内 token 平均，再跨序列平均 / Per-seq token-mean, then batch mean">
+  <div class="la-wrap">
+    <!-- Step 1: token-level losses per sequence -->
+    <div class="la-step-label">Step 1 · token-level loss per sequence</div>
+    <div class="la-sequences">
+      {sequences.map((seq) => (
+        <div class="la-seq">
+          <span class="la-seq__id">{seq.id}</span>
+          <div class="la-seq__tokens">
+            {seq.tokens.map((tok) => (
+              <div class="la-tok" title={`loss = ${tok.loss.toFixed(2)}`}>
+                <span class="la-tok__text">{tok.t}</span>
+                <div
+                  class="la-tok__bar"
+                  style={`height: ${pct(tok.loss)}`}
+                ></div>
+                <span class="la-tok__val">{tok.loss.toFixed(2)}</span>
+              </div>
+            ))}
+          </div>
+          <div class="la-seq__mean">
+            <span class="la-seq__mean-label">seq mean</span>
+            <span class="la-seq__mean-val">{seq.seqMean.toFixed(3)}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Step 2: batch mean arrow -->
+    <div class="la-arrow-row">
+      <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
+        <line x1="12" y1="0" x2="12" y2="20" stroke="#388bfd" stroke-width="2"/>
+        <polygon points="4,16 12,28 20,16" fill="#388bfd"/>
+      </svg>
+      <span class="la-arrow-label">Step 2 · average seq-means across batch</span>
+    </div>
+
+    <!-- Final batch loss -->
+    <div class="la-batch-loss">
+      <span class="la-batch-loss__label">batch loss =</span>
+      <span class="la-batch-loss__val">{batchMean.toFixed(4)}</span>
+      <span class="la-batch-loss__eq">
+        = ({sequences.map(s => s.seqMean.toFixed(3)).join(' + ')}) / {sequences.length}
+      </span>
+    </div>
+
+    <div class="la-note">
+      Seq-mean-token-mean：先在每条序列内按 token 数归一化，再跨序列平均，消除序列长度偏差。
+      <br/>
+      Seq-mean-then-batch-mean: normalize per sequence first, then average across the batch — eliminating length bias.
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .la-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .la-step-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .la-sequences {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .la-seq {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  .la-seq__id {
+    font-size: 0.75rem;
+    font-family: ui-monospace, monospace;
+    color: #f78166;
+    min-width: 44px;
+  }
+
+  .la-seq__tokens {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .la-tok {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 46px;
+  }
+
+  .la-tok__text {
+    font-size: 0.68rem;
+    font-family: ui-monospace, monospace;
+    color: #8b949e;
+  }
+
+  .la-tok__bar {
+    width: 20px;
+    background: #388bfd;
+    border-radius: 2px 2px 0 0;
+    max-height: 40px;
+    min-height: 2px;
+    opacity: 0.8;
+  }
+
+  .la-tok__val {
+    font-size: 0.65rem;
+    color: #79c0ff;
+    font-family: ui-monospace, monospace;
+  }
+
+  .la-seq__mean {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 8px;
+    background: #0e2a1c;
+    border: 1px solid #238636;
+    border-radius: 4px;
+    gap: 2px;
+  }
+
+  .la-seq__mean-label {
+    font-size: 0.65rem;
+    color: #8b949e;
+    white-space: nowrap;
+  }
+
+  .la-seq__mean-val {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #d2f4bc;
+    font-family: ui-monospace, monospace;
+  }
+
+  .la-arrow-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .la-arrow-label {
+    font-size: 0.8rem;
+    color: #79c0ff;
+    font-style: italic;
+  }
+
+  .la-batch-loss {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.6rem 1rem;
+    background: #0d2346;
+    border: 1px solid #388bfd;
+    border-radius: 6px;
+  }
+
+  .la-batch-loss__label {
+    font-size: 0.85rem;
+    color: #8b949e;
+  }
+
+  .la-batch-loss__val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #79c0ff;
+    font-family: ui-monospace, monospace;
+  }
+
+  .la-batch-loss__eq {
+    font-size: 0.78rem;
+    color: #8b949e;
+    font-family: ui-monospace, monospace;
+  }
+
+  .la-note {
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    border-left: 3px solid #444c56;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+import RlFigure from './RlFigure.astro';
+
+// Illustrative ratio values for several tokens
+const eps = 0.2;
+const ratioData = [
+  { token: 'RLHF', ratio: 1.31 },
+  { token: 'uses', ratio: 1.02 },
+  { token: 'human', ratio: 0.78 },
+  { token: 'feedback', ratio: 1.24 },
+  { token: 'to', ratio: 0.98 },
+  { token: 'align', ratio: 1.15 },
+  { token: 'LLMs', ratio: 0.85 },
+  { token: '<eos>', ratio: 1.01 },
+];
+
+const chartW = 500;
+const chartH = 110;
+const marginL = 42;
+const marginB = 24;
+const innerW = chartW - marginL - 12;
+const barH = 18;
+const gap = 8;
+// Ratio range [0.5, 1.7] mapped to [0, innerW]
+const minR = 0.5;
+const maxR = 1.7;
+const xScale = (r: number) => marginL + ((r - minR) / (maxR - minR)) * innerW;
+const oneX = xScale(1.0);
+const clipLoX = xScale(1 - eps);
+const clipHiX = xScale(1 + eps);
+---
+
+<RlFigure title="Fig 5 · PPO / GRPO ratio clipping" subtitle="重要性采样比值裁剪 / Importance sampling ratio clip at [1−ε, 1+ε]">
+  <div class="rc-wrap">
+    <svg
+      viewBox={`0 0 ${chartW} ${(barH + gap) * ratioData.length + marginB + 32}`}
+      width="100%"
+      style="overflow: visible;"
+    >
+      <!-- clip zone background -->
+      <rect
+        x={clipLoX}
+        y={4}
+        width={clipHiX - clipLoX}
+        height={(barH + gap) * ratioData.length + 6}
+        fill="#0e2a1c"
+        opacity="0.5"
+        rx="2"
+      />
+
+      <!-- clip zone label -->
+      <text x={(clipLoX + clipHiX) / 2} y={0} text-anchor="middle" fill="#238636" font-size="9" font-weight="600">
+        safe zone [1−ε, 1+ε]
+      </text>
+
+      <!-- clip boundaries -->
+      <line x1={clipLoX} y1={2} x2={clipLoX} y2={(barH + gap) * ratioData.length + 10} stroke="#238636" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1={clipHiX} y1={2} x2={clipHiX} y2={(barH + gap) * ratioData.length + 10} stroke="#238636" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x={clipLoX} y={(barH + gap) * ratioData.length + 20} text-anchor="middle" fill="#8b949e" font-size="8">{(1 - eps).toFixed(1)}</text>
+      <text x={clipHiX} y={(barH + gap) * ratioData.length + 20} text-anchor="middle" fill="#8b949e" font-size="8">{(1 + eps).toFixed(1)}</text>
+
+      <!-- r=1 line -->
+      <line x1={oneX} y1={2} x2={oneX} y2={(barH + gap) * ratioData.length + 10} stroke="#8b949e" stroke-width="1"/>
+      <text x={oneX} y={(barH + gap) * ratioData.length + 20} text-anchor="middle" fill="#8b949e" font-size="8">1.0</text>
+
+      <!-- per-token ratio bars -->
+      {ratioData.map((d, i) => {
+        const y = 8 + i * (barH + gap);
+        const rx = xScale(d.ratio);
+        const clipped = d.ratio > (1 + eps) || d.ratio < (1 - eps);
+        const barColor = clipped ? '#d29922' : '#238636';
+        const clippedX = clipped
+          ? (d.ratio > 1 + eps ? xScale(1 + eps) : xScale(1 - eps))
+          : rx;
+        const barX = Math.min(oneX, rx);
+        const barW = Math.abs(rx - oneX);
+        const clippedBarW = Math.abs(clippedX - oneX);
+        return (
+          <>
+            {/* full bar (faded if clipped) */}
+            <rect
+              x={Math.min(oneX, rx)}
+              y={y}
+              width={barW}
+              height={barH}
+              fill={barColor}
+              opacity={clipped ? 0.3 : 0.85}
+              rx="2"
+            />
+            {/* effective (clipped) bar */}
+            {clipped && (
+              <rect
+                x={Math.min(oneX, clippedX)}
+                y={y}
+                width={clippedBarW}
+                height={barH}
+                fill="#238636"
+                opacity="0.85"
+                rx="2"
+              />
+            )}
+            {/* ratio value dot */}
+            <circle cx={rx} cy={y + barH / 2} r="4" fill={barColor}/>
+            {/* clipped indicator */}
+            {clipped && (
+              <text x={rx + 6} y={y + barH / 2 + 4} fill="#d29922" font-size="8" font-weight="600">
+                clipped
+              </text>
+            )}
+            {/* token label */}
+            <text x={marginL - 4} y={y + barH / 2 + 4} text-anchor="end" fill="#8b949e" font-size="9">
+              {d.token}
+            </text>
+            {/* ratio label */}
+            <text x={rx - (d.ratio >= 1 ? -6 : 6)} y={y + barH / 2 + 4}
+              text-anchor={d.ratio >= 1 ? 'start' : 'end'}
+              fill="#c9d1d9" font-size="8">
+              {d.ratio.toFixed(2)}
+            </text>
+          </>
+        );
+      })}
+    </svg>
+
+    <div class="rc-formula">
+      <code>
+        r<sub>t</sub> = π<sub>θ</sub>(a<sub>t</sub>|s<sub>t</sub>) / π<sub>old</sub>(a<sub>t</sub>|s<sub>t</sub>) = exp(log π<sub>θ</sub> − log π<sub>old</sub>)
+        <br/>
+        L<sup>CLIP</sup> = E<sub>t</sub>[ min(r<sub>t</sub>·Â<sub>t</sub>, clip(r<sub>t</sub>, 1−ε, 1+ε)·Â<sub>t</sub>) ]
+      </code>
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .rc-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .rc-formula {
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #79c0ff;
+    border-left: 3px solid #388bfd;
+    line-height: 1.7;
+  }
+
+  .rc-formula code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+import RlFigure from './RlFigure.astro';
+
+// Token data: type = 'prompt' | 'response'
+const tokens = [
+  { text: '<bos>', type: 'prompt' },
+  { text: 'User', type: 'prompt' },
+  { text: ':', type: 'prompt' },
+  { text: 'Summarize', type: 'prompt' },
+  { text: 'this', type: 'prompt' },
+  { text: 'article', type: 'prompt' },
+  { text: '.', type: 'prompt' },
+  { text: '<sep>', type: 'prompt' },
+  { text: 'Assistant', type: 'prompt' },
+  { text: ':', type: 'prompt' },
+  { text: 'The', type: 'response' },
+  { text: 'article', type: 'response' },
+  { text: 'discusses', type: 'response' },
+  { text: 'key', type: 'response' },
+  { text: 'topics', type: 'response' },
+  { text: '.', type: 'response' },
+  { text: '<eos>', type: 'response' },
+];
+---
+
+<RlFigure title="Fig 1 · response_mask" subtitle="只有 response token 参与 loss 计算 / Only response tokens contribute to loss">
+  <div class="rm-wrap">
+    <div class="rm-tokens">
+      {tokens.map((tok) => (
+        <div class={`rm-tok rm-tok--${tok.type}`}>
+          <span class="rm-tok__text">{tok.text}</span>
+          <span class="rm-tok__mask">{tok.type === 'response' ? '1' : '0'}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="rm-legend">
+      <div class="rm-legend__item">
+        <span class="rm-legend__swatch rm-legend__swatch--prompt"></span>
+        <span>Prompt token &nbsp;·&nbsp; mask = 0 &nbsp;·&nbsp; 不计入 loss</span>
+      </div>
+      <div class="rm-legend__item">
+        <span class="rm-legend__swatch rm-legend__swatch--response"></span>
+        <span>Response token &nbsp;·&nbsp; mask = 1 &nbsp;·&nbsp; 计入 loss</span>
+      </div>
+    </div>
+
+    <div class="rm-formula">
+      <code>loss = Σ<sub>t</sub> mask[t] · CE(logit[t], label[t]) / Σ mask[t]</code>
+    </div>
+  </div>
+</RlFigure>
+
+<style>
+  .rm-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .rm-tokens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .rm-tok {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 52px;
+    border: 1px solid transparent;
+  }
+
+  .rm-tok--prompt {
+    background: #1c2128;
+    border-color: #444c56;
+  }
+
+  .rm-tok--response {
+    background: #0e2a1c;
+    border-color: #238636;
+  }
+
+  .rm-tok__text {
+    padding: 4px 8px;
+    font-family: ui-monospace, 'Cascadia Code', monospace;
+    font-size: 0.75rem;
+    color: #c9d1d9;
+    text-align: center;
+  }
+
+  .rm-tok__mask {
+    width: 100%;
+    text-align: center;
+    padding: 2px 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: ui-monospace, monospace;
+  }
+
+  .rm-tok--prompt .rm-tok__mask {
+    background: #444c56;
+    color: #8b949e;
+  }
+
+  .rm-tok--response .rm-tok__mask {
+    background: #238636;
+    color: #d2f4bc;
+  }
+
+  .rm-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .rm-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #8b949e;
+  }
+
+  .rm-legend__swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .rm-legend__swatch--prompt {
+    background: #444c56;
+  }
+
+  .rm-legend__swatch--response {
+    background: #238636;
+  }
+
+  .rm-formula {
+    padding: 0.6rem 1rem;
+    background: #161b22;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #79c0ff;
+    border-left: 3px solid #388bfd;
+  }
+
+  .rm-formula code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+</style>
