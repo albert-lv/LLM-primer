@@ -124,6 +124,7 @@ export default function remarkRunnableCode() {
                 attrString('code', child.value ?? ''),
                 attrString('lang', child.lang ?? 'python'),
                 attrArray('packages', packages),
+                { type: 'mdxJsxAttribute', name: 'client:visible', value: null },
               ],
               children: [],
             };
