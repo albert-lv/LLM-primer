@@ -1,7 +1,35 @@
 {
   "name": "llm-primer",
+  "description": "A bilingual, multi-tier, community-driven knowledge base for LLM principles, papers, and interactive demos.",
+  "version": "0.1.0",
   "type": "module",
   "packageManager": "pnpm@9.0.0",
+  "author": "Albert Lv <albert.lv@example.com>",
+  "license": "MIT",
+  "homepage": "https://llm-primer.pages.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albert-lv/LLM-primer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/albert-lv/LLM-primer/issues"
+  },
+  "keywords": [
+    "llm",
+    "large-language-models",
+    "transformer",
+    "attention",
+    "rag",
+    "retrieval-augmented-generation",
+    "ai",
+    "machine-learning",
+    "nlp",
+    "papers",
+    "knowledge-base",
+    "bilingual",
+    "education",
+    "open-source"
+  ],
   "engines": {
     "node": ">=20"
   },
@@ -18,6 +46,7 @@
   "dependencies": {
     "@astrojs/react": "4.3.0",
     "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "3.1.6",
     "@astrojs/starlight": "^0.36.0",
     "astro": "^5.15.8",
     "js-tiktoken": "1.0.21",
@@ -38,10 +67,5 @@
     "typescript": "^5",
     "vitest": "^2.1.9",
     "yaml": "^2.9.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@astrojs/sitemap": "3.1.6"
-    }
   }
 }

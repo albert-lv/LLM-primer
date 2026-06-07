@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
@@ -17,6 +18,15 @@ export default defineConfig({
   },
   integrations: [
     react(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'zh-CN',
+        locales: {
+          'zh-CN': 'zh-CN',
+          en: 'en',
+        },
+      },
+    }),
     starlight({
       title: 'LLM Primer',
       social: [
