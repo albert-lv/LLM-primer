@@ -9,7 +9,7 @@ status: published
 tiers: [intro, engineer, research]
 papers: ['lewis2020-rag', 'karpukhin2020-dpr', 'gao2022-hyde', 'borgeaud2022-retro', 'radford2021-clip', 'liu2023-llava']
 related: [foundations/embeddings, applications/agents-and-tools, inference/long-context]
-updated: 2026-05-19
+updated: 2026-08-06
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -109,6 +109,11 @@ prompt = rag.generate_with_context(query, retrieved)
 print(prompt)
 ```
 
+**RAG 推理优化（2025-2026）**：RAG 的一个性能瓶颈是每次检索后都要重新做 pre-filling（把检索到的文档重新编码进 KV Cache）。新工作致力于复用文档的 KV Cache：
+- **CacheFocus**：动态缓存重定位，离线缓存查询无关的文档 KV，在线时通过缓存重定位和层自适应剪枝加速。
+- **Cache-Craft**：管理 chunk-level KV Cache，识别可复用的 chunk 缓存，通过少量重计算保持输出质量。
+- **RAGCache**：将检索知识的中间状态组织为知识树，在 GPU 和主机内存中缓存，基于访问频率、大小和成本的替换策略。
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -118,6 +123,8 @@ print(prompt)
 研究上，RAG 与长上下文模型的关系是热门话题：如果模型能直接读整本书，是否还需要检索？当前共识是，检索在精确性、可更新性和计算效率上仍有优势，但两者正在融合——模型可以自主决定何时检索、检索什么。
 
 前沿方向包括：自适应检索（只在不确定时查资料）、多跳推理（跨文档追踪线索）、结构化 RAG（结合知识图谱、数据库 SQL 等）、以及端到端可微检索（让模型自己学习怎么查）。
+
+**2026 年新方向**：KV Cache 复用正在重塑 RAG 的推理成本结构——从"每次重新编码检索文档"转向"缓存文档的 KV 状态并智能复用"。同时，TeleRAG（MLSys 2026）引入前瞻检索（lookahead retrieval），在生成过程中预测下一步需要的信息并提前检索，减少生成-检索的串行等待。
 
 
 
