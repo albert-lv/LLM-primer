@@ -1,0 +1,78 @@
+---
+title: "边缘与设备端推理：LLM 走到终端"
+description: "移动设备、嵌入式系统和边缘计算上的 LLM 推理技术与优化。"
+module: inference
+order: 4
+sidebar:
+  order: 4
+status: published
+tiers: [intro, engineer, research]
+related: [inference/kv-cache-and-quantization, inference/efficient-attention, inference/long-context]
+updated: 2026-08-06
+---
+
+import TierSwitcher from '../../../components/TierSwitcher.astro';
+import TierBlock from '../../../components/TierBlock.astro';
+import OpenQuestions from '../../../components/OpenQuestions.astro';
+import RelatedArticles from '../../../components/RelatedArticles.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## 直觉版：让大模型跑在手机上
+
+云端 LLM 需要联网、有延迟、可能泄露隐私。能不能让模型直接跑在你的手机、平板甚至手表上？这就是**设备端推理**（On-device Inference）的目标。
+
+直觉上，手机芯片比数据中心 GPU 弱得多，但通过**模型压缩**（让模型更小）和**推理优化**（让计算更高效），现在 70 亿参数的模型已经能在手机上流畅运行。就像把一座图书馆的精华浓缩成一本口袋书——信息密度还在，体积却小得多。
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## 工程版：内存、功耗与延迟的三难困境
+
+设备端推理的核心约束不是算力，而是**内存**和**功耗**：
+
+- **内存瓶颈**：手机 RAM 通常 8-16GB，模型权重就占几 GB，加上 KV Cache 很快溢出。
+- **功耗限制**：持续推理会快速消耗电池并导致设备发热。
+- **延迟要求**：用户期望交互式响应（<100ms），但设备算力有限。
+
+**关键技术路径**：
+
+1. **极致量化**：从 INT8 到 INT4 甚至更低比特。Apple 的 "LLM in a flash" 用分层加载，只把当前需要的层放进内存。
+2. **混合专家（MoE）路由优化**：MoE 模型每次只激活部分专家，但路由决策本身有开销。TailorLLM（EuroSys 2026）用低秩适配在端云之间协作推理。
+3. **移动 NPU 利用**：智能手机的 NPU（Neural Processing Unit）专为矩阵运算设计。Scaling LLM Test-Time Compute with Mobile NPU（EuroSys 2026）探索了在移动 NPU 上做 test-time 计算扩展。
+4. **联邦微调**：在设备上本地微调小型 LoRA 适配器，保护隐私的同时个性化模型。
+5. **no_std 嵌入式**：Ratatui v0.30.0 等库开始支持 no_std，让 TUI 应用也能跑在微控制器上——LLM 推理的嵌入式化也在同步推进。
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## 研究版：从云端下沉到端侧的系统挑战
+
+研究层面的核心问题是：**如何在资源受限设备上实现接近云端的推理质量？**
+
+**2026 年关键突破**：
+- **Sereno**（OSDI 2026）：驯服移动 LLM 推理中的内存带宽争用，通过核心调度优化减少 NPU/GPU 之间的内存竞争。
+- **OpenJarvis**（Stanford）：个人 AI 在本地设备上运行，LLM 引导的 spec 搜索 + 本地-云端协作，隐私与能力的平衡。
+- **TZ-LLM**（EuroSys 2026）：用 Arm TrustZone 保护设备端大语言模型，解决模型权重被盗取的风险。
+- **IntAttention**（MLSys 2026）：全整数注意力流水线，消除浮点运算，大幅降低边缘设备功耗。
+
+**开放问题**：
+- 端侧推理的安全模型：模型权重是知识产权，如何防止提取攻击？
+- 端云协作的最优分界点：哪些计算该在本地做、哪些该上云？
+- 当每个设备都运行自己的 LLM，如何管理和更新这些模型？
+
+<OpenQuestions questions={[
+  { q: '端侧 LLM 的推理质量与云端差距有多大？在哪些任务上端侧已经足够？' },
+  { q: 'MoE 模型在移动设备上的路由开销能否通过硬件-软件协同设计消除？' },
+  { q: '联邦微调中的梯度泄漏风险如何量化？现有隐私保护方案（DP-SGD、安全聚合）的实用性边界在哪里？' },
+]} />
+</TierBlock>
+
+
+<RelatedArticles related={frontmatter.related} currentSlug="inference/edge-inference" />
