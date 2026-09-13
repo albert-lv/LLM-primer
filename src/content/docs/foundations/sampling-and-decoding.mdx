@@ -7,9 +7,9 @@ sidebar:
   order: 3
 status: published
 tiers: [intro, engineer, research]
-papers: ['brown2020-gpt3', 'wei2022-cot', 'snell2024-test-time-compute', 'willard2023-constrained', 'chen2023-spec-sampling', 'leviathan2023-spec-decoding']
+papers: ['brown2020-gpt3', 'wei2022-cot', 'snell2024-test-time-compute', 'willard2023-constrained', 'chen2023-spec-sampling', 'leviathan2023-spec-decoding', 'berkeley2026-parallel-reasoning']
 related: [foundations/transformer-architecture, inference/kv-cache-and-quantization, applications/prompt-engineering]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -137,16 +137,19 @@ print("Top-p (p=0.9) 采样:", top_p_sampling(logits, p=0.9, temperature=1.0))
 
 关键问题包括：最优的解码策略是否因任务而异？是否存在任务无关的通用解码算法？以及，从信息论角度看，采样温度与模型置信度之间有什么关系？这些问题的答案将决定未来 LLM 的推理架构设计。
 
+2026 年的新进展是 test-time compute 从"花更多"走向"分得巧"：Adaptive Parallel Reasoning（[[ref:berkeley2026-parallel-reasoning]]）等工作用强化学习让模型自己学会按问题难度分配推理计算——简单问题走短串行推理，复杂问题自动展开多个并行推理线程再汇总收敛，突破了串行 CoT 的长度瓶颈。这可以看作解码策略的自然延伸：解码不再只是"怎么选下一个 token"，而是"整个推理过程投入多少计算、以什么拓扑展开"。
+
 
 
 <OpenQuestions questions={[
   { q: 'Test-time compute 的最优分配策略是什么？模型规模与推理时间的帕累托前沿如何刻画？', papers: ["snell2024-test-time-compute"] },
   { q: '约束解码（constrained decoding）与自回归生成之间的矛盾如何平衡？能否在不牺牲太多多样性的前提下保证输出格式正确？', papers: ["willard2023-constrained"] },
   { q: '投机采样（speculative sampling）的加速比理论上界是多少？小模型选择的最佳策略是什么？', papers: ["chen2023-spec-sampling"] },
+  { q: '自适应并行推理中，并行线程数与串行深度的最优配比如何随任务类型变化？RL 学到的计算分配策略能否跨领域泛化？', papers: ["berkeley2026-parallel-reasoning", "snell2024-test-time-compute"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="foundations/sampling-and-decoding" />
 
-<PaperList ids={['brown2020-gpt3', 'wei2022-cot', 'snell2024-test-time-compute', 'willard2023-constrained', 'chen2023-spec-sampling', 'leviathan2023-spec-decoding']} />
+<PaperList ids={['brown2020-gpt3', 'wei2022-cot', 'snell2024-test-time-compute', 'willard2023-constrained', 'chen2023-spec-sampling', 'leviathan2023-spec-decoding', 'berkeley2026-parallel-reasoning']} />

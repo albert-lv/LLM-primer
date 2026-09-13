@@ -1,0 +1,21 @@
+id: berkeley2026-parallel-reasoning
+source_url: 'https://www2.eecs.berkeley.edu/Pubs/TechRpts/2026/EECS-2026-213.html'
+title: 'Adaptive Parallel Reasoning (UC Berkeley Technical Report EECS-2026-213)'
+year: 2026
+authors:
+- UC Berkeley
+tldr_zh: '用强化学习让模型在推理时动态分配计算：简单问题串行短推理，复杂问题自动展开多个并行推理线程再汇总收敛，突破串行 CoT 的长度瓶颈，是 test-time compute 自适应分配方向的代表性技术报告。'
+tldr_en: 'Uses RL to let models allocate compute adaptively at inference time: short serial reasoning for easy problems, automatically spawning multiple parallel reasoning threads that converge for hard ones, breaking the length bottleneck of serial chain-of-thought. A representative technical report on adaptive test-time compute allocation.'
+tags:
+- test-time-compute
+- reasoning
+- rl
+modules:
+- inference
+- training
+domains:
+- reasoning
+- inference
+prerequisites:
+- snell2024-test-time-compute
+- wei2022-cot

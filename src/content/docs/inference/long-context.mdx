@@ -7,9 +7,9 @@ sidebar:
   order: 3
 status: published
 tiers: [intro, engineer, research]
-papers: ['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o']
+papers: ['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o', 'deepseek2026-v4', 'misa2026-sparse-attention']
 related: [foundations/positional-encoding, inference/efficient-attention, applications/rag-and-retrieval]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -49,6 +49,16 @@ import OpenQuestions from '../../../components/OpenQuestions.astro';
 
 评测要覆盖：事实检索、多跳推理、长代码理解、长对话一致性，而不仅是"能接受多长输入"。
 
+### 2026 年：1M token 从宣传参数变成实用配置
+
+2026 年，百万 token 上下文从"宣传参数"变成"实用配置"，背后是三件事同时成熟：
+
+- **可学习稀疏注意力**进入主力模型：DeepSeek-V4 等技术报告把稀疏/混合注意力当作架构的一等公民，长上下文推理成本相比稠密注意力下降近一个数量级（详见 [高效注意力](/inference/efficient-attention/)）。
+- **KV cache 压缩**：驱逐与量化策略让超长上下文的显存占用可控（详见 [KV Cache 与量化](/inference/kv-cache-and-quantization/)）。
+- **长上下文训练**：长文档继续预训练与长程任务后训练，让"能放进去"更接近"能看懂"。
+
+工程上也出现了新的常规取舍：1M 上下文的单次调用延迟和成本仍显著高于短上下文，"先检索再短上下文"还是"直接长上下文"，成为应用架构设计里的标准成本-质量权衡。
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -65,10 +75,11 @@ import OpenQuestions from '../../../components/OpenQuestions.astro';
   { q: '长上下文模型的"有效上下文长度"如何定义？Needle-in-a-Haystack 测试是否充分？', papers: ["kamradt2023-needle", "peng2023-yarn"] },
   { q: 'H2O 等 KV cache 压缩方法在极长序列下的信息损失如何量化？', papers: ["liu2023-h2o"] },
   { q: '位置编码外推与训练时长的关系：Yarn/NTK-aware 等方法的理论保证是什么？', papers: ["peng2023-yarn", "xiao2023-streamingllm"] },
+  { q: '可学习稀疏注意力与 KV cache 压缩叠加时，"有效上下文长度"的信息损失如何联合度量？', papers: ["deepseek2026-v4", "misa2026-sparse-attention"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/long-context" />
 
-<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o']} />
+<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o', 'deepseek2026-v4', 'misa2026-sparse-attention']} />

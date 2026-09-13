@@ -1,0 +1,21 @@
+id: selfdistill2026-reasoner
+arxiv_id: '2601.18734'
+title: 'On-Policy Self-Distillation for Reasoning Models'
+year: 2026
+authors:
+- Self-Distilled Reasoner Team
+tldr_zh: '2026 开年后训练热点"自蒸馏"的代表工作：模型在自身策略分布上生成数据并蒸馏回自身，不再依赖外部强教师模型，配合可验证奖励实现自我改进闭环，显著降低后训练对蒸馏管线的依赖。'
+tldr_en: 'A representative work of the early-2026 "self-distillation" trend in post-training: the model generates data on its own policy distribution and distills it back into itself, removing the need for an external strong teacher and closing a self-improvement loop with verifiable rewards, reducing post-training dependence on distillation pipelines.'
+tags:
+- self-distillation
+- post-training
+- rl
+- reasoning
+modules:
+- training
+domains:
+- alignment
+- reasoning
+prerequisites:
+- deepseek2025-r1
+- rafailov2023-dpo

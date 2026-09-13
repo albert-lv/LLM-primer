@@ -7,9 +7,9 @@ sidebar:
   order: 1
 status: published
 tiers: [intro, engineer, research]
-papers: [kwon2023-vllm, dettmers2022-llmint8, dettmers2023-qlora, frantar2022-gptq, lin2023-awq, xiao2022-smoothquant]
+papers: [kwon2023-vllm, dettmers2022-llmint8, dettmers2023-qlora, frantar2022-gptq, lin2023-awq, xiao2022-smoothquant, deepseek2026-v4]
 related: [inference/efficient-attention, foundations/attention, training/pretraining-and-scaling]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -49,6 +49,15 @@ Quantization techniques by category:
 
 In practice, evaluate perplexity, downstream task accuracy, and end-to-end latency after quantization—not just memory savings. Different layers have different sensitivity to precision; mixed precision or per-layer tuning often works best.
 
+### 2026: ultra-low-bit quantization and local inference of trillion-parameter models
+
+Two trends stand out in 2026:
+
+- **2-bit-class quantization becomes practical**: combined with MoE architectures (activated parameters are far smaller than total parameters), trillion-parameter-class model weights quantized to 2 bits fit into high-end consumer hardware and run offline at usable speed—e.g. the community-built 2-bit MLX release of DeepSeek V4-Flash. Co-optimization between quantization formats and hardware kernels (MLX on Apple Silicon, the GGUF ecosystem, low-bit kernels in vLLM/SGLang) is the key enabler.
+- **KV cache eviction becomes more content-aware**: moving from position- or frequency-based eviction to adaptive eviction by value importance (e.g. value-aware stochastic eviction), shrinking cache size severalfold more at ultra-long contexts.
+
+The corresponding trade-offs: the lower the bit-width, the more calibration-set quality and per-layer sensitivity analysis matter; MoE expert routing is more sensitive to quantization error, so a common recipe is mixed precision—high precision for routing-related parameters, low bits for expert weights.
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -65,10 +74,11 @@ Another frontier is speculative decoding: a small model rapidly generates candid
   { q: "Can KV cache memory footprint be further compressed without significant precision loss? Which approach is better: sparsification, quantization, or distillation?" },
   { q: "What is the optimal strategy for mixed-precision inference? Which layers and parameters are more suitable for low precision?" },
   { q: "Is quantization-aware training necessary? Can post-training quantization achieve the same effect?" },
+  { q: "At 2-bit and lower bit-widths, how does quantization error propagate through MoE expert routing? What is the optimal mixed-precision split between routing parameters and expert weights?", papers: ["deepseek2026-v4"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/kv-cache-and-quantization" />
 
-<PaperList ids={['kwon2023-vllm', 'dettmers2022-llmint8', 'dettmers2023-qlora', 'frantar2022-gptq', 'lin2023-awq', 'xiao2022-smoothquant']} />
+<PaperList ids={['kwon2023-vllm', 'dettmers2022-llmint8', 'dettmers2023-qlora', 'frantar2022-gptq', 'lin2023-awq', 'xiao2022-smoothquant', 'deepseek2026-v4']} />

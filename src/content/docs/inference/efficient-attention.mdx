@@ -7,9 +7,9 @@ sidebar:
   order: 2
 status: published
 tiers: [intro, engineer, research]
-papers: ['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2']
+papers: ['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2', 'deepseek2026-v4', 'misa2026-sparse-attention']
 related: [foundations/attention, inference/long-context, inference/kv-cache-and-quantization]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -41,6 +41,16 @@ FlashAttention 的核心贡献是 IO-aware 算法：通过分块（tiling）和�
 - **线性注意力**：通过核技巧或状态空间模型（SSM）将复杂度降到线性，代表工作如 Mamba。
 - **上下文压缩**：把长文本压缩成更短的表示，减少需要参与注意力的 token 数。
 
+### 2026 年：从静态稀疏到可学习稀疏
+
+稀疏注意力过去依赖人工设计的静态模式（滑动窗口、膨胀窗口等），2026 年的主线是让模型自己学习"该看谁"：
+
+- **DeepSeek Sparse Attention（DSA）**：DeepSeek 在 V3.2 中引入、V4 沿用的稀疏注意力机制，为每个查询动态选择参与注意力的 token 子集，使百万级上下文的推理成本大幅下降。
+- **MISA（Mixture of Indexer Sparse Attention）**：用多个可学习的"索引器"混合决定注意力路由，把稀疏模式从人工先验变成可训练组件。
+- **混合注意力**：DeepSeek-V4 这类万亿参数 MoE 把稀疏注意力与全量注意力混合使用，在保持长程能力的同时，把长上下文推理 FLOPs 和 KV cache 占用相比前代压低约一个数量级。
+
+工程取舍也随之变化：静态模式胜在实现简单、内核友好；可学习稀疏效果通常更好，但需要在训练期就引入（训练后切换到稀疏模式会明显损失质量），且对推理内核和框架的支持要求更高。vLLM、SGLang 等主流推理框架已陆续为这类稀疏模式提供专门内核。
+
 选择方案时要评估：是否支持任意因果 mask？是否兼容现有训练框架？对短序列有没有额外开销？以及，在真实长文本任务上的端到端增益。
 
 </TierBlock>
@@ -59,10 +69,11 @@ FlashAttention 的核心贡献是 IO-aware 算法：通过分块（tiling）和�
   { q: 'FlashAttention 的 IO-aware 分块策略能否推广到非 Transformer 架构？内存-计算的权衡极限在哪里？', papers: ["dao2022-flashattention", "shah2024-flashattention3"] },
   { q: 'GQA/MQA 的内存节省与质量损失之间的量化关系是什么？是否存在最优的 KV 头分组策略？', papers: ["ainslie2023-gqa", "shazeer2019-mqa"] },
   { q: 'DeepSeek-V2 的 MLA（Multi-head Latent Attention）能否成为下一代注意力标准？其与低秩近似的理论联系是什么？', papers: ["deepseek2024-v2"] },
+  { q: '可学习稀疏注意力（DSA/MISA）的路由决策能否与检索、外部记忆机制统一？训练期引入稀疏与推理期切换稀疏之间的质量差距如何量化？', papers: ["deepseek2026-v4", "misa2026-sparse-attention"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/efficient-attention" />
 
-<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2']} />
+<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2', 'deepseek2026-v4', 'misa2026-sparse-attention']} />

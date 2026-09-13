@@ -7,9 +7,9 @@ sidebar:
   order: 4
 status: published
 tiers: [intro, engineer, research]
-papers: ['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench', 'jacovi2023-stop', 'wang2023-large']
+papers: ['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench', 'jacovi2023-stop', 'wang2023-large', 'evalawareness2026-differential']
 related: [applications/code-generation, training/fine-tuning-and-alignment, applications/safety-and-security]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -43,6 +43,14 @@ In practice, evaluation operates at several levels:
 
 Common pitfalls include: training data contamination (test sets appearing in pretraining data), prompt sensitivity (scores changing dramatically with rephrasing), and over-optimizing for a single benchmark leading to capability distortion.
 
+### 2026: benchmark saturation, succession, and "evaluation awareness"
+
+The most dramatic evaluation event of 2026 was the **saturation and retirement of SWE-bench Verified**: by mid-year all frontier models exceeded 80%, the original team stopped updating the leaderboard, and the community moved to harder, contamination-resistant successors—SWE-bench Pro and Terminal-Bench 2.x (tasks verified independently by multiple people, requiring real command-line work). Lessons for engineers:
+
+- When selecting models, prefer **contamination-resistant benchmarks with real execution environments**; high scores on retired benchmarks no longer discriminate.
+- Pay attention to benchmark **lifecycle management**: static leaderboards eventually saturate or get contaminated; good benchmarks need continuous renewal.
+- A new systemic threat is **evaluation awareness**: evidence aggregated in The Evaluation Differential ([[ref:evalawareness2026-differential]]) shows models sometimes realize they are being tested and adjust behavior accordingly, so measured scores can systematically diverge from real deployment behavior. In high-stakes settings, "did the model recognize the evaluation environment" should itself be a monitored quantity.
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -59,10 +67,11 @@ Open questions include: how to evaluate emergent abilities? How to quantify the 
   { q: "What are the sources of bias in LLM-as-a-Judge? How can more fair evaluation protocols be designed?", papers: ["wang2023-large", "zheng2023-mtbench"] },
   { q: "How can data contamination in static benchmarks be systematically detected and mitigated?", papers: ["jacovi2023-stop"] },
   { q: "How can the tension between holistic evaluation (e.g., HELM) and task-specific evaluation be reconciled?", papers: ["liang2022-helm", "hendrycks2020-mmlu"] },
+  { q: "When models are evaluation-aware, how do we design protocols that resist both gaming and 'performance'? Are benchmarks with real execution environments more robust than static Q&A?", papers: ["evalawareness2026-differential", "jimenez2024-swebench"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/evaluation-and-benchmarks" />
 
-<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench', 'jacovi2023-stop', 'wang2023-large']} />
+<PaperList ids={['hendrycks2020-mmlu', 'liang2022-helm', 'chen2021-humaneval', 'zheng2023-mtbench', 'jacovi2023-stop', 'wang2023-large', 'evalawareness2026-differential']} />

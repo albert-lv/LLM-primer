@@ -1,0 +1,22 @@
+id: agentworld2026
+arxiv_id: '2602.10090'
+title: 'Agent World Model: Scaling Agentic RL with Synthetic Verifiable Environments'
+year: 2026
+authors:
+- Agent World Model Team
+tldr_zh: '用程序生成、可验证的合成环境大规模训练 Agent 的工具使用能力（覆盖 MCP 工具调用），单步可并行上千个环境实例，绕开真实环境昂贵、缓慢且不可复现的瓶颈，是 2026 年 Agentic RL 环境合成的代表工作。'
+tldr_en: 'Trains tool-use agents at scale in procedurally generated, verifiable synthetic environments (covering MCP tool calls), running over a thousand environment instances in parallel per step. It sidesteps the cost, latency, and irreproducibility of real environments and is a representative 2026 work on environment synthesis for agentic RL.'
+tags:
+- agents
+- rl
+- synthetic-environments
+- tool-use
+modules:
+- applications
+- training
+domains:
+- applications
+- reasoning
+prerequisites:
+- yao2022-react
+- anthropic2024-mcp

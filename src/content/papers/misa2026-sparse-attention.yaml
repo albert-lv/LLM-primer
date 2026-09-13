@@ -1,0 +1,19 @@
+id: misa2026-sparse-attention
+arxiv_id: '2605.07363'
+title: 'MISA: Mixture of Indexer Sparse Attention'
+year: 2026
+authors:
+- MISA Team
+tldr_zh: '2026 年稀疏注意力的代表工作：用多个可学习的"索引器"（indexer）混合地选择每个查询需要关注的 token 子集，把长上下文注意力从静态模式（滑动窗口等）推向动态学习路由，显著降低长序列推理成本。'
+tldr_en: 'A representative 2026 sparse-attention method: multiple learnable "indexers" mix to select the token subset each query attends to, moving long-context attention from static patterns (e.g. sliding windows) to learned dynamic routing, substantially cutting long-sequence inference cost.'
+tags:
+- sparse-attention
+- long-context
+- efficient-inference
+modules:
+- inference
+domains:
+- long-context
+- inference
+prerequisites:
+- dao2022-flashattention

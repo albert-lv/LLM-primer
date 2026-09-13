@@ -7,9 +7,9 @@ sidebar:
   order: 1
 status: published
 tiers: [intro, engineer, research]
-papers: [kwon2023-vllm, dettmers2022-llmint8, dettmers2023-qlora, frantar2022-gptq, lin2023-awq, xiao2022-smoothquant]
+papers: [kwon2023-vllm, dettmers2022-llmint8, dettmers2023-qlora, frantar2022-gptq, lin2023-awq, xiao2022-smoothquant, deepseek2026-v4]
 related: [inference/efficient-attention, foundations/attention, training/pretraining-and-scaling]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -84,6 +84,15 @@ KV Cache 是推理时的主要内存消耗之一，尤其在长上下文场景�
 - **GGML/GGUF**：社区常用的 4-bit 量化格式，让大模型能在笔记本上运行。
 
 工程实践中，要评估量化后的困惑度（perplexity）、下游任务精度和端到端延迟，不能只看显存省了百分之几。不同层对精度敏感度不同，混合精度或逐层调优往往效果最好。
+
+### 2026 年：超低比特量化与万亿参数模型的本地推理
+
+2026 年有两个值得关注的趋势：
+
+- **2-bit 级量化走向实用**：配合 MoE 架构（激活参数远小于总参数），万亿参数级模型的权重在 2-bit 量化后可以装进高端消费级硬件，以可用速度离线运行——例如社区为 DeepSeek V4-Flash 制作的 2-bit MLX 版本。量化格式与硬件内核（Apple Silicon 的 MLX、GGUF 生态、vLLM/SGLang 的低比特 kernel）的协同优化是关键。
+- **KV cache 驱逐更"懂内容"**：从按位置或频率驱逐，走向按 value 重要性自适应驱逐（如 value-aware 的随机驱逐策略），在超长上下文下把 cache 体积进一步压低数倍。
+
+相应的工程取舍：比特数越低，校准集质量和逐层敏感度分析越重要；MoE 模型的专家路由对量化误差更敏感，常见做法是"路由相关参数保持高精度、专家权重用低比特"的混合策略。
 
 ### 示例代码：KV Cache 的基本原理
 
@@ -194,6 +203,10 @@ print(f"内存占用: {weights.nbytes} → {quantized.nbytes} bytes")
   },
   {
     "q": "量化感知训练是否必要？后训练量化能否达到相同效果？"
+  },
+  {
+    "q": "2-bit 及更低比特量化下，MoE 专家路由的量化误差如何传播？路由参数与专家权重的最优混合精度策略是什么？",
+    papers: ["deepseek2026-v4"]
   }
 ]} />
 
@@ -203,4 +216,4 @@ print(f"内存占用: {weights.nbytes} → {quantized.nbytes} bytes")
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/kv-cache-and-quantization" />
 
-<PaperList ids={['kwon2023-vllm', 'dettmers2022-llmint8', 'dettmers2023-qlora', 'frantar2022-gptq', 'lin2023-awq', 'xiao2022-smoothquant']} />
+<PaperList ids={['kwon2023-vllm', 'dettmers2022-llmint8', 'dettmers2023-qlora', 'frantar2022-gptq', 'lin2023-awq', 'xiao2022-smoothquant', 'deepseek2026-v4']} />

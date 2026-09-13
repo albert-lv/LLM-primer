@@ -7,9 +7,9 @@ sidebar:
   order: 1
 status: published
 tiers: [intro, engineer, research]
-papers: ['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating']
+papers: ['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating', 'deepseek2026-v4', 'moonshot2026-k3']
 related: [training/fine-tuning-and-alignment, foundations/why-llm-emerges, inference/kv-cache-and-quantization]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -42,6 +42,15 @@ Training stability is another hurdle. Deep large models are prone to loss spikes
 
 Chinchilla showed that many models are under-trained on tokens for their size under a fixed compute budget. Compute-optimal training suggests that parameters and data should grow together, not just parameters alone. This is especially important for teams with limited budgets.
 
+### 2026: open weights enter the trillion-parameter MoE era
+
+The biggest change in the 2026 pretraining landscape is open-weight models crossing into trillion-parameter scale and catching up with closed flagships: models such as DeepSeek-V4 ([[ref:deepseek2026-v4]]) and Kimi K3 ([[ref:moonshot2026-k3]]) released weights for MoE architectures with more than 1.5T total parameters, activating only a fraction (tens to hundreds of billions) per forward pass—decoupling "parameter count" from "inference cost."
+
+Two engineering lessons follow:
+
+- **Sparse activation rewrites the scaling narrative**: capability growth no longer implies proportional inference-cost growth. "Scale total parameters, control cost via activated parameters" has become the standard flagship recipe.
+- **Architecture innovation enters pretraining**: compute-saving mechanisms like sparse attention (e.g. DSA) are no longer inference-time tricks but are written into the architecture from day one of pretraining—training-inference co-design is the new normal.
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -64,6 +73,10 @@ Current research directions also include: can curriculum learning accelerate con
   },
   {
     "q": "Do multimodal, long-context, and sparse models follow the same Scaling Laws?"
+  },
+  {
+    "q": "Do trillion-parameter MoE models follow the same scaling laws as dense models? How does the optimal ratio of total to activated parameters vary with the compute budget?",
+    "papers": ["deepseek2026-v4", "moonshot2026-k3"]
   }
 ]} />
 
@@ -73,4 +86,4 @@ Current research directions also include: can curriculum learning accelerate con
 
 <RelatedArticles related={frontmatter.related} currentSlug="training/pretraining-and-scaling" />
 
-<PaperList ids={['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating']} />
+<PaperList ids={['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating', 'deepseek2026-v4', 'moonshot2026-k3']} />

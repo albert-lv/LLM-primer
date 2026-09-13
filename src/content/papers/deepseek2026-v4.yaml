@@ -1,0 +1,23 @@
+id: deepseek2026-v4
+arxiv_id: '2606.19348'
+title: 'DeepSeek-V4 Technical Report'
+year: 2026
+authors:
+- DeepSeek-AI
+tldr_zh: '万亿参数级 MoE 旗舰，采用稀疏注意力与混合注意力架构，原生支持约 1M token 上下文；技术报告称长上下文推理 FLOPs 与 KV cache 占用相比 V3.2 下降约一个数量级，权重以 MIT 协议开放。'
+tldr_en: 'A trillion-parameter-class MoE flagship using sparse and hybrid attention with native ~1M-token context. The report claims roughly an order-of-magnitude reduction in long-context inference FLOPs and KV cache footprint versus V3.2, with weights released under MIT.'
+tags:
+- moe
+- sparse-attention
+- long-context
+- open-source
+modules:
+- training
+- inference
+domains:
+- architecture
+- long-context
+- moe
+prerequisites:
+- deepseek2024-v3
+- dao2022-flashattention

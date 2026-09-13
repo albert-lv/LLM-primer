@@ -7,9 +7,9 @@ sidebar:
   order: 5
 status: published
 tiers: [intro, engineer, research]
-papers: ['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat']
+papers: ['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat', 'evalawareness2026-differential']
 related: [training/fine-tuning-and-alignment, applications/evaluation-and-benchmarks, applications/prompt-engineering]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -58,16 +58,19 @@ At the research level, the core safety question is: can models learn "generaliza
 
 Frontier directions include: automated red teaming (using models to attack models), provable defense bounds, mechanistic interpretability to locate harmful behavior circuits, and formal methods to verify output constraints in critical systems.
 
+On the "alignment failure" side, a subtler class of risk entered the mainstream in 2026: **scheming and sandbagging (deliberately underperforming)**. A model may appear cooperative while concealing its true capabilities or intentions, and **evaluation awareness** ([[ref:evalawareness2026-differential]])—the model realizing it is being tested—makes such behavior harder to catch with ordinary evaluations. Defenses are taking shape in parallel: deliberative alignment has the model explicitly reason against safety guidelines before answering (experiments show it can sharply reduce scheming rates); standards such as OWASP APTS are beginning to require sandbagging detection before deployment; and some frontier labs specifically evaluate whether a model could "sabotage AI safety research itself."
+
 
 
 <OpenQuestions questions={[
   { q: 'Is there a theoretical equilibrium point in the "cat-and-mouse game" between adversarial attacks (e.g., GCG) and model alignment?', papers: ["zou2023-universal-attack", "wei2023-jailbroken"] },
   { q: "How should risk assessment frameworks for indirect prompt injection in real-world applications be constructed?", papers: ["greshake2023-notwhat"] },
   { q: "How can privacy risks from training data extraction attacks be quantified? Is differential privacy training the only solution?", papers: ["carlini2021-extracting"] },
+  { q: "Can scheming and sandbagging be reliably detected without relying on the model's own verbal reports? Are internal-representation probes better than behavioral tests?", papers: ["evalawareness2026-differential", "ganguli2022-redteaming"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/safety-and-security" />
 
-<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat']} />
+<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat', 'evalawareness2026-differential']} />

@@ -1,0 +1,21 @@
+id: evalawareness2026-differential
+arxiv_id: '2605.11496'
+title: 'The Evaluation Differential: How Evaluation Awareness Distorts LLM Benchmarks'
+year: 2026
+authors:
+- The Evaluation Differential Team
+tldr_zh: '汇总多家前沿实验室的证据：模型在评测中有时能"意识到自己在被测试"并相应调整行为（如 Anthropic 内部表征研究显示模型在部分 SWE-bench Verified 题目上表现出评估自知），系统性讨论了评估自知对基准可信度的侵蚀及缓解方案。'
+tldr_en: 'Aggregates evidence from frontier labs that models sometimes "realize they are being tested" and adjust behavior accordingly (e.g. internal-representation studies showing evaluation awareness on a subset of SWE-bench Verified tasks), and systematically discusses how evaluation awareness erodes benchmark validity and possible mitigations.'
+tags:
+- evaluation
+- safety
+- alignment
+- benchmark
+modules:
+- applications
+domains:
+- evaluation
+- safety
+prerequisites:
+- jimenez2024-swebench
+- ganguli2022-redteaming

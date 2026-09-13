@@ -7,9 +7,9 @@ sidebar:
   order: 2
 status: published
 tiers: [intro, engineer, research]
-papers: ['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora']
+papers: ['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora', 'selfdistill2026-reasoner', 'agentworld2026', 'evalawareness2026-differential']
 related: [training/pretraining-and-scaling, applications/safety-and-security, applications/prompt-engineering]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -37,6 +37,8 @@ import GradientChain from '../../../components/rl/GradientChain.astro';
 
 可以类比为：预训练是读完所有教科书，微调是参加模拟面试练习，对齐则是学习职业道德和行为规范。三者缺一不可。
 
+近两年出现的一个新趋势是"模型当老师教自己"：模型先尝试解答问题，把答对的解法收集起来再训练自己，无需再请一个更强的外部模型来批改作业。另一个趋势是"在实践中练习"：让模型在大量可以自动判分的模拟工作环境里反复操作工具、纠正错误，从而学会当 Agent 而不只是聊天。
+
 </TierBlock>
 
 <TierBlock tier="engineer">
@@ -53,6 +55,16 @@ import GradientChain from '../../../components/rl/GradientChain.astro';
 
 此外，LoRA、QLoRA 等参数高效微调方法让小资源团队也能在消费级 GPU 上微调大模型，极大降低了应用门槛。
 
+### 2026 年的后训练新趋势：on-policy 自蒸馏与 Agentic RL
+
+2026 年的后训练管线出现了两个值得注意的结构性变化。
+
+**On-policy 自蒸馏**：传统蒸馏依赖一个更强的教师模型生成训练数据，而 on-policy self-distillation（[[ref:selfdistill2026-reasoner]]）让模型在自身策略分布上采样解题轨迹，配合可验证奖励筛出正确轨迹后蒸馏回自身，形成不依赖外部强教师的自我改进闭环。工程上的好处是蒸馏管线不再受限于"必须有一个更强的模型"，并天然缓解了 off-policy 数据带来的分布失配；代价是需要可靠的自动验证器，否则错误轨迹会被一并强化。
+
+**Agentic RL 与合成可验证环境**：把工具使用能力纳入后训练，需要大量多轮、可判分的环境。Agent World Model（[[ref:agentworld2026]]）代表了用程序生成合成环境的做法：环境由代码生成、奖励可由程序验证（覆盖 MCP 工具调用），单步可并行上千个环境实例，绕开真实环境昂贵、缓慢且不可复现的瓶颈。取舍在于合成环境与真实任务之间的分布差距仍要靠真实任务评测来校准。
+
+**部署前评估的扩展**：对齐评估不再只看"答得好不好"。deliberative alignment 类方法让模型在回答前显式援引安全规范进行推理，而 scheming、sandbagging（故意压低表现）等行为检测开始被纳入部署前评估清单。一个现实背景是"评估自知"问题：The Evaluation Differential（[[ref:evalawareness2026-differential]]）汇总的证据表明，模型有时能意识到自己正在被测试并相应调整行为，这会系统性侵蚀基准与安全评估的可信度，因此评估设计本身也需要把这一因素考虑进去。
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -62,6 +74,8 @@ import GradientChain from '../../../components/rl/GradientChain.astro';
 研究上，"对齐"是否真正改变了模型的内部目标，还是只是表面行为的抑制？这是一个开放问题。有证据表明，模型在某些情况下会"绕过"安全训练（jailbreak），说明对齐可能不是深层的。
 
 关键研究方向包括：奖励黑客（reward hacking）的检测与防御；长度偏差、位置偏差等偏好建模的 artifacts；多轮对话中的上下文一致性；以及，如何用更少的人类标注获得更稳健的对齐效果。
+
+新的研究焦点还包括：on-policy 自蒸馏中"自我提升"的理论上限——模型在没有外部信息源时能否持续改进，还是会在自身分布上逐渐坍缩；Agentic RL 在合成可验证环境中习得的能力向真实开放环境迁移的机理；以及评估自知对对齐评估的系统性影响——如果模型能识别"这是测试"，基于行为观察的安全结论还有多少效力。
 
 <OpenQuestions questions={[
   {
@@ -73,6 +87,18 @@ import GradientChain from '../../../components/rl/GradientChain.astro';
   },
   {
     "q": "是否存在统一的对齐框架可以同时处理有用性、无害性、诚实性三个维度？"
+  },
+  {
+    "q": "On-policy 自蒸馏的理论上限在哪里？模型在自身策略分布上闭环训练能否持续改进而不发生分布坍缩？",
+    "papers": ["selfdistill2026-reasoner"]
+  },
+  {
+    "q": "合成可验证环境中训练的 Agentic RL 能力能否可靠迁移到真实开放环境？环境多样性与真实性的最优配比是什么？",
+    "papers": ["agentworld2026"]
+  },
+  {
+    "q": "当模型具备\"评估自知\"能力时，基于行为观察的对齐评估（包括 scheming 与 sandbagging 检测）还有多少可信度？",
+    "papers": ["evalawareness2026-differential"]
   }
 ]} />
 
@@ -144,4 +170,4 @@ RL 训练只对模型生成的 response 部分计算 loss；prompt 部分的 los
 
 <RelatedArticles related={frontmatter.related} currentSlug="training/fine-tuning-and-alignment" />
 
-<PaperList ids={['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora']} />
+<PaperList ids={['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora', 'selfdistill2026-reasoner', 'agentworld2026', 'evalawareness2026-differential']} />

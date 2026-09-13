@@ -1,0 +1,24 @@
+id: moonshot2026-k3
+source_url: 'https://www.kimi.ai/blog/kimi-k3'
+title: 'Kimi K3: Open-Weight Trillion-Scale MoE for Agentic Intelligence'
+year: 2026
+authors:
+- Moonshot AI
+tldr_zh: '约 2.8T 总参数、百亿级激活参数的 MoE 模型，开放权重后成为当时规模最大的开源权重模型，原生支持视觉与约 1M token 上下文，主打 Agentic 与多模态能力，是 2026 年开源权重追平闭源前沿的标志性工程之一。'
+tldr_en: 'A MoE model with ~2.8T total parameters and ~100B activated, at release the largest open-weight model ever. Natively multimodal with ~1M-token context, focused on agentic capability—one of the landmark 2026 engineering efforts in which open weights caught up with the closed frontier.'
+tags:
+- moe
+- open-source
+- agents
+- multimodal
+modules:
+- training
+- inference
+- applications
+domains:
+- moe
+- multimodal
+- applications
+prerequisites:
+- deepseek2024-v3
+- fedus2021-switch

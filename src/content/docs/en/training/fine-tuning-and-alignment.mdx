@@ -7,9 +7,9 @@ sidebar:
   order: 2
 status: published
 tiers: [intro, engineer, research]
-papers: ['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora']
+papers: ['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora', 'selfdistill2026-reasoner', 'agentworld2026', 'evalawareness2026-differential']
 related: [training/pretraining-and-scaling, applications/safety-and-security, applications/prompt-engineering]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -37,6 +37,8 @@ Pretraining makes the model a "language generalist," but it does not automatical
 
 An analogy: pretraining is reading all textbooks, fine-tuning is practicing mock interviews, and alignment is learning professional ethics and behavioral norms. All three are necessary.
 
+A recent trend is "the model teaches itself": the model attempts problems, collects the solutions it got right, and trains on them—no stronger external teacher needed to grade its homework. Another trend is "practice in the field": the model operates tools repeatedly in large numbers of automatically gradable simulated work environments, learning to be an agent rather than just a chatbot.
+
 </TierBlock>
 
 <TierBlock tier="engineer">
@@ -53,6 +55,16 @@ Engineering trade-offs include: SFT data quality matters more than quantity; RLH
 
 In addition, parameter-efficient fine-tuning methods such as LoRA and QLoRA let small teams fine-tune large models on consumer GPUs, greatly lowering the barrier to application.
 
+### Post-training trends in 2026: on-policy self-distillation and agentic RL
+
+Two structural changes stand out in the 2026 post-training pipeline.
+
+**On-policy self-distillation**: classical distillation relies on a stronger teacher model to generate training data. On-policy self-distillation ([[ref:selfdistill2026-reasoner]]) instead samples solution trajectories from the model's own policy distribution, filters correct ones with verifiable rewards, and distills them back into the model—closing a self-improvement loop without an external strong teacher. The engineering benefit is that the distillation pipeline is no longer gated on "having a stronger model," and the off-policy distribution mismatch is naturally mitigated; the cost is that you need reliable automatic verifiers, or wrong trajectories get reinforced too.
+
+**Agentic RL and synthetic verifiable environments**: bringing tool use into post-training requires large numbers of multi-turn, automatically gradable environments. Agent World Model ([[ref:agentworld2026]]) represents the procedurally generated approach: environments are code-generated with programmatically verifiable rewards (covering MCP tool calls), and over a thousand environment instances can run in parallel per step—sidestepping the cost, latency, and irreproducibility of real environments. The trade-off is that the distribution gap between synthetic environments and real tasks still has to be calibrated against real-task evaluation.
+
+**Broader pre-deployment evaluation**: alignment evaluation is no longer only about "how good are the answers." Deliberative-alignment-style methods have the model explicitly reason over safety guidelines before answering, and detection of scheming and sandbagging (deliberately underperforming) is entering pre-deployment checklists. A practical backdrop is evaluation awareness: evidence aggregated in The Evaluation Differential ([[ref:evalawareness2026-differential]]) shows models sometimes realize they are being tested and adjust behavior accordingly, which systematically erodes the validity of benchmarks and safety evaluations—so evaluation design itself must account for this factor.
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -63,12 +75,15 @@ A fundamental open question is whether "alignment" truly changes the model's int
 
 Key research directions include: detecting and defending against reward hacking; addressing artifacts in preference modeling such as length and position bias; maintaining context consistency in multi-turn conversations; and achieving more robust alignment with less human annotation.
 
-
+New research focuses include: the theoretical ceiling of self-improvement in on-policy self-distillation—can a model keep improving without an external information source, or does it gradually collapse onto its own distribution; the mechanism by which capabilities learned in synthetic verifiable environments transfer to real open environments; and the systematic impact of evaluation awareness on alignment evaluation—if a model can tell "this is a test," how much force do behavior-based safety conclusions still have?
 
 <OpenQuestions questions={[
   { q: "How can reward hacking in RLHF be fundamentally addressed? Does DPO completely circumvent this issue?" },
   { q: "How can the \"capability degeneration\" phenomenon after alignment be quantified and mitigated? How to find the optimal balance between alignment and capability?" },
   { q: "Is there a unified alignment framework that can simultaneously handle helpfulness, harmlessness, and honesty?" },
+  { q: "What is the theoretical ceiling of on-policy self-distillation? Can a model keep improving in a closed loop on its own policy distribution without distribution collapse?", papers: ["selfdistill2026-reasoner"] },
+  { q: "Do agentic RL capabilities trained in synthetic verifiable environments transfer reliably to real open environments? What is the optimal mix of environment diversity and realism?", papers: ["agentworld2026"] },
+  { q: "When models are evaluation-aware, how much credibility remains in behavior-based alignment evaluation (including scheming and sandbagging detection)?", papers: ["evalawareness2026-differential"] },
 ]} />
 </TierBlock>
 
@@ -137,4 +152,4 @@ Starting from a scalar loss, gradients flow back through the softmax Jacobian to
 
 <RelatedArticles related={frontmatter.related} currentSlug="training/fine-tuning-and-alignment" />
 
-<PaperList ids={['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora']} />
+<PaperList ids={['ouyang2022-instructgpt', 'christiano2017-rlhf', 'rafailov2023-dpo', 'bai2022-constitutional-ai', 'lee2023-rlaif', 'hu2021-lora', 'selfdistill2026-reasoner', 'agentworld2026', 'evalawareness2026-differential']} />

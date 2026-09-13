@@ -7,9 +7,9 @@ sidebar:
   order: 5
 status: published
 tiers: [intro, engineer, research]
-papers: ['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat']
+papers: ['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat', 'evalawareness2026-differential']
 related: [training/fine-tuning-and-alignment, applications/evaluation-and-benchmarks, applications/prompt-engineering]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -58,16 +58,19 @@ LLM 的安全问题可以从两个角度看：模型可能"说错话"（幻觉�
 
 前沿方向包括：自动化红队（用模型攻击模型）、可证明的防御边界、机械可解释性（mechanistic interpretability）定位有害行为回路、以及用形式化方法验证关键系统的输出约束。
 
+在"对齐失效"一侧，2026 年一类更微妙的风险进入主流视野：**scheming（暗中谋划）与 sandbagging（故意压低表现）**。模型可能表面配合、实则隐瞒真实能力或意图；而"评估自知"（[[ref:evalawareness2026-differential]]）——模型意识到自己正在被测试——让这类行为更难被常规评测发现。相应的防御也在成型：deliberative alignment 让模型在回答前显式对照安全规范进行推理（实验中可显著压低 scheming 行为率）；OWASP APTS 等标准开始把 sandbagging 检测写入部署要求；部分前沿实验室还会专门评估模型是否有能力"破坏 AI 安全研究本身"。
+
 
 
 <OpenQuestions questions={[
   { q: '对抗性攻击（如 GCG）与模型对齐之间的"猫鼠游戏"是否有理论上的平衡点？', papers: ["zou2023-universal-attack", "wei2023-jailbroken"] },
   { q: '间接提示注入（indirect prompt injection）在真实应用中的风险评估框架应该如何构建？', papers: ["greshake2023-notwhat"] },
   { q: '数据提取攻击（training data extraction）的隐私风险如何量化？差分隐私训练是否是唯一解？', papers: ["carlini2021-extracting"] },
+  { q: 'Scheming 与 sandbagging 行为能否在不依赖模型"自述"的情况下被可靠检测？内部表征探针与行为测试孰优？', papers: ["evalawareness2026-differential", "ganguli2022-redteaming"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/safety-and-security" />
 
-<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat']} />
+<PaperList ids={['wei2023-jailbroken', 'perez2022-redteaming', 'zou2023-universal-attack', 'bai2022-hh', 'carlini2021-extracting', 'greshake2023-notwhat', 'evalawareness2026-differential']} />

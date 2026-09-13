@@ -7,9 +7,9 @@ sidebar:
   order: 1
 status: published
 tiers: [intro, engineer, research]
-papers: ['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating']
+papers: ['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating', 'deepseek2026-v4', 'moonshot2026-k3']
 related: [training/fine-tuning-and-alignment, foundations/why-llm-emerges, inference/kv-cache-and-quantization]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -42,6 +42,15 @@ import RelatedArticles from '../../../components/RelatedArticles.astro';
 
 Chinchilla 的研究指出，许多模型在固定计算预算下训练 token 不足。计算最优训练的启发是：参数和数据应该同步增长，而不是一味堆参数量。这对预算有限的团队尤为重要。
 
+### 2026 年：开源权重进入万亿参数 MoE 时代
+
+2026 年预训练格局的最大变化，是开源权重模型跨入万亿参数规模并追平闭源旗舰：DeepSeek-V4（[[ref:deepseek2026-v4]]）与 Kimi K3（[[ref:moonshot2026-k3]]）等模型以超过 1.5T 总参数的 MoE 架构开放权重，单次前向只激活其中一小部分（数十亿到千亿级），把"参数量"与"推理成本"解耦。
+
+这带来两个工程启示：
+
+- **稀疏激活改写 scaling 叙事**：能力增长不再等于推理成本同步增长，"总参数堆规模、激活参数控成本"成为旗舰模型的标准配方。
+- **架构创新进入预训练**：稀疏注意力（如 DSA）这类省算力机制不再只是推理期技巧，而是从预训练第一天就写进架构，训练与推理的协同设计成为新常态。
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -64,6 +73,10 @@ Chinchilla 的研究指出，许多模型在固定计算预算下训练 token �
   },
   {
     "q": "多模态、长上下文、稀疏模型的 Scaling Law 是否遵循相同规律？"
+  },
+  {
+    "q": "万亿参数 MoE 的 scaling 规律与稠密模型是否一致？总参数与激活参数的最优比例如何随计算预算变化？",
+    "papers": ["deepseek2026-v4", "moonshot2026-k3"]
   }
 ]} />
 
@@ -73,4 +86,4 @@ Chinchilla 的研究指出，许多模型在固定计算预算下训练 token �
 
 <RelatedArticles related={frontmatter.related} currentSlug="training/pretraining-and-scaling" />
 
-<PaperList ids={['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating']} />
+<PaperList ids={['kaplan2020-scaling', 'hoffmann2022-chinchilla', 'brown2020-gpt3', 'chowdhery2022-palm', 'liu2019-roberta', 'lee2022-deduplicating', 'deepseek2026-v4', 'moonshot2026-k3']} />

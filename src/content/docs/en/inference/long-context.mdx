@@ -7,9 +7,9 @@ sidebar:
   order: 3
 status: published
 tiers: [intro, engineer, research]
-papers: ['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o']
+papers: ['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o', 'deepseek2026-v4', 'misa2026-sparse-attention']
 related: [foundations/positional-encoding, inference/efficient-attention, applications/rag-and-retrieval]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -49,6 +49,16 @@ Practical engineering tips:
 
 Evaluation should cover: fact retrieval, multi-hop reasoning, long-code understanding, and long-conversation consistency—not just "how long an input it can accept."
 
+### 2026: 1M tokens go from marketing spec to practical configuration
+
+In 2026, million-token context went from a marketing number to a practical configuration, driven by three things maturing together:
+
+- **Learned sparse attention** entering flagship models: technical reports such as DeepSeek-V4 treat sparse/hybrid attention as a first-class architectural citizen, cutting long-context inference cost by nearly an order of magnitude versus dense attention (see [Efficient Attention](/en/inference/efficient-attention/)).
+- **KV cache compression**: eviction and quantization strategies keep the memory footprint of ultra-long contexts manageable (see [KV Cache and Quantization](/en/inference/kv-cache-and-quantization/)).
+- **Long-context training**: continued pretraining on long documents and post-training on long-horizon tasks bring "can fit it in" closer to "can understand it."
+
+A new routine trade-off follows in engineering: a single 1M-token call is still significantly slower and more expensive than short-context calls, so "retrieve first, then use short context" versus "go straight to long context" has become a standard cost-quality decision in application architecture.
+
 </TierBlock>
 
 <TierBlock tier="research">
@@ -65,10 +75,11 @@ Directions include: learnable sparse patterns, content-based retrieval routing, 
   { q: 'How should "effective context length" be defined for long-context models? Is the Needle-in-a-Haystack test sufficient?', papers: ["kamradt2023-needle", "peng2023-yarn"] },
   { q: "How can information loss from KV cache compression methods (e.g., H2O) be quantified at extremely long sequence lengths?", papers: ["liu2023-h2o"] },
   { q: "What is the theoretical guarantee for position encoding extrapolation methods like Yarn/NTK-aware? How does it relate to training duration?", papers: ["peng2023-yarn", "xiao2023-streamingllm"] },
+  { q: "When learned sparse attention is combined with KV cache compression, how should the information loss of the resulting 'effective context length' be measured jointly?", papers: ["deepseek2026-v4", "misa2026-sparse-attention"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/long-context" />
 
-<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o']} />
+<PaperList ids={['peng2023-yarn', 'chen2023-longlora', 'press2021-alibi', 'xiao2023-streamingllm', 'kamradt2023-needle', 'liu2023-h2o', 'deepseek2026-v4', 'misa2026-sparse-attention']} />

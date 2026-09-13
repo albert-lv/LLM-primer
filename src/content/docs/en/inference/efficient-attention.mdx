@@ -7,9 +7,9 @@ sidebar:
   order: 2
 status: published
 tiers: [intro, engineer, research]
-papers: ['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2']
+papers: ['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2', 'deepseek2026-v4', 'misa2026-sparse-attention']
 related: [foundations/attention, inference/long-context, inference/kv-cache-and-quantization]
-updated: 2026-05-19
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../../components/TierSwitcher.astro';
@@ -41,6 +41,16 @@ Beyond FlashAttention, long-context engineering includes:
 - **Linear attention**: kernel tricks or state-space models (SSM) that reduce complexity to linear, exemplified by Mamba.
 - **Context compression**: compress long text into shorter representations, reducing the number of tokens that must attend.
 
+### 2026: from static sparsity to learned sparsity
+
+Sparse attention used to rely on hand-designed static patterns (sliding windows, dilated windows, etc.). The mainline of 2026 is letting the model learn "whom to attend to" on its own:
+
+- **DeepSeek Sparse Attention (DSA)**: introduced in DeepSeek V3.2 and carried into V4, it dynamically selects the subset of tokens each query attends to, sharply cutting the inference cost of million-token contexts.
+- **MISA (Mixture of Indexer Sparse Attention)**: multiple learnable "indexers" mix to decide attention routing, turning the sparsity pattern from a human prior into a trainable component.
+- **Hybrid attention**: trillion-parameter MoE models such as DeepSeek-V4 mix sparse and full attention, preserving long-range capability while reducing long-context inference FLOPs and KV cache footprint by roughly an order of magnitude versus the previous generation.
+
+The engineering trade-offs shift accordingly: static patterns win on simplicity and kernel-friendliness; learned sparsity usually performs better but must be introduced during training (switching to sparse mode after training visibly degrades quality) and demands more from inference kernels and frameworks. Mainstream serving stacks such as vLLM and SGLang have been adding dedicated kernels for these sparse patterns.
+
 When choosing a method, evaluate: does it support arbitrary causal masks? Is it compatible with existing training frameworks? Does it add overhead for short sequences? And what is the end-to-end gain on real long-text tasks?
 
 </TierBlock>
@@ -59,10 +69,11 @@ However, attention itself has unique advantages: dynamic routing, strong interpr
   { q: "Can FlashAttention's IO-aware tiling strategy be generalized to non-Transformer architectures? What are the memory-computation tradeoff limits?", papers: ["dao2022-flashattention", "shah2024-flashattention3"] },
   { q: "What is the quantitative relationship between memory savings and quality degradation in GQA/MQA? Is there an optimal KV head grouping strategy?", papers: ["ainslie2023-gqa", "shazeer2019-mqa"] },
   { q: "Can DeepSeek-V2's MLA (Multi-head Latent Attention) become the next-generation attention standard? What is its theoretical connection to low-rank approximation?", papers: ["deepseek2024-v2"] },
+  { q: "Can the routing decisions of learned sparse attention (DSA/MISA) be unified with retrieval and external memory mechanisms? How do we quantify the quality gap between sparsity introduced during training and sparsity switched on at inference time?", papers: ["deepseek2026-v4", "misa2026-sparse-attention"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="inference/efficient-attention" />
 
-<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2']} />
+<PaperList ids={['dao2022-flashattention', 'dao2023-flashattention2', 'shah2024-flashattention3', 'ainslie2023-gqa', 'shazeer2019-mqa', 'deepseek2024-v2', 'deepseek2026-v4', 'misa2026-sparse-attention']} />

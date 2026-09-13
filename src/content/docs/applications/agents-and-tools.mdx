@@ -7,9 +7,9 @@ sidebar:
   order: 2
 status: published
 tiers: [intro, engineer, research]
-papers: ['yao2022-react', 'schick2023-toolformer', 'shinn2023-reflexion', 'yang2024-sweagent', 'anthropic2024-mcp', 'yao2023-tot']
+papers: ['yao2022-react', 'schick2023-toolformer', 'shinn2023-reflexion', 'yang2024-sweagent', 'anthropic2024-mcp', 'yao2023-tot', 'agentworld2026']
 related: [applications/rag-and-retrieval, applications/code-generation, applications/prompt-engineering]
-updated: 2026-08-06
+updated: 2026-09-13
 ---
 
 import TierSwitcher from '../../../components/TierSwitcher.astro';
@@ -46,6 +46,13 @@ ReAct 框架把这个循环显式化：模型输出"思考→行动→观察→�
 - **协议标准化（2025-2026）**：MCP（Model Context Protocol）从 Anthropic 发起，已被 OpenAI、Google 等广泛采纳，成为 Agent 与外部工具交互的行业标准。A2A（Agent-to-Agent Protocol）则是 Google 2025 年提出的开放标准，解决不同 Agent 之间的能力发现与任务协作，与 MCP 互补——MCP 解决 Agent↔工具，A2A 解决 Agent↔Agent。
 
 评估 Agent 比评估纯文本生成更难：要看任务完成率、步骤效率、错误恢复能力和成本。SWE-bench 等基准测试通过真实代码任务衡量 Agent 的实用性。
+
+### 2026 年：并行多 Agent 与 Agentic RL
+
+2026 年有两个值得记录的工程趋势：
+
+- **并行多 Agent 成为编程 Agent 标配**：Claude Code、OpenAI Codex CLI、Devin 等主流编程 Agent 相继支持同时运行多个 Agent 会话——每个会话在独立分支或沙箱中工作，由人（或一个调度 Agent）评审合并。工程要点随之从"单个 Agent 够不够聪明"转向"任务如何拆分、冲突如何仲裁、上下文如何隔离"。
+- **Agentic RL 用合成可验证环境训练**：Agent World Model（[[ref:agentworld2026]]）代表了新的训练范式——用程序批量生成带可验证奖励的工具使用环境（覆盖 MCP 调用），单步可并行上千个环境实例，把 Agent 训练从"昂贵的人工标注轨迹"转向"近乎无限的环境课程"。
 
 ### 示例代码：ReAct 风格的 Agent 循环
 
@@ -180,10 +187,11 @@ agent.run("查询今天天气")
   { q: 'Agent 系统的可靠性如何形式化验证？现有 benchmarks（如 SWE-bench）是否足够？', papers: ["yang2024-sweagent"] },
   { q: 'MCP 等工具调用协议的标准化能否真正解决跨模型/跨工具的互操作问题？', papers: ["anthropic2024-mcp"] },
   { q: '多 Agent 协作与单 Agent 反思（ReAct/Reflexion）的能力边界在哪里？', papers: ["yao2022-react", "shinn2023-reflexion"] },
+  { q: '并行多 Agent 系统中，任务拆分粒度与合并冲突的关系如何建模？集中式调度与去中心化协商各自的失败模式是什么？', papers: ["agentworld2026", "yao2022-react"] },
 ]} />
 </TierBlock>
 
 
 <RelatedArticles related={frontmatter.related} currentSlug="applications/agents-and-tools" />
 
-<PaperList ids={['yao2022-react', 'schick2023-toolformer', 'shinn2023-reflexion', 'yang2024-sweagent', 'anthropic2024-mcp', 'yao2023-tot']} />
+<PaperList ids={['yao2022-react', 'schick2023-toolformer', 'shinn2023-reflexion', 'yang2024-sweagent', 'anthropic2024-mcp', 'yao2023-tot', 'agentworld2026']} />
