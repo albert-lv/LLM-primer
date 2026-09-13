@@ -1,0 +1,78 @@
+---
+title: "Edge and On-Device Inference: LLMs Move to the Terminal"
+description: "LLM inference techniques and optimizations for mobile devices, embedded systems, and edge computing."
+module: inference
+order: 4
+sidebar:
+  order: 4
+status: published
+tiers: [intro, engineer, research]
+related: [inference/kv-cache-and-quantization, inference/efficient-attention, inference/long-context]
+updated: 2026-08-06
+---
+
+import TierSwitcher from '../../../../components/TierSwitcher.astro';
+import TierBlock from '../../../../components/TierBlock.astro';
+import OpenQuestions from '../../../../components/OpenQuestions.astro';
+import RelatedArticles from '../../../../components/RelatedArticles.astro';
+
+
+<TierSwitcher />
+
+
+<TierBlock tier="intro">
+
+## Intuition: run large models on your phone
+
+Cloud LLMs require connectivity, add latency, and may leak privacy. Can the model run directly on your phone, tablet, or even watch? That is the goal of **on-device inference**.
+
+Intuitively, phone chips are far weaker than datacenter GPUs, but with **model compression** (making models smaller) and **inference optimization** (making computation more efficient), 7B-parameter models now run smoothly on phones. It is like condensing the essence of a library into a pocket book—the information density remains while the size shrinks dramatically.
+
+</TierBlock>
+
+<TierBlock tier="engineer">
+
+## Engineering view: the memory-power-latency trilemma
+
+The core constraints of on-device inference are not raw compute, but **memory** and **power**:
+
+- **Memory bottleneck**: phones typically have 8-16GB of RAM; model weights alone take several GB, and KV Cache quickly overflows the rest.
+- **Power limits**: sustained inference drains the battery fast and heats up the device.
+- **Latency requirements**: users expect interactive responses (within 100ms), but device compute is limited.
+
+**Key technical paths**:
+
+1. **Extreme quantization**: from INT8 to INT4 and even lower bit-widths. Apple's "LLM in a flash" uses layered loading, keeping only the currently needed layers in memory.
+2. **MoE routing optimization**: MoE models activate only a subset of experts per token, but routing decisions themselves have overhead. TailorLLM (EuroSys 2026) uses low-rank adapters for device-cloud collaborative inference.
+3. **Mobile NPU utilization**: smartphone NPUs (Neural Processing Units) are designed for matrix operations. "Scaling LLM Test-Time Compute with Mobile NPU" (EuroSys 2026) explores scaling test-time compute on mobile NPUs.
+4. **Federated fine-tuning**: fine-tune small LoRA adapters locally on device, personalizing the model while protecting privacy.
+5. **no_std embedded**: libraries such as Ratatui v0.30.0 begin supporting no_std, letting TUI apps run on microcontrollers—LLM inference is moving toward embedded targets in parallel.
+
+</TierBlock>
+
+<TierBlock tier="research">
+
+## Research view: systems challenges of moving from cloud to edge
+
+The core research question is: **how do we achieve near-cloud inference quality on resource-constrained devices?**
+
+**Key 2026 results**:
+- **Sereno** (OSDI 2026): tames memory-bandwidth contention in mobile LLM inference through core scheduling that reduces NPU/GPU memory competition.
+- **OpenJarvis** (Stanford): personal AI running on local devices, with LLM-guided spec search and local-cloud collaboration, balancing privacy and capability.
+- **TZ-LLM** (EuroSys 2026): protects on-device LLMs with Arm TrustZone, mitigating the risk of model-weight theft.
+- **IntAttention** (MLSys 2026): a fully integer attention pipeline that eliminates floating-point operations, substantially reducing edge-device power consumption.
+
+**Open problems**:
+- The security model of on-device inference: weights are intellectual property—how do we prevent extraction attacks?
+- The optimal split point of device-cloud collaboration: which computation belongs locally and which belongs in the cloud?
+- When every device runs its own LLM, how do we manage and update these models?
+
+<OpenQuestions questions={[
+  { q: 'How large is the quality gap between on-device and cloud LLM inference? On which tasks is on-device already sufficient?' },
+  { q: 'Can MoE routing overhead on mobile devices be eliminated through hardware-software co-design?' },
+  { q: 'How should gradient-leakage risk in federated fine-tuning be quantified? Where are the practical limits of existing privacy schemes (DP-SGD, secure aggregation)?' },
+]} />
+</TierBlock>
+
+
+<RelatedArticles related={frontmatter.related} currentSlug="inference/edge-inference" />
